@@ -1,0 +1,19 @@
+{
+  "name": "scrivito-form-widgets",
+  "version": "1.0.0",
+  "description": "A set of Scrivito form widgets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scrivito/scrivito-form-widgets.git"
+  },
+  "author": "aea-JR",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Scrivito/scrivito-form-widgets/issues"
+  },
+  "homepage": "https://github.com/Scrivito/scrivito-form-widgets#readme"
+}
