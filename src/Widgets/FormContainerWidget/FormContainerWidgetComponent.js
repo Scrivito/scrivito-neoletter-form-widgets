@@ -8,11 +8,11 @@ import "./FormContainerWidget.scss";
 import { getScrivitoFormWidgetConfig } from "../../config/scrivitoConfig";
 
 Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
-  const tenant = getScrivitoFormWidgetConfig().tenant;
+  const tenant = getScrivitoFormWidgetConfig().instanceId;
   if (!tenant) {
     return (
-      <span className="missing-tenant">
-        Warning! tenant has not been configured for the form widget.
+      <span className="missing-id">
+        Warning! instanceId has not been configured for the form widget.
       </span>
     );
   }

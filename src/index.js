@@ -1,7 +1,3 @@
-import "./Widgets/FormCheckboxWidget/FormCheckboxWidgetComponent";
-import "./Widgets/FormCheckboxWidget/FormCheckboxWidgetEditingConfig";
-import "./Widgets/FormCheckboxWidget/FormCheckboxWidgetClass";
-
 import "./Widgets/FormConditionWidget/FormConditionWidgetClass";
 import "./Widgets/FormConditionWidget/FormConditionWidgetComponent";
 import "./Widgets/FormConditionWidget/FormConditionWidgetEditingConfig";
@@ -38,6 +34,18 @@ import "./Widgets/FormStepWidget/FormStepWidgetClass";
 import "./Widgets/FormStepWidget/FormStepWidgetComponent";
 import "./Widgets/FormStepWidget/FormStepWidgetEditingConfig";
 
-import { setScrivitoFormWidgetConfig } from "./config/scrivitoConfig";
+import "./Widgets/FormCheckboxWidget/FormCheckboxWidgetComponent";
+
+import {
+  setScrivitoFormWidgetConfig,
+  onConfigSet,
+} from "./config/scrivitoConfig";
+
+function loadWidgets() {
+  import("./Widgets/FormCheckboxWidget/FormCheckboxWidgetClass");
+  import("./Widgets/FormCheckboxWidget/FormCheckboxWidgetEditingConfig");
+}
+// If the config is already set, load the widgets immediately
+onConfigSet(loadWidgets);
 
 export { setScrivitoFormWidgetConfig };

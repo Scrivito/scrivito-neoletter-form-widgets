@@ -14,7 +14,7 @@ Scrivito.provideEditingConfig("FormCheckboxWidget", {
       title: "Input type",
       values: [
         { value: "accept_terms", title: "Accept terms" },
-        ...(getScrivitoFormWidgetConfig().neoletterSubmissionEnabled
+        ...(getScrivitoFormWidgetConfig().neoletterSubscriptionEnabled
           ? [{ value: "subscription", title: "Subscription" }]
           : []),
         { value: "custom", title: "Custom" },

@@ -6,8 +6,6 @@ export const FormHiddenFields = ({ widget }) => {
   const [browserLocation, setBrowserLocation] = React.useState(null);
   React.useEffect(() => {
     const history = getHistory();
-    console.log("And the history is....");
-    console.log(history);
     if (!history) return;
     setBrowserLocation(locationToUrl(history.location));
 

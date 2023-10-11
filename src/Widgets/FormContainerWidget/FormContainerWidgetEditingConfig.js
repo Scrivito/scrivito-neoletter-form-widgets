@@ -174,8 +174,8 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
       }
     },
     () => {
-      if (!getScrivitoFormWidgetConfig().tenant) {
-        return "No tenant specified for form widgets.";
+      if (!getScrivitoFormWidgetConfig().instanceId) {
+        return "No instanceId specified for form widgets.";
       }
     },
 

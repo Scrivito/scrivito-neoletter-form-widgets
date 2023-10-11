@@ -1,17 +1,32 @@
-let tenant = null;
-let neoletterSubscriptionFeatureEnabled = null;
+let _instanceId = null;
+let _neoletterSubscriptionFeatureEnabled = false;
+let configIsSet = false;
+let setConfigCallback = null;
 
 export const setScrivitoFormWidgetConfig = (
-  scrivitoTenant,
-  neoletterFormSubmissionFeatureEnabled
+  instanceId,
+  neoletterSubscriptionFeatureEnabled
 ) => {
-  tenant = scrivitoTenant;
-  neoletterSubscriptionFeatureEnabled = neoletterFormSubmissionFeatureEnabled;
+  _instanceId = instanceId;
+  _neoletterSubscriptionFeatureEnabled = neoletterSubscriptionFeatureEnabled;
+
+  configIsSet = true;
+  if (setConfigCallback) {
+    setConfigCallback();
+  }
 };
 
 export const getScrivitoFormWidgetConfig = () => {
   return {
-    tenant: tenant,
-    neoletterSubmissionEnabled: neoletterSubscriptionFeatureEnabled,
+    instanceId: _instanceId,
+    neoletterSubscriptionEnabled: _neoletterSubscriptionFeatureEnabled,
   };
+};
+
+export const onConfigSet = (callback) => {
+  if (configIsSet) {
+    callback();
+  } else {
+    setConfigCallback = callback;
+  }
 };

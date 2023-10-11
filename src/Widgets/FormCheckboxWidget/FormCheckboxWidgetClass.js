@@ -8,7 +8,7 @@ export const FormCheckboxWidget = Scrivito.provideWidgetClass(
         "enum",
         {
           values: ["custom", "accept_terms"].concat(
-            getScrivitoFormWidgetConfig().neoletterSubmissionEnabled
+            getScrivitoFormWidgetConfig().neoletterSubscriptionEnabled
               ? ["subscription"]
               : []
           ),
