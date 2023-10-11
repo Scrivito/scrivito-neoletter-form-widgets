@@ -55,9 +55,9 @@ export function configureForm() {
     setScrivitoFormWidgetConfig(process.env.SCRIVITO_TENANT);
 }
 ```
-This will set the tenant for the form widgets, which is needed for form submission. Optionally, you can add the ENABLE_NEOLETTER_FORM_BUILDER_SUBSCRIPTION_FEATURE variable if you are using it:
+This will set the tenant for the form widgets, which is needed for form submission. Optionally, you can add the ENABLE_NEOLETTER_FORM_BUILDER_SUBSCRIPTION_FEATURE flag if you are using it:
 ```js
-setScrivitoFormWidgetConfig(process.env.SCRIVITO_TENANT, process.env.ENABLE_NEOLETTER_FORM_BUILDER_SUBSCRIPTION_FEATURE);
+setScrivitoFormWidgetConfig(process.env.SCRIVITO_TENANT, true);
  ```
 
 Finally, in the "index.js" file in the config folder, call the `configureForm()` function inside `configure()`:
