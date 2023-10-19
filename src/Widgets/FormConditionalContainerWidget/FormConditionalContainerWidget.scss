@@ -1,23 +1,25 @@
-.condition-wrapper {
-  border: green 2px dotted;
-  .select-title {
-    margin-top: 0.3em;
+.scrivito-form-widgets {
+  .condition-wrapper {
+    border: green 2px dotted;
+    .select-title {
+      margin-top: 0.3em;
+    }
   }
-}
-.conditional-content {
-  border: orange 2px dotted;
-}
-.header-info {
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  background: white;
-  transform: translate(-50%);
-  padding: 0 5px;
-  margin: 0;
-}
-.dropdown-container {
-  select {
-    width: 100%;
+  .conditional-content {
+    border: orange 2px dotted;
+  }
+  .header-info {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    background: white;
+    transform: translate(-50%);
+    padding: 0 5px;
+    margin: 0;
+  }
+  .dropdown-container {
+    select {
+      width: 100%;
+    }
   }
 }

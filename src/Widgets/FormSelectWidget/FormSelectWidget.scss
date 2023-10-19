@@ -1,17 +1,19 @@
-.select-container .select-title {
-  display: flex;
-  align-items: baseline;
-}
-.select-container .select-label {
-  display: flex;
-  align-items: center;
-}
-.select-container .select-label span {
-  margin-left: 0.4em;
-}
-.select-container .select-label .form-check-input {
-  margin-top: 0;
-}
-.select-container .dropdown-select {
-  width: 100%;
+.scrivito-form-widgets .select-container {
+  .select-title {
+    display: flex;
+    align-items: baseline;
+  }
+  .select-label {
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: 0.4em;
+    }
+    .form-check-input {
+      margin-top: 0;
+    }
+  }
+  .dropdown-select {
+    width: 100%;
+  }
 }

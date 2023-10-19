@@ -11,7 +11,7 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
   const tenant = getInstanceId();
   if (!tenant) {
     return (
-      <span className="missing-id">
+      <span className="scrivito-form-widgets missing-id">
         Warning! instanceId has not been configured for the form widget.
       </span>
     );
@@ -38,7 +38,7 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
 
   if (isSubmitting) {
     return (
-      <div className="form-container-widget text-center">
+      <div className="scrivito-form-widgets form-container-widget text-center">
         <i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i>{" "}
         <span className="text-super">{widget.get("submittingMessage")}</span>
       </div>
@@ -47,7 +47,7 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
 
   if (successfullySent) {
     return (
-      <div className="form-container-widget text-center">
+      <div className="scrivito-form-widgets form-container-widget text-center">
         <i className="fa fa-check fa-2x" aria-hidden="true"></i>{" "}
         <span className="text-super">{widget.get("submittedMessage")}</span>
       </div>
@@ -56,7 +56,7 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
 
   if (submissionFailed) {
     return (
-      <div className="form-container-widget text-center">
+      <div className="scrivito-form-widgets form-container-widget text-center">
         <i className="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>{" "}
         <span className="text-super">{widget.get("failedMessage")}</span>
       </div>
@@ -65,7 +65,7 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
 
   return (
     <div
-      className={`form-container-widget ${
+      className={`scrivito-form-widgets form-container-widget ${
         widget.get("showBorder") ? "form-border" : ""
       }`}
     >

@@ -1,5 +1,5 @@
 // Styles for FormContainerWidget
-.form-container-widget {
+.scrivito-form-widgets.form-container-widget {
   .dropdown-container,
   .select-container {
     .select-title {
@@ -60,28 +60,28 @@
 .bg-greydark,
 .bg-greymiddle {
   .missing-tenant,
-  .form-container-widget label,
-  .form-container-widget .text-mandatory,
-  .form-container-widget .fa,
-  .form-container-widget .text-super,
-  .card.card-theme .form-container-widget label,
-  .card.card-theme .form-container-widget .text-mandatory,
-  .card.card-theme .form-container-widget .fa {
+  .scrivito-form-widgets.form-container-widget label,
+  .scrivito-form-widgets.form-container-widget .text-mandatory,
+  .scrivito-form-widgets.form-container-widget .fa,
+  .scrivito-form-widgets.form-container-widget .text-super,
+  .card.card-theme .scrivito-form-widgets.form-container-widget label,
+  .card.card-theme .scrivito-form-widgets.form-container-widget .text-mandatory,
+  .card.card-theme .scrivito-form-widgets.form-container-widget .fa {
     color: #fff !important;
   }
   // hardcoded for now
-  .card .form-container-widget label {
+  .card .scrivito-form-widgets.form-container-widget label {
     color: #495054 /*$theme-grey */ !important;
   }
-  .card .form-container-widget .text-mandatory {
+  .card .scrivito-form-widgets.form-container-widget .text-mandatory {
     color: red !important;
   }
-  .card .form-container-widget .fa {
+  .card .scrivito-form-widgets.form-container-widget .fa {
     color: #ccc !important;
   }
 }
 
-.missing-id {
+.scrivito-form-widgets.missing-id {
   display: flex;
   justify-content: center;
 }
