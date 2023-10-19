@@ -7,7 +7,7 @@ import { getFormContainer } from "./utils/getFormContainer";
 import { FormStepWidget } from "../FormStepWidget/FormStepWidgetClass";
 import { FormSelectWidget } from "../FormSelectWidget/FormSelectWidgetClass";
 import { FormRatingWidget } from "../FormRatingWidget/FormRatingWidgetClass";
-import { getScrivitoFormWidgetConfig } from "../../config/scrivitoConfig";
+import { getInstanceId } from "../../config/scrivitoConfig";
 Scrivito.provideEditingConfig("FormContainerWidget", {
   title: "Form",
   thumbnail: formContainerWidgetIcon,
@@ -174,7 +174,7 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
       }
     },
     () => {
-      if (!getScrivitoFormWidgetConfig().instanceId) {
+      if (!getInstanceId()) {
         return "No instanceId specified for form widgets.";
       }
     },

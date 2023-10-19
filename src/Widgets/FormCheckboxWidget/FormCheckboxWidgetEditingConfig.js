@@ -4,7 +4,6 @@ import { isCustomType } from "../FormContainerWidget/utils/isCustomType";
 import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
 import { typeValidation } from "../FormContainerWidget/utils/validations/typeValidation";
 import { insideFormContainerValidation } from "../FormContainerWidget/utils/validations/insideFormContainerValidation";
-import { getScrivitoFormWidgetConfig } from "../../config/scrivitoConfig";
 Scrivito.provideEditingConfig("FormCheckboxWidget", {
   title: "Form Checkbox",
   thumbnail: formCheckboxWidgetIcon,
@@ -14,9 +13,7 @@ Scrivito.provideEditingConfig("FormCheckboxWidget", {
       title: "Input type",
       values: [
         { value: "accept_terms", title: "Accept terms" },
-        ...(getScrivitoFormWidgetConfig().neoletterSubscriptionEnabled
-          ? [{ value: "subscription", title: "Subscription" }]
-          : []),
+        { value: "subscription", title: "Subscription" },
         { value: "custom", title: "Custom" },
       ],
     },

@@ -5,10 +5,10 @@ import { FormFooterMultiSteps } from "./components/FormFooterMultiStepsComponent
 import { FormFooterSingleStep } from "./components/FormFooterSingleStepComponent";
 import { FormHiddenFields } from "./components/FormHiddenFieldsComponent";
 import "./FormContainerWidget.scss";
-import { getScrivitoFormWidgetConfig } from "../../config/scrivitoConfig";
+import { getInstanceId } from "../../config/scrivitoConfig";
 
 Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
-  const tenant = getScrivitoFormWidgetConfig().instanceId;
+  const tenant = getInstanceId();
   if (!tenant) {
     return (
       <span className="missing-id">

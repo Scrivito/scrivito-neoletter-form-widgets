@@ -1,13 +1,13 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import { ContentProperty } from "../../../Components/ContentProperty";
-import { getScrivitoFormWidgetConfig } from "../../../config/scrivitoConfig";
+import { getInstanceId } from "../../../config/scrivitoConfig";
 
 export const FormIdComponent = Scrivito.connect(({ widget }) => {
   const formSubmissionsHref = widget.get("formId")
-    ? `https://edit.neoletter.com/i/${
-        getScrivitoFormWidgetConfig().instanceId
-      }/forms/${widget.get("formId")}`
+    ? `https://edit.neoletter.com/i/${getInstanceId()}/forms/${widget.get(
+        "formId"
+      )}`
     : null;
   const uiContext = Scrivito.uiContext();
   if (!uiContext) return null;

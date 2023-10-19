@@ -1,32 +1,58 @@
 let _instanceId = null;
-let _neoletterSubscriptionFeatureEnabled = false;
-let configIsSet = false;
-let setConfigCallback = null;
 
-export const setScrivitoFormWidgetConfig = (
-  instanceId,
-  neoletterSubscriptionFeatureEnabled
-) => {
+export const initScrivitoFormWidgets = (instanceId) => {
   _instanceId = instanceId;
-  _neoletterSubscriptionFeatureEnabled = neoletterSubscriptionFeatureEnabled;
-
-  configIsSet = true;
-  if (setConfigCallback) {
-    setConfigCallback();
-  }
+  loadWidgets();
 };
 
-export const getScrivitoFormWidgetConfig = () => {
-  return {
-    instanceId: _instanceId,
-    neoletterSubscriptionEnabled: _neoletterSubscriptionFeatureEnabled,
-  };
+export const getInstanceId = () => {
+  return _instanceId;
 };
 
-export const onConfigSet = (callback) => {
-  if (configIsSet) {
-    callback();
-  } else {
-    setConfigCallback = callback;
-  }
-};
+function loadWidgets() {
+  import("../Widgets/FormConditionWidget/FormConditionWidgetClass");
+  import("../Widgets/FormConditionWidget/FormConditionWidgetComponent");
+  import("../Widgets/FormConditionWidget/FormConditionWidgetEditingConfig");
+
+  import(
+    "../Widgets/FormConditionalContainerWidget/FormConditionalContainerWidgetClass"
+  );
+  import(
+    "../Widgets/FormConditionalContainerWidget/FormConditionalContainerWidgetComponent"
+  );
+  import(
+    "../Widgets/FormConditionalContainerWidget/FormConditionalContainerWidgetEditingConfig"
+  );
+
+  import("../Widgets/FormContainerWidget/FormContainerWidgetClass");
+  import("../Widgets/FormContainerWidget/FormContainerWidgetComponent");
+  import("../Widgets/FormContainerWidget/FormContainerWidgetEditingConfig");
+
+  import("../Widgets/FormDateWidget/FormDateWidgetClass");
+  import("../Widgets/FormDateWidget/FormDateWidgetComponent");
+  import("../Widgets/FormDateWidget/FormDateWidgetEditingConfig");
+
+  import("../Widgets/FormHiddenFieldWidget/FormHiddenFieldWidgetClass");
+  import("../Widgets/FormHiddenFieldWidget/FormHiddenFieldWidgetComponent");
+  import("../Widgets/FormHiddenFieldWidget/FormHiddenFieldWidgetEditingConfig");
+
+  import("../Widgets/FormInputFieldWidget/FormInputFieldWidgetClass");
+  import("../Widgets/FormInputFieldWidget/FormInputFieldWidgetComponent");
+  import("../Widgets/FormInputFieldWidget/FormInputFieldWidgetEditingConfig");
+
+  import("../Widgets/FormRatingWidget/FormRatingWidgetClass");
+  import("../Widgets/FormRatingWidget/FormRatingWidgetComponent");
+  import("../Widgets/FormRatingWidget/FormRatingWidgetEditingConfig");
+
+  import("../Widgets/FormSelectWidget/FormSelectWidgetClass");
+  import("../Widgets/FormSelectWidget/FormSelectWidgetComponent");
+  import("../Widgets/FormSelectWidget/FormSelectWidgetEditingConfig");
+
+  import("../Widgets/FormStepWidget/FormStepWidgetClass");
+  import("../Widgets/FormStepWidget/FormStepWidgetComponent");
+  import("../Widgets/FormStepWidget/FormStepWidgetEditingConfig");
+
+  import("../Widgets/FormCheckboxWidget/FormCheckboxWidgetComponent");
+  import("../Widgets/FormCheckboxWidget/FormCheckboxWidgetClass");
+  import("../Widgets/FormCheckboxWidget/FormCheckboxWidgetEditingConfig");
+}

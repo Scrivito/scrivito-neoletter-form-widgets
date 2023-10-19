@@ -1,5 +1,4 @@
 import * as Scrivito from "scrivito";
-import { getScrivitoFormWidgetConfig } from "../../config/scrivitoConfig";
 export const FormCheckboxWidget = Scrivito.provideWidgetClass(
   "FormCheckboxWidget",
   {
@@ -7,11 +6,7 @@ export const FormCheckboxWidget = Scrivito.provideWidgetClass(
       type: [
         "enum",
         {
-          values: ["custom", "accept_terms"].concat(
-            getScrivitoFormWidgetConfig().neoletterSubscriptionEnabled
-              ? ["subscription"]
-              : []
-          ),
+          values: ["custom", "subscription", "accept_terms"],
         },
       ],
       customFieldName: "string",
