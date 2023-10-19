@@ -15,12 +15,13 @@ const DEPENDENCIES = packageJson.dependencies || {};
 module.exports = (_env, argv) => {
 
   const plugins = [
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin({
+      patterns: [
       { from: "../LICENSE", to: BUILD_PATH },
       { from: "../package.json", to: BUILD_PATH },
       { from: "../readme.md", to: BUILD_PATH },
-      { from: "**/*.css", to: BUILD_PATH },
-    ]),
+    ]
+  }),
     new MiniCssExtractPlugin({
       filename: "index.css",
     }),
