@@ -21,7 +21,7 @@ Install the package into your scrivito app:
 npm install scrivito-form-widgets
 ```
 
-Import the `initScrivitoFormWidgets` function from the package, and call it in your index.js file (e.g. in `src/index.js` or `src/Widgets/index.js`), passing your Scrivito tenant ID to the function:
+Import the `initScrivitoFormWidgets` function from the package, and call it in your index.js file found in the Widgets folder (e.g. in `src/Widgets/index.js`), passing your Scrivito tenant ID to the function:
 ```js
 import { initScrivitoFormWidgets } from "scrivito-form-widgets";
 
