@@ -166,7 +166,10 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
       }
     },
     (widget) => {
-      if (widget.get("steps").length < 2) {
+      if (
+        widget.get("steps").length < 2 &&
+        widget.get("formType") == "multi-step"
+      ) {
         return "The form must include at least two steps.";
       }
     },
