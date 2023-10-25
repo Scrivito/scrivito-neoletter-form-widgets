@@ -82,19 +82,19 @@ The `Form` widget is the main widget for creating and managing forms. To add var
 
 The `Form` widget has the following properties divided into several tabs:
 
-- General tab
+- "General" tab
     - Format: Choose between "Single Step" and "Multiple Steps" form formats.
     - Show as Box: Set to display the form as a box.
     - Submitting Message: Message shown while the form is being submitted.
     - Submitted Message: Message shown after the form was successfully submitted.
     - Failed Message: Message shown if the form submission failed.
-- Steps tab (Tab visible if Format is "Multiple Steps")
+- "Steps" tab (Tab visible if Format is "Multiple Steps")
     - Steps: Configure form steps for multi-step forms.
-- Hidden fields tab
+- "Hidden fields" tab
     - Hidden Fields: Customize hidden fields.
-- Form submission tab
+- "Form submission" tab
     - Form ID: This ID identifies the form in Neoletter.
-- Navigation area tab (Content depends on Format selection)
+- "Navigation area" tab (Content depends on Format selection)
     - Forward Button Text: Text for the forward button.
     - Backward Button Text: Text for the backward button.
     - Submit Button Text: Text for the submit button.
@@ -117,23 +117,24 @@ The `Form Step` widget represents an individual step within a multi-step form. E
 - Items: Configure the items or content for this step.
 
 ### Validation
-- The step widget should be placed within a Multiple Steps Form. 
+- The step widget must be placed within a Multiple Steps Form. 
 - Each step must include at least one item. 
 
 ## Form Checkbox Widget
 <img src="images/form_checkbox_preview.png"  width="350" alt="Screenshot">
 
-The `Form Checkbox` widget enables you to add single checkbox input fields to your form. You can specify whether the checkbox is mandatory and define its type, custom field name, and help text.
+The `Form Checkbox` widget lets you add individual single checkbox input fields to your form. You can specify whether the checkbox is mandatory and define its type, custom field name, and help text.
 
 ### Properties
 
-- Input Type: Select the type of checkbox, such as accepting terms, subscriptions, or custom.
+- Input Type: The checkbox type for accepting terms, a subscription, or a custom option.
 - Field Name: Define the field name for the checkbox.
 - Label: Provide a descriptive label for the checkbox to convey its purpose.
 - Mandatory: Indicates whether the checkbox is required.
 - Help Text: Provide optional help text for the checkbox.
 
 ### Validation
+- This checkbox widget must be placed within a Form widget to be effective.
 - The field name must be unique and start with `custom_`, if the selected input type is `custom`.
 
 ## Form Date Widget
@@ -150,18 +151,18 @@ The `Form Date` widget allows users to input dates in various formats. You can c
 - Help Text: Provide optional help text for the date input.
 
 ### Validation
-- This date input widget should be placed within a Form widget to be effective.
+- This date input widget must be placed within a Form widget to be effective.
 - The field name must be unique and start with `custom_`.
 
 ## Form Input Field Widget
 <img src="images/form_input_preview.png"   width="350" alt="Screenshot">
 
-The `Form Input Field` widget adds customizable input fields to your form. You can define various properties such as label, placeholder, input type, custom type, custom field name, and help text.
+The `Form Input Field` widget adds customizable input fields to your form. You can define the following properties: label, placeholder, input type, custom type, custom field name, and help text.
 
 ### Properties
 
 - Input Type: Select the type of input, such as name, email, phone number, or custom.
-- Custom Input Type: Specify custom input types, such as single-line or multi-line.
+- Custom Input Type: Specify custom input types, single-line or multi-line.
 - Field Name: Define the field name for the input.
 - Label: Provide a descriptive label for the input field to convey its purpose.
 - Placeholder: Define a placeholder text for the input field, providing guidance to users.
@@ -169,7 +170,7 @@ The `Form Input Field` widget adds customizable input fields to your form. You c
 - Help Text: Provide optional help text for the input field.
 
 ### Validation
-- This input field widget should be placed within a Form widget to be effective.
+- This input field widget must be placed within a Form widget to be effective.
 - The field name must be unique and start with `custom_`, if the selected input type is `custom`.
 
 ## Form Rating Widget
@@ -184,7 +185,7 @@ The `Form Rating` widget integrates a rating control into your form, allowing us
 - Help Text: Provide optional help text for the rating control.
 
 ### Validation
-- This rating widget should be placed within a Form widget to be effective.
+- This rating widget must be placed within a Form widget to be effective.
 - The field name must be unique and start with `custom_`.
 
 ## Form Select Widget
@@ -202,7 +203,7 @@ The `Form Select` widget enables you to create single or multiple selection elem
 - Help Text: Provide optional help text for the select input.
 
 ### Validation
-- This select widget should be placed within a Form widget to be effective.
+- This select widget must be placed within a Form widget to be effective.
 - The field name must be unique and start with `custom_`.
 
 
@@ -217,7 +218,7 @@ The `Form Hidden Field` widget includes hidden form fields. These fields are typ
 - Hidden Value: Specify the hidden value for this field.
 
 ### Validation
-- This hidden field widget should be placed within a Form widget to be effective.
+- This hidden field widget must be placed within a Form widget to be effective.
 - The field name must be unique and start with `custom_`.
 
 ## Form Conditional Container Widget
@@ -235,7 +236,7 @@ The `Form Conditional Container` widget allows you to conditionally show or hide
 - Help Text: Provide optional help text for the conditional container.
 
 ### Validation
-- This conditional container widget should be placed within a Form widget to be effective.
+- This conditional container widget must be placed within a Form widget to be effective.
 - The field name must be unique and start with `custom_`.
 
 ## Form Condition Widget
@@ -248,4 +249,4 @@ The `Form Condition` widget is used within the `Form Conditional Container` widg
 - Content: Configure the content to display when this condition is met. You can leave the content empty if you want no other widgets to be shown when this condition is met.
 
 ### Validation
-- The Form Condition Widget should only be used within the Form Conditional Container Widget.
+- The Form Condition Widget can only be used inside the Form Conditional Container Widget.
