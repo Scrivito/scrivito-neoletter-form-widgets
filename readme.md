@@ -84,10 +84,10 @@ The `Form` widget has the following properties divided into several tabs:
 
 - "General" tab
     - Format: Choose between "Single Step" and "Multiple Steps" form formats.
-    - Show as Box: Set to display the form as a box.
-    - Submitting Message: Message shown while the form is being submitted.
-    - Submitted Message: Message shown after the form was successfully submitted.
-    - Failed Message: Message shown if the form submission failed.
+    - Show as box: Set to display the form as a box.
+    - Submitting message: Message shown while the form is being submitted.
+    - Submitted message: Message shown after the form was successfully submitted.
+    - Failed message: Message shown if the form submission failed.
 - "Steps" tab (Tab visible if Format is "Multiple Steps")
     - Steps: Configure form steps for multi-step forms.
 - "Hidden fields" tab
@@ -95,10 +95,10 @@ The `Form` widget has the following properties divided into several tabs:
 - "Form submission" tab
     - Form ID: This ID identifies the form in Neoletter.
 - "Navigation area" tab (Content depends on Format selection)
-    - Forward Button Text: Text for the forward button.
-    - Backward Button Text: Text for the backward button.
-    - Submit Button Text: Text for the submit button.
-    - Single Submit Button Alignment: Alignment for the single-step form submit button.
+    - Forward button text: Text for the forward button.
+    - Backward button text: Text for the backward button.
+    - Submit button text: Text for the submit button.
+    - Alignment: Alignment for the single-step form submit button.
 
 ### Validation
 
@@ -127,11 +127,11 @@ The `Form Checkbox` widget lets you add individual single checkbox input fields 
 
 ### Properties
 
-- Input Type: The checkbox type for accepting terms, a subscription, or a custom option.
-- Field Name: Define the field name for the checkbox.
+- Input type: The checkbox type for accepting terms, a subscription, or a custom option.
+- Field name: Define the field name for the checkbox.
 - Label: Provide a descriptive label for the checkbox to convey its purpose.
 - Mandatory: Indicates whether the checkbox is required.
-- Help Text: Provide optional help text for the checkbox.
+- Help text: Provide optional help text for the checkbox.
 
 ### Validation
 - This checkbox widget must be placed within a Form widget to be effective.
@@ -146,9 +146,9 @@ The `Form Date` widget allows users to input dates in various formats. You can c
 
 - Label: Set the label for the date input field.
 - Format: Choose between date-only and date-and-time formats.
-- Field Name: Define the field name for the date input.
+- Field name: Define the field name for the date input.
 - Mandatory: Indicates whether the date input is required.
-- Help Text: Provide optional help text for the date input.
+- Help text: Provide optional help text for the date input.
 
 ### Validation
 - This date input widget must be placed within a Form widget to be effective.
@@ -161,13 +161,13 @@ The `Form Input Field` widget adds customizable input fields to your form. You c
 
 ### Properties
 
-- Input Type: Select the type of input, such as name, email, phone number, or custom.
-- Custom Input Type: Specify custom input types, single-line or multi-line.
-- Field Name: Define the field name for the input.
+- Input type: Select the type of input, such as name, email, phone number, or custom.
+- Custom input type: Specify custom input types, single-line or multi-line.
+- Field name: Define the field name for the input.
 - Label: Provide a descriptive label for the input field to convey its purpose.
 - Placeholder: Define a placeholder text for the input field, providing guidance to users.
 - Mandatory: Indicates whether the input field is required.
-- Help Text: Provide optional help text for the input field.
+- Help text: Provide optional help text for the input field.
 
 ### Validation
 - This input field widget must be placed within a Form widget to be effective.
@@ -181,8 +181,8 @@ The `Form Rating` widget integrates a rating control into your form, allowing us
 ### Properties
 
 - Label: Set the label for the rating control.
-- Field Name: Define the field name for the rating.
-- Help Text: Provide optional help text for the rating control.
+- Field name: Define the field name for the rating.
+- Help text: Provide optional help text for the rating control.
 
 ### Validation
 - This rating widget must be placed within a Form widget to be effective.
@@ -195,12 +195,12 @@ The `Form Select` widget enables you to create single or multiple selection elem
 
 ### Properties
 
-- Input Type: Choose the type of input, which can be single select (radio buttons or dropdown) or multi-select (checkboxes).
+- Input type: Choose the type of input, which can be single select (radio buttons or dropdown) or multi-select (checkboxes).
 - Label: Specify the label for the select input.
 - Items: Configure the items or options available for selection.
-- Field Name: Define the field name for the select input.
+- Field name: Define the field name for the select input.
 - Mandatory: Indicates whether selection is required for single select inputs (radio buttons and dropdowns).
-- Help Text: Provide optional help text for the select input.
+- Help text: Provide optional help text for the select input.
 
 ### Validation
 - This select widget must be placed within a Form widget to be effective.
@@ -214,8 +214,8 @@ The `Form Hidden Field` widget includes hidden form fields. These fields are typ
 
 ### Properties
 
-- Field Name: Define the field name for the hidden field.
-- Hidden Value: Specify the hidden value for this field.
+- Field name: Define the field name for the hidden field.
+- Hidden value: Specify the hidden value for this field.
 
 ### Validation
 - This hidden field widget must be placed within a Form widget to be effective.
@@ -228,12 +228,12 @@ The `Form Conditional Container` widget allows you to conditionally show or hide
 
 ### Properties
 
-- Input Type: Choose the input type for conditional selection, such as radio buttons or dropdowns.
+- Input type: Choose the input type for conditional selection including radio buttons or dropdowns.
 - Label: Set the label for the conditional container.
 - Conditions: Define conditions that determine which content is shown.
-- Field Name: Define the field name for the conditional container.
+- Field name: Define the field name for the conditional container.
 - Mandatory: Indicates whether the conditional container is required.
-- Help Text: Provide optional help text for the conditional container.
+- Help text: Provide optional help text for the conditional container.
 
 ### Validation
 - This conditional container widget must be placed within a Form widget to be effective.
