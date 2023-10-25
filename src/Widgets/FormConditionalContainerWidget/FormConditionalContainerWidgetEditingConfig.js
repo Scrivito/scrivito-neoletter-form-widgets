@@ -32,9 +32,9 @@ Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
   properties: [
     "headerType",
     "title",
-    "required",
-    "customFieldName",
     "conditions",
+    "customFieldName",
+    "required",
     "helpText",
   ],
   initialContent: {
