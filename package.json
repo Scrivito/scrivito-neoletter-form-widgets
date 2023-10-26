@@ -1,6 +1,6 @@
 {
   "name": "scrivito-form-widgets",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A set of Scrivito form widgets",
   "main": "index.js",
   "scripts": {
