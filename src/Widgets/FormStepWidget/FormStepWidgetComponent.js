@@ -3,8 +3,8 @@ import * as Scrivito from "scrivito";
 import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceholder";
 import "./FormStepWidget.scss";
 
-Scrivito.provideComponent("FormStepWidget", ({ widget }) => {
-  const stepNumber = widget.get("stepNumber");
+Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
+  const data = getData ? getData(widget.id()) : { stepNumber: 0 };
   const items = widget.get("items");
 
   if (!items.length) {
@@ -20,12 +20,12 @@ Scrivito.provideComponent("FormStepWidget", ({ widget }) => {
       className={`${
         Scrivito.isInPlaceEditingActive()
           ? "step-border"
-          : `${widget.get("isActive") ? "" : "hide"}`
+          : `${data.isActive ? "" : "hide"}`
       } `}
-      data-step-number={stepNumber}
+      data-step-number={data.stepNumber}
     >
       {Scrivito.isInPlaceEditingActive() && (
-        <span className="step-preview-count">{"Step " + stepNumber}</span>
+        <span className="step-preview-count">{"Step " + data.stepNumber}</span>
       )}
       <div className="row">
         <Scrivito.ContentTag content={widget} attribute="items" />

@@ -26,12 +26,15 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
   const isLastPage = currentStep == stepsLength;
 
   React.useEffect(() => {
+    if (!Scrivito.isInPlaceEditingActive()) {
+      return;
+    }
+    // in order to show step number in the props title of each step
     const steps = widget.get("steps");
     steps.forEach((step, i) => {
       const stepNumber = i + 1;
       step.update({
         stepNumber: stepNumber,
-        isActive: currentStep == stepNumber,
       });
     });
   }, [widget.get("steps")]);
@@ -74,6 +77,21 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
         <Scrivito.ContentTag
           content={widget}
           attribute={isSingleStep ? "singleStepContent" : "steps"}
+          widgetProps={{
+            getData: (stepId) => {
+              const steps = widget.get("steps");
+              let isActive = false;
+              let stepNumber = 0;
+              steps.some((step, index) => {
+                if (step.id() == stepId) {
+                  stepNumber = index + 1;
+                  isActive = stepNumber == currentStep;
+                  return true;
+                }
+              });
+              return { stepNumber, isActive };
+            },
+          }}
         />
       </form>
       {isSingleStep ? (
