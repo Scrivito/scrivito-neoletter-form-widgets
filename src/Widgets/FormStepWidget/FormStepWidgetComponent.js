@@ -6,6 +6,8 @@ import "./FormStepWidget.scss";
 Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
   const data = getData ? getData(widget.id()) : { stepNumber: 0 };
   const items = widget.get("items");
+  const isMultiStepsWithActiveEditing =
+    Scrivito.isInPlaceEditingActive() && !data.isSingleStep;
 
   if (!items.length) {
     return (
@@ -18,13 +20,13 @@ Scrivito.provideComponent("FormStepWidget", ({ widget, getData }) => {
   return (
     <div
       className={`${
-        Scrivito.isInPlaceEditingActive()
+        isMultiStepsWithActiveEditing
           ? "step-border"
-          : `${data.isActive ? "" : "hide"}`
+          : `${data.isActive || data.isSingleStep ? "" : "hide"}`
       } `}
       data-step-number={data.stepNumber}
     >
-      {Scrivito.isInPlaceEditingActive() && (
+      {isMultiStepsWithActiveEditing && (
         <span className="step-preview-count">{"Step " + data.stepNumber}</span>
       )}
       <div className="row">
