@@ -44,7 +44,40 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
         { value: "multi-step", title: "Multiple steps" },
       ],
     },
-    showBorder: { title: "Show as box" },
+    showBorder: {
+      title: "Show as box",
+      description: "Adds a border around the form if selected.",
+    },
+    showReview: {
+      title: "Show review",
+      description:
+        "Shows a review button on last step for multiple steps. If clicked, a modal with answers will be shown.",
+    },
+    showEmptyAnswers: {
+      title: "Show empty answers",
+      description: "Shows also empty answers if selected.",
+    },
+    showReviewHeader: {
+      title: "Show header",
+      description: "Shows a header in the review modal.",
+    },
+    showReviewFooter: {
+      title: "Show footer",
+      description: "Shows a header in the review modal.",
+    },
+    showStepsInReview: { title: "Show steps", description: "Shows the steps." },
+    reviewButtonText: {
+      title: "Review button text",
+      description: "The text for the review button.",
+    },
+    reviewHeaderTitle: {
+      title: "Header title",
+      description: "The title for the review header.",
+    },
+    reviewCloseButtonText: {
+      title: "Close button text",
+      description: "The text for the close button inside the review footer.",
+    },
     singleSubmitButtonAlignment: {
       title: "Alignment",
       values: [
@@ -81,11 +114,27 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
       },
     ];
     if (obj.get("formType") == "multi-step")
-      groups.unshift({
-        title: "Steps",
-        key: "FormSteps",
-        properties: ["steps"],
-      });
+      groups.unshift(
+        {
+          title: "Steps",
+          key: "FormSteps",
+          properties: ["steps"],
+        },
+        {
+          title: "Review",
+          key: "FormReview",
+          properties: [
+            "showReview",
+            "showStepsInReview",
+            "showEmptyAnswers",
+            "showReviewHeader",
+            "showReviewFooter",
+            "reviewButtonText",
+            "reviewHeaderTitle",
+            "reviewCloseButtonText",
+          ],
+        }
+      );
     return groups;
   },
 
@@ -141,6 +190,15 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     backwardButtonText: "Backward",
     submitButtonText: "Submit",
     showBorder: false,
+    // review stuff
+    showReview: false,
+    showEmptyAnswers: false,
+    showStepsInReview: false,
+    showReviewHeader: false,
+    showReviewFooter: false,
+    reviewButtonText: "Review",
+    reviewHeaderTitle: "Review",
+    reviewCloseButtonText: "Close",
   },
   validations: [
     (widget) => {

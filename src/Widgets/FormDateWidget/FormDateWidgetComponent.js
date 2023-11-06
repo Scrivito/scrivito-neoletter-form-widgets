@@ -25,7 +25,12 @@ Scrivito.provideComponent("FormDateWidget", ({ widget }) => {
         type={widget.get("dateType")}
         required={widget.get("required")}
       ></input>
-      <input type="hidden" name={getFieldName(widget)} value={value}></input>
+      <input
+        type="hidden"
+        className="show-in-review"
+        name={getFieldName(widget)}
+        value={value}
+      ></input>
     </div>
   );
 });

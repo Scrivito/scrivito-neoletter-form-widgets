@@ -42,6 +42,9 @@
       justify-content: center;
       align-items: center;
     }
+    .review-button {
+      margin-right: 1em;
+    }
   }
 
   .hide {
@@ -84,4 +87,33 @@
 .scrivito-form-widgets.missing-id {
   display: flex;
   justify-content: center;
+}
+
+// review modal
+body .modal-dialog .modal-content .modal-body.form-review {
+  height: 60vh;
+  overflow-x: scroll;
+
+  div.step-review-container {
+    &:not(:first-child) {
+      .step-review {
+        margin-top: 1em !important;
+      }
+    }
+  }
+  .review-item-title {
+    color: #9e9e9e;
+    margin-bottom: 0;
+    margin-top: 1em;
+    font-size: 1em;
+    font-weight: normal;
+  }
+
+  .review-item-value {
+    //  margin-top: 0.3em;
+    font-weight: normal;
+    white-space: pre-wrap;
+    max-width: 100vw;
+    overflow-x: auto;
+  }
 }
