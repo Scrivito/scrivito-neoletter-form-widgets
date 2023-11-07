@@ -4,8 +4,6 @@ import { FormInputFieldWidget } from "../FormInputFieldWidget/FormInputFieldWidg
 import { pseudoRandom32CharHex } from "./utils/pseudoRandom32CharHex";
 import { getFormContainer } from "./utils/getFormContainer";
 import { FormStepWidget } from "../FormStepWidget/FormStepWidgetClass";
-import { FormSelectWidget } from "../FormSelectWidget/FormSelectWidgetClass";
-import { FormRatingWidget } from "../FormRatingWidget/FormRatingWidgetClass";
 import { getInstanceId } from "../../config/scrivitoConfig";
 import { FormIdComponent } from "./components/FormIdComponent";
 Scrivito.provideEditingConfig("FormContainerWidget", {
@@ -44,7 +42,40 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
         { value: "multi-step", title: "Multiple steps" },
       ],
     },
-    showBorder: { title: "Show as box" },
+    showBorder: {
+      title: "Show frame",
+      description: "Adds a frame around the form.",
+    },
+    showReview: {
+      title: "Enable review",
+      description:
+        "Adds a button to the last step of multiple steps for reviewing the answers.",
+    },
+    includeEmptyAnswers: {
+      title: "Include empty answers",
+      description: "Also includes empty answers in the review dialog.",
+    },
+    showReviewHeader: {
+      title: "Show header",
+      description: "Adds a header to the review dialog.",
+    },
+    showReviewFooter: {
+      title: "Show footer",
+      description: "Adds a footer with a button for closing the review dialog.",
+    },
+    showStepsInReview: { title: "Show steps", description: "Shows the steps." },
+    reviewButtonText: {
+      title: "Review button text",
+      description: "The text for the review button.",
+    },
+    reviewHeaderTitle: {
+      title: "Header title",
+      description: "The title of the review header.",
+    },
+    reviewCloseButtonText: {
+      title: "Close button text",
+      description: "The text on the button for closing the review dialog.",
+    },
     singleSubmitButtonAlignment: {
       title: "Alignment",
       values: [
@@ -81,11 +112,18 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
       },
     ];
     if (obj.get("formType") == "multi-step")
-      groups.unshift({
-        title: "Steps",
-        key: "FormSteps",
-        properties: ["steps"],
-      });
+      groups.unshift(
+        {
+          title: "Steps",
+          key: "FormSteps",
+          properties: ["steps"],
+        },
+        {
+          title: "Review",
+          key: "FormReview",
+          properties: getReviewProperties(obj),
+        }
+      );
     return groups;
   },
 
@@ -141,6 +179,15 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     backwardButtonText: "Backward",
     submitButtonText: "Submit",
     showBorder: false,
+    // review stuff
+    showReview: false,
+    includeEmptyAnswers: false,
+    showStepsInReview: false,
+    showReviewHeader: false,
+    showReviewFooter: false,
+    reviewButtonText: "Review",
+    reviewHeaderTitle: "Review",
+    reviewCloseButtonText: "Close",
   },
   validations: [
     (widget) => {
@@ -221,4 +268,23 @@ function getNavigationProperties(obj) {
   } else {
     return MultiStepNavigationProps;
   }
+}
+/**
+ * Retrieves the properties for the review tab
+ * @param {*} obj
+ * @returns
+ */
+function getReviewProperties(obj) {
+  const reviewPropsDisabled = ["showReview"];
+  const reviewPropsEnabled = [
+    "showReview",
+    "reviewButtonText",
+    "showStepsInReview",
+    "includeEmptyAnswers",
+    "showReviewHeader",
+    ["reviewHeaderTitle", { enabled: obj.get("showReviewHeader") }],
+    "showReviewFooter",
+    ["reviewCloseButtonText", { enabled: obj.get("showReviewFooter") }],
+  ];
+  return obj.get("showReview") ? reviewPropsEnabled : reviewPropsDisabled;
 }

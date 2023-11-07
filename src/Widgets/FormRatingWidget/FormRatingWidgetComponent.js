@@ -24,6 +24,7 @@ Scrivito.provideComponent("FormRatingWidget", ({ widget }) => {
       ))}
       <input
         type="hidden"
+        className="show-in-review"
         name={getFieldName(widget)}
         value={selectedStars == 0 ? "" : selectedStars}
       ></input>

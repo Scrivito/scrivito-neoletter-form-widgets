@@ -24,6 +24,7 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
   const isSingleStep = widget.get("formType") == "single-step";
   const stepsLength = widget.get("steps").length;
   const isLastPage = currentStep == stepsLength;
+  const showReview = widget.get("showReview");
 
   React.useEffect(() => {
     if (!Scrivito.isInPlaceEditingActive()) {
@@ -110,6 +111,7 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
           currentStep={currentStep}
           stepsLength={stepsLength}
           isLastPage={isLastPage}
+          showReview={showReview}
         />
       )}
     </div>
@@ -208,10 +210,9 @@ function doValidate(formId, currentStep) {
   let isValid = true;
   const form = document.getElementById(formId);
   if (form) {
-    const step = form.querySelectorAll(`[data-step-number='${currentStep}']`);
+    const step = form.querySelector(`[data-step-number='${currentStep}']`);
     if (step) {
-      const allInputs =
-        step.item(0)?.querySelectorAll("input, select, textarea") || [];
+      const allInputs = step.querySelectorAll("input, select, textarea") || [];
       for (const node of allInputs.values()) {
         if (!node.checkValidity()) {
           node.reportValidity();

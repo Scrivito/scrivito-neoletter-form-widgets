@@ -20,6 +20,14 @@ export const FormContainerWidget = Scrivito.provideWidgetClass(
       backwardButtonText: "string",
       submitButtonText: "string",
       showBorder: "boolean",
+      showReview: "boolean",
+      includeEmptyAnswers: "boolean",
+      showStepsInReview: "boolean",
+      showReviewHeader: "boolean",
+      showReviewFooter: "boolean",
+      reviewButtonText: "string",
+      reviewHeaderTitle: "string",
+      reviewCloseButtonText: "string",
       singleSubmitButtonAlignment: [
         "enum",
         {
