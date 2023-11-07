@@ -3,4 +3,9 @@ import { insideFormContainerValidation } from "./Widgets/FormContainerWidget/uti
 import { getFormContainer } from "./Widgets/FormContainerWidget/utils/getFormContainer";
 import { customFieldNameValidation } from "./Widgets/FormContainerWidget/utils/validations/customFieldNameValidation";
 
-export { initScrivitoFormWidgets, insideFormContainerValidation, getFormContainer, customFieldNameValidation };
+export {
+  initScrivitoFormWidgets,
+  insideFormContainerValidation,
+  getFormContainer,
+  customFieldNameValidation,
+};
