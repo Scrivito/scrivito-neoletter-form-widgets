@@ -17,7 +17,7 @@ export function prepareReviewData(widget) {
 
   const steps = widget.get("steps");
   const widgets = steps.flatMap((s) => s.widgets());
-  const showEmptyAnswers = widget.get("showEmptyAnswers");
+  const includeEmptyAnswers = widget.get("includeEmptyAnswers");
   const inputs = Array.from(form.querySelectorAll("input, select, textarea"));
   const inputNames = uniq(map(inputs, (i) => i.name));
   const reviewData = [];
@@ -26,13 +26,12 @@ export function prepareReviewData(widget) {
     const answer = joinedFormData.get(key);
     if (answer == undefined || answer == "") {
       // do not show empty answers
-      if (!showEmptyAnswers) {
+      if (!includeEmptyAnswers) {
         continue;
       }
     }
     // check if is hidden
     const input = inputs.find((i) => i.name == key);
-    //TODO: remove fax if possible
     if (
       key == "fax" ||
       (input.type == "hidden" && !input.classList.contains("show-in-review"))
@@ -47,7 +46,7 @@ export function prepareReviewData(widget) {
         s.widgets().find((w) => getFieldName(w) == key)
       );
       const stepNumber = step.get("stepNumber");
-      const title = widget.get("label") || widget.get("title");
+      const title = widget.get("label") || widget.get("title") || "";
 
       if (!reviewData[stepNumber]) {
         reviewData[stepNumber] = [];

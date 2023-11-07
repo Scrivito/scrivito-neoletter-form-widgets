@@ -21,7 +21,7 @@ export const FormContainerWidget = Scrivito.provideWidgetClass(
       submitButtonText: "string",
       showBorder: "boolean",
       showReview: "boolean",
-      showEmptyAnswers: "boolean",
+      includeEmptyAnswers: "boolean",
       showStepsInReview: "boolean",
       showReviewHeader: "boolean",
       showReviewFooter: "boolean",

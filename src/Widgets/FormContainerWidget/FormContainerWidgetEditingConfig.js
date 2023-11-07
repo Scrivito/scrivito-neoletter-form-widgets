@@ -4,8 +4,6 @@ import { FormInputFieldWidget } from "../FormInputFieldWidget/FormInputFieldWidg
 import { pseudoRandom32CharHex } from "./utils/pseudoRandom32CharHex";
 import { getFormContainer } from "./utils/getFormContainer";
 import { FormStepWidget } from "../FormStepWidget/FormStepWidgetClass";
-import { FormSelectWidget } from "../FormSelectWidget/FormSelectWidgetClass";
-import { FormRatingWidget } from "../FormRatingWidget/FormRatingWidgetClass";
 import { getInstanceId } from "../../config/scrivitoConfig";
 import { FormIdComponent } from "./components/FormIdComponent";
 Scrivito.provideEditingConfig("FormContainerWidget", {
@@ -45,25 +43,25 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
       ],
     },
     showBorder: {
-      title: "Show as box",
-      description: "Adds a border around the form if selected.",
+      title: "Show frame",
+      description: "Adds a frame around the form.",
     },
     showReview: {
-      title: "Show review",
+      title: "Enable review",
       description:
-        "Shows a review button on last step for multiple steps. If clicked, a modal with answers will be shown.",
+        "Adds a button to the last step of multiple steps for reviewing the answers.",
     },
-    showEmptyAnswers: {
-      title: "Show empty answers",
-      description: "Shows also empty answers if selected.",
+    includeEmptyAnswers: {
+      title: "Include empty answers",
+      description: "Also includes empty answers in the review dialog.",
     },
     showReviewHeader: {
       title: "Show header",
-      description: "Shows a header in the review modal.",
+      description: "Adds a header to the review dialog.",
     },
     showReviewFooter: {
       title: "Show footer",
-      description: "Shows a header in the review modal.",
+      description: "Adds a footer with a button for closing the review dialog.",
     },
     showStepsInReview: { title: "Show steps", description: "Shows the steps." },
     reviewButtonText: {
@@ -72,11 +70,11 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     },
     reviewHeaderTitle: {
       title: "Header title",
-      description: "The title for the review header.",
+      description: "The title of the review header.",
     },
     reviewCloseButtonText: {
       title: "Close button text",
-      description: "The text for the close button inside the review footer.",
+      description: "The text on the button for closing the review dialog.",
     },
     singleSubmitButtonAlignment: {
       title: "Alignment",
@@ -123,16 +121,7 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
         {
           title: "Review",
           key: "FormReview",
-          properties: [
-            "showReview",
-            "showStepsInReview",
-            "showEmptyAnswers",
-            "showReviewHeader",
-            "showReviewFooter",
-            "reviewButtonText",
-            "reviewHeaderTitle",
-            "reviewCloseButtonText",
-          ],
+          properties: getReviewProperties(obj),
         }
       );
     return groups;
@@ -192,7 +181,7 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     showBorder: false,
     // review stuff
     showReview: false,
-    showEmptyAnswers: false,
+    includeEmptyAnswers: false,
     showStepsInReview: false,
     showReviewHeader: false,
     showReviewFooter: false,
@@ -279,4 +268,23 @@ function getNavigationProperties(obj) {
   } else {
     return MultiStepNavigationProps;
   }
+}
+/**
+ * Retrieves the properties for the review tab
+ * @param {*} obj
+ * @returns
+ */
+function getReviewProperties(obj) {
+  const reviewPropsDisabled = ["showReview"];
+  const reviewPropsEnabled = [
+    "showReview",
+    "reviewButtonText",
+    "showStepsInReview",
+    "includeEmptyAnswers",
+    "showReviewHeader",
+    ["reviewHeaderTitle", { enabled: obj.get("showReviewHeader") }],
+    "showReviewFooter",
+    ["reviewCloseButtonText", { enabled: obj.get("showReviewFooter") }],
+  ];
+  return obj.get("showReview") ? reviewPropsEnabled : reviewPropsDisabled;
 }
