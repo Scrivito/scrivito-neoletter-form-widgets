@@ -3,7 +3,7 @@
 A set of Scrivito Widgets for building awesome forms
 
 # Features
-- Single-step & multi-step forms
+- Single-step & multiple-step forms
 - Dropdowns
 - Single-select radio buttons
 - Multi-select checkboxes
@@ -57,7 +57,7 @@ You're done! Enjoy building well-designed and cleverly arranged forms!
 
 The following widgets are typically added within the [Form](#form-widget) widget to create well-structured forms:
 
-- [Form Step](#form-step-widget): Configures an individual step within a multi-step form.
+- [Form Step](#form-step-widget): Configures an individual step within the form.
 - [Form Checkbox](#form-checkbox-widget): Adds checkbox input fields.
 - [Form Date](#form-date-widget): Includes date and date-time input fields.
 - [Form Input Field](#form-input-field-widget): Adds customizable input fields.
@@ -83,18 +83,26 @@ The `Form` widget is the main widget for creating and managing forms. To add var
 The `Form` widget has the following properties divided into several tabs:
 
 - "General" tab
-    - Format: Choose between "Single Step" and "Multiple Steps" form formats.
-    - Show as box: Set to display the form as a box.
+    - Show frame: Adds a frame around the form.
     - Submitting message: Message shown while the form is being submitted.
     - Submitted message: Message shown after the form was successfully submitted.
     - Failed message: Message shown if the form submission failed.
-- "Steps" tab (Tab visible if Format is "Multiple Steps")
-    - Steps: Configure form steps for multi-step forms.
+- "Steps" tab (Tab visible if form has "Multiple Steps")
+    - Steps: Configure the form steps.
+- "Review" tab (Tab visible if form has "Multiple Steps", content depends on review selection)
+    - Enable Review: Adds a button to the last step of "Multiple Steps" for reviewing the answers.
+    - Review button text: The text for the review button.
+    - Show steps: Shows the steps in the review dialog.
+    - Include empty answers: Includes empty answers in the review dialog, otherwise only non empty answers are shown.
+    - Show header: Adds a header to the review dialog.
+    - Header title: The title of the review header.
+    - Show footer: Adds a footer with a button for closing the review dialog.
+    - Close button text: The text on the button for closing the review dialog.
 - "Hidden fields" tab
     - Hidden Fields: Customize hidden fields.
 - "Form submission" tab
     - Form ID: This ID identifies the form in Neoletter.
-- "Navigation area" tab (Content depends on Format selection)
+- "Navigation area" tab (Content depends on form type i.e. single-step or multiple-steps)
     - Forward button text: Text for the forward button.
     - Backward button text: Text for the backward button.
     - Submit button text: Text for the submit button.
@@ -105,19 +113,18 @@ The `Form` widget has the following properties divided into several tabs:
 The `Form` Widget has specific validation requirements:
 
 - The widget should not be placed inside another form.
-- For multi-step forms, you must include at least two steps.
 - The form ID must be a 32-character hexadecimal value.
 
 ## Form Step Widget
 <img src="images/form_step_preview.png" width="350" alt="Screenshot">
 
-The `Form Step` widget represents an individual step within a multi-step form. Each step can have its own set of form elements, controls, and content.
+The `Form Step` widget represents an individual step within the form. Each step can have its own set of form elements, controls, and content.
 
 ### Properties
 - Items: Configure the items or content for this step.
 
 ### Validation
-- The step widget must be placed within a Multiple Steps Form. 
+- The step widget must be placed within the form. 
 - Each step must include at least one item. 
 
 ## Form Checkbox Widget
@@ -250,3 +257,142 @@ The `Form Condition` widget is used within the `Form Conditional Container` widg
 
 ### Validation
 - The Form Condition Widget can only be used inside the Form Conditional Container Widget.
+
+# Review Feature
+
+The Review feature allows users to review their answers before submitting a form with multiple steps. It provides a dialog where users can see all their responses at a glance.
+
+### Review Dialog
+
+<img src="images/review_dialog.png" width="350" alt="Screenshot">
+
+### Closing the Dialog
+
+Users can close the review dialog in three ways:
+
+1. **Click Outside:** Clicking anywhere outside the dialog will close it.
+2. **ESC Key:** Users can press the "ESC" key on their keyboard to close the dialog.
+3. **Close Button:** The dialog also includes a close button in the footer for users who prefer to close it manually.
+
+It's important to note that the footer with the close button is not mandatory. Users can easily close the dialog using any of the methods mentioned above.
+
+### Inclusion of Elements
+
+By default, the Review feature checks and includes elements of types "input," "select," and "textarea" when displaying responses in the review. This means that only responses from these elements are shown in the review dialog, allowing users to verify their information.
+
+Custom widgets with hidden inputs can also have their values displayed in the review when the "show-in-review" class is added to the hidden input.
+
+The Review feature is specifically designed for forms with multiple steps, providing users with an opportunity to verify their responses before final submission.
+
+
+# Custom Form Widgets
+
+In addition to the built-in form widgets, you have the flexibility to use custom widgets, allowing you to enhance your forms with unique features and interactions. Custom form widgets can be used for various purposes, such as sliders, tri-state checkboxes, or any specialized input elements that you create as custom widgets and incorporate into your forms.
+
+## Custom Form Widget Validation
+
+When working with custom form widgets, it's important to ensure proper validation to maintain the integrity of your forms. The Scrivito Form Widgets package provides several useful functions for this purpose:
+
+#### `insideFormContainerValidation`
+
+- This function checks if the given widget is placed inside a form. It's crucial to confirm that your custom form widgets are correctly structured within a form container to maintain the expected behavior.
+
+#### `getFormContainer`
+
+- Use this function to find the first form container within your widget hierarchy. It returns the container widget, or `null` if no container is found.
+
+#### `customFieldNameValidation`
+
+- This function checks if the custom field attribute, which must be named "customFieldName," is unique within the widget hierarchy. To meet the requirements for custom field names, it should start with "custom_" and be unique.
+
+For custom widgets that use hidden inputs and want to show the hidden input values in the review, you should add the class "show-in-review" to the hidden input element. This class indicates that the hidden input's value should be displayed in the review.
+
+**Note:** The review feature displays both the question and the answer for each input. To ensure that the question is displayed in the review, you should provide a "label" or "title" attribute within your custom widgets.
+
+By following these guidelines and specifying these validation functions in your custom form widget edit configuration, you can create and integrate custom form widgets seamlessly into your forms, ensuring that they function as intended.
+
+Custom form widgets offer endless possibilities for tailoring your forms to your specific needs, enhancing the user experience and interaction.
+
+## Custom Form Widgets Example
+
+To gain a better understanding of how custom form widgets can be used, let's explore an example. In this case, we'll create a custom slider widget that includes a hidden input, a label, and the "show-in-review" class to display the label and value in the review.
+
+### Creating a Custom Slider Widget
+
+1. Start by creating a new folder named "FormSliderWidget" inside the "Widgets" folder of your Scrivito App.
+
+2. Inside the "FormSliderWidget" folder, create three files:
+
+#### FormSliderWidgetClass.js
+
+```js
+import * as Scrivito from "scrivito";
+
+export const FormSliderWidget = Scrivito.provideWidgetClass(
+  "FormSliderWidget",
+  {
+    attributes: {
+      label: "string",
+      customFieldName: "string",
+    },
+  }
+);
+
+```
+
+#### FormSliderWidgetComponent.js
+
+```js
+import * as React from "react";
+import * as Scrivito from "scrivito";
+
+Scrivito.provideComponent("FormSliderWidget", ({ widget }) => {
+  const [value, setValue] = React.useState(50);
+  return (
+    <div className="row mb-3">
+      <span className="text-super">{widget.get("label")}</span>
+      <input
+        type="range"
+        onChange={(e) => setValue(e.currentTarget.value)}
+        min="0"
+        max="100"
+        value={value}
+      />
+      <input
+        type="hidden"
+        className="show-in-review"
+        name={widget.get("customFieldName")}
+        value={value}
+      ></input>
+    </div>
+  );
+});
+
+```
+
+#### FormSliderWidgetEditingConfig.js
+
+```js
+import * as Scrivito from "scrivito";
+import {
+  customFieldNameValidation,
+  insideFormContainerValidation,
+} from "scrivito-form-widgets";
+
+Scrivito.provideEditingConfig("FormSliderWidget", {
+  title: "Form Slider",
+  attributes: {
+    label: { title: "Label" },
+    customFieldName: { title: "Field name" },
+  },
+  properties: ["label", "customFieldName"],
+  initialContent: {
+    label: "Slide me",
+    customFieldName: "custom_",
+  },
+  validations: [insideFormContainerValidation, customFieldNameValidation],
+});
+
+```
+
+Please note that this example is intended to provide a basic demonstration of creating a custom form widget. It does not include styles or detailed CSS. You can further enhance the appearance and functionality of your custom widgets to match your specific design and usability requirements.
