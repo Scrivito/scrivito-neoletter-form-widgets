@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
-import { Mandatory } from "../FormContainerWidget/components/MandatoryComponent";
-import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
+import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
+import { Mandatory } from "../FormStepContainerWidget/components/MandatoryComponent";
+import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponent";
 
 Scrivito.provideComponent("FormCheckboxWidget", ({ widget }) => {
   const id = `form_checkbox_widget_${widget.id()}`;

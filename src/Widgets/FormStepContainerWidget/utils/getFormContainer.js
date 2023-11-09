@@ -4,7 +4,7 @@ import * as Scrivito from "scrivito";
 export function getFormContainer(childWidget) {
   let candidate = childWidget.container();
   while (candidate instanceof Scrivito.Widget) {
-    if (candidate.objClass() === "FormContainerWidget") {
+    if (candidate.objClass() === "FormStepContainerWidget") {
       return candidate;
     }
     candidate = candidate.container();

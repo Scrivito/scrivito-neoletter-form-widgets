@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { Star } from "../FormContainerWidget/components/StarComponent";
-import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
-import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
+import { Star } from "../FormStepContainerWidget/components/StarComponent";
+import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
+import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponent";
 import "./FormRatingWidget.scss";
 
 Scrivito.provideComponent("FormRatingWidget", ({ widget }) => {

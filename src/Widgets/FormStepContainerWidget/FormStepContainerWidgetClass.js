@@ -1,7 +1,7 @@
 import * as Scrivito from "scrivito";
 
-export const FormContainerWidget = Scrivito.provideWidgetClass(
-  "FormContainerWidget",
+export const FormStepContainerWidget = Scrivito.provideWidgetClass(
+  "FormStepContainerWidget",
   {
     attributes: {
       formId: "string",

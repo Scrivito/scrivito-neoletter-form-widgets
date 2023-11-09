@@ -2,11 +2,11 @@ import * as React from "react";
 import * as Scrivito from "scrivito";
 import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceholder";
 import "./FormSelectWidget.scss";
-import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
-import { Select } from "../FormContainerWidget/components/SelectComponent";
-import { Mandatory } from "../FormContainerWidget/components/MandatoryComponent";
-import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
-import { Dropdown } from "../FormContainerWidget/components/SelectDropdownComponent";
+import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
+import { Select } from "../FormStepContainerWidget/components/SelectComponent";
+import { Mandatory } from "../FormStepContainerWidget/components/MandatoryComponent";
+import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponent";
+import { Dropdown } from "../FormStepContainerWidget/components/SelectDropdownComponent";
 
 Scrivito.provideComponent("FormSelectWidget", ({ widget }) => {
   const items = widget.get("items");

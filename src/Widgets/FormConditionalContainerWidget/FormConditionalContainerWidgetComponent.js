@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import "./FormConditionalContainerWidget.scss";
-import { ConditionalHeader } from "../FormContainerWidget/components/ConditionalHeaderComponent";
+import { ConditionalHeader } from "../FormStepContainerWidget/components/ConditionalHeaderComponent";
 
 Scrivito.provideComponent("FormConditionalContainerWidget", ({ widget }) => {
   const [selectedConditionId, setSelectedConditionId] = React.useState("");

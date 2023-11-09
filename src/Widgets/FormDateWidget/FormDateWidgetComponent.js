@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
-import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
-import { Mandatory } from "../FormContainerWidget/components/MandatoryComponent";
+import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
+import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponent";
+import { Mandatory } from "../FormStepContainerWidget/components/MandatoryComponent";
 import "./FormDateWidget.scss";
 
 Scrivito.provideComponent("FormDateWidget", ({ widget }) => {

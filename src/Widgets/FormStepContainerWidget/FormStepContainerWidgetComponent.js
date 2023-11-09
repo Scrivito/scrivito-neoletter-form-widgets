@@ -4,10 +4,10 @@ import { scrollIntoView } from "./utils/scrollIntoView";
 import { FormFooterMultiSteps } from "./components/FormFooterMultiStepsComponent";
 import { FormFooterSingleStep } from "./components/FormFooterSingleStepComponent";
 import { FormHiddenFields } from "./components/FormHiddenFieldsComponent";
-import "./FormContainerWidget.scss";
+import "./FormStepContainerWidget.scss";
 import { getInstanceId } from "../../config/scrivitoConfig";
 
-Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
+Scrivito.provideComponent("FormStepContainerWidget", ({ widget }) => {
   const tenant = getInstanceId();
   if (!tenant) {
     return (

@@ -1,7 +1,7 @@
 import * as Scrivito from "scrivito";
 
 export const FormStepWidget = Scrivito.provideWidgetClass("FormStepWidget", {
-  onlyInside: "FormContainerWidget",
+  onlyInside: "FormStepContainerWidget",
   attributes: {
     items: "widgetlist",
     stepNumber: "integer",

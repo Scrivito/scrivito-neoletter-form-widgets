@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { getFieldName } from "../FormContainerWidget/utils/getFieldName";
-import { isCustomType } from "../FormContainerWidget/utils/isCustomType";
-import { Mandatory } from "../FormContainerWidget/components/MandatoryComponent";
-import { HelpText } from "../FormContainerWidget/components/HelpTextComponent";
+import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
+import { isCustomType } from "../FormStepContainerWidget/utils/isCustomType";
+import { Mandatory } from "../FormStepContainerWidget/components/MandatoryComponent";
+import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponent";
 
 Scrivito.provideComponent("FormInputFieldWidget", ({ widget }) => {
   const id = `form_text_input_widget_${widget.id()}`;
