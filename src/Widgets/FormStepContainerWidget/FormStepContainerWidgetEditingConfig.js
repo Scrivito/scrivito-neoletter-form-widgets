@@ -6,8 +6,8 @@ import { getFormContainer } from "./utils/getFormContainer";
 import { FormStepWidget } from "../FormStepWidget/FormStepWidgetClass";
 import { getInstanceId } from "../../config/scrivitoConfig";
 import { FormIdComponent } from "./components/FormIdComponent";
-Scrivito.provideEditingConfig("FormContainerWidget", {
-  title: "Form",
+Scrivito.provideEditingConfig("FormStepContainerWidget", {
+  title: "Neoletter Form",
   thumbnail: formContainerWidgetIcon,
   attributes: {
     formId: {
@@ -96,12 +96,12 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
     const groups = [
       {
         title: "Hidden fields",
-        key: "FormContainerWidgetHiddenFields",
+        key: "FormStepContainerWidgetHiddenFields",
         properties: ["hiddenFields"],
       },
       {
         title: "Form submissions",
-        key: "FormContainerWidgetFormSubmissions",
+        key: "FormStepContainerWidgetFormSubmissions",
         properties: ["formId"],
         component: FormIdComponent,
       },
@@ -192,7 +192,7 @@ Scrivito.provideEditingConfig("FormContainerWidget", {
   validations: [
     (widget) => {
       if (getFormContainer(widget)) {
-        return "Needs to be outside of a form.";
+        return "Needs to be outside of a Neoletter form.";
       }
     },
     (widget) => {

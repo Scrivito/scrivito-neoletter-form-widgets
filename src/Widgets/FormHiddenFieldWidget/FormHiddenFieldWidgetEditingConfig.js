@@ -1,10 +1,10 @@
 import * as Scrivito from "scrivito";
 import formHiddenFieldWidgetIcon from "../../assets/images/form_hidden_field_widget.svg";
-import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
-import { getFormContainer } from "../FormContainerWidget/utils/getFormContainer";
+import { customFieldNameValidation } from "../FormStepContainerWidget/utils/validations/customFieldNameValidation";
+import { getFormContainer } from "../FormStepContainerWidget/utils/getFormContainer";
 
 Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
-  title: "Hidden Form Field",
+  title: "Neoletter Hidden Form Field",
   thumbnail: formHiddenFieldWidgetIcon,
   attributes: {
     customFieldName: { title: "Field name" },

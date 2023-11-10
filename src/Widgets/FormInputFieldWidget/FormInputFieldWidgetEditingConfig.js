@@ -1,11 +1,11 @@
 import * as Scrivito from "scrivito";
 import formInputFieldWidgetIcon from "../../assets/images/form_input_field_widget.svg";
-import { isCustomType } from "../FormContainerWidget/utils/isCustomType";
-import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
-import { typeValidation } from "../FormContainerWidget/utils/validations/typeValidation";
-import { insideFormContainerValidation } from "../FormContainerWidget/utils/validations/insideFormContainerValidation";
+import { isCustomType } from "../FormStepContainerWidget/utils/isCustomType";
+import { customFieldNameValidation } from "../FormStepContainerWidget/utils/validations/customFieldNameValidation";
+import { typeValidation } from "../FormStepContainerWidget/utils/validations/typeValidation";
+import { insideFormContainerValidation } from "../FormStepContainerWidget/utils/validations/insideFormContainerValidation";
 Scrivito.provideEditingConfig("FormInputFieldWidget", {
-  title: "Form Input Field",
+  title: "Neoletter Form Input Field",
   thumbnail: formInputFieldWidgetIcon,
   attributes: {
     required: { title: "Mandatory" },

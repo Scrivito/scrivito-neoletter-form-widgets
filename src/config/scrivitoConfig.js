@@ -1,6 +1,6 @@
 let _instanceId = null;
 
-export const initScrivitoFormWidgets = (instanceId) => {
+export const initNeoletterFormWidgets = (instanceId) => {
   _instanceId = instanceId;
   loadWidgets();
 };
@@ -10,6 +10,16 @@ export const getInstanceId = () => {
 };
 
 function loadWidgets() {
+  import("../Widgets/LegacyFormContainerWidget/FormContainerWidgetClass");
+  import("../Widgets/LegacyFormContainerWidget/FormContainerWidgetComponent");
+  import(
+    "../Widgets/LegacyFormContainerWidget/FormContainerWidgetEditingConfig"
+  );
+
+  import("../Widgets/LegacyFormButtonWidget/FormButtonWidgetClass");
+  import("../Widgets/LegacyFormButtonWidget/FormButtonWidgetComponent");
+  import("../Widgets/LegacyFormButtonWidget/FormButtonWidgetEditingConfig");
+
   import("../Widgets/FormConditionWidget/FormConditionWidgetClass");
   import("../Widgets/FormConditionWidget/FormConditionWidgetComponent");
   import("../Widgets/FormConditionWidget/FormConditionWidgetEditingConfig");
@@ -24,9 +34,11 @@ function loadWidgets() {
     "../Widgets/FormConditionalContainerWidget/FormConditionalContainerWidgetEditingConfig"
   );
 
-  import("../Widgets/FormContainerWidget/FormContainerWidgetClass");
-  import("../Widgets/FormContainerWidget/FormContainerWidgetComponent");
-  import("../Widgets/FormContainerWidget/FormContainerWidgetEditingConfig");
+  import("../Widgets/FormStepContainerWidget/FormStepContainerWidgetClass");
+  import("../Widgets/FormStepContainerWidget/FormStepContainerWidgetComponent");
+  import(
+    "../Widgets/FormStepContainerWidget/FormStepContainerWidgetEditingConfig"
+  );
 
   import("../Widgets/FormDateWidget/FormDateWidgetClass");
   import("../Widgets/FormDateWidget/FormDateWidgetComponent");

@@ -1,10 +1,10 @@
 import * as Scrivito from "scrivito";
-import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
-import { insideFormContainerValidation } from "../FormContainerWidget/utils/validations/insideFormContainerValidation";
+import { customFieldNameValidation } from "../FormStepContainerWidget/utils/validations/customFieldNameValidation";
+import { insideFormContainerValidation } from "../FormStepContainerWidget/utils/validations/insideFormContainerValidation";
 import formSelectWidgetIcon from "../../assets/images/form_widget_select.svg";
 
 Scrivito.provideEditingConfig("FormSelectWidget", {
-  title: "Form Select",
+  title: "Neoletter Form Select",
   thumbnail: formSelectWidgetIcon,
   attributes: {
     selectionType: {

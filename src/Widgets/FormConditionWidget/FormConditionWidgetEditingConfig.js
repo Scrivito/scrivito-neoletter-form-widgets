@@ -2,7 +2,7 @@ import * as Scrivito from "scrivito";
 import formConditionWidgetIcon from "../../assets/images/form_widget_condition.svg";
 
 Scrivito.provideEditingConfig("FormConditionWidget", {
-  title: "Form Condition",
+  title: "Neoletter Form Condition",
   titleForContent(obj) {
     return "Condition: " + obj.get("title");
   },

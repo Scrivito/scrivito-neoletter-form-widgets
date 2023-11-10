@@ -3,12 +3,12 @@ import { FormConditionWidget } from "../FormConditionWidget/FormConditionWidgetC
 import { FormInputFieldWidget } from "../FormInputFieldWidget/FormInputFieldWidgetClass";
 import { FormSelectWidget } from "../FormSelectWidget/FormSelectWidgetClass";
 import { FormDateWidget } from "../FormDateWidget/FormDateWidgetClass";
-import { customFieldNameValidation } from "../FormContainerWidget/utils/validations/customFieldNameValidation";
-import { insideFormContainerValidation } from "../FormContainerWidget/utils/validations/insideFormContainerValidation";
+import { customFieldNameValidation } from "../FormStepContainerWidget/utils/validations/customFieldNameValidation";
+import { insideFormContainerValidation } from "../FormStepContainerWidget/utils/validations/insideFormContainerValidation";
 import { FormRatingWidget } from "../FormRatingWidget/FormRatingWidgetClass";
 import formConditionContainerWidgetIcon from "../../assets/images/form_widget_condition_container.svg";
 Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
-  title: "Form Conditional Container",
+  title: "Neoletter Form Conditional Container",
   titleForContent(obj) {
     return "Container for: " + obj.get("title");
   },
