@@ -1,5 +1,5 @@
 // Styles for FormContainerWidget
-.scrivito-form-widgets.form-container-widget {
+.scrivito-neoletter-form-widgets.form-container-widget {
   .dropdown-container,
   .select-container {
     .select-title {
@@ -63,28 +63,28 @@
 .bg-greydark,
 .bg-greymiddle {
   .missing-tenant,
-  .scrivito-form-widgets.form-container-widget label,
-  .scrivito-form-widgets.form-container-widget .text-mandatory,
-  .scrivito-form-widgets.form-container-widget .fa,
-  .scrivito-form-widgets.form-container-widget .text-super,
-  .card.card-theme .scrivito-form-widgets.form-container-widget label,
-  .card.card-theme .scrivito-form-widgets.form-container-widget .text-mandatory,
-  .card.card-theme .scrivito-form-widgets.form-container-widget .fa {
+  .scrivito-neoletter-form-widgets.form-container-widget label,
+  .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory,
+  .scrivito-neoletter-form-widgets.form-container-widget .fa,
+  .scrivito-neoletter-form-widgets.form-container-widget .text-super,
+  .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget label,
+  .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory,
+  .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .fa {
     color: #fff !important;
   }
   // hardcoded for now
-  .card .scrivito-form-widgets.form-container-widget label {
+  .card .scrivito-neoletter-form-widgets.form-container-widget label {
     color: #495054 /*$theme-grey */ !important;
   }
-  .card .scrivito-form-widgets.form-container-widget .text-mandatory {
+  .card .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory {
     color: red !important;
   }
-  .card .scrivito-form-widgets.form-container-widget .fa {
+  .card .scrivito-neoletter-form-widgets.form-container-widget .fa {
     color: #ccc !important;
   }
 }
 
-.scrivito-form-widgets.missing-id {
+.scrivito-neoletter-form-widgets.missing-id {
   display: flex;
   justify-content: center;
 }

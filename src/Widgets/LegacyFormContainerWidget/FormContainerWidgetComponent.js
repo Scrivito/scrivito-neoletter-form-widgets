@@ -41,7 +41,7 @@ Scrivito.provideComponent("FormContainerWidget", ({ widget }) => {
   }
 
   return (
-    <div className="scrivito-form-widgets form-container-widget">
+    <div className="scrivito-neoletter-form-widgets form-container-widget">
       <form method="post" action={formEndpoint} onSubmit={onSubmit}>
         <FormHiddenFields widget={widget} />
         <Scrivito.ContentTag content={widget} attribute="content" />

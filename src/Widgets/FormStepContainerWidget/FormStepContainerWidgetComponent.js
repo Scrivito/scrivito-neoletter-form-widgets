@@ -69,7 +69,7 @@ Scrivito.provideComponent("FormStepContainerWidget", ({ widget }) => {
 
   return (
     <div
-      className={`scrivito-form-widgets form-container-widget ${
+      className={`scrivito-neoletter-form-widgets form-container-widget ${
         widget.get("showBorder") ? "form-border" : ""
       }`}
     >
