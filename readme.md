@@ -1,4 +1,4 @@
-# Scrivito Form Widgets
+# Scrivito Neoletter Form Widgets
 
 A set of Scrivito Widgets for building awesome forms
 
@@ -13,19 +13,20 @@ A set of Scrivito Widgets for building awesome forms
 
 ## Installation
 
-You need to remove any previously created forms and rebuild them after the installation. Copy the form IDs found in the FORM SUBMISSIONS tab inside the form properties before removing the forms.
+**Note:** If you have existing forms, they will run in legacy mode after installing this package. Legacy mode allows you to continue using your existing forms, but the new form features such as review or steps cannot be used by them. You can still add new widgets to existing forms.
+
 
 Install the package into your scrivito app:
 
 ```shell
-npm install scrivito-form-widgets
+npm install scrivito-neoletter-form-widgets
 ```
 
-Import the `initScrivitoFormWidgets` function from the package, and call it in your index.js file found in the Widgets folder (e.g. in `src/Widgets/index.js`), passing your Scrivito tenant ID to the function:
+Import the `initNeoletterFormWidgets` function from the package, and call it in your index.js file found in the Widgets folder (e.g. in `src/Widgets/index.js`), passing your Scrivito tenant ID to the function:
 ```js
-import { initScrivitoFormWidgets } from "scrivito-form-widgets";
+import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
 
-initScrivitoFormWidgets(process.env.SCRIVITO_TENANT);
+initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
 ```
 
 
@@ -34,13 +35,13 @@ Add the widget styles to your app.
 This can be done by either loading the CSS via `css-loader` (e.g. in `src/index.js` or `src/Widgets/index.js`):
 
 ```js
-import "scrivito-form-widgets/index.css";
+import "scrivito-neoletter-form-widgets/index.css";
 ```
 
  Or by importing the styles into your stylesheets (e.g. in `src/assets/stylesheets/index.scss`):
 
 ```scss
-@import "~scrivito-form-widgets/index.css";
+@import "~scrivito-neoletter-form-widgets/index.css";
 ```
 
 Delete all form widgets included in the Example App from the "Widgets" folder:
@@ -52,7 +53,7 @@ Delete all form widgets included in the Example App from the "Widgets" folder:
 
 You're done! Enjoy building well-designed and cleverly arranged forms!
 
-# Form Widgets Overview
+# Neoletter Form Widgets Overview
 <img src="images/form_widgets_all.png" width="200" alt="Screenshot">
 
 The following widgets are typically added within the [Form](#form-widget) widget to create well-structured forms:
@@ -377,7 +378,7 @@ import * as Scrivito from "scrivito";
 import {
   customFieldNameValidation,
   insideFormContainerValidation,
-} from "scrivito-form-widgets";
+} from "scrivito-neoletter-form-widgets";
 
 Scrivito.provideEditingConfig("FormSliderWidget", {
   title: "Form Slider",

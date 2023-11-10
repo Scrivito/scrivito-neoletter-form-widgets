@@ -10,6 +10,16 @@ export const getInstanceId = () => {
 };
 
 function loadWidgets() {
+  import("../Widgets/LegacyFormContainerWidget/FormContainerWidgetClass");
+  import("../Widgets/LegacyFormContainerWidget/FormContainerWidgetComponent");
+  import(
+    "../Widgets/LegacyFormContainerWidget/FormContainerWidgetEditingConfig"
+  );
+
+  import("../Widgets/LegacyFormButtonWidget/FormButtonWidgetClass");
+  import("../Widgets/LegacyFormButtonWidget/FormButtonWidgetComponent");
+  import("../Widgets/LegacyFormButtonWidget/FormButtonWidgetEditingConfig");
+
   import("../Widgets/FormConditionWidget/FormConditionWidgetClass");
   import("../Widgets/FormConditionWidget/FormConditionWidgetComponent");
   import("../Widgets/FormConditionWidget/FormConditionWidgetEditingConfig");

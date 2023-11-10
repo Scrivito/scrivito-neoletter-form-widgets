@@ -4,17 +4,18 @@ import { scrollIntoView } from "./utils/scrollIntoView";
 import { FormFooterMultiSteps } from "./components/FormFooterMultiStepsComponent";
 import { FormFooterSingleStep } from "./components/FormFooterSingleStepComponent";
 import { FormHiddenFields } from "./components/FormHiddenFieldsComponent";
-import "./FormStepContainerWidget.scss";
 import { getInstanceId } from "../../config/scrivitoConfig";
+import { submitForm } from "./utils/submitForm";
+import { FormNoTenant } from "./components/FormNoTenantComponent";
+import { FormSubmissionFailed } from "./components/FormSubmissionFailedComponent";
+import { FormSubmissionSucceeded } from "./components/FormSubmissionSucceededComponent";
+import { FormSubmitting } from "./components/FormSubmittingComponent";
+import "./FormStepContainerWidget.scss";
 
 Scrivito.provideComponent("FormStepContainerWidget", ({ widget }) => {
   const tenant = getInstanceId();
   if (!tenant) {
-    return (
-      <span className="scrivito-form-widgets missing-id">
-        Warning! instanceId has not been configured for the form widget.
-      </span>
-    );
+    return <FormNoTenant />;
   }
   const formEndpoint = `https://api.justrelate.com/neoletter/instances/${tenant}/form_submissions`;
   const [currentStep, setCurrentStepNumber] = React.useState(1);
@@ -47,29 +48,22 @@ Scrivito.provideComponent("FormStepContainerWidget", ({ widget }) => {
   }, [widget.get("steps")]);
 
   if (isSubmitting) {
-    return (
-      <div className="scrivito-form-widgets form-container-widget text-center">
-        <i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i>{" "}
-        <span className="text-super">{widget.get("submittingMessage")}</span>
-      </div>
-    );
+    return <FormSubmitting submittingText={widget.get("submittingMessage")} />;
   }
 
   if (successfullySent) {
     return (
-      <div className="scrivito-form-widgets form-container-widget text-center">
-        <i className="fa fa-check fa-2x" aria-hidden="true"></i>{" "}
-        <span className="text-super">{widget.get("submittedMessage")}</span>
-      </div>
+      <FormSubmissionSucceeded
+        submissionSuccessText={widget.get("submittedMessage")}
+      />
     );
   }
 
   if (submissionFailed) {
     return (
-      <div className="scrivito-form-widgets form-container-widget text-center">
-        <i className="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>{" "}
-        <span className="text-super">{widget.get("failedMessage")}</span>
-      </div>
+      <FormSubmissionFailed
+        submissionFailureText={widget.get("failedMessage")}
+      />
     );
   }
 
@@ -130,7 +124,7 @@ Scrivito.provideComponent("FormStepContainerWidget", ({ widget }) => {
 
     indicateProgress();
     try {
-      await submit(formElement, formEndpoint);
+      await submitForm(formElement, formEndpoint);
       indicateSuccess();
     } catch (e) {
       setTimeout(() => {
@@ -183,28 +177,6 @@ Scrivito.provideComponent("FormStepContainerWidget", ({ widget }) => {
     scrollIntoView(formElement);
   }
 });
-
-async function submit(formElement, formEndpoint) {
-  const data = new FormData(formElement);
-  const dataToSend = new FormData();
-  // workaround to send all field-names with equal name
-  // as a comma separated string
-  for (const [name, value] of data) {
-    if (dataToSend.has(name)) {
-      continue;
-    } else {
-      dataToSend.set(name, data.getAll(name).join(", "));
-    }
-  }
-  const body = new URLSearchParams(dataToSend);
-  // console.log("submitting", Object.fromEntries(body.entries()));
-  const response = await fetch(formEndpoint, { method: "post", body });
-  if (!response.ok) {
-    throw new Error(
-      `Response was not successful. Status code: ${response.status}.`
-    );
-  }
-}
 
 function doValidate(formId, currentStep) {
   let isValid = true;
