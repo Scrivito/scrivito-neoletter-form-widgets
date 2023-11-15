@@ -13,7 +13,7 @@ A set of Scrivito Widgets for building awesome forms
 
 ## Installation
 
-**Note:** If you have existing forms, they will run in legacy mode after installing this package. Legacy mode allows you to continue using your existing forms, but the new form features such as review or steps cannot be used by them. You can still add new widgets to existing forms.
+**Note:** If you have existing forms, they will run in legacy mode after installing this package. Legacy mode allows you to continue using your existing forms, but the new form features such as `review` or `steps` cannot be used by them. You can still add new widgets to existing forms.
 
 
 Install the package into your scrivito app:
@@ -113,7 +113,7 @@ The `Form` widget has the following properties divided into several tabs:
 
 The `Form` Widget has specific validation requirements:
 
-- The widget should not be placed inside another form.
+- The widget cannot be placed into another Form widget.
 - The form ID must be a 32-character hexadecimal value.
 
 ## Form Step Widget
@@ -304,7 +304,7 @@ When working with custom form widgets, it's important to ensure proper validatio
 
 #### `customFieldNameValidation`
 
-- This function checks if the custom field attribute, which must be named "customFieldName," is unique within the widget hierarchy. To meet the requirements for custom field names, it should start with "custom_" and be unique.
+- This function checks if the custom field attribute, which must be named "customFieldName," is unique within the widget hierarchy. To meet the requirements for custom field names, they must start with "custom_" and be unique.
 
 For custom widgets that use hidden inputs and want to show the hidden input values in the review, you should add the class "show-in-review" to the hidden input element. This class indicates that the hidden input's value should be displayed in the review.
 
