@@ -68,7 +68,9 @@
   .scrivito-neoletter-form-widgets.form-container-widget .fa,
   .scrivito-neoletter-form-widgets.form-container-widget .text-super,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget label,
-  .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory,
+  .card.card-theme
+    .scrivito-neoletter-form-widgets.form-container-widget
+    .text-mandatory,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .fa {
     color: #fff !important;
   }

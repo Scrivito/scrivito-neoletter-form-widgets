@@ -1,13 +1,12 @@
 import { getFieldName } from "./getFieldName";
 import { map, uniq } from "lodash-es";
 
-export function prepareReviewData(widget) {
+export function prepareReviewContent(widget) {
   const form = document.getElementById(widget.get("formId"));
   const data = new FormData(form);
   const joinedFormData = new FormData();
   // show all field-names with equal name as a comma separated string
   for (const [name, value] of data) {
-    console.log(name);
     if (joinedFormData.has(name)) {
       continue;
     } else {

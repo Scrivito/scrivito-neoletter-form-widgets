@@ -124,7 +124,7 @@ Scrivito.provideComponent("FormStepContainerWidget", ({ widget }) => {
 
     indicateProgress();
     try {
-      await submitForm(formElement, formEndpoint);
+      await submitForm(formElement, formEndpoint, widget);
       indicateSuccess();
     } catch (e) {
       setTimeout(() => {

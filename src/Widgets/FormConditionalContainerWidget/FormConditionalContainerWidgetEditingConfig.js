@@ -61,7 +61,7 @@ Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
             label: "Defective parts",
             type: "custom",
             customType: "multi_line",
-            customFieldName: "custom_defective_oarts",
+            customFieldName: "custom_defective_parts",
             placeholder: "",
           }),
           new FormDateWidget({

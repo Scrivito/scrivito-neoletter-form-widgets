@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import { Review } from "./ReviewComponent";
-import { prepareReviewData } from "../utils/prepareReviewData";
+import { prepareReviewContent } from "../utils/prepareReviewContent";
 export const FormFooterMultiSteps = Scrivito.connect(
   ({
     widget,
@@ -13,7 +13,7 @@ export const FormFooterMultiSteps = Scrivito.connect(
     showReview,
   }) => {
     const [show, setShow] = React.useState(false);
-    const [reviewData, setReviewData] = React.useState([]);
+    const [reviewContent, setReviewContent] = React.useState([]);
     const doShowReview = isLastPage && showReview;
     return (
       <>
@@ -31,7 +31,7 @@ export const FormFooterMultiSteps = Scrivito.connect(
           {doShowReview && (
             <button
               className="btn btn-primary review-button"
-              onClick={() => onShowReview(widget, setReviewData, setShow)}
+              onClick={() => onShowReview(widget, setReviewContent, setShow)}
             >
               {widget.get("reviewButtonText")}
             </button>
@@ -48,7 +48,7 @@ export const FormFooterMultiSteps = Scrivito.connect(
         {doShowReview && show && (
           <Review
             widget={widget}
-            reviewData={reviewData}
+            reviewData={reviewContent}
             onHide={() => setShow(false)}
           />
         )}
@@ -57,9 +57,9 @@ export const FormFooterMultiSteps = Scrivito.connect(
   }
 );
 
-function onShowReview(widget, setReviewData, setShow) {
-  const reviewData = prepareReviewData(widget);
+function onShowReview(widget, setReviewContent, setShow) {
+  const reviewContent = prepareReviewContent(widget);
 
-  setReviewData(reviewData);
+  setReviewContent(reviewContent);
   setShow(true);
 }
