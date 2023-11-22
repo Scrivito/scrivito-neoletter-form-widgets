@@ -32,7 +32,7 @@ module.exports = (_env, argv) => {
 
   return {
     context: SRC_PATH,
-    entry: { index: "./index.js" },
+    entry: { index: "./index.ts" },
     output: {
       path: BUILD_PATH,
       library: "scrivito-form-widgets",
@@ -47,6 +47,16 @@ module.exports = (_env, argv) => {
 
     module: {
       rules: [
+        {
+          test: /\.(ts|tsx)$/,
+          include: [SRC_PATH],
+          use: [
+            {
+              loader: "ts-loader",
+            },
+          ],
+          exclude: /node_modules/,
+        },
         {
           test: /\.js$/,
           include: [SRC_PATH],
@@ -88,6 +98,9 @@ module.exports = (_env, argv) => {
           ]
         }
       ],
+    },
+    resolve: {
+      extensions: [".ts", ".tsx",".js",".jsx"],
     },
   };
 };
