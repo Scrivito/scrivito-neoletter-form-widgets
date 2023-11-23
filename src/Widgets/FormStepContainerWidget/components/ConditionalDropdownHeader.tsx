@@ -30,7 +30,7 @@ export const DropdownHeader = Scrivito.connect(
               <DropdownOption
                 value={condition.get("title") as string}
                 id={condition.id()}
-                key={index}
+                key={condition.id()}
               />
             ))}
         </select>

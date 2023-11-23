@@ -29,7 +29,7 @@ export const RadioButtonsHeader = Scrivito.connect(
                 value={condition.get("title") as string}
                 id={condition.id()}
                 required={widget.get("required")}
-                key={index}
+                key={condition.id()}
               />
             ))}
         </div>
