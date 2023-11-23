@@ -4,14 +4,14 @@ import Modal from "react-bootstrap/Modal";
 import { Widget } from "scrivito";
 import { ReviewContent, ReviewItemContent } from "../../../../types/types";
 
-type ReviewProps = {
+interface ReviewProps {
   widget: Widget;
   reviewContent: ReviewContent;
   onHide: Function;
-};
-type ReviewItemProps = {
+}
+interface ReviewItemProps {
   item: ReviewItemContent;
-};
+}
 
 export const Review = ({
   widget,

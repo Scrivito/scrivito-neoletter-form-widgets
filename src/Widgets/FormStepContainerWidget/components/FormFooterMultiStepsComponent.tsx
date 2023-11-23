@@ -3,7 +3,7 @@ import * as Scrivito from "scrivito";
 import { Review } from "./ReviewComponent";
 import { prepareReviewContent } from "../utils/prepareReviewContent";
 import { ReviewContent } from "../../../../types/types";
-type FormFooterMultiStepsProps = {
+interface FormFooterMultiStepsProps {
   widget: Scrivito.Widget;
   onPageChange: Function;
   onSubmit: React.MouseEventHandler;
@@ -11,7 +11,7 @@ type FormFooterMultiStepsProps = {
   isLastPage: boolean;
   stepsLength: number;
   showReview: boolean;
-};
+}
 
 export const FormFooterMultiSteps = Scrivito.connect(
   ({

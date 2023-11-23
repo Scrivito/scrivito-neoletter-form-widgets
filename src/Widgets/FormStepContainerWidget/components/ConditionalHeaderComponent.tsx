@@ -3,10 +3,10 @@ import * as Scrivito from "scrivito";
 import { RadioButtonsHeader } from "./ConditionalRadioButtonsHeader";
 import { DropdownHeader } from "./ConditionalDropdownHeader";
 
-type ConditionalHeaderProps = {
+interface ConditionalHeaderProps {
   widget: Scrivito.Widget;
   onChangeSelected: Function;
-};
+}
 export const ConditionalHeader = ({
   widget,
   onChangeSelected,

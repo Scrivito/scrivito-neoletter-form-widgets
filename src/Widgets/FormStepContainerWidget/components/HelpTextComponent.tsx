@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 import * as Scrivito from "scrivito";
-type HelpTextProps = {
+interface HelpTextProps {
   widget: Scrivito.Widget;
-};
+}
 export const HelpText = ({ widget }: HelpTextProps) => {
   return (
     <OverlayTrigger

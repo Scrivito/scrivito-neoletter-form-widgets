@@ -1,16 +1,16 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 
-type ValidationResultObject = {
+interface ValidationResultObject {
   severity?: string | undefined;
   message: string;
-};
-type ContentPropertyProps = {
+}
+interface ContentPropertyProps {
   content: Scrivito.Widget;
   attribute: string;
   title: string;
   description: string;
-};
+}
 
 /** A copy of the Scrivito ContentProperty component */
 export const ContentProperty = Scrivito.connect(

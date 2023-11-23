@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import { FormButtonWidget } from "./FormButtonWidgetClass";
-type WrapIfClassNameProps = {
+interface WrapIfClassNameProps {
   className: string;
-};
+}
 
 Scrivito.provideComponent(FormButtonWidget, ({ widget }) => (
   <WrapIfClassName className={alignmentClassName(widget.get("alignment"))}>

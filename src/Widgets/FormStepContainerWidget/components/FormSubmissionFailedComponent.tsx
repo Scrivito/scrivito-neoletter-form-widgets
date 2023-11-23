@@ -1,8 +1,8 @@
 import * as React from "react";
 
-type FormSubmissionFailedProps = {
+interface FormSubmissionFailedProps {
   submissionFailureText: string;
-};
+}
 export const FormSubmissionFailed = ({
   submissionFailureText,
 }: FormSubmissionFailedProps) => {

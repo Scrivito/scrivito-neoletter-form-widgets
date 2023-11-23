@@ -1,10 +1,10 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 
-type FormFooterSingleStepProps = {
+interface FormFooterSingleStepProps {
   widget: Scrivito.Widget;
   onSubmit: React.MouseEventHandler;
-};
+}
 
 export const FormFooterSingleStep = Scrivito.connect(
   ({ widget, onSubmit }: FormFooterSingleStepProps) => {

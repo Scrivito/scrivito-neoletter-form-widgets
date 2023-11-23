@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-type InPlaceEditingPlaceholderProps = {
+interface InPlaceEditingPlaceholderProps {
   center?: boolean;
   block?: boolean;
-};
+}
 
 const placeholderCss = {
   color: "rgba(64, 64, 64, 0.53)",

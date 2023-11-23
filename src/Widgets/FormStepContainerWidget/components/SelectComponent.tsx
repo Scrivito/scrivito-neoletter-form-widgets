@@ -1,18 +1,18 @@
 import * as React from "react";
-type SelectProps = {
+interface SelectProps {
   items: string[];
   isMultiSelect: boolean;
   required: boolean;
   name: string;
-};
-type SelectItemProps = {
+}
+interface SelectItemProps {
   selectionType: string;
   value: string;
   id?: string;
   name: string;
   required: boolean | undefined;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-};
+}
 
 export const Select = ({
   items,

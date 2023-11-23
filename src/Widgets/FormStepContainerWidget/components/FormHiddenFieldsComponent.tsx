@@ -3,7 +3,9 @@ import * as Scrivito from "scrivito";
 import { Location } from "history";
 import { getHistory } from "../../../config/history";
 
-type props = { widget: Scrivito.Widget };
+interface props {
+  widget: Scrivito.Widget;
+}
 export const FormHiddenFields = ({ widget }: props) => {
   const [browserLocation, setBrowserLocation] = React.useState<string | null>(
     null

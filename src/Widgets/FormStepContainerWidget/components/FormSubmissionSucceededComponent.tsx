@@ -1,8 +1,8 @@
 import * as React from "react";
 
-type FormSubmissionSucceededProps = {
+interface FormSubmissionSucceededProps {
   submissionSuccessText: string;
-};
+}
 
 export const FormSubmissionSucceeded = ({
   submissionSuccessText,
