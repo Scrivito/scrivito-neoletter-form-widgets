@@ -9,6 +9,7 @@ export async function submitForm(
 ) {
   const formData = getFormData(formElement, formWidget);
   const body = new URLSearchParams(formData as any);
+  // uncomment below to log the data to be fetched.
   // console.log("submitting", Object.fromEntries(body.entries()));
   const response = await fetch(formEndpoint, { method: "post", body });
   if (!response.ok) {
