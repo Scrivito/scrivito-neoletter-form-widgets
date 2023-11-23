@@ -9,8 +9,8 @@ import { FormRatingWidget } from "../FormRatingWidget/FormRatingWidgetClass";
 import formConditionContainerWidgetIcon from "../../assets/images/form_widget_condition_container.svg";
 Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
   title: "Neoletter Form Conditional Container",
-  titleForContent(obj) {
-    return "Container for: " + obj.get("title");
+  titleForContent(widget) {
+    return "Container for: " + widget.get("title");
   },
   thumbnail: formConditionContainerWidgetIcon,
   attributes: {

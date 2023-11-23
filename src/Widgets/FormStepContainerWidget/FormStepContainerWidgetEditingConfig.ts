@@ -93,7 +93,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     "submittedMessage",
     "failedMessage",
   ],
-  propertiesGroups: (obj) => {
+  propertiesGroups: (widget) => {
     const groups = [
       {
         title: "Hidden fields",
@@ -109,10 +109,10 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       {
         title: "Navigation area",
         key: "FormNavigationButtons",
-        properties: getNavigationProperties(obj),
+        properties: getNavigationProperties(widget),
       },
     ];
-    if (obj.get("formType") == "multi-step")
+    if (widget.get("formType") == "multi-step")
       groups.unshift(
         {
           title: "Steps",
@@ -122,7 +122,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
         {
           title: "Review",
           key: "FormReview",
-          properties: getReviewProperties(obj),
+          properties: getReviewProperties(widget),
         }
       );
     return groups;
@@ -252,10 +252,10 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
 
 /**
  * Retrieves the properties for the navigation tab
- * @param {*} obj
+ * @param {*} widget
  * @returns an array of strings containing the properties to be shown
  */
-function getNavigationProperties(obj: Scrivito.Widget): string[] {
+function getNavigationProperties(widget: Scrivito.Widget): string[] {
   const singleStepNavigationProps = [
     "submitButtonText",
     "singleSubmitButtonAlignment",
@@ -265,7 +265,7 @@ function getNavigationProperties(obj: Scrivito.Widget): string[] {
     "backwardButtonText",
     "submitButtonText",
   ];
-  if (obj.get("formType") == "single-step") {
+  if (widget.get("formType") == "single-step") {
     return singleStepNavigationProps;
   } else {
     return MultiStepNavigationProps;
@@ -274,10 +274,10 @@ function getNavigationProperties(obj: Scrivito.Widget): string[] {
 
 /**
  * Retrieves the properties for the review tab
- * @param {*} obj
+ * @param {*} widget
  * @returns
  */
-function getReviewProperties(obj: Scrivito.Widget): string[] | any[] {
+function getReviewProperties(widget: Scrivito.Widget): string[] | any[] {
   const reviewPropsDisabled = ["showReview"];
   const reviewPropsEnabled = [
     "showReview",
@@ -285,9 +285,9 @@ function getReviewProperties(obj: Scrivito.Widget): string[] | any[] {
     "showStepsInReview",
     "includeEmptyAnswers",
     "showReviewHeader",
-    ["reviewHeaderTitle", { enabled: obj.get("showReviewHeader") }],
+    ["reviewHeaderTitle", { enabled: widget.get("showReviewHeader") }],
     "showReviewFooter",
-    ["reviewCloseButtonText", { enabled: obj.get("showReviewFooter") }],
+    ["reviewCloseButtonText", { enabled: widget.get("showReviewFooter") }],
   ];
-  return obj.get("showReview") ? reviewPropsEnabled : reviewPropsDisabled;
+  return widget.get("showReview") ? reviewPropsEnabled : reviewPropsDisabled;
 }

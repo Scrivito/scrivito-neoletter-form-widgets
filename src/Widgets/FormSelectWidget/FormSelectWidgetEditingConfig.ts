@@ -23,12 +23,12 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     required: { title: "Mandatory" },
     helpText: { title: "Help text" },
   },
-  properties: (obj) => [
+  properties: (widget) => [
     "selectionType",
     "title",
     "items",
     "customFieldName",
-    ["required", { enabled: obj.get("selectionType") !== "multi" }],
+    ["required", { enabled: widget.get("selectionType") !== "multi" }],
     "helpText",
   ],
   initialContent: {

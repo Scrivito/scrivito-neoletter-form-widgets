@@ -3,8 +3,8 @@ import formConditionWidgetIcon from "../../assets/images/form_widget_condition.s
 
 Scrivito.provideEditingConfig("FormConditionWidget", {
   title: "Neoletter Form Condition",
-  titleForContent(obj) {
-    return "Condition: " + obj.get("title");
+  titleForContent(widget) {
+    return "Condition: " + widget.get("title");
   },
   thumbnail: formConditionWidgetIcon,
   attributes: {
