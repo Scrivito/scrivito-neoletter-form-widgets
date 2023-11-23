@@ -13,16 +13,16 @@ interface ReviewItemProps {
   item: ReviewItemContent;
 }
 
-export const Review = ({
+export const Review: React.FC<ReviewProps> = ({
   widget,
-  reviewContent: reviewData,
+  reviewContent,
   onHide,
-}: ReviewProps) => {
+}) => {
   const [show, setShow] = React.useState(false);
 
   React.useEffect(() => {
     setShow(true);
-  }, [reviewData]);
+  }, [reviewContent]);
 
   const handleClose = () => {
     setShow(false);
@@ -36,7 +36,7 @@ export const Review = ({
         </Modal.Header>
       )}
       <Modal.Body className="form-review">
-        {reviewData.map((steps, i) => (
+        {reviewContent.map((steps, i) => (
           <div
             className="step-review-container"
             key={"step-review-container-" + i}
@@ -61,7 +61,7 @@ export const Review = ({
   );
 };
 
-const ReviewItem = ({ item }: ReviewItemProps) => {
+const ReviewItem: React.FC<ReviewItemProps> = ({ item }) => {
   return (
     <div>
       <div className="review-item-title">

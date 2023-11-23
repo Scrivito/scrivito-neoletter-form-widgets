@@ -4,7 +4,7 @@ import * as Scrivito from "scrivito";
 interface HelpTextProps {
   widget: Scrivito.Widget;
 }
-export const HelpText = ({ widget }: HelpTextProps) => {
+export const HelpText: React.FC<HelpTextProps> = ({ widget }) => {
   return (
     <OverlayTrigger
       placement="top"

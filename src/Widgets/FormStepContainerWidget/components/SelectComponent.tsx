@@ -14,12 +14,12 @@ interface SelectItemProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export const Select = ({
+export const Select: React.FC<SelectProps> = ({
   items,
   isMultiSelect,
   required,
   name,
-}: SelectProps) => {
+}) => {
   return (
     <div className="row">
       {items.map((itemValue, index) => (
@@ -35,7 +35,7 @@ export const Select = ({
   );
 };
 
-export const SelectItem = ({
+export const SelectItem: React.FC<SelectItemProps> = ({
   selectionType,
   value,
   id,

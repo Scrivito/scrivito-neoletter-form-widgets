@@ -4,9 +4,9 @@ interface FormSubmissionSucceededProps {
   submissionSuccessText: string;
 }
 
-export const FormSubmissionSucceeded = ({
-  submissionSuccessText,
-}: FormSubmissionSucceededProps) => {
+export const FormSubmissionSucceeded: React.FC<
+  FormSubmissionSucceededProps
+> = ({ submissionSuccessText }) => {
   return (
     <div className="scrivito-neoletter-form-widgets form-container-widget text-center">
       <i className="fa fa-check fa-2x" aria-hidden="true"></i>{" "}

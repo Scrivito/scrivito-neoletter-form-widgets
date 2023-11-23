@@ -15,11 +15,9 @@ const placeholderCss = {
   verticalAlign: "middle",
 };
 /** A copy of Scrivitos InPlaceEditingPlaceholder */
-export const InPlaceEditingPlaceholder = ({
-  children,
-  center,
-  block,
-}: React.PropsWithChildren<InPlaceEditingPlaceholderProps>) => {
+export const InPlaceEditingPlaceholder: React.FC<
+  React.PropsWithChildren<InPlaceEditingPlaceholderProps>
+> = ({ children, center, block }) => {
   if (!Scrivito.isInPlaceEditingActive()) return null;
 
   const innerSpan = <span style={placeholderCss}>{children}</span>;

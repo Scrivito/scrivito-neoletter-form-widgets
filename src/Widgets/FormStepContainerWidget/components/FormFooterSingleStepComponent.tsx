@@ -6,8 +6,8 @@ interface FormFooterSingleStepProps {
   onSubmit: React.MouseEventHandler;
 }
 
-export const FormFooterSingleStep = Scrivito.connect(
-  ({ widget, onSubmit }: FormFooterSingleStepProps) => {
+export const FormFooterSingleStep: React.FC<FormFooterSingleStepProps> =
+  Scrivito.connect(({ widget, onSubmit }) => {
     return (
       <div
         className={`${
@@ -28,5 +28,4 @@ export const FormFooterSingleStep = Scrivito.connect(
         </button>
       </div>
     );
-  }
-);
+  });

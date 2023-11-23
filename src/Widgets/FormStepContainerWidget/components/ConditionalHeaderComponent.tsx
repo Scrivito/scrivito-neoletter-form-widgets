@@ -7,10 +7,10 @@ interface ConditionalHeaderProps {
   widget: Scrivito.Widget;
   onChangeSelected: Function;
 }
-export const ConditionalHeader = ({
+export const ConditionalHeader: React.FC<ConditionalHeaderProps> = ({
   widget,
   onChangeSelected,
-}: ConditionalHeaderProps) => {
+}) => {
   const isDropdownHeader = widget.get("headerType") == "dropdown";
   return (
     <>

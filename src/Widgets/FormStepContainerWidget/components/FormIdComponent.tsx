@@ -3,8 +3,12 @@ import * as Scrivito from "scrivito";
 import { ContentProperty } from "../../../Components/ContentProperty";
 import { getInstanceId } from "../../../config/scrivitoConfig";
 
-export const FormIdComponent = Scrivito.connect(
-  ({ widget }: { widget: Scrivito.Widget }) => {
+interface FormIdComponentProps {
+  widget: Scrivito.Widget;
+}
+
+export const FormIdComponent: React.FC<FormIdComponentProps> = Scrivito.connect(
+  ({ widget }) => {
     const formSubmissionsHref = widget.get("formId")
       ? `https://edit.neoletter.com/i/${getInstanceId()}/forms/${widget.get(
           "formId"
