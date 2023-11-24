@@ -2,7 +2,7 @@ import * as React from "react";
 import * as Scrivito from "scrivito";
 
 interface ValidationResultObject {
-  severity?: string | undefined;
+  severity?: string;
   message: string;
 }
 interface ContentPropertyProps {
