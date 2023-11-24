@@ -10,7 +10,7 @@ interface SelectItemProps {
   value: string;
   id?: string;
   name: string;
-  required: boolean | undefined;
+  required: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
