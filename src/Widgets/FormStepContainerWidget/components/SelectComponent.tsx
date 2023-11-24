@@ -48,7 +48,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
       <input
         className="form-check-input"
         name={name}
-        required={selectionType == "radio" ? required : undefined}
+        required={selectionType === "radio" && required}
         type={selectionType == "radio" ? "radio" : "checkbox"}
         value={value}
         onChange={onChange}
