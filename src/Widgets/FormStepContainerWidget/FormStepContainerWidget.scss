@@ -12,12 +12,11 @@
   }
   .text-mandatory {
     font-weight: 700;
-    // hardcoded for now
-    color: #f03a47; //$secondary;
+    color: var(--bs-secondary, #f03a47); //$secondary;
     cursor: default;
   }
-  .fa {
-    color: #ccc;
+  .rating-icon.fa {
+    color: grey;
   }
 
   .winnie-the-pooh {
@@ -72,7 +71,7 @@
     .scrivito-neoletter-form-widgets.form-container-widget
     .text-mandatory,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .fa {
-    color: #fff !important;
+    color: #fff;
   }
   // hardcoded for now
   .card .scrivito-neoletter-form-widgets.form-container-widget label {

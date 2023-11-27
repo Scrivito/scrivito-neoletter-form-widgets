@@ -1,0 +1,142 @@
+/*!
+ * Icon Editor Tab
+ */
+
+.icon-editor-tab .icon-editor-preview {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 14px 10px 10px 10px;
+  border-radius: 4px;
+  margin: 0 0 10px 0;
+  display: block;
+  width: 60px;
+  text-align: center;
+}
+.icon-editor-tab .icon-editor-preview .fa {
+  font-size: 26px;
+  color: #555;
+}
+.icon-editor-tab .headline {
+  display: block;
+  color: #555;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 10px 3px 4px;
+}
+
+.icon-editor-tab .fa-hover a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  color: #222;
+  line-height: 33px;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin: 2px 0;
+}
+
+.icon-editor-tab .fa-hover a .fa {
+  width: 32px;
+  font-size: 14px;
+  display: inline-block;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.icon-editor-tab .fa-hover a:hover {
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+}
+
+.icon-editor-tab .fa-hover a:hover .fa {
+  font-size: 23px;
+  vertical-align: -2px;
+}
+
+.icon-editor-tab .fa-hover a:hover .text-muted {
+  color: #bbe2d5;
+}
+
+.icon-editor-tab .fa-hover a.active {
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+  box-shadow: 0 0 0 2px #ff6b6b inset;
+}
+
+.icon-editor-tab .fa-hover a.active .fa {
+  font-size: 24px;
+  vertical-align: -2px;
+}
+
+.icon-editor-tab .fa-hover a.active .text-muted {
+  color: #bbe2d5;
+}
+
+#search {
+  position: relative;
+}
+#search .fa {
+  color: #555;
+}
+
+#search label {
+  position: absolute;
+  left: 17px;
+  top: 0px;
+}
+
+#search #search-input {
+  padding: 1px 5px 1px 43px !important;
+  border-radius: 23px;
+  font-size: 13px;
+  line-height: 25px;
+}
+#search #search-input:focus {
+  box-shadow: none;
+}
+#search #search-clear {
+  text-decoration: none;
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  color: #777;
+}
+
+#search #search-clear:hover {
+  color: #8f8f8f;
+}
+
+// -- dark mode -- //
+
+.scrivito_dark {
+  .icon-editor-tab .icon-editor-preview {
+    background: #5a5a5a;
+  }
+  .icon-editor-tab .headline,
+  .icon-editor-tab .icon-editor-preview .fa {
+    color: #eee;
+  }
+
+  #search .fa {
+    color: #aaa;
+  }
+  #search #search-input {
+    background: #333;
+    border: 1px solid #333;
+    color: #777;
+  }
+
+  .icon-editor-tab .fa-hover a {
+    color: #eee;
+  }
+  .icon-editor-tab .fa-hover a:hover,
+  .icon-editor-tab .fa-hover a.active {
+    background: #5a5a5a;
+    color: #eee;
+    text-decoration: none;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2), 0 0 0 2px #426698 inset;
+  }
+}
