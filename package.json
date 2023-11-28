@@ -18,17 +18,17 @@
     "neoletter"
   ],
   "peerDependencies": {
+    "fuse.js": "^7.0.0",
     "history": "^5.3.0",
     "lodash-es": "^4.17.21",
     "mini-css-extract-plugin": "^2.6.1",
-    "prettier": "^2.7.1",
+    "prettier": "^3.1.0",
     "react": "^18.0.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.0.0",
     "scrivito": "^1.35.0",
     "webpack": "^5.76.0",
-    "webpack-cli": "^4.10.0",
-    "fuse.js": "^7.0.0"
+    "webpack-cli": "^4.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
