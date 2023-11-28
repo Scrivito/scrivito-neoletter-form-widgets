@@ -24,7 +24,7 @@ npm install scrivito-neoletter-form-widgets
 
 Import the `initNeoletterFormWidgets` function from the package, and call it in your index.js file found in the Widgets folder (e.g. in `src/Widgets/index.js`), passing your Scrivito tenant ID to the function:
 ```js
-import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
+import { initNeoletterFormWidgets } from 'scrivito-neoletter-form-widgets';
 
 initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
 ```
@@ -35,13 +35,13 @@ Add the widget styles to your app.
 This can be done by either loading the CSS via `css-loader` (e.g. in `src/index.js` or `src/Widgets/index.js`):
 
 ```js
-import "scrivito-neoletter-form-widgets/index.css";
+import 'scrivito-neoletter-form-widgets/index.css';
 ```
 
  Or by importing the styles into your stylesheets (e.g. in `src/assets/stylesheets/index.scss`):
 
 ```scss
-@import "~scrivito-neoletter-form-widgets/index.css";
+@import '~scrivito-neoletter-form-widgets/index.css';
 ```
 
 Delete all form widgets included in the Example App from the "Widgets" folder:
