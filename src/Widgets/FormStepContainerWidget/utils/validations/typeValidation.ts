@@ -12,7 +12,7 @@ export const typeValidation: any = [
     if (!isCustomType(widget) && !isFieldNameUnique(widget)) {
       return `There must be only one element with the input type “${type.replace(
         /_/,
-        " "
+        " ",
       )}”.`;
     }
   },

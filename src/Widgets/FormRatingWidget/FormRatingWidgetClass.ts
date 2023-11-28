@@ -21,5 +21,5 @@ export const FormRatingWidget = Scrivito.provideWidgetClass(
       helpText: "html",
       customFieldName: "string",
     },
-  }
+  },
 );

@@ -10,7 +10,7 @@ export const FormHiddenFields: React.FC<FormHiddenFieldsProps> = ({
   widget,
 }) => {
   const [browserLocation, setBrowserLocation] = React.useState<string | null>(
-    null
+    null,
   );
   React.useEffect(() => {
     const history = getHistory();
@@ -18,7 +18,7 @@ export const FormHiddenFields: React.FC<FormHiddenFieldsProps> = ({
     setBrowserLocation(locationToUrl(history.location));
 
     return history.listen(({ location }) =>
-      setBrowserLocation(locationToUrl(location))
+      setBrowserLocation(locationToUrl(location)),
     );
   }, []);
   return (

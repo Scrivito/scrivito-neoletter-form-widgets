@@ -45,11 +45,11 @@ export const ContentProperty = Scrivito.connect(
         )}
       </>
     );
-  }
+  },
 );
 
 function findHighestSeverity(
-  validationResults: ValidationResultObject[]
+  validationResults: ValidationResultObject[],
 ): string {
   const highestSeverityValidation =
     validationResults.find((v) => v.severity === "error") ||

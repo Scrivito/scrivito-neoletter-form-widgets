@@ -16,5 +16,5 @@ export const FormConditionalContainerWidget = Scrivito.provideWidgetClass(
       required: "boolean",
       helpText: "html",
     },
-  }
+  },
 );

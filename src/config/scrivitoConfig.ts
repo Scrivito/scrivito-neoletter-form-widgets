@@ -13,7 +13,7 @@ function loadWidgets(): void {
   const widgetImportsContext = require.context(
     "../Widgets",
     true,
-    /Widget(Class|Component|EditingConfig)\.tsx?$/
+    /Widget(Class|Component|EditingConfig)\.tsx?$/,
   );
   widgetImportsContext.keys().forEach(widgetImportsContext);
 }

@@ -36,7 +36,7 @@ export const DropdownHeader = Scrivito.connect(
         </select>
       </div>
     );
-  }
+  },
 );
 
 //TODO: move to dropdownOption & rename

@@ -36,5 +36,5 @@ export const FormStepContainerWidget = Scrivito.provideWidgetClass(
       ],
     },
     extractTextAttributes: ["steps"],
-  }
+  },
 );

@@ -14,5 +14,5 @@ export const FormCheckboxWidget = Scrivito.provideWidgetClass(
       required: "boolean",
       helpText: "html",
     },
-  }
+  },
 );

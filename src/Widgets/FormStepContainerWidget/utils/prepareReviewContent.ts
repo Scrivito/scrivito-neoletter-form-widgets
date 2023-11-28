@@ -5,7 +5,7 @@ import { InputValidationElement, ReviewContent } from "../../../../types/types";
 
 export function prepareReviewContent(widget: Widget): ReviewContent {
   const form = document.getElementById(
-    widget.get("formId") as string
+    widget.get("formId") as string,
   ) as HTMLFormElement;
   const data = new FormData(form);
   const joinedFormData = new FormData();
@@ -22,7 +22,7 @@ export function prepareReviewContent(widget: Widget): ReviewContent {
   const widgets = steps.flatMap((s) => s.widgets());
   const includeEmptyAnswers = widget.get("includeEmptyAnswers");
   const inputs: InputValidationElement[] = Array.from(
-    form.querySelectorAll("input, select, textarea")
+    form.querySelectorAll("input, select, textarea"),
   );
   const inputNames = uniq(map(inputs, (i) => i.name));
   const reviewData: ReviewContent = [];
@@ -48,7 +48,7 @@ export function prepareReviewContent(widget: Widget): ReviewContent {
     const widget = widgets.find((w) => getFieldName(w) == key);
     if (widget) {
       const step = steps.find((s) =>
-        s.widgets().find((w) => getFieldName(w) == key)
+        s.widgets().find((w) => getFieldName(w) == key),
       );
       const stepNumber = step?.get("stepNumber") as number;
       const title = (widget.get("label") ||

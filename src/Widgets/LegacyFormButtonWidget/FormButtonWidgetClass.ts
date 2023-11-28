@@ -8,5 +8,5 @@ export const FormButtonWidget = Scrivito.provideWidgetClass(
       alignment: ["enum", { values: ["left", "center", "right", "block"] }],
     },
     extractTextAttributes: ["buttonText"],
-  }
+  },
 );
