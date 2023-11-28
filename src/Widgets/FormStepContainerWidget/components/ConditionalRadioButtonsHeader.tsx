@@ -35,5 +35,5 @@ export const RadioButtonsHeader = Scrivito.connect(
         </div>
       </div>
     );
-  }
+  },
 );

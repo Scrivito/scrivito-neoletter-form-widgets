@@ -5,7 +5,7 @@ import { getFieldName } from "./getFieldName";
 export async function submitForm(
   formElement: HTMLFormElement,
   formEndpoint: string,
-  formWidget: Widget
+  formWidget: Widget,
 ) {
   const formData = getFormData(formElement, formWidget);
   const body = new URLSearchParams(formData as any);
@@ -14,7 +14,7 @@ export async function submitForm(
   const response = await fetch(formEndpoint, { method: "post", body });
   if (!response.ok) {
     throw new Error(
-      `Response was not successful. Status code: ${response.status}.`
+      `Response was not successful. Status code: ${response.status}.`,
     );
   }
 }

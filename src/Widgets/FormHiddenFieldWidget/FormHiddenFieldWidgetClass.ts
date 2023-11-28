@@ -12,5 +12,5 @@ export const FormHiddenFieldWidget = Scrivito.provideWidgetClass(
       customFieldName: "string",
       hiddenValue: "string",
     },
-  }
+  },
 );

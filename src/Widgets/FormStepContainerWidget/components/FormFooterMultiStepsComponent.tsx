@@ -26,7 +26,7 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
     }) => {
       const [show, setShow] = React.useState(false);
       const [reviewContent, setReviewContent] = React.useState<ReviewContent>(
-        []
+        [],
       );
       const doShowReview = isLastPage && showReview;
       return (
@@ -68,13 +68,13 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
           )}
         </>
       );
-    }
+    },
   );
 
 function onShowReview(
   widget: Scrivito.Widget,
   setReviewContent: Function,
-  setShow: Function
+  setShow: Function,
 ) {
   const reviewContent = prepareReviewContent(widget);
 

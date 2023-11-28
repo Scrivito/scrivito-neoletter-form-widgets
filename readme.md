@@ -24,7 +24,7 @@ npm install scrivito-neoletter-form-widgets
 
 Import the `initNeoletterFormWidgets` function from the package, and call it in your index.js file found in the Widgets folder (e.g. in `src/Widgets/index.js`), passing your Scrivito tenant ID to the function:
 ```js
-import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
+import { initNeoletterFormWidgets } from 'scrivito-neoletter-form-widgets';
 
 initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
 ```
@@ -35,13 +35,13 @@ Add the widget styles to your app.
 This can be done by either loading the CSS via `css-loader` (e.g. in `src/index.js` or `src/Widgets/index.js`):
 
 ```js
-import "scrivito-neoletter-form-widgets/index.css";
+import 'scrivito-neoletter-form-widgets/index.css';
 ```
 
  Or by importing the styles into your stylesheets (e.g. in `src/assets/stylesheets/index.scss`):
 
 ```scss
-@import "~scrivito-neoletter-form-widgets/index.css";
+@import '~scrivito-neoletter-form-widgets/index.css';
 ```
 
 Delete all form widgets included in the Example App from the "Widgets" folder:
@@ -187,15 +187,27 @@ The `Form Input Field` widget adds customizable input fields to your form. You c
 The `Form Rating` widget integrates a rating control into your form, allowing users to provide ratings for a particular item or experience.
 
 ### Properties
+The `Form Rating` widget has the following properties divided into several tabs:
 
-- Label: Set the label for the rating control.
-- Field name: Define the field name for the rating.
-- Help text: Provide optional help text for the rating control.
+- "General" tab
+  - Label: Set the label for the rating control.
+  - Field name: Define the field name for the rating.
+  - Help text: Provide optional help text for the rating control.
+- "Stylings" tab
+  - Hover effect: Previews icon selection on hover.
+  - Size: Choose the size of the icon.
+  - Color: Choose the color for selected icons i.e. Default, Primary, Secondary and Custom .
+  - Custom Hex Color: Specify a custom hex color.
+- "Icon" tab: 
+  - Allows changing the icon for the rating control.
 
 ### Validation
 - This rating widget must be placed within a Form widget to be effective.
 - The field name must be unique and start with `custom_`.
+- Custom hex color must be a valid hexadecimal color if the color type is set to `Custom`.
 
+### Note
+The colors for "Primary" and "Secondary" are retrieved from Bootstrap variables `--bs-primary` and `--bs-secondary`, respectively. If these Bootstrap variables are not found, the widget will fallback to using `#f03a47` (for "Secondary") and `#5c9dcd` (for "Primary") as default colors. The CSS representation for these defaults is: `var(--bs-secondary, #f03a47)` and `var(--bs-primary, #5c9dcd)`.
 ## Form Select Widget
 <img src="images/form_select_preview.png"  width="350" alt="Screenshot">
 

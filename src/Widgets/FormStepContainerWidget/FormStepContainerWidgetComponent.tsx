@@ -123,7 +123,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
       return;
     }
     const formElement = document.getElementById(
-      widget.get("formId")
+      widget.get("formId"),
     ) as HTMLFormElement;
     scrollIntoView(formElement);
 
@@ -179,7 +179,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
       : Math.max(currentStep - 1, 1);
     setCurrentStepNumber(stepNumber);
     const formElement = document.getElementById(
-      widget.get("formId")
+      widget.get("formId"),
     ) as HTMLFormElement;
     scrollIntoView(formElement);
   }

@@ -123,7 +123,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
           title: "Review",
           key: "FormReview",
           properties: getReviewProperties(widget),
-        }
+        },
       );
     return groups;
   },

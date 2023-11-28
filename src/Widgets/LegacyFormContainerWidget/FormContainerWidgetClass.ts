@@ -12,5 +12,5 @@ export const FormContainerWidget = Scrivito.provideWidgetClass(
       hiddenFields: ["widgetlist", { only: "FormHiddenFieldWidget" }],
     },
     extractTextAttributes: ["content"],
-  }
+  },
 );

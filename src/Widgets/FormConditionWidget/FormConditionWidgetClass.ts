@@ -8,5 +8,5 @@ export const FormConditionWidget = Scrivito.provideWidgetClass(
       title: "string",
       content: "widgetlist",
     },
-  }
+  },
 );

@@ -11,7 +11,7 @@ export const FormIdComponent: React.FC<FormIdComponentProps> = Scrivito.connect(
   ({ widget }) => {
     const formSubmissionsHref = widget.get("formId")
       ? `https://edit.neoletter.com/i/${getInstanceId()}/forms/${widget.get(
-          "formId"
+          "formId",
         )}`
       : null;
     const uiContext = Scrivito.uiContext();
@@ -42,5 +42,5 @@ export const FormIdComponent: React.FC<FormIdComponentProps> = Scrivito.connect(
         </div>
       </div>
     );
-  }
+  },
 );

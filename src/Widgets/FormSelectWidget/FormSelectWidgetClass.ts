@@ -16,5 +16,5 @@ export const FormSelectWidget = Scrivito.provideWidgetClass(
       required: "boolean",
       helpText: "html",
     },
-  }
+  },
 );
