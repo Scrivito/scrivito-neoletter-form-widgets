@@ -72,7 +72,7 @@ const CategoriesAndIcons: React.FC<CategoriesAndIconsProps> = ({
   // This reduced time to first meaningful content by around 45%.
   if (initialRender) {
     const [category, categoryIcons] = Object.entries(categoryMap)[0];
-    const icons: FAIcon[] = take(categoryIcons as any, 50);
+    const icons = take(categoryIcons, 50);
 
     return (
       <Category
