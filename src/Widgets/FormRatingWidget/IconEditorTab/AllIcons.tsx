@@ -114,7 +114,7 @@ const Category: React.FC<CategoryProps> = ({
           // instead of creating one SingleIcon component for each of the 675 icons.
           return (
             <div
-              key={`${icon.id}-${category.replaceAll(" ","-")}-${innerIndex}`}
+              key={`${icon.id}-${category.replaceAll(" ","-")}`}
               className="fa-hover col-md-3 col-sm-4"
             >
               <a
