@@ -1,5 +1,4 @@
 import * as React from "react";
-import { take } from "lodash-es";
 import { fontAwesomeIcons } from "../../FormStepContainerWidget/utils/fontAwesomeIcons";
 import { FAIcon, StringMap } from "../../../../types/types";
 
@@ -9,7 +8,6 @@ interface AllIconsProps {
   hide: boolean;
 }
 interface CategoriesAndIconsProps {
-  initialRender: boolean;
   categoryMap: StringMap<FAIcon[]>;
   currentIcon: string;
   setWidgetIcon: Function;
@@ -26,21 +24,15 @@ export const AllIcons: React.FC<AllIconsProps> = ({
   currentIcon,
   hide,
 }) => {
-  const [initialRender, setInitialRender] = React.useState(true);
-
   const categoryMap = React.useMemo(() => {
     const result: StringMap<FAIcon[]> = {};
     fontAwesomeIcons.forEach((icon) =>
       icon.categories.forEach((category) => {
         if (!result[category]) result[category] = [];
         result[category].push(icon);
-      })
+      }),
     );
     return result;
-  }, []);
-
-  React.useEffect(() => {
-    setTimeout(() => setInitialRender(false), 10);
   }, []);
 
   if (hide) return null;
@@ -49,7 +41,6 @@ export const AllIcons: React.FC<AllIconsProps> = ({
     <div id="icons">
       {
         <CategoriesAndIcons
-          initialRender={initialRender}
           categoryMap={categoryMap}
           currentIcon={currentIcon}
           setWidgetIcon={setWidgetIcon}
@@ -60,35 +51,15 @@ export const AllIcons: React.FC<AllIconsProps> = ({
 };
 
 const CategoriesAndIcons: React.FC<CategoriesAndIconsProps> = ({
-  initialRender,
   categoryMap,
   currentIcon,
   setWidgetIcon,
 }) => {
-  // Note: the initialRender is a performance tweak,
-  // to improve loading time for first "meaningful content".
-  // It is faster, because it first renders only the first 50 icons
-  // and in a second render all other icons.
-  // This reduced time to first meaningful content by around 45%.
-  if (initialRender) {
-    const [category, categoryIcons] = Object.entries(categoryMap)[0];
-    const icons = take(categoryIcons, 50);
-
-    return (
-      <Category
-        category={category}
-        icons={icons}
-        currentIcon={currentIcon}
-        setWidgetIcon={setWidgetIcon}
-      />
-    );
-  }
-
-  return Object.entries(categoryMap).map(([category, icons]) => (
+  return Object.keys(categoryMap).map((category) => (
     <Category
       key={category}
       category={category}
-      icons={icons}
+      icons={categoryMap[category]}
       currentIcon={currentIcon}
       setWidgetIcon={setWidgetIcon}
     />
@@ -114,7 +85,7 @@ const Category: React.FC<CategoryProps> = ({
           // instead of creating one SingleIcon component for each of the 675 icons.
           return (
             <div
-              key={`${icon.id}-${category.replaceAll(" ","-")}`}
+              key={`${icon.id}-${category.replaceAll(" ", "-")}`}
               className="fa-hover col-md-3 col-sm-4"
             >
               <a
