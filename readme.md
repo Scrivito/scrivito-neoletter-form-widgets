@@ -41,7 +41,7 @@ import 'scrivito-neoletter-form-widgets/index.css';
  Or by importing the styles into your stylesheets (e.g. in `src/assets/stylesheets/index.scss`):
 
 ```scss
-@import '~scrivito-neoletter-form-widgets/index.css';
+@import 'scrivito-neoletter-form-widgets/index.css';
 ```
 
 Delete all form widgets included in the Example App from the "Widgets" folder:
