@@ -1,6 +1,6 @@
 import * as React from "react";
 import Fuse from "fuse.js";
-import { fontAwesomeIcons } from "../../FormStepContainerWidget/utils/fontAwesomeIcons";
+import { bootstrapIcons } from "../../FormStepContainerWidget/utils/bootstrapIcons";
 import { SingleIcon } from "./SingleIcon";
 
 interface IconSearchResultsProps {
@@ -16,10 +16,8 @@ export const IconSearchResults: React.FC<IconSearchResultsProps> = ({
   const fuse = React.useMemo(() => {
     const fuseOptions = {
       threshold: 0.2,
-      keys: ["name", "id", "filter", "aliases"],
     };
-
-    return new Fuse(fontAwesomeIcons, fuseOptions);
+    return new Fuse(bootstrapIcons, fuseOptions);
   }, []);
 
   if (!searchValue.length) return null;
@@ -34,10 +32,9 @@ export const IconSearchResults: React.FC<IconSearchResultsProps> = ({
       <div className="row">
         {results.map((result, index) => {
           const icon = result.item;
-
           return (
             <SingleIcon
-              key={`${icon.id}${index}`}
+              key={`${icon}${index}`}
               icon={icon}
               currentIcon={currentIcon}
               setWidgetIcon={setWidgetIcon}

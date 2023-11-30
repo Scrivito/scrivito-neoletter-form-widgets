@@ -1,9 +1,7 @@
 import * as React from "react";
-import { RatingIcon } from "../../FormStepContainerWidget/components/RatingIconComponent";
-import { FAIcon } from "../../../../types/types";
 
 interface SingleIconProps {
-  icon: FAIcon;
+  icon: string;
   setWidgetIcon: Function;
   currentIcon: string;
 }
@@ -12,21 +10,21 @@ export const SingleIcon: React.FC<SingleIconProps> = ({
   setWidgetIcon,
   currentIcon,
 }) => {
-  const cssIcon = `fa-${icon.id}`;
+  const cssIcon = `bi-${icon}`;
 
   const aClassNames = [];
   if (currentIcon === cssIcon) aClassNames.push("active");
 
   return (
-    <div className="fa-hover col-md-3 col-sm-4">
+    <div className="bi-icon">
       <a
         href="#"
         className={aClassNames.join(" ")}
         onClick={(e) => setWidgetIcon(e, cssIcon)}
       >
-        <RatingIcon icon={cssIcon} color={""} size={"fa-lg"} />
+        <i className={`bi ${cssIcon}`}></i>
         <span className="sr-only">Example of </span>
-        {icon.name}
+        {icon}
       </a>
     </div>
   );

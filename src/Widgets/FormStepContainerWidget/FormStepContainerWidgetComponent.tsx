@@ -14,6 +14,7 @@ import { FormSubmitting } from "./components/FormSubmittingComponent";
 import { FormStepContainerWidget } from "./FormStepContainerWidgetClass";
 import { InputValidationElement } from "../../../types/types";
 import "./FormStepContainerWidget.scss";
+import "bootstrap-icons/font/bootstrap-icons.scss";
 
 Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const tenant = getInstanceId();

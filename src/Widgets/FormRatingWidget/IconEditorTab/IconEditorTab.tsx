@@ -4,7 +4,6 @@ import { isEmpty } from "lodash";
 import { AllIcons } from "./AllIcons";
 import { IconSearch } from "./IconSearch";
 import { IconSearchResults } from "./IconSearchResults";
-import { RatingIcon } from "../../FormStepContainerWidget/components/RatingIconComponent";
 import { getIconColor } from "../../FormStepContainerWidget/utils/getIconColor";
 import "./IconEditorTab.scss";
 
@@ -21,13 +20,18 @@ export const IconEditorTab: React.FC<IconEditorTabProps> = ({ widget }) => {
 
   return (
     <div className={`scrivito_${uiContext.theme}`}>
-      <div className="icon-editor-tab">
+      <div className="neoletter-form-icon-editor-tab">
         <div className="scrivito_detail_content">
           <div className="scrivito_detail_label">
             <span>Preview</span>
           </div>
           <div className="icon-editor-preview">
-            <RatingIcon icon={currentIcon} color={color} size={"fa-lg"} />
+            <i
+              className={`bi ${currentIcon}`}
+              style={{
+                color: color,
+              }}
+            ></i>
           </div>
 
           {Scrivito.canWrite() && (

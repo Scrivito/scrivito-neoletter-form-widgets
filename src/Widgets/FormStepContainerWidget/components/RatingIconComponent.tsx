@@ -16,7 +16,7 @@ export const RatingIcon: React.FC<RatingIconProps> = ({
   onHoverOut,
 }) => (
   <i
-    className={`fa ${icon} ${size} rating-icon`}
+    className={`bi ${icon} ${size} rating-icon`}
     style={{
       color: color,
       paddingRight: "0.08em",

@@ -21,13 +21,13 @@ Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
       {createArray(5).map((n, i) => (
         <RatingIcon
           key={i}
-          icon={widget.get("icon") || "fa-star"}
+          icon={widget.get("icon") || "bi-star-fill"}
           color={getColor(
             color,
             selectedIcons > i,
             hoverEffect && hoveredIcons > i,
           )}
-          size={widget.get("size") || "fa-lg"}
+          size={widget.get("size") || "bi-default"}
           onSelect={() => setSelectedIcons(i + 1)}
           onHover={() => hoverEffect && setHoveredIcons(i + 1)}
           onHoverOut={() => hoverEffect && setHoveredIcons(0)}

@@ -13,7 +13,7 @@ export const FormRatingWidget = Scrivito.provideWidgetClass(
       ],
       size: [
         "enum",
-        { values: ["fa-1x", "fa-lg", "fa-2x", "fa-3x", "fa-4x", "fa-5x"] },
+        { values: ["bi-1x", "bi-default", "bi-2x", "bi-3x", "bi-4x", "bi-5x"] },
       ],
       icon: "string",
       customColor: "string",

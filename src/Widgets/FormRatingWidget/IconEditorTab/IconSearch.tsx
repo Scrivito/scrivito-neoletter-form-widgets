@@ -14,9 +14,9 @@ export const IconSearch: React.FC<IconSearchProps> = ({
   searchValue,
 }) => {
   return (
-    <div id="search">
+    <div id="neoletter-icon-search">
       <label htmlFor="search-input">
-        <i className="fa fa-search" aria-hidden="true" />
+        <i className="bi bi-search" aria-hidden="true" />
         <span className="sr-only">Search icons</span>
       </label>
       <input
@@ -53,7 +53,7 @@ const ClearSearchButton: React.FC<ClearSearchButtonProps> = ({
     <a
       id="search-clear"
       href="#"
-      className="fa fa-times-circle"
+      className="bi bi-x-circle"
       aria-hidden="true"
       onClick={() => setSearchValue("")}
     >

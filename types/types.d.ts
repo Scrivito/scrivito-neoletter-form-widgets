@@ -10,10 +10,3 @@ export type ReviewItemContent = {
 //TODO: refactor (use StringMap or NumberMap instead)
 export type ReviewContent = Array<Array<ReviewItemContent>>;
 export type StringMap<T> = {[key:string]: T};
-export interface FAIcon {
-    name: string,
-    id: string,
-    categories: string[],
-    filter?: string[],
-    aliases?: string[]
-}
