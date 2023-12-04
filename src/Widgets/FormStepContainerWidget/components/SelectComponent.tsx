@@ -1,9 +1,12 @@
 import * as React from "react";
+import { Widget } from "scrivito";
+import { LinearScale } from "./LinearScaleComponent";
 interface SelectProps {
-  items: string[];
   isMultiSelect: boolean;
   required: boolean;
+  widget: Widget;
   name: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 interface SelectItemProps {
   selectionType: string;
@@ -15,23 +18,32 @@ interface SelectItemProps {
 }
 
 export const Select: React.FC<SelectProps> = ({
-  items,
   isMultiSelect,
   required,
+  widget,
   name,
+  onChange,
 }) => {
+  const type = widget.get("selectionType") as string;
+  if (type == "radio" || type == "multi") {
+    const items = widget.get("items") as string[];
+    return (
+      <div className="row">
+        {items.map((itemValue, index) => (
+          <SelectItem
+            selectionType={isMultiSelect ? "multi" : "radio"}
+            name={name}
+            value={itemValue}
+            required={required}
+            key={index}
+            onChange={onChange}
+          />
+        ))}
+      </div>
+    );
+  }
   return (
-    <div className="row">
-      {items.map((itemValue, index) => (
-        <SelectItem
-          selectionType={isMultiSelect ? "multi" : "radio"}
-          name={name}
-          value={itemValue}
-          required={required}
-          key={index}
-        />
-      ))}
-    </div>
+    <LinearScale name={name} widget={widget} onChange={onChange}></LinearScale>
   );
 };
 
@@ -44,12 +56,23 @@ export const SelectItem: React.FC<SelectItemProps> = ({
   onChange,
 }: SelectItemProps) => {
   return (
-    <label className="select-label">
+    <label
+      className={`select-label ${
+        selectionType == "linear-scale" ? "linear-scale" : ""
+      }`}
+    >
       <input
         className="form-check-input"
         name={name}
-        required={selectionType === "radio" && required}
-        type={selectionType == "radio" ? "radio" : "checkbox"}
+        required={
+          (selectionType == "radio" || selectionType == "linear-scale") &&
+          required
+        }
+        type={
+          selectionType == "radio" || selectionType == "linear-scale"
+            ? "radio"
+            : "checkbox"
+        }
         value={value}
         onChange={onChange}
         id={id}

@@ -89,6 +89,9 @@
 .bg-greydark,
 .bg-greymiddle {
   .missing-tenant,
+  .scrivito-neoletter-form-widgets.form-container-widget
+    .linear-scale-container,
+  .scrivito-neoletter-form-widgets.form-container-widget .reset-label span,
   .scrivito-neoletter-form-widgets.form-container-widget label,
   .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory,
   .scrivito-neoletter-form-widgets.form-container-widget .bi,
@@ -109,6 +112,17 @@
   }
   .card .scrivito-neoletter-form-widgets.form-container-widget .bi {
     color: #ccc !important;
+  }
+}
+
+.bg-dark-image,
+.bg-brand-primary,
+.bg-brand-secondary,
+.bg-grey,
+.bg-greydark,
+.bg-greymiddle {
+  .scrivito-neoletter-form-widgets.form-container-widget .reset-label:hover {
+    background-color: unset;
   }
 }
 

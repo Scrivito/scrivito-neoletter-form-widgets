@@ -7,13 +7,16 @@ import { Mandatory } from "../FormStepContainerWidget/components/MandatoryCompon
 import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponent";
 import { Dropdown } from "../FormStepContainerWidget/components/SelectDropdownComponent";
 import { FormSelectWidget } from "./FormSelectWidgetClass";
+import { ResetLabel } from "../FormStepContainerWidget/components/ResetLabelComponent";
 import "./FormSelectWidget.scss";
 
 Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const [selected, setSelected] = React.useState(false);
   const items = widget.get("items");
   const isMultiSelect = widget.get("selectionType") == "multi";
   const isDropdown = widget.get("selectionType") == "dropdown";
-  if (!items.length) {
+  if (!items.length && widget.get("selectionType") != "linear-scale") {
     return (
       <InPlaceEditingPlaceholder center>
         Add items in the widget properties.
@@ -22,7 +25,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
   }
 
   return (
-    <div className="select-container mb-3">
+    <div className="select-container mb-3" ref={ref}>
       <div className="select-title">
         <span className="text-super"> {widget.get("title")} </span>
         {!isMultiSelect && widget.get("required") && <Mandatory />}
@@ -38,11 +41,27 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
       ) : (
         <Select
           isMultiSelect={isMultiSelect}
-          items={widget.get("items")}
           required={widget.get("required")}
+          widget={widget}
           name={getFieldName(widget)}
+          onChange={() => setSelected(true)}
+        />
+      )}
+      {showResetLabel() && (
+        <ResetLabel
+          setSelectedCallback={setSelected}
+          label={widget.get("clearSelectionLabel")}
+          parentRef={ref}
         />
       )}
     </div>
   );
+  function showResetLabel(): boolean {
+    return (
+      selected &&
+      !widget.get("required") &&
+      (widget.get("selectionType") == "radio" ||
+        widget.get("selectionType") == "linear-scale")
+    );
+  }
 });
