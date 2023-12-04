@@ -23,7 +23,7 @@ export const Select: React.FC<SelectProps> = Scrivito.connect(
     if (type == "radio" || type == "multi") {
       const items = widget.get("items") as string[];
       return (
-        <div className={`row ${widget.get("inlineView") ? "inline" : ""}`}>
+        <div className={`${widget.get("inlineView") ? "inline" : "row"}`}>
           {items.map((itemValue, index) => (
             <SelectItem
               selectionType={isMultiSelect ? "multi" : "radio"}

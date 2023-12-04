@@ -26,24 +26,26 @@
     width: 100%;
   }
   .inline {
+    display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     & > * {
-      width: fit-content;
+      padding-right: 1em;
     }
   }
   .linear-scale-container {
     display: flex;
-    align-items: flex-end;
     .lower-scale-label {
-      top: 5px;
+      top: 20px;
       position: relative;
       margin-right: 1.5em;
+      align-self: flex-start;
     }
     .upper-scale-label {
       top: 5px;
       position: relative;
       margin-left: 1.5em;
+      align-self: flex-end;
     }
     .linear-scale {
       flex-direction: column-reverse;
