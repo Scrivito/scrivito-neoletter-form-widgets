@@ -28,6 +28,10 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     linearScaleLowerLabel: { title: "Optional label for lower scale limit" },
     linearScaleUpperLabel: { title: "Optional label for upper scale limit" },
     clearSelectionText: { title: "Clear selection text" },
+    inlineView: {
+      title: "Arrange items horizontally",
+      description: "When enabled, all items will be displayed in a single row.",
+    },
   },
   properties: (widget) => {
     return getProps(widget);
@@ -40,6 +44,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     linearScaleLowerLimit: "1",
     linearScaleUpperLimit: "5",
     clearSelectionText: "Clear selection",
+    inlineView: false,
   },
   validations: [
     insideFormContainerValidation,
@@ -68,6 +73,10 @@ function getProps(widget: Scrivito.Obj): any[] {
     ["required", { enabled: type !== "multi" }],
     "helpText",
   ];
+  // show/hide inlineView
+  if (type == "radio" || type == "multi") {
+    props.splice(3, 0, "inlineView");
+  }
   // show/hide items
   if (type != "linear-scale") {
     props.splice(2, 0, "items");

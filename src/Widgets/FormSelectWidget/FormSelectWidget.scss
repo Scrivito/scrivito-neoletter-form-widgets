@@ -25,6 +25,13 @@
   .dropdown-select {
     width: 100%;
   }
+  .inline {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    & > * {
+      width: fit-content;
+    }
+  }
   .linear-scale-container {
     display: flex;
     align-items: flex-end;

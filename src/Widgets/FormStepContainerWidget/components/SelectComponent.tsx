@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Widget } from "scrivito";
+import * as Scrivito from "scrivito";
 import { LinearScale } from "./LinearScaleComponent";
 interface SelectProps {
   isMultiSelect: boolean;
   required: boolean;
-  widget: Widget;
+  widget: Scrivito.Widget;
   name: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
@@ -17,35 +17,35 @@ interface SelectItemProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export const Select: React.FC<SelectProps> = ({
-  isMultiSelect,
-  required,
-  widget,
-  name,
-  onChange,
-}) => {
-  const type = widget.get("selectionType") as string;
-  if (type == "radio" || type == "multi") {
-    const items = widget.get("items") as string[];
+export const Select: React.FC<SelectProps> = Scrivito.connect(
+  ({ isMultiSelect, required, widget, name, onChange }) => {
+    const type = widget.get("selectionType") as string;
+    if (type == "radio" || type == "multi") {
+      const items = widget.get("items") as string[];
+      return (
+        <div className={`row ${widget.get("inlineView") ? "inline" : ""}`}>
+          {items.map((itemValue, index) => (
+            <SelectItem
+              selectionType={isMultiSelect ? "multi" : "radio"}
+              name={name}
+              value={itemValue}
+              required={required}
+              key={index}
+              onChange={onChange}
+            />
+          ))}
+        </div>
+      );
+    }
     return (
-      <div className="row">
-        {items.map((itemValue, index) => (
-          <SelectItem
-            selectionType={isMultiSelect ? "multi" : "radio"}
-            name={name}
-            value={itemValue}
-            required={required}
-            key={index}
-            onChange={onChange}
-          />
-        ))}
-      </div>
+      <LinearScale
+        name={name}
+        widget={widget}
+        onChange={onChange}
+      ></LinearScale>
     );
-  }
-  return (
-    <LinearScale name={name} widget={widget} onChange={onChange}></LinearScale>
-  );
-};
+  },
+);
 
 export const SelectItem: React.FC<SelectItemProps> = ({
   selectionType,
