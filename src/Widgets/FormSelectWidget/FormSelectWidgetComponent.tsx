@@ -7,7 +7,7 @@ import { Mandatory } from "../FormStepContainerWidget/components/MandatoryCompon
 import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponent";
 import { Dropdown } from "../FormStepContainerWidget/components/SelectDropdownComponent";
 import { FormSelectWidget } from "./FormSelectWidgetClass";
-import { ResetLabel } from "../FormStepContainerWidget/components/ResetLabelComponent";
+import { ResetInputs } from "../FormStepContainerWidget/components/ResetInputsComponent";
 import "./FormSelectWidget.scss";
 
 Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
@@ -47,16 +47,16 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
           onChange={() => setSelected(true)}
         />
       )}
-      {showResetLabel() && (
-        <ResetLabel
+      {showReset() && (
+        <ResetInputs
           setSelectedCallback={setSelected}
-          label={widget.get("clearSelectionLabel")}
+          text={widget.get("clearSelectionText")}
           parentRef={ref}
         />
       )}
     </div>
   );
-  function showResetLabel(): boolean {
+  function showReset(): boolean {
     return (
       selected &&
       !widget.get("required") &&

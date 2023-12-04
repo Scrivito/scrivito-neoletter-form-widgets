@@ -27,7 +27,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     linearScaleUpperLimit: { title: "Upper scale limit" },
     linearScaleLowerLabel: { title: "Optional label for lower scale limit" },
     linearScaleUpperLabel: { title: "Optional label for upper scale limit" },
-    clearSelectionLabel: { title: "Clear selection label" },
+    clearSelectionText: { title: "Clear selection text" },
   },
   properties: (widget) => {
     return getProps(widget);
@@ -39,7 +39,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     customFieldName: "custom_",
     linearScaleLowerLimit: "1",
     linearScaleUpperLimit: "5",
-    clearSelectionLabel: "Clear selection",
+    clearSelectionText: "Clear selection",
   },
   validations: [
     insideFormContainerValidation,
@@ -82,9 +82,9 @@ function getProps(widget: Scrivito.Obj): any[] {
       "linearScaleUpperLabel",
     );
   }
-  // show/hide clearSelectionLabel
+  // show/hide clearSelectionText
   if (!widget.get("required") && (type == "linear-scale" || type == "radio")) {
-    props.splice(props.length - 1, 0, "clearSelectionLabel");
+    props.splice(props.length - 1, 0, "clearSelectionText");
   }
   return props;
 }

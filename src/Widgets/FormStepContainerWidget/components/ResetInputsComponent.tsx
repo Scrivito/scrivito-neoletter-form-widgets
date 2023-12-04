@@ -1,16 +1,16 @@
 import * as React from "react";
 import { each } from "lodash-es";
 
-interface ResetLabelProps {
-  label: string;
+interface ResetInputsProps {
+  text: string;
   parentRef: React.RefObject<HTMLDivElement>;
   setSelectedCallback: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const ResetLabel: React.FC<ResetLabelProps> = ({
+export const ResetInputs: React.FC<ResetInputsProps> = ({
   parentRef,
   setSelectedCallback,
-  label,
+  text,
 }) => {
   const doReset = () => {
     if (parentRef.current) {
@@ -29,7 +29,7 @@ export const ResetLabel: React.FC<ResetLabelProps> = ({
   return (
     <div className={`text-end  fade-in`}>
       <div className="reset-label" onClick={doReset}>
-        <span>{label}</span>
+        <span>{text}</span>
       </div>
     </div>
   );
