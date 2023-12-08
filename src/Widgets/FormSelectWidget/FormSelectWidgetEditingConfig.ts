@@ -34,7 +34,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     },
   },
   properties: (widget) => {
-    return getProps(widget);
+    return getProperties(widget);
   },
   initialContent: {
     selectionType: "radio",
@@ -64,7 +64,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
   ],
 });
 
-function getProps(widget: Scrivito.Obj): any[] {
+function getProperties(widget: Scrivito.Obj): any[] {
   const type = widget.get("selectionType");
   const props = [
     "selectionType",
