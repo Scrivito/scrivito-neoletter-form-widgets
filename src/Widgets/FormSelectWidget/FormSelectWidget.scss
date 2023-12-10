@@ -1,3 +1,12 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .scrivito-neoletter-form-widgets .select-container {
   .select-title {
     display: flex;
@@ -15,5 +24,54 @@
   }
   .dropdown-select {
     width: 100%;
+  }
+  .inline {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    & > * {
+      padding-right: 1em;
+    }
+  }
+  .linear-scale-container {
+    display: flex;
+    .lower-scale-label {
+      top: 20px;
+      position: relative;
+      margin-right: 1.5em;
+      align-self: flex-start;
+    }
+    .upper-scale-label {
+      top: 5px;
+      position: relative;
+      margin-left: 1.5em;
+      align-self: flex-end;
+    }
+    .linear-scale {
+      flex-direction: column-reverse;
+      width: auto;
+      span {
+        margin-left: 0;
+      }
+    }
+  }
+  .text-end {
+    margin-top: 0.5em;
+    .reset-label {
+      width: fit-content;
+      padding: 0.1em 0.6em;
+      display: inline-block;
+      border-radius: 2px;
+      cursor: pointer;
+      span {
+        color: #5f6368;
+      }
+      &:hover {
+        background-color: #f9f9f9;
+      }
+    }
+    &.fade-in {
+      animation: fadeIn 0.2s ease-in-out forwards;
+    }
   }
 }

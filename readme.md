@@ -215,12 +215,19 @@ The `Form Select` widget enables you to create single or multiple selection elem
 
 ### Properties
 
-- Input type: Choose the type of input, which can be single select (radio buttons or dropdown) or multi-select (checkboxes).
+- Input type: Choose the type of input, which can be single select (radio buttons, linear-scale or dropdown) or multi-select (checkboxes).
 - Label: Specify the label for the select input.
-- Items: Configure the items or options available for selection.
+- Items: Configure the items or options available for selection. (Not visible for input type linear-scale.)
 - Field name: Define the field name for the select input.
-- Mandatory: Indicates whether selection is required for single select inputs (radio buttons and dropdowns).
+- Mandatory: Indicates whether selection is required for single select inputs (radio buttons, linear-scale and dropdowns).
 - Help text: Provide optional help text for the select input.
+- Arrange items horizontally: When enabled, all items will be displayed in a single row. (Visible for checkboxes & radios only.)
+- Clear selection text: Allows the user to change the text of the button to clear the selection. (For radios & linear-scale if mandatory is set to false.)
+- Lower scale limit: Choose the lower limit, which can be either 0 or 1. (Visible for linear-scale only.)
+- Upper scale limit: Choose the upper limit, which can be from 2 to 10. (Visible for linear-scale only.)
+- Optional label for lower scale limit: Add text at the beginning of the linear scale. (Visible for linear-scale only.)
+- Optional label for upper scale limit: Set text at the end of the scale. (Visible for linear-scale only.)
+
 
 ### Validation
 - This select widget must be placed within a Form widget to be effective.
