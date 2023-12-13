@@ -243,10 +243,15 @@ The `Form Hidden Field` widget includes hidden form fields. These fields are typ
 
 - Field name: Define the field name for the hidden field.
 - Hidden value: Specify the hidden value for this field.
+- Input type:
+  - Custom: Allows the creation of a custom hidden field.
+  - Subscription: Activates the subscription process on every form submission. If this type is selected, the hidden value needs to be set to "on" to trigger the subscription process.
 
 ### Validation
 - This hidden field widget must be placed within a Form widget to be effective.
-- The field name must be unique and start with `custom_`.
+- For custom-type hidden fields, the field name must be unique and start with `custom_`.
+- When utilizing the Subscription type, it's essential to set the hidden value to "on" to activate the subscription process during form submissions.
+
 
 ## Form Conditional Container Widget
 <img src="images/form_condtional_container_preview.png" width="350" alt="Screenshot">
