@@ -19,7 +19,7 @@ export const HelpText: React.FC<HelpTextProps> = ({ widget }) => {
         </Popover>
       }
     >
-      <i className="fa fa-question-circle-o fa-1x ml-1"></i>
+      <i className="bi bi-question-circle"></i>
     </OverlayTrigger>
   );
 };
