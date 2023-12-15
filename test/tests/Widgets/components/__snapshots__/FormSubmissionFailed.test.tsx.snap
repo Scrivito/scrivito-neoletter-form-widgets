@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormSubmissionFailed renders correctly 1`] = `
+<div
+  className="scrivito-neoletter-form-widgets form-container-widget text-center"
+>
+  <i
+    aria-hidden="true"
+    className="bi bi-exclamation-triangle-fill bi-2x"
+  />
+   
+  <span
+    className="text-super"
+  >
+    Submission failed!
+  </span>
+</div>
+`;

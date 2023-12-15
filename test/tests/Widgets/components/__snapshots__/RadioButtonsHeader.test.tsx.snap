@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioButtonsHeader renders correctly 1`] = `
+<div
+  className="mb-3 select-container condition-wrapper"
+>
+  <div
+    className="select-title"
+  >
+    <span
+      className="text-super"
+    >
+      Select some
+    </span>
+    <span
+      className="text-mandatory"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      *
+    </span>
+  </div>
+  <div
+    className="row "
+  >
+    <label
+      className="select-label "
+    >
+      <input
+        className="form-check-input"
+        id="fakeId"
+        name="custom_radio"
+        onChange={[Function]}
+        required={true}
+        type="radio"
+        value="Apples"
+      />
+      <span>
+        Apples
+      </span>
+    </label>
+    <label
+      className="select-label "
+    >
+      <input
+        className="form-check-input"
+        id="fakeId"
+        name="custom_radio"
+        onChange={[Function]}
+        required={true}
+        type="radio"
+        value="Bananas"
+      />
+      <span>
+        Bananas
+      </span>
+    </label>
+  </div>
+</div>
+`;

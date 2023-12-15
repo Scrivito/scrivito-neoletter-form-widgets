@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormInputFieldWidget Component renders correctly 1`] = `
+<div>
+  <div>
+    <div
+      className="mb-3"
+    >
+      <label
+        className="form-label"
+        htmlFor="form_text_input_widget_staticWidgetID"
+      >
+        Test Label
+      </label>
+      <span
+        className="text-mandatory"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        *
+      </span>
+      <i
+        className="bi bi-question-circle"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      />
+      <input
+        className="form-control"
+        id="form_text_input_widget_staticWidgetID"
+        maxLength={250}
+        name="custom_test"
+        placeholder="Test placeholder"
+        required={true}
+        type="text"
+      />
+    </div>
+  </div>
+</div>
+`;

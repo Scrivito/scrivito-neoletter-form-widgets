@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormConditionWidget renders correctly 1`] = `
+<div>
+  <div>
+    <span
+      className="condition-info"
+    >
+      Condition: select me
+    </span>
+    <div
+      className="conditional-content"
+    >
+      <div>
+        <div
+          className="form-date mb-3"
+        >
+          <div
+            className="date-title"
+          >
+            <span
+              className="text-super"
+            >
+              date
+            </span>
+          </div>
+          <input
+            className="datepicker"
+            onChange={[Function]}
+            required={false}
+            type="date"
+          />
+          <input
+            className="show-in-review"
+            name="custom_date"
+            type="hidden"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

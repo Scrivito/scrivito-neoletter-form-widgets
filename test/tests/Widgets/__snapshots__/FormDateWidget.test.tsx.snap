@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormDateWidget renders correctly 1`] = `
+<div>
+  <div>
+    <div
+      className="form-date mb-3"
+    >
+      <div
+        className="date-title"
+      >
+        <span
+          className="text-super"
+        >
+          Test Date
+        </span>
+        <span
+          className="text-mandatory"
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          *
+        </span>
+        <i
+          className="bi bi-question-circle"
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        />
+      </div>
+      <input
+        className="datepicker"
+        onChange={[Function]}
+        required={true}
+        type="date"
+      />
+      <input
+        className="show-in-review"
+        name="custom_test"
+        type="hidden"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;

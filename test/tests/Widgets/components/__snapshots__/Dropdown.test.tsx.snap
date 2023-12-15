@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown renders correctly 1`] = `
+<select
+  class="dropdown-select"
+  id="testDropdownId"
+  name="testDropdown"
+  required=""
+>
+  <option
+    id="empty-option"
+    value=""
+  />
+  <option
+    id="0"
+    value="Option 1"
+  >
+    Option 1
+  </option>
+  <option
+    id="1"
+    value="Option 2"
+  >
+    Option 2
+  </option>
+  <option
+    id="2"
+    value="Option 3"
+  >
+    Option 3
+  </option>
+</select>
+`;

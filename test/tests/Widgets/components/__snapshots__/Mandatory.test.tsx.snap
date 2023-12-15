@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Mandatory renders correctly 1`] = `
+<span
+  className="text-mandatory"
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+>
+  *
+</span>
+`;

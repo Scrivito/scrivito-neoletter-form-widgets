@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormButtonWidget renders correctly 1`] = `
+<div>
+  <div>
+    <div
+      className="text-center"
+    >
+      <button
+        className="btn btn-primary"
+        type="submit"
+      >
+        <span>
+          Center Button
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

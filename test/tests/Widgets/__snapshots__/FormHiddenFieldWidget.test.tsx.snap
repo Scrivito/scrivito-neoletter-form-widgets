@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormHiddenFieldWidget renders correctly 1`] = `
+<div>
+  <div>
+    <input
+      name={null}
+      type="hidden"
+      value="hidden"
+    />
+  </div>
+</div>
+`;

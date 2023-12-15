@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormCheckboxWidget renders correctly 1`] = `
+<div>
+  <div>
+    <div
+      className="form-check mb-3"
+    >
+      <input
+        className="form-check-input"
+        id="form_checkbox_widget_staticWidgetID"
+        name="custom_test"
+        required={true}
+        type="checkbox"
+      />
+      <label
+        className="form-check-label"
+        htmlFor="form_checkbox_widget_staticWidgetID"
+      >
+        Test Checkbox
+      </label>
+      <span
+        className="text-mandatory"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        *
+      </span>
+      <i
+        className="bi bi-question-circle"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;

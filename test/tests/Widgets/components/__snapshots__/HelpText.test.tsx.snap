@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelpText renders correctly 1`] = `
+<div>
+  <div>
+    <div
+      className="form-date mb-3"
+    >
+      <div
+        className="date-title"
+      >
+        <span
+          className="text-super"
+        >
+          Choose date
+        </span>
+        <i
+          className="bi bi-question-circle"
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        />
+      </div>
+      <input
+        className="datepicker"
+        onChange={[Function]}
+        required={false}
+        type="date"
+      />
+      <input
+        className="show-in-review"
+        name="custom_date"
+        type="hidden"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
