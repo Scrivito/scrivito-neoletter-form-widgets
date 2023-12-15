@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormFooterMultiSteps renders correctly 1`] = `
+<div
+  className="form-buttons"
+>
+  <button
+    className="btn btn-primary backward-button"
+    hidden={true}
+    onClick={[Function]}
+  >
+    Back
+  </button>
+  <div
+    className="step-counter"
+  >
+    1 / 3
+  </div>
+  <button
+    className="btn btn-primary review-button"
+    onClick={[Function]}
+  >
+    Review
+  </button>
+  <button
+    className="btn btn-primary forward-button"
+    onClick={[Function]}
+  >
+    Submit
+  </button>
+</div>
+`;

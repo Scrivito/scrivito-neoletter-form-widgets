@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormConditionalContainerWidget renders correctly 1`] = `
+<div>
+  <div>
+    <div
+      className="mb-3 select-container "
+    >
+      <div
+        className="select-title"
+      >
+        <span
+          className="text-super"
+        >
+          Select something
+        </span>
+      </div>
+      <div
+        className="row "
+      >
+        <label
+          className="select-label "
+        >
+          <input
+            className="form-check-input"
+            id="staticWidgetID"
+            name="custom_test"
+            onChange={[Function]}
+            required={false}
+            type="radio"
+            value="select me"
+          />
+          <span>
+            select me
+          </span>
+        </label>
+        <label
+          className="select-label "
+        >
+          <input
+            className="form-check-input"
+            id="staticWidgetID"
+            name="custom_test"
+            onChange={[Function]}
+            required={false}
+            type="radio"
+            value="i am better :)"
+          />
+          <span>
+            i am better :)
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div />
+      <div />
+    </div>
+  </div>
+</div>
+`;

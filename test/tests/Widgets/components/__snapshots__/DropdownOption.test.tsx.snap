@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropdownOption renders correctly 1`] = `
+<option
+  id="apple-option"
+  value="Apple"
+>
+  Apple
+</option>
+`;

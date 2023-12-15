@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormRatingWidget Component renders correctly 1`] = `
+<div>
+  <div>
+    <div
+      className="form-rating mb-3"
+    >
+      <div
+        className="rating-title"
+      >
+        <span
+          className="text-super"
+        >
+          Test Rating Title
+        </span>
+        <i
+          className="bi bi-question-circle"
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        />
+      </div>
+      <i
+        className="bi bi-star-fill bi-default rating-icon"
+        onClick={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+        style={
+          {
+            "color": "",
+            "paddingRight": "0.08em",
+          }
+        }
+      />
+      <i
+        className="bi bi-star-fill bi-default rating-icon"
+        onClick={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+        style={
+          {
+            "color": "",
+            "paddingRight": "0.08em",
+          }
+        }
+      />
+      <i
+        className="bi bi-star-fill bi-default rating-icon"
+        onClick={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+        style={
+          {
+            "color": "",
+            "paddingRight": "0.08em",
+          }
+        }
+      />
+      <i
+        className="bi bi-star-fill bi-default rating-icon"
+        onClick={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+        style={
+          {
+            "color": "",
+            "paddingRight": "0.08em",
+          }
+        }
+      />
+      <i
+        className="bi bi-star-fill bi-default rating-icon"
+        onClick={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+        style={
+          {
+            "color": "",
+            "paddingRight": "0.08em",
+          }
+        }
+      />
+      <input
+        className="show-in-review"
+        name=""
+        type="hidden"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;

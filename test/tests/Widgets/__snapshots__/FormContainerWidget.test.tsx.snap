@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormContainerWidget renders correctly 1`] = `
+<div>
+  <div>
+    <div
+      className="scrivito-neoletter-form-widgets form-container-widget"
+    >
+      <form
+        action="https://api.justrelate.com/neoletter/instances//form_submissions"
+        method="post"
+        onSubmit={[Function]}
+      >
+        <input
+          name="form_id"
+          type="hidden"
+          value="123"
+        />
+        <input
+          name="url"
+          type="hidden"
+          value="mocked-url"
+        />
+        <div />
+        <div
+          aria-hidden="true"
+          className="winnie-the-pooh"
+        >
+          <input
+            autoComplete="off"
+            name="fax"
+            role="presentation"
+            tabIndex={-1}
+          />
+        </div>
+        <div>
+          <div>
+            <div
+              className="form-date mb-3"
+            >
+              <div
+                className="date-title"
+              >
+                <span
+                  className="text-super"
+                >
+                  date
+                </span>
+              </div>
+              <input
+                className="datepicker"
+                onChange={[Function]}
+                required={false}
+                type="date"
+              />
+              <input
+                className="show-in-review"
+                name="custom_date"
+                type="hidden"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

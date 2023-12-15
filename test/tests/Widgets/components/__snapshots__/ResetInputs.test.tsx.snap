@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResetInputs renders correctly 1`] = `
+<div
+  className="text-end  fade-in"
+>
+  <div
+    className="reset-label"
+    onClick={[Function]}
+  >
+    <span>
+      Reset
+    </span>
+  </div>
+</div>
+`;

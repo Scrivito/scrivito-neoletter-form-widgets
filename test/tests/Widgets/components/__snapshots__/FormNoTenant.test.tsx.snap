@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormNoTenant renders correctly 1`] = `
+<span
+  className="scrivito-neoletter-form-widgets missing-id"
+>
+  Warning! instanceId has not been configured for the form widget.
+</span>
+`;

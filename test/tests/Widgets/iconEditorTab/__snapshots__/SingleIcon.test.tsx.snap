@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleIcon component renders correctly 1`] = `
+<div
+  className="bi-icon"
+>
+  <a
+    className="active"
+    href="#"
+    onClick={[Function]}
+  >
+    <i
+      className="bi bi-example"
+    />
+    <span
+      className="sr-only"
+    >
+      Example of 
+    </span>
+    example
+  </a>
+</div>
+`;

@@ -16,7 +16,6 @@ export const ResetInputs: React.FC<ResetInputsProps> = ({
     if (parentRef.current) {
       const inputs = parentRef.current.getElementsByTagName("input");
       const inputArray = Array.from(inputs);
-      console.log(inputArray);
       each(inputArray, (input) => {
         if (input.type === "radio") {
           input.checked = false;

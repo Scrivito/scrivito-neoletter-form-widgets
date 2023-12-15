@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormSubmissionSucceeded renders correctly 1`] = `
+<div
+  className="scrivito-neoletter-form-widgets form-container-widget text-center"
+>
+  <i
+    aria-hidden="true"
+    className="bi bi-check-lg bi-2x"
+  />
+   
+  <span
+    className="text-super"
+  >
+    Submission successful!
+  </span>
+</div>
+`;

@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropdownHeader renders correctly 1`] = `
+<div
+  className="mb-3 dropdown-container condition-wrapper"
+>
+  <div
+    className="select-title"
+  >
+    <span
+      className="text-super"
+    >
+      Select from dropdown
+    </span>
+    <span
+      className="text-mandatory"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      *
+    </span>
+  </div>
+  <select
+    id="fakeId"
+    name="custom_dropdown"
+    onChange={[Function]}
+    required={true}
+  >
+    <option
+      id="empty-option"
+      value=""
+    />
+    <option
+      id="fakeId"
+      value="Apples"
+    >
+      Apples
+    </option>
+    <option
+      id="fakeId"
+      value="Bananas"
+    >
+      Bananas
+    </option>
+  </select>
+</div>
+`;

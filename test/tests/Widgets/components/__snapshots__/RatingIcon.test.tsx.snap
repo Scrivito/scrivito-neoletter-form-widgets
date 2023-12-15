@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RatingIcon renders correctly 1`] = `
+<i
+  className="bi star-fill 2x rating-icon"
+  style={
+    {
+      "color": "gold",
+      "paddingRight": "0.08em",
+    }
+  }
+/>
+`;

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectItem Component renders correctly 1`] = `
+<label
+  className="select-label "
+>
+  <input
+    className="form-check-input"
+    name="testName"
+    onChange={[MockFunction]}
+    required={false}
+    type="checkbox"
+    value="lowest"
+  />
+  <span>
+    lowest
+  </span>
+</label>
+`;
+
+exports[`SelectItem Component renders correctly 2`] = `
+<label
+  className="select-label "
+>
+  <input
+    className="form-check-input"
+    name="testName"
+    onChange={[MockFunction]}
+    required={false}
+    type="checkbox"
+    value="lowest"
+  />
+  <span>
+    lowest
+  </span>
+</label>
+`;

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormSubmitting renders correctly 1`] = `
+<div
+  className="scrivito-neoletter-form-widgets form-container-widget text-center"
+>
+  <i
+    aria-hidden="true"
+    className="bi bi-arrow-repeat bi-2x rotate-icon"
+  />
+   
+  <span
+    className="text-super"
+  >
+    Submitting...
+  </span>
+</div>
+`;
