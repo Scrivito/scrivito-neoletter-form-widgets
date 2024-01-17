@@ -3,7 +3,7 @@ import formStepWidgetIcon from "../../assets/images/form_widget_step.svg";
 
 Scrivito.provideEditingConfig("FormStepWidget", {
   title: "Neoletter Form Step",
-  titleForContent: (widget) => {
+  titleForContent: widget => {
     if (widget.get("isSingleStep")) {
       return "Single Step";
     }
@@ -12,8 +12,8 @@ Scrivito.provideEditingConfig("FormStepWidget", {
   thumbnail: formStepWidgetIcon,
   attributes: {
     items: {
-      title: "Items",
-    },
+      title: "Items"
+    }
   },
-  properties: ["items"],
+  properties: ["items"]
 });

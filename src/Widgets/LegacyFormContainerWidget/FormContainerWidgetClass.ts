@@ -9,8 +9,8 @@ export const FormContainerWidget = Scrivito.provideWidgetClass(
       failedMessage: "string",
       submittedMessage: "string",
       submittingMessage: "string",
-      hiddenFields: ["widgetlist", { only: "FormHiddenFieldWidget" }],
+      hiddenFields: ["widgetlist", { only: "FormHiddenFieldWidget" }]
     },
-    extractTextAttributes: ["content"],
-  },
+    extractTextAttributes: ["content"]
+  }
 );

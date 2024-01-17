@@ -4,6 +4,7 @@ import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceh
 import { FormConditionWidget } from "./FormConditionWidgetClass";
 import "./FormConditionWidget.scss";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 Scrivito.provideComponent(FormConditionWidget, ({ widget, getData }: any) => {
   const data = getData ? getData(widget.id()) : { isActive: false };
 

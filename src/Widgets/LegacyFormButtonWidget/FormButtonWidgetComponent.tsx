@@ -11,8 +11,7 @@ Scrivito.provideComponent(FormButtonWidget, ({ widget }) => (
       className={`btn btn-primary${
         widget.get("alignment") === "block" ? " btn-block" : ""
       }`}
-      type="submit"
-    >
+      type="submit">
       <Scrivito.ContentTag tag="span" content={widget} attribute="buttonText" />
     </button>
   </WrapIfClassName>
@@ -20,7 +19,7 @@ Scrivito.provideComponent(FormButtonWidget, ({ widget }) => (
 
 function WrapIfClassName({
   className,
-  children,
+  children
 }: React.PropsWithChildren<WrapIfClassNameProps>) {
   return className ? <div className={className}>{children}</div> : children;
 }

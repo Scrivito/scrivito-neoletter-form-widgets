@@ -5,17 +5,17 @@ import { SingleIcon } from "./SingleIcon";
 
 interface IconSearchResultsProps {
   searchValue: string;
-  setWidgetIcon: Function;
+  setWidgetIcon: (event: React.BaseSyntheticEvent, icon: string) => void;
   currentIcon: string;
 }
 export const IconSearchResults: React.FC<IconSearchResultsProps> = ({
   searchValue,
   setWidgetIcon,
-  currentIcon,
+  currentIcon
 }) => {
   const fuse = React.useMemo(() => {
     const fuseOptions = {
-      threshold: 0.2,
+      threshold: 0.2
     };
     return new Fuse(bootstrapIcons, fuseOptions);
   }, []);

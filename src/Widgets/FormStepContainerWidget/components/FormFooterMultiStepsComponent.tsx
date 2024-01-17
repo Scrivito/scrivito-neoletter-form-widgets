@@ -5,7 +5,7 @@ import { prepareReviewContent } from "../utils/prepareReviewContent";
 import { ReviewContent } from "../../../../types/types";
 interface FormFooterMultiStepsProps {
   widget: Scrivito.Widget;
-  onPageChange: Function;
+  onPageChange: (forward: boolean) => void;
   onSubmit: React.MouseEventHandler;
   currentStep: number;
   isLastPage: boolean;
@@ -22,11 +22,11 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
       currentStep,
       isLastPage,
       stepsLength,
-      showReview,
+      showReview
     }) => {
       const [show, setShow] = React.useState(false);
       const [reviewContent, setReviewContent] = React.useState<ReviewContent>(
-        [],
+        []
       );
       const doShowReview = isLastPage && showReview;
       return (
@@ -35,8 +35,7 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
             <button
               className="btn btn-primary backward-button"
               onClick={() => onPageChange(false)}
-              hidden={currentStep == 1 && !Scrivito.isInPlaceEditingActive()}
-            >
+              hidden={currentStep == 1 && !Scrivito.isInPlaceEditingActive()}>
               {widget.get("backwardButtonText") as string}
             </button>
             <div className="step-counter">
@@ -45,15 +44,13 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
             {doShowReview && (
               <button
                 className="btn btn-primary review-button"
-                onClick={() => onShowReview(widget, setReviewContent, setShow)}
-              >
+                onClick={() => onShowReview(widget, setReviewContent, setShow)}>
                 {widget.get("reviewButtonText") as string}
               </button>
             )}
             <button
               className="btn btn-primary forward-button"
-              onClick={isLastPage ? onSubmit : () => onPageChange(true)}
-            >
+              onClick={isLastPage ? onSubmit : () => onPageChange(true)}>
               {isLastPage
                 ? (widget.get("submitButtonText") as string)
                 : (widget.get("forwardButtonText") as string)}
@@ -68,13 +65,13 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
           )}
         </>
       );
-    },
+    }
   );
 
 function onShowReview(
   widget: Scrivito.Widget,
-  setReviewContent: Function,
-  setShow: Function,
+  setReviewContent: (content: ReviewContent) => void,
+  setShow: (show: boolean) => void
 ) {
   const reviewContent = prepareReviewContent(widget);
 

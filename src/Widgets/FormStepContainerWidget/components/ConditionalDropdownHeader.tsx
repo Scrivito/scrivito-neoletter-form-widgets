@@ -10,8 +10,7 @@ export const DropdownHeader = Scrivito.connect(
       <div
         className={`mb-3 dropdown-container ${
           Scrivito.isInPlaceEditingActive() ? "condition-wrapper" : ""
-        }`}
-      >
+        }`}>
         <div className="select-title">
           <span className="text-super">{widget.get("title")}</span>
           {widget.get("required") && <Mandatory />}
@@ -21,22 +20,19 @@ export const DropdownHeader = Scrivito.connect(
           name={getFieldName(widget)}
           id={widget.id()}
           required={widget.get("required")}
-          onChange={onChangeSelected}
-        >
+          onChange={onChangeSelected}>
           <EmptyOption />
-          {widget
-            .get("conditions")
-            .map((condition: Scrivito.Widget, index: number) => (
-              <DropdownOption
-                value={condition.get("title") as string}
-                id={condition.id()}
-                key={condition.id()}
-              />
-            ))}
+          {widget.get("conditions").map((condition: Scrivito.Widget) => (
+            <DropdownOption
+              value={condition.get("title") as string}
+              id={condition.id()}
+              key={condition.id()}
+            />
+          ))}
         </select>
       </div>
     );
-  },
+  }
 );
 
 //TODO: move to dropdownOption & rename

@@ -10,13 +10,13 @@ interface ResetInputsProps {
 export const ResetInputs: React.FC<ResetInputsProps> = ({
   parentRef,
   setSelectedCallback,
-  text,
+  text
 }) => {
   const doReset = () => {
     if (parentRef.current) {
       const inputs = parentRef.current.getElementsByTagName("input");
       const inputArray = Array.from(inputs);
-      each(inputArray, (input) => {
+      each(inputArray, input => {
         if (input.type === "radio") {
           input.checked = false;
         }

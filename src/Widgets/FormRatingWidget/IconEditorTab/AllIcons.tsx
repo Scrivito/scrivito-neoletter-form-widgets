@@ -1,20 +1,20 @@
 import * as React from "react";
 import { bootstrapIcons } from "../../FormStepContainerWidget/utils/bootstrapIcons";
 interface AllIconsProps {
-  setWidgetIcon: Function;
+  setWidgetIcon: (event: React.BaseSyntheticEvent, icon: string) => void;
   currentIcon: string;
   hide: boolean;
 }
 interface IconsProps {
   icons: string[];
   currentIcon: string;
-  setWidgetIcon: Function;
+  setWidgetIcon: (event: React.BaseSyntheticEvent, icon: string) => void;
 }
 
 export const AllIcons: React.FC<AllIconsProps> = ({
   setWidgetIcon,
   currentIcon,
-  hide,
+  hide
 }) => {
   const icons = React.useMemo(() => {
     return bootstrapIcons;
@@ -40,7 +40,7 @@ const Icons: React.FC<IconsProps> = ({ icons, currentIcon, setWidgetIcon }) => {
     <div className="row">
       {icons.map((icon, innerIndex) => {
         const cssIcon = `bi-${icon}`;
-        const aClassNames = [];
+        const aClassNames: string[] = [];
         if (currentIcon === cssIcon) aClassNames.push("active");
 
         return (
@@ -48,8 +48,7 @@ const Icons: React.FC<IconsProps> = ({ icons, currentIcon, setWidgetIcon }) => {
             <a
               href="#"
               className={aClassNames.join(" ")}
-              onClick={(e) => setWidgetIcon(e, cssIcon)}
-            >
+              onClick={e => setWidgetIcon(e, cssIcon)}>
               <i className={["bi", cssIcon].join(" ")} aria-hidden="true" />
               <span className="sr-only">Example of </span>
               {icon}

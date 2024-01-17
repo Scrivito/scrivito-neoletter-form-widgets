@@ -16,8 +16,7 @@ export const HelpText: React.FC<HelpTextProps> = ({ widget }) => {
             </Scrivito.InPlaceEditingOff>
           </Popover.Body>
         </Popover>
-      }
-    >
+      }>
       <i className="bi bi-question-circle"></i>
     </OverlayTrigger>
   );

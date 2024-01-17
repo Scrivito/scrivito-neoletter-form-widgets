@@ -6,13 +6,13 @@ export const FormCheckboxWidget = Scrivito.provideWidgetClass(
       type: [
         "enum",
         {
-          values: ["custom", "subscription", "accept_terms"],
-        },
+          values: ["custom", "subscription", "accept_terms"]
+        }
       ],
       customFieldName: "string",
       label: "string",
       required: "boolean",
-      helpText: "html",
-    },
-  },
+      helpText: "html"
+    }
+  }
 );

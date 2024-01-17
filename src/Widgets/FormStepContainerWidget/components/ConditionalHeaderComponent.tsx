@@ -5,11 +5,11 @@ import { DropdownHeader } from "./ConditionalDropdownHeader";
 
 interface ConditionalHeaderProps {
   widget: Scrivito.Widget;
-  onChangeSelected: Function;
+  onChangeSelected: (e: React.BaseSyntheticEvent) => void;
 }
 export const ConditionalHeader: React.FC<ConditionalHeaderProps> = ({
   widget,
-  onChangeSelected,
+  onChangeSelected
 }) => {
   const isDropdownHeader = widget.get("headerType") == "dropdown";
   return (

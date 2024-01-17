@@ -24,14 +24,14 @@ Scrivito.provideComponent(FormConditionalContainerWidget, ({ widget }) => {
           getData: (conditionId: string) => {
             const conditions = widget.get("conditions");
             let isActive = false;
-            conditions.some((condition) => {
+            conditions.some(condition => {
               if (condition.id() == conditionId) {
                 isActive = selectedConditionId == conditionId;
                 return true;
               }
             });
             return { isActive };
-          },
+          }
         }}
       />
     </>

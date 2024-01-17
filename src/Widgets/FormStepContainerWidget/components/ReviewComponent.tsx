@@ -7,7 +7,7 @@ import { ReviewContent, ReviewItemContent } from "../../../../types/types";
 interface ReviewProps {
   widget: Widget;
   reviewContent: ReviewContent;
-  onHide: Function;
+  onHide: () => void;
 }
 interface ReviewItemProps {
   item: ReviewItemContent;
@@ -16,7 +16,7 @@ interface ReviewItemProps {
 export const Review: React.FC<ReviewProps> = ({
   widget,
   reviewContent,
-  onHide,
+  onHide
 }) => {
   const [show, setShow] = React.useState(false);
 
@@ -39,8 +39,7 @@ export const Review: React.FC<ReviewProps> = ({
         {reviewContent.map((steps, i) => (
           <div
             className="step-review-container"
-            key={"step-review-container-" + i}
-          >
+            key={"step-review-container-" + i}>
             {widget.get("showStepsInReview") && (
               <h4 className="step-review">Step {i}</h4>
             )}

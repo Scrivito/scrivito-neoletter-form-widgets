@@ -11,7 +11,7 @@ interface ClearSearchButtonProps {
 
 export const IconSearch: React.FC<IconSearchProps> = ({
   setSearchValue,
-  searchValue,
+  searchValue
 }) => {
   return (
     <div id="neoletter-icon-search">
@@ -28,7 +28,7 @@ export const IconSearch: React.FC<IconSearchProps> = ({
         autoCorrect="off"
         tabIndex={1}
         value={searchValue}
-        onChange={(event) => {
+        onChange={event => {
           event.preventDefault();
           event.stopPropagation();
 
@@ -45,7 +45,7 @@ export const IconSearch: React.FC<IconSearchProps> = ({
 
 const ClearSearchButton: React.FC<ClearSearchButtonProps> = ({
   setSearchValue,
-  searchValue,
+  searchValue
 }) => {
   if (!searchValue.length) return null;
 
@@ -55,8 +55,7 @@ const ClearSearchButton: React.FC<ClearSearchButtonProps> = ({
       href="#"
       className="bi bi-x-circle"
       aria-hidden="true"
-      onClick={() => setSearchValue("")}
-    >
+      onClick={() => setSearchValue("")}>
       <span className="sr-only">Clear search</span>
     </a>
   );

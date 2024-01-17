@@ -12,7 +12,7 @@ const placeholderCss = {
   fontStyle: "normal",
   fontWeight: "normal",
   lineHeight: "28px",
-  verticalAlign: "middle",
+  verticalAlign: "middle"
 };
 /** A copy of Scrivitos InPlaceEditingPlaceholder */
 export const InPlaceEditingPlaceholder: React.FC<

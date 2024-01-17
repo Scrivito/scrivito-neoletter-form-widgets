@@ -6,8 +6,8 @@ import renderer from "react-test-renderer";
 
 const PageDummy = Scrivito.provideObjClass("PageDummy", {
   attributes: {
-    body: "widgetlist",
-  },
+    body: "widgetlist"
+  }
 });
 
 class PageRenderer {

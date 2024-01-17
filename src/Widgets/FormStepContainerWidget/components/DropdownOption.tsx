@@ -5,7 +5,7 @@ interface DropdownOptionProps {
 }
 export const DropdownOption: React.FC<DropdownOptionProps> = ({
   value,
-  id,
+  id
 }) => {
   return (
     <option value={value} id={id}>

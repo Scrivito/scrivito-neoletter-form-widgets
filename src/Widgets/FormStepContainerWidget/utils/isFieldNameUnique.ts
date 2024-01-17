@@ -17,8 +17,7 @@ export function isFieldNameUnique(widget: Widget) {
   const otherWidget = formContainer
     .widgets()
     .find(
-      (child) =>
-        getFieldName(child) === fieldName && child.id() !== widget.id(),
+      child => getFieldName(child) === fieldName && child.id() !== widget.id()
     );
 
   return !otherWidget;

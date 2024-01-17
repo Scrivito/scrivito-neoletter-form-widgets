@@ -1,4 +1,4 @@
-import { StringMap } from '../../types/types';
+import { StringMap } from "../../types/types";
 
 export class DummyWidget {
   public attributes: StringMap<any>;
@@ -8,7 +8,7 @@ export class DummyWidget {
   constructor(attrs: StringMap<any>, className?: string) {
     this.attributes = attrs;
     this.fakeId = "fakeId";
-    this.className = className || '';
+    this.className = className || "";
   }
 
   public get(attr: string): string {
@@ -50,6 +50,5 @@ export class DummyWidget {
     return widgets;
   }
 
-  public obj(): any {
-  }
+  public obj(): any {}
 }

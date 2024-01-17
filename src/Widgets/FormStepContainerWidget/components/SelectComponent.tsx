@@ -41,10 +41,9 @@ export const Select: React.FC<SelectProps> = Scrivito.connect(
       <LinearScale
         name={name}
         widget={widget}
-        onChange={onChange}
-      ></LinearScale>
+        onChange={onChange}></LinearScale>
     );
-  },
+  }
 );
 
 export const SelectItem: React.FC<SelectItemProps> = ({
@@ -53,14 +52,13 @@ export const SelectItem: React.FC<SelectItemProps> = ({
   id,
   name,
   required,
-  onChange,
+  onChange
 }: SelectItemProps) => {
   return (
     <label
       className={`select-label ${
         selectionType == "linear-scale" ? "linear-scale" : ""
-      }`}
-    >
+      }`}>
       <input
         className="form-check-input"
         name={name}

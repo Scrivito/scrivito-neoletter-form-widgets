@@ -2,6 +2,7 @@ import { Widget } from "scrivito";
 import { isCustomType } from "../isCustomType";
 import { isFieldNameUnique } from "../isFieldNameUnique";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const typeValidation: any = [
   "type",
   (type: string, { widget }: { widget: Widget }) => {
@@ -12,8 +13,8 @@ export const typeValidation: any = [
     if (!isCustomType(widget) && !isFieldNameUnique(widget)) {
       return `There must be only one element with the input type “${type.replace(
         /_/,
-        " ",
+        " "
       )}”.`;
     }
-  },
+  }
 ];

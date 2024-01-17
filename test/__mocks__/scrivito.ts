@@ -9,7 +9,7 @@ module.exports = {
   __setCurrentPage: (page: unknown) => (mockedCurrentPage = page),
   currentPage: jest.fn().mockImplementation(() => mockedCurrentPage),
   currentWorkspaceId: jest.fn().mockReturnValue("edit-mode"),
-  urlFor: jest.fn(() => 'mocked-url'),
+  urlFor: jest.fn(() => "mocked-url"),
   validationResultsFor: jest.fn().mockReturnValue(validationResults),
   uiContext: jest.fn().mockReturnValue(mockUiContext),
   canWrite: jest.fn().mockReturnValue(true)

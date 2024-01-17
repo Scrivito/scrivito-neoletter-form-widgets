@@ -25,7 +25,7 @@ Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
           color={getColor(
             color,
             selectedIcons > i,
-            hoverEffect && hoveredIcons > i,
+            hoverEffect && hoveredIcons > i
           )}
           size={widget.get("size") || "bi-default"}
           onSelect={() => setSelectedIcons(i + 1)}
@@ -37,8 +37,7 @@ Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
         type="hidden"
         className="show-in-review"
         name={getFieldName(widget)}
-        value={selectedIcons == 0 ? "" : selectedIcons}
-      ></input>
+        value={selectedIcons == 0 ? "" : selectedIcons}></input>
     </div>
   );
 });
@@ -48,7 +47,7 @@ const createArray = (length: number) => [...Array(length)];
 const getColor = (
   color: string,
   selected: boolean,
-  hoveredOver: boolean,
+  hoveredOver: boolean
 ): string => {
   return selected || hoveredOver ? color : "";
 };

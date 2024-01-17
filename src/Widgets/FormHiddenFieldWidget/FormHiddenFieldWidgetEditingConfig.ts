@@ -13,15 +13,15 @@ Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
     customFieldName: { title: "Field name" },
     hiddenValue: {
       title: "Hidden value",
-      description: "This value is sent on every submission of the form.",
+      description: "This value is sent on every submission of the form."
     },
     type: {
       title: "Input type",
       values: [
         { value: "custom", title: "Custom" },
-        { value: "subscription", title: "Subscription" },
-      ],
-    },
+        { value: "subscription", title: "Subscription" }
+      ]
+    }
   },
   properties: (widget: Scrivito.Widget) => {
     if (!isCustomType(widget)) {
@@ -31,7 +31,7 @@ Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
   },
   initialContent: {
     customFieldName: "custom_hidden_field",
-    type: "custom",
+    type: "custom"
   },
   validations: [
     customFieldNameValidation,
@@ -42,14 +42,14 @@ Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
         const hiddenFields = container.get("hiddenFields") as Scrivito.Widget[];
         if (
           hiddenFields &&
-          hiddenFields.map((w) => w.id()).includes(widget.id())
+          hiddenFields.map(w => w.id()).includes(widget.id())
         ) {
           return;
         }
       }
       return {
         message: "Hidden fields should be added in the properties of the form.",
-        severity: "info",
+        severity: "info"
       };
     },
     [
@@ -61,17 +61,17 @@ Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
           return {
             message:
               "Please enter 'on' to activate the subscription process on every submission.",
-            severity: "warning",
+            severity: "warning"
           };
         }
-      },
-    ],
+      }
+    ]
   ],
 
-  titleForContent: (widget) => {
+  titleForContent: widget => {
     const fieldName = getFieldName(widget);
     return `Hidden Form Field: ${[fieldName, widget.get("hiddenValue")]
-      .filter((e) => e)
+      .filter(e => e)
       .join(" - ")}`;
-  },
+  }
 });

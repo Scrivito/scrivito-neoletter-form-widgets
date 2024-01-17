@@ -18,16 +18,16 @@ Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
       title: "Input type",
       values: [
         { value: "radio", title: "Radio buttons" },
-        { value: "dropdown", title: "Dropdown" },
-      ],
+        { value: "dropdown", title: "Dropdown" }
+      ]
     },
     title: { title: "Label" },
     customFieldName: { title: "Field name" },
     required: { title: "Mandatory" },
     helpText: { title: "Help text" },
     conditions: {
-      title: "Conditions",
-    },
+      title: "Conditions"
+    }
   },
   properties: [
     "headerType",
@@ -35,7 +35,7 @@ Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
     "conditions",
     "customFieldName",
     "required",
-    "helpText",
+    "helpText"
   ],
   initialContent: {
     headerType: "radio",
@@ -53,41 +53,41 @@ Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
               "Device cover",
               "Mounting material",
               "Cables",
-              "Installation guide",
+              "Installation guide"
             ],
-            selectionType: "multi",
+            selectionType: "multi"
           }),
           new FormInputFieldWidget({
             label: "Defective parts",
             type: "custom",
             customType: "multi_line",
             customFieldName: "custom_defective_parts",
-            placeholder: "",
+            placeholder: ""
           }),
           new FormDateWidget({
             title: "Late delivery",
             customFieldName: "custom_late_delivery",
-            dateType: "date",
-          }),
-        ],
+            dateType: "date"
+          })
+        ]
       }),
       new FormConditionWidget({
         title: "Give feedback",
         content: [
           new FormRatingWidget({
             title: "Rate your customer experience",
-            customFieldName: "custom_customer_rating",
+            customFieldName: "custom_customer_rating"
           }),
           new FormInputFieldWidget({
             label: "Send us a message",
             type: "custom",
             customType: "multi_line",
             customFieldName: "custom_customer_message",
-            placeholder: "",
-          }),
-        ],
-      }),
-    ],
+            placeholder: ""
+          })
+        ]
+      })
+    ]
   },
-  validations: [insideFormContainerValidation, customFieldNameValidation],
+  validations: [insideFormContainerValidation, customFieldNameValidation]
 });

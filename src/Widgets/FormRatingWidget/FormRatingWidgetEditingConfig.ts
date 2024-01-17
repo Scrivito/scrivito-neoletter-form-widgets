@@ -13,7 +13,7 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
     helpText: { title: "Help text" },
     hoverEffect: {
       title: "Hover effect",
-      description: "Previews icon selection on hover.",
+      description: "Previews icon selection on hover."
     },
     size: {
       title: "Size",
@@ -24,8 +24,8 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
         { value: "bi-2x", title: "200%" },
         { value: "bi-3x", title: "300%" },
         { value: "bi-4x", title: "400%" },
-        { value: "bi-5x", title: "500% (Biggest)" },
-      ],
+        { value: "bi-5x", title: "500% (Biggest)" }
+      ]
     },
     colorType: {
       title: "Color",
@@ -34,10 +34,10 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
         { value: "default", title: "Default" },
         { value: "primary", title: "Primary" },
         { value: "secondary", title: "Secondary" },
-        { value: "custom", title: "Custom" },
-      ],
+        { value: "custom", title: "Custom" }
+      ]
     },
-    customColor: { title: "Custom Hex Color" },
+    customColor: { title: "Custom Hex Color" }
   },
   properties: ["title", "customFieldName", "helpText"],
   propertiesGroups: (widget: Scrivito.Widget) => {
@@ -45,14 +45,14 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
       {
         title: "Stylings",
         key: "form-icon-styling",
-        properties: getStylingProps(widget),
+        properties: getStylingProps(widget)
       },
       {
         title: "Icon",
         properties: [],
         component: IconEditorTab,
-        key: "form-icon-group",
-      },
+        key: "form-icon-group"
+      }
     ];
   },
   initialContent: {
@@ -62,7 +62,7 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
     customColor: "#ffd700",
     hoverEffect: false,
     icon: "bi-star-fill",
-    size: "bi-default",
+    size: "bi-default"
   },
   validations: [
     insideFormContainerValidation,
@@ -74,9 +74,9 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
         if (!isHexColor(customColor)) {
           return "Specify a valid hex color.";
         }
-      },
-    ],
-  ],
+      }
+    ]
+  ]
 });
 
 function isHexColor(color: string): boolean {

@@ -5,7 +5,7 @@ Scrivito.provideEditingConfig("FormButtonWidget", {
   hideInSelectionDialogs: true,
   attributes: {
     buttonText: {
-      title: "Button Text",
+      title: "Button Text"
     },
     alignment: {
       title: "Alignment",
@@ -13,23 +13,23 @@ Scrivito.provideEditingConfig("FormButtonWidget", {
         { value: "left", title: "Left" },
         { value: "center", title: "Center" },
         { value: "right", title: "Right" },
-        { value: "block", title: "Full width" },
-      ],
-    },
+        { value: "block", title: "Full width" }
+      ]
+    }
   },
   properties: ["buttonText", "alignment"],
   initialContent: {
     buttonText: "send message",
-    alignment: "center",
+    alignment: "center"
   },
   validations: [
     [
       "alignment",
-      (alignment) => {
+      alignment => {
         if (!alignment) {
           return "Select the alignment.";
         }
-      },
-    ],
-  ],
+      }
+    ]
+  ]
 });

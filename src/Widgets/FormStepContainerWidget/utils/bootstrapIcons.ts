@@ -2047,5 +2047,5 @@ export const bootstrapIcons = [
   "yin-yang",
   "youtube",
   "zoom-in",
-  "zoom-out",
+  "zoom-out"
 ];

@@ -4,6 +4,7 @@ import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceh
 import { FormStepWidget } from "./FormStepWidgetClass";
 import "./FormStepWidget.scss";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 Scrivito.provideComponent(FormStepWidget, ({ widget, getData }: any) => {
   const data = getData ? getData(widget.id()) : { stepNumber: 0 };
   const items = widget.get("items");
@@ -25,8 +26,7 @@ Scrivito.provideComponent(FormStepWidget, ({ widget, getData }: any) => {
           ? "step-border"
           : `${data.isActive || data.isSingleStep ? "" : "hide"}`
       } `}
-      data-step-number={data.stepNumber}
-    >
+      data-step-number={data.stepNumber}>
       {isMultiStepsWithActiveEditing && (
         <span className="step-preview-count">{"Step " + data.stepNumber}</span>
       )}

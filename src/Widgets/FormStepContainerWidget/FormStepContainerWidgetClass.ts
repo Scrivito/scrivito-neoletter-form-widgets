@@ -12,8 +12,8 @@ export const FormStepContainerWidget = Scrivito.provideWidgetClass(
       formType: [
         "enum",
         {
-          values: ["single-step", "multi-step"],
-        },
+          values: ["single-step", "multi-step"]
+        }
       ],
       steps: ["widgetlist", { only: "FormStepWidget" }],
       forwardButtonText: "string",
@@ -31,10 +31,10 @@ export const FormStepContainerWidget = Scrivito.provideWidgetClass(
       singleSubmitButtonAlignment: [
         "enum",
         {
-          values: ["left", "text-center", "text-end", "block"],
-        },
-      ],
+          values: ["left", "text-center", "text-end", "block"]
+        }
+      ]
     },
-    extractTextAttributes: ["steps"],
-  },
+    extractTextAttributes: ["steps"]
+  }
 );

@@ -19,27 +19,27 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
         { value: "email", title: "Email" },
         { value: "phone_number", title: "Phone number" },
         { value: "company", title: "Company" },
-        { value: "custom", title: "Custom" },
-      ],
+        { value: "custom", title: "Custom" }
+      ]
     },
     customType: {
       title: "Custom input type",
       values: [
         { value: "single_line", title: "Single-line" },
-        { value: "multi_line", title: "Multi-line" },
-      ],
+        { value: "multi_line", title: "Multi-line" }
+      ]
     },
     customFieldName: { title: "Field name" },
-    helpText: { title: "Help text" },
+    helpText: { title: "Help text" }
   },
   initialContent: {
     label: "Custom field",
     placeholder: "Your custom field",
     type: "custom",
     customType: "single_line",
-    customFieldName: "custom_field_name",
+    customFieldName: "custom_field_name"
   },
-  properties: (widget) => {
+  properties: widget => {
     if (widget.get("type") === "custom") {
       return [
         "type",
@@ -48,7 +48,7 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
         "label",
         "placeholder",
         "required",
-        "helpText",
+        "helpText"
       ];
     }
 
@@ -63,8 +63,8 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
         if (isCustomType(widget) && !customType) {
           return "Select the custom input type.";
         }
-      },
+      }
     ],
-    customFieldNameValidation,
-  ],
+    customFieldNameValidation
+  ]
 });
