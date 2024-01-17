@@ -1,19 +1,39 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
   "env": {
     "browser": true,
     "node": true
   },
   "rules": {
     "@typescript-eslint/no-empty-interface": 0,
-    "comma-dangle": ["error", "never"]
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ]
   },
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
   "overrides": [
     {
-      "files": ["test/**/*.*"],
+      "files": [
+        "test/**/*.*"
+      ],
       "rules": {
         "@typescript-eslint/no-non-null-assertion": 0,
         "@typescript-eslint/no-var-requires": 0,
@@ -21,7 +41,10 @@
       }
     },
     {
-      "files": ["*.ts", "*.tsx"],
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
       "rules": {
         "@typescript-eslint/no-empty-interface": 0,
         "@typescript-eslint/no-unused-vars": [
@@ -35,7 +58,10 @@
       }
     },
     {
-      "files": ["*.js", "*.jsx"],
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
       "rules": {
         "@typescript-eslint/...": "off"
       }
