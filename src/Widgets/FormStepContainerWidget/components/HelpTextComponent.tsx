@@ -8,7 +8,6 @@ export const HelpText: React.FC<HelpTextProps> = ({ widget }) => {
   return (
     <OverlayTrigger
       placement="top"
-      trigger="hover"
       overlay={
         <Popover>
           <Popover.Body>
