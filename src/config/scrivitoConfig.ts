@@ -1,3 +1,5 @@
+import { isEmpty } from "lodash-es";
+
 let _instanceId: string = "";
 
 export const initNeoletterFormWidgets = (instanceId: string): void => {
@@ -10,10 +12,17 @@ export const getInstanceId = (): string => {
 };
 
 function loadWidgets(): void {
-  const widgetImportsContext = require.context(
-    "../Widgets",
-    true,
-    /Widget(Class|Component|EditingConfig)\.tsx?$/,
-  );
-  widgetImportsContext.keys().forEach(widgetImportsContext);
+  if (isEmpty(import.meta)) {
+    const widgetImportsContext = require.context(
+      "../Widgets",
+      true,
+      /Widget(Class|Component|EditingConfig)\.tsx?$/,
+    );
+    widgetImportsContext.keys().forEach(widgetImportsContext);
+
+  } else {
+    (import.meta as any).glob(['../Widgets/**/*WidgetClass.ts', '../Widgets/**/*WidgetComponent.tsx', '../Widgets/**/*WidgetEditingConfig.ts'], {
+      eager: true,
+    });
+  }
 }

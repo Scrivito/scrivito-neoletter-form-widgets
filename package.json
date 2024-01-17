@@ -6,6 +6,9 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack --watch --mode development",
+    "link": "cd build && npm link",
+    "link:portal-app": "npm link",
+    "publish:build": "npm run build && cd build && npm publish",
     "eslint": "eslint --max-warnings 0 src/",
     "es-check": "npm run build && es-check es5 './build/**/*.js'",
     "test": "jest"
