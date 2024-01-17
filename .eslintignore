@@ -1,0 +1,7 @@
+types/*.d.ts,
+package.json,
+package-lock-json,
+tsconfig.json,
+webpack.config.js
+jest.config.js
+build/
