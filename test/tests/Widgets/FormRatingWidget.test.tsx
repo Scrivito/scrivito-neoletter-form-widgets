@@ -1,7 +1,7 @@
-import { screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from "@testing-library/react";
 import * as Scrivito from "scrivito";
-import { FormRatingWidget } from '../../../src/Widgets/FormRatingWidget/FormRatingWidgetClass';
-import '../../../src/Widgets/FormRatingWidget/FormRatingWidgetComponent';
+import { FormRatingWidget } from "../../../src/Widgets/FormRatingWidget/FormRatingWidgetClass";
+import "../../../src/Widgets/FormRatingWidget/FormRatingWidgetComponent";
 import PageRenderer from "../../helpers/pageRenderer";
 
 Scrivito.configure({ tenant: "inMemory" });
@@ -13,14 +13,13 @@ const widgetProps = {
   helpText: "Sample help text",
   icon: "bi-star-fill",
   size: "bi-default",
-  hoverEffect: true,
+  hoverEffect: true
 };
 
-describe('FormRatingWidget Component', () => {
-
-  it('renders FormRatingWidget with selected icons and help text', () => {
+describe("FormRatingWidget Component", () => {
+  it("renders FormRatingWidget with selected icons and help text", () => {
     pageRenderer.render({
-      body: [new FormRatingWidget(widgetProps)],
+      body: [new FormRatingWidget(widgetProps)]
     });
 
     const title = screen.getByText(widgetProps.title);
@@ -32,13 +31,13 @@ describe('FormRatingWidget Component', () => {
     fireEvent.click(ratingIcons[1]);
     fireEvent.click(ratingIcons[2]);
 
-    const hiddenInput = document.querySelector('[type="hidden"]')!
+    const hiddenInput = document.querySelector('[type="hidden"]')!;
     expect(hiddenInput).toHaveValue("3");
   });
 
-  it('renders FormRatingWidget without selected icons or help text', () => {
+  it("renders FormRatingWidget without selected icons or help text", () => {
     pageRenderer.render({
-      body: [new FormRatingWidget({ ...widgetProps, helpText: "" })],
+      body: [new FormRatingWidget({ ...widgetProps, helpText: "" })]
     });
 
     const title = screen.getByText(widgetProps.title);
@@ -48,12 +47,14 @@ describe('FormRatingWidget Component', () => {
     expect(ratingIcons).toHaveLength(5);
 
     // No selection, so the hidden input should have an empty value
-    const hiddenInput = document.querySelector('[type="hidden"]')!
+    const hiddenInput = document.querySelector('[type="hidden"]')!;
     expect(hiddenInput).toHaveValue("");
   });
 
-  it('renders correctly', () => {
-    const tree = pageRenderer.getAsJSON({ body: [new FormRatingWidget(widgetProps)] })
+  it("renders correctly", () => {
+    const tree = pageRenderer.getAsJSON({
+      body: [new FormRatingWidget(widgetProps)]
+    });
     expect(tree).toMatchSnapshot();
   });
 });

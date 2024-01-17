@@ -14,16 +14,14 @@ export const FormFooterSingleStep: React.FC<FormFooterSingleStepProps> =
           widget.get("singleSubmitButtonAlignment") === "block"
             ? ""
             : widget.get("singleSubmitButtonAlignment")
-        }`}
-      >
+        }`}>
         <button
           className={`btn btn-primary${
             widget.get("singleSubmitButtonAlignment") === "block"
               ? " btn-block"
               : ""
           }`}
-          onClick={onSubmit}
-        >
+          onClick={onSubmit}>
           {widget.get("submitButtonText") as string}
         </button>
       </div>

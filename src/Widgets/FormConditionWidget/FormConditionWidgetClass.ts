@@ -6,7 +6,7 @@ export const FormConditionWidget = Scrivito.provideWidgetClass(
     onlyInside: "FormConditionalContainerWidget",
     attributes: {
       title: "string",
-      content: "widgetlist",
-    },
-  },
+      content: "widgetlist"
+    }
+  }
 );

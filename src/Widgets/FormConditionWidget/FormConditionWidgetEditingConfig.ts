@@ -9,7 +9,7 @@ Scrivito.provideEditingConfig("FormConditionWidget", {
   thumbnail: formConditionWidgetIcon,
   attributes: {
     title: { title: "Title" },
-    content: { title: "Content" },
+    content: { title: "Content" }
   },
-  properties: ["title", "content"],
+  properties: ["title", "content"]
 });

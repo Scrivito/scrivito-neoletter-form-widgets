@@ -38,7 +38,7 @@ export const LinearScale: React.FC<LinearScaleProps> = Scrivito.connect(
         )}
       </div>
     );
-  },
+  }
 );
 
 function getScaleItems(widget: Scrivito.Widget): string[] {
@@ -49,5 +49,5 @@ function getScaleItems(widget: Scrivito.Widget): string[] {
     parseInt(widget.get("linearScaleUpperLimit") as string) ||
     UPPER_LIMIT_FALLBACK;
 
-  return map(range(lowerLimit, upperLimit + 1), (num) => num.toString());
+  return map(range(lowerLimit, upperLimit + 1), num => num.toString());
 }

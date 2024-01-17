@@ -29,16 +29,15 @@ export const IconEditorTab: React.FC<IconEditorTabProps> = ({ widget }) => {
             <i
               className={`bi ${currentIcon}`}
               style={{
-                color: color,
-              }}
-            ></i>
+                color: color
+              }}></i>
           </div>
 
           {Scrivito.canWrite() && (
             <>
               <IconSearch
                 searchValue={searchValue}
-                setSearchValue={(newSearchValue) => {
+                setSearchValue={newSearchValue => {
                   if (searchValue !== newSearchValue) {
                     setSearchValue(newSearchValue);
                   }

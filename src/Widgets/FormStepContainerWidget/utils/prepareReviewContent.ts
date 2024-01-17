@@ -5,12 +5,12 @@ import { InputValidationElement, ReviewContent } from "../../../../types/types";
 
 export function prepareReviewContent(widget: Widget): ReviewContent {
   const form = document.getElementById(
-    widget.get("formId") as string,
+    widget.get("formId") as string
   ) as HTMLFormElement;
   const data = new FormData(form);
   const joinedFormData = new FormData();
   // show all field-names with equal name as a comma separated string
-  for (const [name, value] of data) {
+  for (const [name] of data) {
     if (joinedFormData.has(name)) {
       continue;
     } else {
@@ -19,12 +19,12 @@ export function prepareReviewContent(widget: Widget): ReviewContent {
   }
 
   const steps = widget.get("steps") as Widget[];
-  const widgets = steps.flatMap((s) => s.widgets());
+  const widgets = steps.flatMap(s => s.widgets());
   const includeEmptyAnswers = widget.get("includeEmptyAnswers");
   const inputs: InputValidationElement[] = Array.from(
-    form.querySelectorAll("input, select, textarea"),
+    form.querySelectorAll("input, select, textarea")
   );
-  const inputNames = uniq(map(inputs, (i) => i.name));
+  const inputNames = uniq(map(inputs, i => i.name));
   const reviewData: ReviewContent = [];
 
   for (const key of inputNames) {
@@ -34,7 +34,7 @@ export function prepareReviewContent(widget: Widget): ReviewContent {
       continue;
     }
     // check if is hidden
-    const input = inputs.find((i) => i.name == key);
+    const input = inputs.find(i => i.name == key);
     if (
       key == "fax" ||
       (input &&
@@ -45,10 +45,10 @@ export function prepareReviewContent(widget: Widget): ReviewContent {
       continue;
     }
     // get title && step number
-    const widget = widgets.find((w) => getFieldName(w) == key);
+    const widget = widgets.find(w => getFieldName(w) == key);
     if (widget) {
-      const step = steps.find((s) =>
-        s.widgets().find((w) => getFieldName(w) == key),
+      const step = steps.find(s =>
+        s.widgets().find(w => getFieldName(w) == key)
       );
       const stepNumber = step?.get("stepNumber") as number;
       const title = (widget.get("label") ||
@@ -60,7 +60,7 @@ export function prepareReviewContent(widget: Widget): ReviewContent {
       }
       reviewData[stepNumber].push({
         title: title,
-        value: getAnswerValue(answer, widget),
+        value: getAnswerValue(answer, widget)
       });
     }
   }

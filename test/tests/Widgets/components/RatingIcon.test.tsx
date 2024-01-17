@@ -1,19 +1,18 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { RatingIcon } from '../../../../src/Widgets/FormStepContainerWidget/components/RatingIconComponent';
-import renderer from 'react-test-renderer';
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import { RatingIcon } from "../../../../src/Widgets/FormStepContainerWidget/components/RatingIconComponent";
+import renderer from "react-test-renderer";
 
-const color = 'gold';
-const size = '2x';
-const icon = 'star-fill';
+const color = "gold";
+const size = "2x";
+const icon = "star-fill";
 
 const mockOnSelect = jest.fn();
 const mockOnHover = jest.fn();
 const mockOnHoverOut = jest.fn();
 
-describe('RatingIcon', () => {
-  it('renders a rating icon with specified properties', () => {
-
+describe("RatingIcon", () => {
+  it("renders a rating icon with specified properties", () => {
     const { container } = render(
       <RatingIcon
         icon={icon}
@@ -26,7 +25,7 @@ describe('RatingIcon', () => {
       />
     );
 
-    const ratingIcon = container.querySelector('.rating-icon')!;
+    const ratingIcon = container.querySelector(".rating-icon")!;
     expect(ratingIcon).toHaveClass(`bi ${icon} ${size} rating-icon`);
     expect(ratingIcon).toHaveStyle(`color: ${color}; paddingRight: 0.08em`);
 
@@ -39,14 +38,9 @@ describe('RatingIcon', () => {
     expect(mockOnHoverOut).toHaveBeenCalledTimes(1);
   });
 
-  it('renders correctly', () => {
+  it("renders correctly", () => {
     const tree = renderer
-      .create(
-        <RatingIcon
-          icon={icon}
-          color={color}
-          size={size}
-        />)
+      .create(<RatingIcon icon={icon} color={color} size={size} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

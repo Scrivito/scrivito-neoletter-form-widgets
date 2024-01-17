@@ -31,11 +31,10 @@ export const ContentProperty = Scrivito.connect(
           <Scrivito.ContentTag content={content} attribute={attribute} />
         </div>
         <div>
-          {validationResults.map((v) => (
+          {validationResults.map(v => (
             <div
               key={`${v.severity}${v.message}`}
-              className={`scrivito_validation_notice scrivito_${v.severity}`}
-            >
+              className={`scrivito_validation_notice scrivito_${v.severity}`}>
               <span className="scrivito_validation_message">{v.message}</span>
             </div>
           ))}
@@ -45,15 +44,15 @@ export const ContentProperty = Scrivito.connect(
         )}
       </>
     );
-  },
+  }
 );
 
 function findHighestSeverity(
-  validationResults: ValidationResultObject[],
+  validationResults: ValidationResultObject[]
 ): string {
   const highestSeverityValidation =
-    validationResults.find((v) => v.severity === "error") ||
-    validationResults.find((v) => v.severity === "warning") ||
-    validationResults.find((v) => v.severity === "info");
+    validationResults.find(v => v.severity === "error") ||
+    validationResults.find(v => v.severity === "warning") ||
+    validationResults.find(v => v.severity === "info");
   return highestSeverityValidation?.severity || "";
 }

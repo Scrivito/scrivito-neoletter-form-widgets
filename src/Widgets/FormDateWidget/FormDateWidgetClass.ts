@@ -9,8 +9,8 @@ export const FormDateWidget = Scrivito.provideWidgetClass("FormDateWidget", {
     dateType: [
       "enum",
       {
-        values: ["date", "datetime-local"],
-      },
-    ],
-  },
+        values: ["date", "datetime-local"]
+      }
+    ]
+  }
 });

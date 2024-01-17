@@ -24,14 +24,12 @@ Scrivito.provideComponent(FormDateWidget, ({ widget }) => {
         onChange={onChangeValue}
         className="datepicker"
         type={widget.get("dateType")!}
-        required={widget.get("required")}
-      ></input>
+        required={widget.get("required")}></input>
       <input
         type="hidden"
         className="show-in-review"
         name={getFieldName(widget)}
-        value={value}
-      ></input>
+        value={value}></input>
     </div>
   );
 });

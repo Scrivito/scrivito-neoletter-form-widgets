@@ -1,14 +1,13 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { SingleIcon } from '../../../../src/Widgets/FormRatingWidget/IconEditorTab/SingleIcon';
-import renderer from 'react-test-renderer';
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import { SingleIcon } from "../../../../src/Widgets/FormRatingWidget/IconEditorTab/SingleIcon";
+import renderer from "react-test-renderer";
 
 const mockSetWidgetIcon = jest.fn();
-const currentIcon = 'bi-example';
-const icon = 'example';
-describe('SingleIcon component', () => {
-  it('renders the icon and triggers onClick correctly', () => {
-
+const currentIcon = "bi-example";
+const icon = "example";
+describe("SingleIcon component", () => {
+  it("renders the icon and triggers onClick correctly", () => {
     const { getByText } = render(
       <SingleIcon
         icon={icon}
@@ -22,11 +21,13 @@ describe('SingleIcon component', () => {
 
     fireEvent.click(iconElement);
 
-    expect(mockSetWidgetIcon).toHaveBeenCalledWith(expect.anything(), `bi-${icon}`);
+    expect(mockSetWidgetIcon).toHaveBeenCalledWith(
+      expect.anything(),
+      `bi-${icon}`
+    );
   });
 
-  it('renders with active class when currentIcon matches', () => {
-
+  it("renders with active class when currentIcon matches", () => {
     const { container } = render(
       <SingleIcon
         icon={icon}
@@ -35,12 +36,12 @@ describe('SingleIcon component', () => {
       />
     );
 
-    const aElement = container.querySelector('a');
-    expect(aElement).toHaveClass('active');
+    const aElement = container.querySelector("a");
+    expect(aElement).toHaveClass("active");
   });
 
-  it('renders correctly', () => {
-    const searchValue = 'moon';
+  it("renders correctly", () => {
+    // const searchValue = "moon";
 
     const tree = renderer
       .create(
@@ -48,7 +49,8 @@ describe('SingleIcon component', () => {
           icon={icon}
           setWidgetIcon={mockSetWidgetIcon}
           currentIcon={currentIcon}
-        />)
+        />
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

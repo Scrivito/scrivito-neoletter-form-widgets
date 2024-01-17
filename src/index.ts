@@ -7,5 +7,5 @@ export {
   initNeoletterFormWidgets,
   insideFormContainerValidation,
   getFormContainer,
-  customFieldNameValidation,
+  customFieldNameValidation
 };

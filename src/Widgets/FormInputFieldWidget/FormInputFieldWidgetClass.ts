@@ -19,12 +19,12 @@ export const FormInputFieldWidget = Scrivito.provideWidgetClass(
             "middle_name",
             "company",
             "phone_number",
-            "custom",
-          ],
-        },
+            "custom"
+          ]
+        }
       ],
       customType: ["enum", { values: ["single_line", "multi_line"] }],
-      customFieldName: "string",
-    },
-  },
+      customFieldName: "string"
+    }
+  }
 );

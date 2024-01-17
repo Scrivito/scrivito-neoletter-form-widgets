@@ -13,11 +13,11 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
         { value: "radio", title: "Radio buttons" },
         { value: "dropdown", title: "Dropdown" },
         { value: "multi", title: "Checkboxes" },
-        { value: "linear-scale", title: "Linear scale" },
-      ],
+        { value: "linear-scale", title: "Linear scale" }
+      ]
     },
     items: {
-      title: "Items",
+      title: "Items"
     },
     title: { title: "Label" },
     customFieldName: { title: "Field name" },
@@ -30,10 +30,10 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     clearSelectionText: { title: "Clear selection text" },
     inlineView: {
       title: "Arrange items horizontally",
-      description: "When enabled, all items will be displayed in a single row.",
-    },
+      description: "When enabled, all items will be displayed in a single row."
+    }
   },
-  properties: (widget) => {
+  properties: widget => {
     return getProperties(widget);
   },
   initialContent: {
@@ -44,7 +44,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     linearScaleLowerLimit: "1",
     linearScaleUpperLimit: "5",
     clearSelectionText: "Clear selection",
-    inlineView: false,
+    inlineView: false
   },
   validations: [
     insideFormContainerValidation,
@@ -55,15 +55,16 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
         if (items.length < 2) {
           return {
             message: "The widget must include at least two items.",
-            severity: "error",
+            severity: "error"
           };
         }
-      },
+      }
     ],
-    customFieldNameValidation,
-  ],
+    customFieldNameValidation
+  ]
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getProperties(widget: Scrivito.Obj): any[] {
   const type = widget.get("selectionType");
   const props = [
@@ -71,7 +72,7 @@ function getProperties(widget: Scrivito.Obj): any[] {
     "title",
     "customFieldName",
     ["required", { enabled: type !== "multi" }],
-    "helpText",
+    "helpText"
   ];
   // show/hide inlineView
   if (type == "radio" || type == "multi") {
@@ -88,7 +89,7 @@ function getProperties(widget: Scrivito.Obj): any[] {
       "linearScaleLowerLimit",
       "linearScaleUpperLimit",
       "linearScaleLowerLabel",
-      "linearScaleUpperLabel",
+      "linearScaleUpperLabel"
     );
   }
   // show/hide clearSelectionText

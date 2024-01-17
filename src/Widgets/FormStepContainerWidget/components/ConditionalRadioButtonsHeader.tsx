@@ -11,29 +11,26 @@ export const RadioButtonsHeader = Scrivito.connect(
       <div
         className={`mb-3 select-container ${
           Scrivito.isInPlaceEditingActive() ? "condition-wrapper" : ""
-        }`}
-      >
+        }`}>
         <div className="select-title">
           <span className="text-super">{widget.get("title")}</span>
           {widget.get("required") && <Mandatory />}
           {widget.get("helpText") && <HelpText widget={widget} />}
         </div>
         <div className="row ">
-          {widget
-            .get("conditions")
-            .map((condition: Scrivito.Widget, index: number) => (
-              <SelectItem
-                selectionType={"radio"}
-                name={getFieldName(widget)}
-                onChange={onChangeSelected}
-                value={condition.get("title") as string}
-                id={condition.id()}
-                required={widget.get("required")}
-                key={condition.id()}
-              />
-            ))}
+          {widget.get("conditions").map((condition: Scrivito.Widget) => (
+            <SelectItem
+              selectionType={"radio"}
+              name={getFieldName(widget)}
+              onChange={onChangeSelected}
+              value={condition.get("title") as string}
+              id={condition.id()}
+              required={widget.get("required")}
+              key={condition.id()}
+            />
+          ))}
         </div>
       </div>
     );
-  },
+  }
 );

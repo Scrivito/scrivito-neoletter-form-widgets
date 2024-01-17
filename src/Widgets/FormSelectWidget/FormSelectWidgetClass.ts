@@ -7,8 +7,8 @@ export const FormSelectWidget = Scrivito.provideWidgetClass(
       selectionType: [
         "enum",
         {
-          values: ["radio", "dropdown", "multi", "linear-scale"],
-        },
+          values: ["radio", "dropdown", "multi", "linear-scale"]
+        }
       ],
       title: "string",
       items: "stringlist",
@@ -18,12 +18,12 @@ export const FormSelectWidget = Scrivito.provideWidgetClass(
       linearScaleLowerLimit: ["enum", { values: ["0", "1"] }],
       linearScaleUpperLimit: [
         "enum",
-        { values: ["2", "3", "4", "5", "6", "7", "8", "9", "10"] },
+        { values: ["2", "3", "4", "5", "6", "7", "8", "9", "10"] }
       ],
       linearScaleLowerLabel: "string",
       linearScaleUpperLabel: "string",
       clearSelectionText: "string",
-      inlineView: "boolean",
-    },
-  },
+      inlineView: "boolean"
+    }
+  }
 );

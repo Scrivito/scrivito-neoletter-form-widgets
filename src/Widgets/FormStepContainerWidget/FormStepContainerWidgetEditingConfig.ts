@@ -13,69 +13,69 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
   attributes: {
     formId: {
       title: "Form ID",
-      description: "This ID identifies the form in Neoletter.",
+      description: "This ID identifies the form in Neoletter."
     },
     submittingMessage: {
-      title: "Message shown while the form is being submitted",
+      title: "Message shown while the form is being submitted"
     },
     submittedMessage: {
-      title: "Message shown after the form was successfully submitted",
+      title: "Message shown after the form was successfully submitted"
     },
     failedMessage: {
-      title: "Message shown if the form submission failed",
+      title: "Message shown if the form submission failed"
     },
     hiddenFields: {
-      title: "Hidden fields",
+      title: "Hidden fields"
     },
     forwardButtonText: {
-      title: "Forward button text",
+      title: "Forward button text"
     },
     backwardButtonText: {
-      title: "Backward button text",
+      title: "Backward button text"
     },
     submitButtonText: {
-      title: "Submit button text",
+      title: "Submit button text"
     },
     formType: {
       title: "Format",
       values: [
         { value: "single-step", title: "Single step" },
-        { value: "multi-step", title: "Multiple steps" },
-      ],
+        { value: "multi-step", title: "Multiple steps" }
+      ]
     },
     showBorder: {
       title: "Show frame",
-      description: "Adds a frame around the form.",
+      description: "Adds a frame around the form."
     },
     showReview: {
       title: "Enable review",
       description:
-        "Adds a button to the last step of multiple steps for reviewing the answers.",
+        "Adds a button to the last step of multiple steps for reviewing the answers."
     },
     includeEmptyAnswers: {
       title: "Include empty answers",
-      description: "Also includes empty answers in the review dialog.",
+      description: "Also includes empty answers in the review dialog."
     },
     showReviewHeader: {
       title: "Show header",
-      description: "Adds a header to the review dialog.",
+      description: "Adds a header to the review dialog."
     },
     showReviewFooter: {
       title: "Show footer",
-      description: "Adds a footer with a button for closing the review dialog.",
+      description: "Adds a footer with a button for closing the review dialog."
     },
     showStepsInReview: { title: "Show steps", description: "Shows the steps." },
     reviewButtonText: {
       title: "Review button text",
-      description: "The text for the review button.",
+      description: "The text for the review button."
     },
     reviewHeaderTitle: {
       title: "Header title",
-      description: "The title of the review header.",
+      description: "The title of the review header."
     },
     reviewCloseButtonText: {
       title: "Close button text",
-      description: "The text on the button for closing the review dialog.",
+      description: "The text on the button for closing the review dialog."
     },
     singleSubmitButtonAlignment: {
       title: "Alignment",
@@ -83,47 +83,47 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
         { value: "left", title: "Left" },
         { value: "text-center", title: "Center" },
         { value: "text-end", title: "Right" },
-        { value: "block", title: "Full width" },
-      ],
-    },
+        { value: "block", title: "Full width" }
+      ]
+    }
   },
   properties: [
     "showBorder",
     "submittingMessage",
     "submittedMessage",
-    "failedMessage",
+    "failedMessage"
   ],
-  propertiesGroups: (widget) => {
+  propertiesGroups: widget => {
     const groups = [
       {
         title: "Hidden fields",
         key: "FormStepContainerWidgetHiddenFields",
-        properties: ["hiddenFields"],
+        properties: ["hiddenFields"]
       },
       {
         title: "Form submissions",
         key: "FormStepContainerWidgetFormSubmissions",
         properties: ["formId"],
-        component: FormIdComponent,
+        component: FormIdComponent
       },
       {
         title: "Navigation area",
         key: "FormNavigationButtons",
-        properties: getNavigationProperties(widget),
-      },
+        properties: getNavigationProperties(widget)
+      }
     ];
     if (widget.get("formType") == "multi-step")
       groups.unshift(
         {
           title: "Steps",
           key: "FormSteps",
-          properties: ["steps"],
+          properties: ["steps"]
         },
         {
           title: "Review",
           key: "FormReview",
-          properties: getReviewProperties(widget),
-        },
+          properties: getReviewProperties(widget)
+        }
       );
     return groups;
   },
@@ -144,25 +144,25 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
             type: "given_name",
             label: "First name",
             placeholder: "Your first name",
-            required: true,
+            required: true
           }),
           new FormInputFieldWidget({
             type: "family_name",
             label: "Last name",
             placeholder: "Your last name",
-            required: true,
+            required: true
           }),
 
           new FormInputFieldWidget({
             label: "Email",
             placeholder: "Your email address",
             type: "email",
-            required: true,
+            required: true
           }),
           new FormInputFieldWidget({
             type: "company",
             label: "Company",
-            placeholder: "Your company",
+            placeholder: "Your company"
           }),
 
           new FormInputFieldWidget({
@@ -171,10 +171,10 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
             customFieldName: "custom_message",
             label: "Message",
             placeholder: "Your message",
-            required: true,
-          }),
-        ],
-      }),
+            required: true
+          })
+        ]
+      })
     ],
     forwardButtonText: "Forward",
     backwardButtonText: "Backward",
@@ -188,7 +188,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     showReviewFooter: false,
     reviewButtonText: "Review",
     reviewHeaderTitle: "Review",
-    reviewCloseButtonText: "Close",
+    reviewCloseButtonText: "Close"
   },
   validations: [
     (widget: Scrivito.Widget) => {
@@ -210,29 +210,29 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
 
     [
       "submittingMessage",
-      (submittingMessage) => {
+      submittingMessage => {
         if (!submittingMessage) {
           return "Specify the message to be displayed during form submission.";
         }
-      },
+      }
     ],
 
     [
       "submittedMessage",
-      (submittedMessage) => {
+      submittedMessage => {
         if (!submittedMessage) {
           return "Specify the message to be displayed after successful form submission.";
         }
-      },
+      }
     ],
 
     [
       "failedMessage",
-      (failedMessage) => {
+      failedMessage => {
         if (!failedMessage) {
           return "Specify the message to be displayed after form submission failed.";
         }
-      },
+      }
     ],
 
     [
@@ -245,9 +245,9 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
         if (formId.match(/^[0-9a-fA-F]{32}$/) === null) {
           return "Specify a valid form ID (32 character hex value).";
         }
-      },
-    ],
-  ],
+      }
+    ]
+  ]
 });
 
 /**
@@ -258,12 +258,12 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
 function getNavigationProperties(widget: Scrivito.Widget): string[] {
   const singleStepNavigationProps = [
     "submitButtonText",
-    "singleSubmitButtonAlignment",
+    "singleSubmitButtonAlignment"
   ];
   const MultiStepNavigationProps = [
     "forwardButtonText",
     "backwardButtonText",
-    "submitButtonText",
+    "submitButtonText"
   ];
   if (widget.get("formType") == "single-step") {
     return singleStepNavigationProps;
@@ -277,6 +277,7 @@ function getNavigationProperties(widget: Scrivito.Widget): string[] {
  * @param {*} widget
  * @returns
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getReviewProperties(widget: Scrivito.Widget): string[] | any[] {
   const reviewPropsDisabled = ["showReview"];
   const reviewPropsEnabled = [
@@ -287,7 +288,7 @@ function getReviewProperties(widget: Scrivito.Widget): string[] | any[] {
     "showReviewHeader",
     ["reviewHeaderTitle", { enabled: widget.get("showReviewHeader") }],
     "showReviewFooter",
-    ["reviewCloseButtonText", { enabled: widget.get("showReviewFooter") }],
+    ["reviewCloseButtonText", { enabled: widget.get("showReviewFooter") }]
   ];
   return widget.get("showReview") ? reviewPropsEnabled : reviewPropsDisabled;
 }

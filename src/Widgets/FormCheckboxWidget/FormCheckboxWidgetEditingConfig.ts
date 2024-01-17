@@ -14,11 +14,11 @@ Scrivito.provideEditingConfig("FormCheckboxWidget", {
       values: [
         { value: "accept_terms", title: "Accept terms" },
         { value: "subscription", title: "Subscription" },
-        { value: "custom", title: "Custom" },
-      ],
+        { value: "custom", title: "Custom" }
+      ]
     },
     customFieldName: { title: "Field name" },
-    helpText: { title: "Help text" },
+    helpText: { title: "Help text" }
   },
   properties: (widget: Scrivito.Widget) =>
     isCustomType(widget)
@@ -27,11 +27,11 @@ Scrivito.provideEditingConfig("FormCheckboxWidget", {
   initialContent: {
     type: "custom",
     customFieldName: "custom_checkbox",
-    label: "Please send me your free printed product catalog.",
+    label: "Please send me your free printed product catalog."
   },
   validations: [
     insideFormContainerValidation,
     typeValidation,
-    customFieldNameValidation,
-  ],
+    customFieldNameValidation
+  ]
 });

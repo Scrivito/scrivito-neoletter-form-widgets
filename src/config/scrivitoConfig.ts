@@ -16,13 +16,20 @@ function loadWidgets(): void {
     const widgetImportsContext = require.context(
       "../Widgets",
       true,
-      /Widget(Class|Component|EditingConfig)\.tsx?$/,
+      /Widget(Class|Component|EditingConfig)\.tsx?$/
     );
     widgetImportsContext.keys().forEach(widgetImportsContext);
-
   } else {
-    (import.meta as any).glob(['../Widgets/**/*WidgetClass.ts', '../Widgets/**/*WidgetComponent.tsx', '../Widgets/**/*WidgetEditingConfig.ts'], {
-      eager: true,
-    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (import.meta as any).glob(
+      [
+        "../Widgets/**/*WidgetClass.ts",
+        "../Widgets/**/*WidgetComponent.tsx",
+        "../Widgets/**/*WidgetEditingConfig.ts"
+      ],
+      {
+        eager: true
+      }
+    );
   }
 }

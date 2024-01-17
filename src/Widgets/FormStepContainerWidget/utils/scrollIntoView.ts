@@ -1,7 +1,7 @@
 export function scrollIntoView(element: HTMLFormElement): void {
   window.scrollTo({
     top: getTop(element) - 95,
-    behavior: "smooth",
+    behavior: "smooth"
   });
 }
 

@@ -2,6 +2,7 @@ import { Widget } from "scrivito";
 import { isCustomType } from "../isCustomType";
 import { isFieldNameUnique } from "../isFieldNameUnique";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const customFieldNameValidation: any = [
   "customFieldName",
 
@@ -30,5 +31,5 @@ export const customFieldNameValidation: any = [
       return "Specify a unique custom field name. There is at least one other element with the same custom field name.";
     }
     return "";
-  },
+  }
 ];

@@ -12,18 +12,18 @@ Scrivito.provideEditingConfig("FormDateWidget", {
       title: "Format",
       values: [
         { value: "date", title: "Date" },
-        { value: "datetime-local", title: "Date and time" },
-      ],
+        { value: "datetime-local", title: "Date and time" }
+      ]
     },
     customFieldName: { title: "Field name" },
     helpText: { title: "Help text" },
-    required: { title: "Mandatory" },
+    required: { title: "Mandatory" }
   },
   properties: ["title", "dateType", "customFieldName", "required", "helpText"],
   initialContent: {
     title: "Please enter a date",
     customFieldName: "custom_",
-    dateType: "date",
+    dateType: "date"
   },
-  validations: [insideFormContainerValidation, customFieldNameValidation],
+  validations: [insideFormContainerValidation, customFieldNameValidation]
 });

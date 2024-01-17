@@ -41,7 +41,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
       const stepNumber = i + 1;
       step.update({
         stepNumber: stepNumber,
-        isSingleStep: isSingleStep,
+        isSingleStep: isSingleStep
       });
     });
     if (stepsLength > 1 && isSingleStep) {
@@ -75,8 +75,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
     <div
       className={`scrivito-neoletter-form-widgets form-container-widget ${
         widget.get("showBorder") ? "form-border" : ""
-      }`}
-    >
+      }`}>
       <form method="post" id={widget.get("formId")}>
         <FormHiddenFields widget={widget} />
         <Scrivito.ContentTag
@@ -95,7 +94,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
                 }
               });
               return { stepNumber, isActive, isSingleStep };
-            },
+            }
           }}
         />
       </form>
@@ -124,7 +123,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
       return;
     }
     const formElement = document.getElementById(
-      widget.get("formId"),
+      widget.get("formId")
     ) as HTMLFormElement;
     scrollIntoView(formElement);
 
@@ -163,24 +162,24 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
     return doValidate(widget.get("formId"), currentStep);
   }
 
-  function onPageChange(next: number) {
+  function onPageChange(nextPage: boolean) {
     let isValid = true;
 
     if (Scrivito.isInPlaceEditingActive()) {
       return;
     }
-    if (next) {
+    if (nextPage) {
       isValid = validateCurrentStep();
     }
     if (!isValid) {
       return;
     }
-    const stepNumber = next
+    const stepNumber = nextPage
       ? Math.min(currentStep + 1, stepsLength)
       : Math.max(currentStep - 1, 1);
     setCurrentStepNumber(stepNumber);
     const formElement = document.getElementById(
-      widget.get("formId"),
+      widget.get("formId")
     ) as HTMLFormElement;
     scrollIntoView(formElement);
   }

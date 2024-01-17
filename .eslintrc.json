@@ -1,0 +1,80 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "@typescript-eslint/no-empty-interface": 0,
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ]
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "test/**/*.*"
+      ],
+      "rules": {
+        "@typescript-eslint/no-non-null-assertion": 0,
+        "@typescript-eslint/no-var-requires": 0,
+        "@typescript-eslint/no-explicit-any": 0
+      }
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {
+        "@typescript-eslint/no-empty-interface": 0,
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "ignoreRestSiblings": true,
+            "argsIgnorePattern": "_",
+            "varsIgnorePattern": "_"
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        "@typescript-eslint/...": "off"
+      }
+    }
+  ]
+}

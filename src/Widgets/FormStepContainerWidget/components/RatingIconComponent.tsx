@@ -13,13 +13,13 @@ export const RatingIcon: React.FC<RatingIconProps> = ({
   size,
   onSelect,
   onHover,
-  onHoverOut,
+  onHoverOut
 }) => (
   <i
     className={`bi ${icon} ${size} rating-icon`}
     style={{
       color: color,
-      paddingRight: "0.08em",
+      paddingRight: "0.08em"
     }}
     onClick={onSelect}
     onMouseOver={onHover}

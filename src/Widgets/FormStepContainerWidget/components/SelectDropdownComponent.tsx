@@ -10,7 +10,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   options,
   name,
   id,
-  required,
+  required
 }) => {
   return (
     <select className="dropdown-select" name={name} id={id} required={required}>
