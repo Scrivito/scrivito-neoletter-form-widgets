@@ -22,11 +22,22 @@
     "object-curly-spacing": [
       "error",
       "always"
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
     ]
   },
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "prettier"
   ],
   "overrides": [
