@@ -465,6 +465,10 @@ Import the package styles into the index.scss file in the assets/stylesheets fol
 ```scss
 @import 'scrivito-neoletter-form-widgets/index.css';
 ```
+**Note:**
+
+The Scrivito Portal App is built using Vite and will automatically compile the package, so there's no need to run `npm run build` or `npm run start` for local development.
+
 ## Scrivito Example App Development
 For the Scrivito Example App:
 
@@ -494,6 +498,3 @@ Import the package styles into the `index.scss` file in the assets/stylesheets f
 ```scss
 @import 'scrivito-neoletter-form-widgets/index.css';
 ```
-**Note:**
-
-The Scrivito Portal App is built using Vite and will automatically compile the package, so there's no need to run `npm run build` or `npm run start` for local development.
