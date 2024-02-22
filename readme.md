@@ -436,3 +436,64 @@ Scrivito.provideEditingConfig("FormSliderWidget", {
 ```
 
 Please note that this example is intended to provide a basic demonstration of creating a custom form widget. It does not include styles or detailed CSS. You can further enhance the appearance and functionality of your custom widgets to match your specific design and usability requirements.
+
+# Local Development
+
+To develop and test the package locally, follow these steps:
+  - Copy or clone the repository
+  - Navigate into the package directory.
+  - Install the package dependencies:
+```shell
+npm install 
+```
+## Scrivito Portal App Development
+For the Scrivito Portal App:
+
+Link the local package:
+```shell
+npm run link:vite-project
+```
+Edit `index.ts` in the Widgets folder and add the following import:
+```js
+  import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
+```
+Below this import, call the `initNeoletterFormWidgets` function and pass your Scrivito tenant ID:
+```js
+initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
+```
+Import the package styles into the index.scss file in the assets/stylesheets folder:
+```scss
+@import 'scrivito-neoletter-form-widgets/index.css';
+```
+## Scrivito Example App Development
+For the Scrivito Example App:
+
+Build the package or run it in development mode:
+```shell
+npm run build
+```
+or
+```shell
+npm run start
+```
+Link the local package:
+```shell
+npm run link
+```
+Edit `index.js` in the Widgets folder and add the following import:
+```js
+import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
+```
+Below this import, call the `initNeoletterFormWidgets` function and pass your Scrivito tenant ID:
+
+```js
+initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
+```
+
+Import the package styles into the `index.scss` file in the assets/stylesheets folder:
+```scss
+@import 'scrivito-neoletter-form-widgets/index.css';
+```
+**Note:**
+
+The Scrivito Portal App is built using Vite and will automatically compile the package, so there's no need to run `npm run build` or `npm run start` for local development.
