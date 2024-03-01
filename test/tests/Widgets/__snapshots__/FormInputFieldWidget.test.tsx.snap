@@ -14,6 +14,8 @@ exports[`FormInputFieldWidget Component renders correctly 1`] = `
       </label>
       <span
         className="text-mandatory"
+        onBlur={[Function]}
+        onFocus={[Function]}
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
@@ -21,6 +23,8 @@ exports[`FormInputFieldWidget Component renders correctly 1`] = `
       </span>
       <i
         className="bi bi-question-circle"
+        onBlur={[Function]}
+        onFocus={[Function]}
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       />

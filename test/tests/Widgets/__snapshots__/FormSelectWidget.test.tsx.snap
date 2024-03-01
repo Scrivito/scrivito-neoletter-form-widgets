@@ -18,6 +18,8 @@ exports[`FormSelectWidget renders correctly 1`] = `
         </span>
         <span
           className="text-mandatory"
+          onBlur={[Function]}
+          onFocus={[Function]}
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -25,6 +27,8 @@ exports[`FormSelectWidget renders correctly 1`] = `
         </span>
         <i
           className="bi bi-question-circle"
+          onBlur={[Function]}
+          onFocus={[Function]}
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         />

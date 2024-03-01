@@ -3,6 +3,8 @@
 exports[`Mandatory renders correctly 1`] = `
 <span
   className="text-mandatory"
+  onBlur={[Function]}
+  onFocus={[Function]}
   onMouseOut={[Function]}
   onMouseOver={[Function]}
 >

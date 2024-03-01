@@ -39,6 +39,7 @@ describe("FormFooterMultiSteps", () => {
         isLastPage={false}
         stepsLength={3}
         showReview={true}
+        submitDisabled={false}
       />
     );
 
@@ -57,6 +58,7 @@ describe("FormFooterMultiSteps", () => {
         isLastPage={true}
         stepsLength={3}
         showReview={true}
+        submitDisabled={false}
       />
     );
 
@@ -76,6 +78,7 @@ describe("FormFooterMultiSteps", () => {
         isLastPage={true}
         stepsLength={3}
         showReview={true}
+        submitDisabled={false}
       />
     );
 
@@ -92,6 +95,7 @@ describe("FormFooterMultiSteps", () => {
         isLastPage={false}
         stepsLength={3}
         showReview={true}
+        submitDisabled={false}
       />
     );
 
@@ -109,6 +113,7 @@ describe("FormFooterMultiSteps", () => {
         isLastPage={false}
         stepsLength={3}
         showReview={true}
+        submitDisabled={false}
       />
     );
 
@@ -126,6 +131,7 @@ describe("FormFooterMultiSteps", () => {
         isLastPage={true}
         stepsLength={3}
         showReview={false}
+        submitDisabled={false}
       />
     );
 
@@ -143,6 +149,7 @@ describe("FormFooterMultiSteps", () => {
           isLastPage={true}
           stepsLength={3}
           showReview={true}
+          submitDisabled={false}
         />
       )
       .toJSON();

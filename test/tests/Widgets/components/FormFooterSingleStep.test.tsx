@@ -15,7 +15,7 @@ describe("FormFooterSingleStep", () => {
 
   it("renders correctly with block alignment", () => {
     const { getByText } = render(
-      <FormFooterSingleStep widget={widget} onSubmit={() => {}} />
+      <FormFooterSingleStep widget={widget} onSubmit={() => {}} submitDisabled={false} />
     );
 
     const button = getByText("Submit");
@@ -27,7 +27,7 @@ describe("FormFooterSingleStep", () => {
     widget.update({ singleSubmitButtonAlignment: "left" });
 
     const { getByText, container } = render(
-      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} />
+      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />
     );
 
     const button = getByText("Submit");
@@ -43,7 +43,7 @@ describe("FormFooterSingleStep", () => {
     });
 
     const { getByText, container } = render(
-      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} />
+      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />
     );
 
     const button = getByText("Send");
@@ -55,7 +55,7 @@ describe("FormFooterSingleStep", () => {
     widget.update({ singleSubmitButtonAlignment: "text-center" });
 
     const { getByText, container } = render(
-      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} />
+      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false}/>
     );
 
     const button = getByText("Send");
@@ -66,7 +66,7 @@ describe("FormFooterSingleStep", () => {
 
   it("renders correctly", () => {
     const tree = renderer
-      .create(<FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} />)
+      .create(<FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
