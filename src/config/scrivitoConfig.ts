@@ -1,15 +1,21 @@
 import { isEmpty } from "lodash-es";
 
 let _instanceId: string = "";
+let _siteKey: string;
 
-export const initNeoletterFormWidgets = (instanceId: string): void => {
+export const initNeoletterFormWidgets = (instanceId: string, siteKey: string = ""): void => {
   _instanceId = instanceId;
+  _siteKey = siteKey;
   loadWidgets();
 };
 
 export const getInstanceId = (): string => {
   return _instanceId;
 };
+
+export const getReCaptchaSiteKey = (): string => {
+  return _siteKey;
+}
 
 function loadWidgets(): void {
   if (isEmpty(import.meta)) {

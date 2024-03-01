@@ -4,7 +4,7 @@ import { FormInputFieldWidget } from "../FormInputFieldWidget/FormInputFieldWidg
 import { pseudoRandom32CharHex } from "./utils/pseudoRandom32CharHex";
 import { getFormContainer } from "./utils/getFormContainer";
 import { FormStepWidget } from "../FormStepWidget/FormStepWidgetClass";
-import { getInstanceId } from "../../config/scrivitoConfig";
+import { getInstanceId, getReCaptchaSiteKey } from "../../config/scrivitoConfig";
 import { FormIdComponent } from "./components/FormIdComponent";
 import { isEmpty } from "lodash-es";
 Scrivito.provideEditingConfig("FormStepContainerWidget", {
@@ -14,6 +14,18 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     formId: {
       title: "Form ID",
       description: "This ID identifies the form in Neoletter."
+    },
+    showReCaptcha: {
+      title: "Enable reCAPTCHA",
+      description: "Enables reCAPTCHAv2 for this form."
+    },
+    reCaptchaAlignment: {
+      title: "Alignment",
+      values: [
+        { value: "left", title: "Left" },
+        { value: "center", title: "Center" },
+        { value: "right", title: "Right" }
+      ]
     },
     submittingMessage: {
       title: "Message shown while the form is being submitted"
@@ -96,6 +108,11 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
   propertiesGroups: widget => {
     const groups = [
       {
+        title: "reCAPTCHA",
+        key: "FormStepContainerWidgetReCaptcha",
+        properties: ["showReCaptcha", "reCaptchaAlignment"] 
+      },
+      {
         title: "Hidden fields",
         key: "FormStepContainerWidgetHiddenFields",
         properties: ["hiddenFields"]
@@ -113,7 +130,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       }
     ];
     if (widget.get("formType") == "multi-step")
-      groups.unshift(
+      groups.splice(1, 0,
         {
           title: "Steps",
           key: "FormSteps",
@@ -180,6 +197,8 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     backwardButtonText: "Backward",
     submitButtonText: "Submit",
     showBorder: false,
+    showReCaptcha: false, 
+    reCaptchaAlignment: "center",
     // review stuff
     showReview: false,
     includeEmptyAnswers: false,
@@ -205,6 +224,11 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     () => {
       if (isEmpty(getInstanceId())) {
         return "No instanceId specified for form widgets.";
+      }
+    },
+    (widget: Scrivito.Widget) => {
+      if (widget.get("showReCaptcha") && isEmpty(getReCaptchaSiteKey())) {
+        return "No site key specified for reCATPCHA."
       }
     },
 

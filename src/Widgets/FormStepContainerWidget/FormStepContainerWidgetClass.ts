@@ -4,6 +4,13 @@ export const FormStepContainerWidget = Scrivito.provideWidgetClass(
   "FormStepContainerWidget",
   {
     attributes: {
+      showReCaptcha: "boolean",
+      reCaptchaAlignment: [
+        "enum",
+        {
+          values: ["left", "center", "right"]
+        }
+      ],
       formId: "string",
       failedMessage: "string",
       submittedMessage: "string",

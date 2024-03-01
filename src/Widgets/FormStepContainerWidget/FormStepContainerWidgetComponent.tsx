@@ -15,6 +15,7 @@ import { FormStepContainerWidget } from "./FormStepContainerWidgetClass";
 import { InputValidationElement } from "../../../types/types";
 import "./FormStepContainerWidget.scss";
 import "bootstrap-icons/font/bootstrap-icons.scss";
+import { FormReCaptcha } from "./components/FormReCaptchaComponent";
 
 Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const tenant = getInstanceId();
@@ -26,10 +27,19 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [successfullySent, setSuccessfullySent] = React.useState(false);
   const [submissionFailed, setSubmissionFailed] = React.useState(false);
+  const [reCaptchaToken, setReCaptchaToken] = React.useState<string|null>(null);
+  const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(false);
   const isSingleStep = widget.get("formType") == "single-step";
   const stepsLength = widget.get("steps").length;
   const isLastPage = currentStep == stepsLength;
   const showReview = widget.get("showReview");
+  const showReCaptcha = widget.get("showReCaptcha");
+
+  React.useEffect(() => {
+    if (showReCaptcha ) {
+      setIsSubmitDisabled(reCaptchaToken == null);
+    }
+  }, [reCaptchaToken, showReCaptcha]);
 
   React.useEffect(() => {
     if (!Scrivito.isInPlaceEditingActive()) {
@@ -97,9 +107,15 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
             }
           }}
         />
+        <FormReCaptcha 
+        isLastPage={isLastPage}
+        showReCaptcha={showReCaptcha}
+        alignment={widget.get("reCaptchaAlignment") || ""} 
+        onChangeReCaptcha={setReCaptchaToken}
+        />
       </form>
       {isSingleStep ? (
-        <FormFooterSingleStep widget={widget} onSubmit={onSubmit} />
+        <FormFooterSingleStep widget={widget} onSubmit={onSubmit} submitDisabled={isSubmitDisabled} />
       ) : (
         <FormFooterMultiSteps
           widget={widget}
@@ -109,6 +125,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
           stepsLength={stepsLength}
           isLastPage={isLastPage}
           showReview={showReview}
+          submitDisabled={isSubmitDisabled}
         />
       )}
     </div>
@@ -129,6 +146,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
 
     indicateProgress();
     try {
+      //TODO: add token for Neoletter when Neoletter is ready to use it.
       await submitForm(formElement, formEndpoint, widget);
       indicateSuccess();
     } catch (e) {

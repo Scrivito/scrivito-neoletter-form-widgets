@@ -11,6 +11,7 @@ interface FormFooterMultiStepsProps {
   isLastPage: boolean;
   stepsLength: number;
   showReview: boolean;
+  submitDisabled: boolean;
 }
 
 export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
@@ -22,7 +23,8 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
       currentStep,
       isLastPage,
       stepsLength,
-      showReview
+      showReview,
+      submitDisabled
     }) => {
       const [show, setShow] = React.useState(false);
       const [reviewContent, setReviewContent] = React.useState<ReviewContent>(
@@ -50,7 +52,9 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
             )}
             <button
               className="btn btn-primary forward-button"
-              onClick={isLastPage ? onSubmit : () => onPageChange(true)}>
+              onClick={isLastPage ? onSubmit : () => onPageChange(true)}
+              disabled={isLastPage && submitDisabled}
+              >
               {isLastPage
                 ? (widget.get("submitButtonText") as string)
                 : (widget.get("forwardButtonText") as string)}

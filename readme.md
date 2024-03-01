@@ -11,6 +11,7 @@ A set of Scrivito Widgets for building awesome forms
 - Rating controls
 - Date & date-time controls
 - Conditionals
+- reCAPTCHA support
 
 ## Installation
 
@@ -90,6 +91,9 @@ The `Form` widget has the following properties divided into several tabs:
   - Submitting message: Message shown while the form is being submitted.
   - Submitted message: Message shown after the form was successfully submitted.
   - Failed message: Message shown if the form submission failed.
+- "reCAPTCHA" Tab
+  - Enable reCAPTCHA: Enables reCAPTCHA v2 for the current form. You need to [Setup reCAPTCHA](#developer-setup) first.
+  - Alignment: Alignment for the reCAPTCHA.
 - "Steps" tab (Tab visible if form has "Multiple Steps")
   - Steps: Configure the form steps.
 - "Review" tab (Tab visible if form has "Multiple Steps", content depends on review selection)
@@ -302,6 +306,51 @@ The `Form Condition` widget is used within the `Form Conditional Container` widg
 ### Validation
 
 - The Form Condition Widget can only be used inside the Form Conditional Container Widget.
+
+# Google reCAPTCHA Support
+
+We currently support the Google reCAPTCHA v2 Checkbox challenge. To get started, you need to have a Google account. Follow these steps to set up reCAPTCHA for your site:
+
+## Developer Setup
+   1. **Login to Google:** Sign in to your Google account.
+
+   2. **Go to the Google reCAPTCHA Admin Panel:** [Google reCAPTCHA Admin Panel](https://www.google.com/recaptcha/admin)
+ (Link opens in a new tab)
+
+   3. **Create a New Site:** Click on the + button to create a new site.
+
+   4. **Add Site Label:** Give your site a label.
+
+   5. **Select reCAPTCHA Type:** In the reCAPTCHA type, choose "Checkbox (v2)" and select "I'm not a robot" Checkbox.
+
+   6. **Add Your Domains:** Add the domains where you will be using the reCAPTCHA. You can add multiple domains.
+
+   7. **Submit the Request:** Click on the "Submit" button. A site key and secret will be generated.
+
+   8. **Copy the Site Key:** Copy the site key and use it as the second argument in initNeoletterFormWidgets function.
+
+```js
+   import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
+      initNeoletterFormWidgets(
+        process.env.SCRIVITO_TENANT,
+        "your_site_key"
+      );
+```
+   9. **Adjust Security Preferences:** Optionally, open the settings page in the admin panel and adjust the owners or the Security Preference.
+
+After completing the above steps, the next requirement is to configure the Content Security Policy (CSP). The configuration of the CSP is identical regardless of whether you're using the Example App or the Portal App. You'll need to add the following URLs to the `script-src` section of your CSP:
+
+
+For the Example App, navigate to or open _headersCsp.json located in the public folder.
+  
+For the Portal App, navigate to headers.config.ts located in the root of the project.
+
+Add the following URLs to the "script-src" section:
+```json
+"https://www.google.com/recaptcha/",
+"https://www.gstatic.com/recaptcha/"
+```
+That's it! You should now be able to use reCAPTCHA on your site.
 
 # Review Feature
 
