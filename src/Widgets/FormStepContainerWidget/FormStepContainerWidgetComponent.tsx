@@ -36,10 +36,15 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const showReCaptcha = widget.get("showReCaptcha");
 
   React.useEffect(() => {
-    if (showReCaptcha ) {
-      setIsSubmitDisabled(reCaptchaToken == null);
+    if (showReCaptcha) {
+      if (isLastPage) {
+        setIsSubmitDisabled(reCaptchaToken == null);
+      } else if (reCaptchaToken) {
+        // reset on posssible step change
+        setReCaptchaToken(null);
+      }
     }
-  }, [reCaptchaToken, showReCaptcha]);
+  }, [reCaptchaToken, showReCaptcha, isLastPage]);
 
   React.useEffect(() => {
     if (!Scrivito.isInPlaceEditingActive()) {
@@ -108,8 +113,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
           }}
         />
         <FormReCaptcha 
-        isLastPage={isLastPage}
-        showReCaptcha={showReCaptcha}
+        showReCaptcha={showReCaptcha && isLastPage || Scrivito.isInPlaceEditingActive()}
         alignment={widget.get("reCaptchaAlignment") || ""} 
         onChangeReCaptcha={setReCaptchaToken}
         />

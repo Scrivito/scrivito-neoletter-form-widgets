@@ -51,6 +51,7 @@ describe("FormFooterSingleStep", () => {
     expect(button).not.toHaveClass("btn-block");
     expect(container.firstChild).toHaveClass("text-end");
   });
+
   it("renders correctly with centered alignment", () => {
     widget.update({ singleSubmitButtonAlignment: "text-center" });
 
@@ -62,6 +63,16 @@ describe("FormFooterSingleStep", () => {
     expect(button).toHaveClass("btn-primary");
     expect(button).not.toHaveClass("btn-block");
     expect(container.firstChild).toHaveClass("text-center");
+  });
+
+  it("renders correctly with disabled submit button", () => {
+    const { getByText } = render(
+      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={true} />
+    );
+
+    const button = getByText("Send");
+    expect(button).toHaveAttribute("disabled");
+    expect(button.getAttribute("onclick")).toBe(null);
   });
 
   it("renders correctly", () => {

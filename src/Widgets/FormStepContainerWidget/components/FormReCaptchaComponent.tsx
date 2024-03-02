@@ -4,14 +4,13 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { isEmpty } from "lodash-es";
 import { getReCaptchaSiteKey } from "../../../config/scrivitoConfig";
 interface FormReCaptchaProps {
-	isLastPage: boolean;
 	showReCaptcha: boolean;
 	alignment: string;
 	onChangeReCaptcha: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 //TODO: add more props to reCAPTCHA component (hl, theme, size...)
-export const FormReCaptcha: React.FC<FormReCaptchaProps> = ({ isLastPage, showReCaptcha, onChangeReCaptcha, alignment }) => {
+export const FormReCaptcha: React.FC<FormReCaptchaProps> = ({ showReCaptcha, onChangeReCaptcha, alignment }) => {
 	const siteKey = getReCaptchaSiteKey();
 	if (Scrivito.isInPlaceEditingActive() && isEmpty(siteKey) && showReCaptcha) {
 		return (
@@ -21,7 +20,7 @@ export const FormReCaptcha: React.FC<FormReCaptchaProps> = ({ isLastPage, showRe
 		);
 	}
 	return (
-		showReCaptcha && !isEmpty(siteKey) && isLastPage || Scrivito.isInPlaceEditingActive() ?
+		showReCaptcha && !isEmpty(siteKey) ?
 			<>
 				<div className={`mb-3 recaptcha-container ${alignment}`}>
 					<ReCAPTCHA

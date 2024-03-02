@@ -23,6 +23,8 @@ const widgetProps = {
   backwardButtonText: "back",
   submitButtonText: "submit",
   showBorder: false,
+  showReCaptcha: false,
+  reCaptchaAlignment:"center",
   showReview: true,
   includeEmptyAnswers: false,
   showStepsInReview: false,

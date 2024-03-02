@@ -48,6 +48,25 @@ describe("FormFooterMultiSteps", () => {
     expect(getByText("Forward")).toBeInTheDocument();
   });
 
+  it("renders correctly with disabled submit button", () => {
+    const { getByText } = render(
+      <FormFooterMultiSteps
+        widget={widget}
+        onPageChange={() => {}}
+        onSubmit={() => {}}
+        currentStep={3}
+        isLastPage={true}
+        stepsLength={3}
+        showReview={true}
+        submitDisabled={true}
+      />
+      );
+
+    const button = getByText("Submit");
+    expect(button).toHaveAttribute("disabled");
+    expect(button.getAttribute("onclick")).toBe(null);
+  });
+
   it("triggers review display correctly when Review button is clicked", () => {
     const { getByText } = render(
       <FormFooterMultiSteps
