@@ -113,9 +113,9 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
           }}
         />
         <FormReCaptcha 
-        showReCaptcha={showReCaptcha && isLastPage || Scrivito.isInPlaceEditingActive()}
-        alignment={widget.get("reCaptchaAlignment") || ""} 
-        onChangeReCaptcha={setReCaptchaToken}
+          showReCaptcha={showReCaptcha && (isLastPage || Scrivito.isInPlaceEditingActive())}
+          alignment={widget.get("reCaptchaAlignment") || ""}
+          onChangeReCaptcha={setReCaptchaToken}
         />
       </form>
       {isSingleStep ? (
