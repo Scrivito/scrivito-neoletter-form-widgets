@@ -1,11 +1,17 @@
 import { isEmpty } from "lodash-es";
+import { CaptchaOptions } from "../../types/types";
 
 let _instanceId: string = "";
-let _siteKey: string;
 
-export const initNeoletterFormWidgets = (instanceId: string, siteKey: string = ""): void => {
+let _captchaOptions: CaptchaOptions = {
+  siteKey: "",
+  captchaType: null,
+  endpoint: "global"
+}
+
+export const initNeoletterFormWidgets = (instanceId: string, captchaOptions?: CaptchaOptions): void => {
   _instanceId = instanceId;
-  _siteKey = siteKey;
+  captchaOptions && (_captchaOptions = captchaOptions);
   loadWidgets();
 };
 
@@ -13,8 +19,8 @@ export const getInstanceId = (): string => {
   return _instanceId;
 };
 
-export const getReCaptchaSiteKey = (): string => {
-  return _siteKey;
+export const getCaptchaOptions = (): CaptchaOptions => {
+  return _captchaOptions;
 }
 
 function loadWidgets(): void {

@@ -4,7 +4,7 @@ import { FormInputFieldWidget } from "../FormInputFieldWidget/FormInputFieldWidg
 import { pseudoRandom32CharHex } from "./utils/pseudoRandom32CharHex";
 import { getFormContainer } from "./utils/getFormContainer";
 import { FormStepWidget } from "../FormStepWidget/FormStepWidgetClass";
-import { getInstanceId, getReCaptchaSiteKey } from "../../config/scrivitoConfig";
+import { getCaptchaOptions, getInstanceId } from "../../config/scrivitoConfig";
 import { FormIdComponent } from "./components/FormIdComponent";
 import { isEmpty } from "lodash-es";
 Scrivito.provideEditingConfig("FormStepContainerWidget", {
@@ -15,16 +15,37 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       title: "Form ID",
       description: "This ID identifies the form in Neoletter."
     },
-    showReCaptcha: {
-      title: "Enable reCAPTCHA",
-      description: "Enables reCAPTCHAv2 for this form."
+    showCaptcha: {
+      title: "Enable captcha",
+      description: "Enables captcha for this form."
     },
-    reCaptchaAlignment: {
+    captchaTheme: {
+      title: "Theme",
+      description: getCaptchaOptions().captchaType == "google-recaptcha" ? "Note: Changes will require refreshing the page to apply." : "",
+      values: [
+        { value: "light", title: "Light" },
+        { value: "dark", title: "Dark" }
+      ]
+    },
+    captchaLanguage: {
+      title: "Language",
+      description: getCaptchaOptions().captchaType == "google-recaptcha" ? "Optional: Google reCAPTCHA adapts to browser language settings automatically. Note: Changes will require refreshing the page to apply." : "Defaults to English (en). Note: Changes will require refreshing the page to apply."
+    },
+    captchaAlignment: {
       title: "Alignment",
       values: [
         { value: "left", title: "Left" },
         { value: "center", title: "Center" },
         { value: "right", title: "Right" }
+      ]
+    },
+    captchaStartMode: {
+      title: "Start verification",
+      description: "Specify when the captcha should start the verification (process).",
+      values: [
+        { value: "none", title: "After clicking the captcha" },
+        { value: "auto", title: "When the form is ready" },
+        { value: "focus", title: "After clicking a form field" }
       ]
     },
     submittingMessage: {
@@ -108,11 +129,6 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
   propertiesGroups: widget => {
     const groups = [
       {
-        title: "reCAPTCHA",
-        key: "FormStepContainerWidgetReCaptcha",
-        properties: ["showReCaptcha", "reCaptchaAlignment"] 
-      },
-      {
         title: "Hidden fields",
         key: "FormStepContainerWidgetHiddenFields",
         properties: ["hiddenFields"]
@@ -142,6 +158,13 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
           properties: getReviewProperties(widget)
         }
       );
+    if (!isEmpty(getCaptchaOptions().captchaType) && !isEmpty(getCaptchaOptions().siteKey)) {
+      groups.splice(0, 0, {
+        title: getCaptchaOptions().captchaType == "friendly-captcha" ? "Friendly Captcha" : "Google reCAPTCHA",
+        key: "FormStepContainerWidgetCaptcha",
+        properties: getCaptchaProperties(widget)
+      });
+    }
     return groups;
   },
 
@@ -197,8 +220,11 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     backwardButtonText: "Backward",
     submitButtonText: "Submit",
     showBorder: false,
-    showReCaptcha: false, 
-    reCaptchaAlignment: "center",
+    // captcha stuff
+    showCaptcha: false,
+    captchaTheme: "light",
+    captchaStartMode: "none",
+    captchaAlignment: "center",
     // review stuff
     showReview: false,
     includeEmptyAnswers: false,
@@ -224,11 +250,6 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     () => {
       if (isEmpty(getInstanceId())) {
         return "No instanceId specified for form widgets.";
-      }
-    },
-    (widget: Scrivito.Widget) => {
-      if (widget.get("showReCaptcha") && isEmpty(getReCaptchaSiteKey())) {
-        return "No site key specified for reCATPCHA."
       }
     },
 
@@ -315,4 +336,17 @@ function getReviewProperties(widget: Scrivito.Widget): string[] | any[] {
     ["reviewCloseButtonText", { enabled: widget.get("showReviewFooter") }]
   ];
   return widget.get("showReview") ? reviewPropsEnabled : reviewPropsDisabled;
+}
+function getCaptchaProperties(widget: Scrivito.Widget): string[] {
+  const captchaPropsDisabled = ["showCaptcha"];
+  const captchaPropsEnabled = [
+    "showCaptcha",
+    "captchaLanguage",
+    "captchaTheme",
+    "captchaAlignment"
+  ];
+  if (getCaptchaOptions().captchaType == "friendly-captcha") {
+    captchaPropsEnabled.splice(2, 0, "captchaStartMode");
+  }
+  return widget.get("showCaptcha") ? captchaPropsEnabled : captchaPropsDisabled;
 }

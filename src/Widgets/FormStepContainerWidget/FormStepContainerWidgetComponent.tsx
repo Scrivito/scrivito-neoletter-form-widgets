@@ -12,10 +12,10 @@ import { FormSubmissionFailed } from "./components/FormSubmissionFailedComponent
 import { FormSubmissionSucceeded } from "./components/FormSubmissionSucceededComponent";
 import { FormSubmitting } from "./components/FormSubmittingComponent";
 import { FormStepContainerWidget } from "./FormStepContainerWidgetClass";
-import { InputValidationElement } from "../../../types/types";
+import { FormCaptcha } from "./components/FormCaptchaComponent";
+import { CaptchaStartMode, InputValidationElement } from "../../../types/types";
 import "./FormStepContainerWidget.scss";
 import "bootstrap-icons/font/bootstrap-icons.scss";
-import { FormReCaptcha } from "./components/FormReCaptchaComponent";
 
 Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const tenant = getInstanceId();
@@ -33,10 +33,10 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const stepsLength = widget.get("steps").length;
   const isLastPage = currentStep == stepsLength;
   const showReview = widget.get("showReview");
-  const showReCaptcha = widget.get("showReCaptcha");
+  const showCaptcha = widget.get("showCaptcha");
 
   React.useEffect(() => {
-    if (showReCaptcha) {
+    if (showCaptcha) {
       if (isLastPage) {
         setIsSubmitDisabled(reCaptchaToken == null);
       } else if (reCaptchaToken) {
@@ -44,7 +44,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
         setReCaptchaToken(null);
       }
     }
-  }, [reCaptchaToken, showReCaptcha, isLastPage]);
+  }, [reCaptchaToken, showCaptcha, isLastPage]);
 
   React.useEffect(() => {
     if (!Scrivito.isInPlaceEditingActive()) {
@@ -112,11 +112,15 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
             }
           }}
         />
-        <FormReCaptcha 
-          showReCaptcha={showReCaptcha && (isLastPage || Scrivito.isInPlaceEditingActive())}
-          alignment={widget.get("reCaptchaAlignment") || ""}
-          onChangeReCaptcha={setReCaptchaToken}
-        />
+        {(showCaptcha && (isLastPage || Scrivito.isInPlaceEditingActive())) &&
+          <FormCaptcha
+            alignment={widget.get("captchaAlignment") || "center"}
+            theme={widget.get("captchaTheme") || "light"}
+            startMode={widget.get("captchaStartMode") as CaptchaStartMode || "none"}
+            onChangeCaptcha={setReCaptchaToken}
+            language={widget.get("captchaLanguage")}
+          />
+        }
       </form>
       {isSingleStep ? (
         <FormFooterSingleStep widget={widget} onSubmit={onSubmit} submitDisabled={isSubmitDisabled} />
