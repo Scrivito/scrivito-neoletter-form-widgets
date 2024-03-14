@@ -21,7 +21,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     },
     captchaTheme: {
       title: "Theme",
-      description: getCaptchaOptions().captchaType == "google-recaptcha" ? "Note: Changes will require refreshing the page to apply." : "",
+      description: getCaptchaOptions().captchaType == "google-recaptcha" ? "Changes are applied after refreshing the page." : "",
       values: [
         { value: "light", title: "Light" },
         { value: "dark", title: "Dark" }
@@ -29,7 +29,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     },
     captchaLanguage: {
       title: "Language",
-      description: getCaptchaOptions().captchaType == "google-recaptcha" ? "Optional: Google reCAPTCHA adapts to browser language settings automatically. Note: Changes will require refreshing the page to apply." : "Defaults to English (en). Note: Changes will require refreshing the page to apply."
+      description: getCaptchaOptions().captchaType == "google-recaptcha" ? "Google reCAPTCHA automatically adapts to the browser`s language setting. Changes are applied after refreshing the page." : "Defaults to English. Changes are applied after refreshing the page."
     },
     captchaAlignment: {
       title: "Alignment",
@@ -41,7 +41,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     },
     captchaStartMode: {
       title: "Start verification",
-      description: "Specify when the captcha should start the verification (process).",
+      description: "Specify when the captcha should start the verification process.",
       values: [
         { value: "none", title: "After clicking the captcha" },
         { value: "auto", title: "When the form is ready" },
