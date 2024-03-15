@@ -93,12 +93,12 @@ The `Form` widget has the following properties divided into several tabs:
   - Failed message: Message shown if the form submission failed.
 - "Google reCAPTCHA" Tab (Tab visible if captchaType is set to `google-recaptcha`)
   - Enable captcha: Enables Google reCAPTCHA v2 for the current form. You need to [Setup reCAPTCHA](#developer-setup) first.
-  - Language: Select the language for the reCAPTCHA. Google reCAPTCHA automatically adapts to the browser`s language setting, this property is optional and must not be filled. Refer to the language section [here](https://developers.google.com/recaptcha/docs/language){:target="_blank"} for setting the language manually.
+  - Language: Select the language for the reCAPTCHA. Google reCAPTCHA automatically adapts to the browser`s language setting, this property is optional and must not be filled. Refer to the language section [here](https://developers.google.com/recaptcha/docs/language) for setting the language manually.
   - Theme: Choose between light and dark theme. You will need to refresh the page in order to reflect the changes or you can simply re-enable the captcha again.
   - Alignment: Alignment for the reCAPTCHA.
 - "Friendly Captcha" Tab (Tab visible if captchaType is set to `friendly-captcha`)
   - Enable captcha: Enables Friendly Captcha for the current form. You need to [Setup Friendly Captcha](#friendly-captcha-setup) first.
-  - Language: Select the language for the Friendly Captcha. Refer to the language section [here](https://docs.friendlycaptcha.com/#/widget_api?id=data-lang-attribute){:target="_blank"} to see the available language codes.
+  - Language: Select the language for the Friendly Captcha. Refer to the language section [here](https://docs.friendlycaptcha.com/#/widget_api?id=data-lang-attribute) to see the available language codes.
   - Start verification: Choose when the verification should start.
   - Theme: Choose between light and dark theme.
   - Alignment: Alignment for the Friendly Captcha.
@@ -457,7 +457,7 @@ You can only use one of them for your site, but you can change it later if neede
 
 ## Google reCAPTCHA Developer Setup
    1. **Login to Google:** Sign in to your Google account or create one.
-   2. **Go to the Google reCAPTCHA Admin Panel:** [Google reCAPTCHA Admin Panel](https://www.google.com/recaptcha/admin){:target="_blank"}
+   2. **Go to the Google reCAPTCHA Admin Panel:** [Google reCAPTCHA Admin Panel](https://www.google.com/recaptcha/admin)
    3. **Create a New Site:** Click on the + button to create a new site.
    4. **Add Site Label:** Give your site a label.
    5. **Select reCAPTCHA Type:** In the reCAPTCHA type, choose "Checkbox (v2)" and select "I'm not a robot" Checkbox.
@@ -476,13 +476,13 @@ You can only use one of them for your site, but you can change it later if neede
       );
 ```
    9. **Adjust Security Preferences:** Optionally, open the settings page in the admin panel and adjust the owners or the Security Preference.
-   10. **Configure the Content Security Policy (CSP):** Follow [these](#csp-configuration) instructions to configure the CSP.
+   10. **Configure the Content Security Policy (CSP):** Follow [these](#csp-configuration-for-captcha) instructions to configure the CSP.
 
 Finally you need to setup the secret key in Neoletter to be able to use Google reCAPTCHA within your forms.
 
 ## Friendly Captcha Setup
 
-1. **Login to Friendly Captcha:** Login in or create a new account on the [Friendly Captcha](https://friendlycaptcha.com/){:target="_blank"} site and follow the instructions from the site.
+1. **Login to Friendly Captcha:** Login in or create a new account on the [Friendly Captcha](https://friendlycaptcha.com/) site and follow the instructions from the site.
 2. **Create a new Application:** After setup, go to the `Applications` tab and click on `Create new application` and enter the necessary details. Once you have completed this, take note of the sitekey value under the application name, we will need it later.
 3. **Create a new API Key:** Go the the `API Keys` tab and create a new API key. Copy the key somewhere, it will be needed later for the Neoletter configuration.
 4. **Use the siteKey:** Copy the site key and pass it in the initNeoletterFormWidgets function together with the `captchaType`, you will need to set the `captchaType` to `friendly-captcha` like below:
@@ -510,7 +510,7 @@ Finally you need to setup the secret key in Neoletter to be able to use Google r
         }
       );
 ```
-6. **Configure the Content Security Policy (CSP):** Follow [these](#csp-configuration) instructions to configure the CSP.
+6. **Configure the Content Security Policy (CSP):** Follow [these](#csp-configuration-for-captcha) instructions to configure the CSP.
 
 Finally you need to setup the API key in Neoletter to be able to use Friendly Captcha within your forms.
 
@@ -531,7 +531,7 @@ For the Friendly Captcha, you need to add the following URLs to the "script-src"
 "blob:",
 "'wasm-unsafe-eval'"
 ```
-For more information regarding CSP, please refer to the CSP section in the Friendly Captcha Docs found [here](https://docs.friendlycaptcha.com/#/csp){:target="_blank"} or in the Google reCAPTCHA FAQ found [here](https://developers.google.com/recaptcha/docs/faq?hl=de#im-using-content-security-policy-csp-on-my-website.-how-can-i-configure-it-to-work-with-recaptcha){:target="_blank"}
+For more information regarding CSP, please refer to the CSP section in the Friendly Captcha Docs found [here](https://docs.friendlycaptcha.com/#/csp) or in the Google reCAPTCHA FAQ found [here](https://developers.google.com/recaptcha/docs/faq?hl=de#im-using-content-security-policy-csp-on-my-website.-how-can-i-configure-it-to-work-with-recaptcha)
 
 # Local Development
 
