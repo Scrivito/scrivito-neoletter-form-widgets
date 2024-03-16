@@ -8,6 +8,9 @@ import "../../../src/Widgets/FormStepWidget/FormStepWidgetComponent";
 import "../../../src/Widgets/FormDateWidget/FormDateWidgetComponent";
 import PageRenderer from "../../helpers/pageRenderer";
 
+jest.mock('friendly-challenge', () => ({
+  WidgetInstance: jest.fn(() => ({}))
+}));
 Scrivito.configure({ tenant: "inMemory" });
 
 const pageRenderer = new PageRenderer();
@@ -23,8 +26,8 @@ const widgetProps = {
   backwardButtonText: "back",
   submitButtonText: "submit",
   showBorder: false,
-  showReCaptcha: false,
-  reCaptchaAlignment:"center",
+  showCaptcha: false,
+  captchaAlignment:"center",
   showReview: true,
   includeEmptyAnswers: false,
   showStepsInReview: false,
