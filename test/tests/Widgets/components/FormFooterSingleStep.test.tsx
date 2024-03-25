@@ -15,7 +15,7 @@ describe("FormFooterSingleStep", () => {
 
   it("renders correctly with block alignment", () => {
     const { getByText } = render(
-      <FormFooterSingleStep widget={widget} onSubmit={() => {}} />
+      <FormFooterSingleStep widget={widget} onSubmit={() => {}} submitDisabled={false} />
     );
 
     const button = getByText("Submit");
@@ -27,7 +27,7 @@ describe("FormFooterSingleStep", () => {
     widget.update({ singleSubmitButtonAlignment: "left" });
 
     const { getByText, container } = render(
-      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} />
+      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />
     );
 
     const button = getByText("Submit");
@@ -43,7 +43,7 @@ describe("FormFooterSingleStep", () => {
     });
 
     const { getByText, container } = render(
-      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} />
+      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />
     );
 
     const button = getByText("Send");
@@ -51,11 +51,12 @@ describe("FormFooterSingleStep", () => {
     expect(button).not.toHaveClass("btn-block");
     expect(container.firstChild).toHaveClass("text-end");
   });
+
   it("renders correctly with centered alignment", () => {
     widget.update({ singleSubmitButtonAlignment: "text-center" });
 
     const { getByText, container } = render(
-      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} />
+      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false}/>
     );
 
     const button = getByText("Send");
@@ -64,9 +65,19 @@ describe("FormFooterSingleStep", () => {
     expect(container.firstChild).toHaveClass("text-center");
   });
 
+  it("renders correctly with disabled submit button", () => {
+    const { getByText } = render(
+      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={true} />
+    );
+
+    const button = getByText("Send");
+    expect(button).toHaveAttribute("disabled");
+    expect(button.getAttribute("onclick")).toBe(null);
+  });
+
   it("renders correctly", () => {
     const tree = renderer
-      .create(<FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} />)
+      .create(<FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

@@ -24,6 +24,7 @@ exports[`FormFooterMultiSteps renders correctly 1`] = `
   </button>
   <button
     className="btn btn-primary forward-button"
+    disabled={false}
     onClick={[Function]}
   >
     Submit

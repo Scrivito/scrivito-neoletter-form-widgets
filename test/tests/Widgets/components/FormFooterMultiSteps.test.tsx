@@ -39,12 +39,32 @@ describe("FormFooterMultiSteps", () => {
         isLastPage={false}
         stepsLength={3}
         showReview={true}
+        submitDisabled={false}
       />
     );
 
     expect(getByText("Back")).toBeInTheDocument();
     expect(getByText("1 / 3")).toBeInTheDocument();
     expect(getByText("Forward")).toBeInTheDocument();
+  });
+
+  it("renders correctly with disabled submit button", () => {
+    const { getByText } = render(
+      <FormFooterMultiSteps
+        widget={widget}
+        onPageChange={() => {}}
+        onSubmit={() => {}}
+        currentStep={3}
+        isLastPage={true}
+        stepsLength={3}
+        showReview={true}
+        submitDisabled={true}
+      />
+      );
+
+    const button = getByText("Submit");
+    expect(button).toHaveAttribute("disabled");
+    expect(button.getAttribute("onclick")).toBe(null);
   });
 
   it("triggers review display correctly when Review button is clicked", () => {
@@ -57,6 +77,7 @@ describe("FormFooterMultiSteps", () => {
         isLastPage={true}
         stepsLength={3}
         showReview={true}
+        submitDisabled={false}
       />
     );
 
@@ -76,6 +97,7 @@ describe("FormFooterMultiSteps", () => {
         isLastPage={true}
         stepsLength={3}
         showReview={true}
+        submitDisabled={false}
       />
     );
 
@@ -92,6 +114,7 @@ describe("FormFooterMultiSteps", () => {
         isLastPage={false}
         stepsLength={3}
         showReview={true}
+        submitDisabled={false}
       />
     );
 
@@ -109,6 +132,7 @@ describe("FormFooterMultiSteps", () => {
         isLastPage={false}
         stepsLength={3}
         showReview={true}
+        submitDisabled={false}
       />
     );
 
@@ -126,6 +150,7 @@ describe("FormFooterMultiSteps", () => {
         isLastPage={true}
         stepsLength={3}
         showReview={false}
+        submitDisabled={false}
       />
     );
 
@@ -143,6 +168,7 @@ describe("FormFooterMultiSteps", () => {
           isLastPage={true}
           stepsLength={3}
           showReview={true}
+          submitDisabled={false}
         />
       )
       .toJSON();

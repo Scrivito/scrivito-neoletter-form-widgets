@@ -20,6 +20,8 @@ exports[`ConditionalHeader renders correctly 1`] = `
       </span>
       <span
         className="text-mandatory"
+        onBlur={[Function]}
+        onFocus={[Function]}
         onMouseOut={[Function]}
         onMouseOver={[Function]}
       >
