@@ -43,7 +43,7 @@ export const FormCaptcha: React.FC<FormCaptchaProps> = ({ onChangeCaptcha, theme
 					theme={theme}
 					startMode={startMode}
 					language={isEmpty(language) ? undefined : language}
-					endpoint={options.endpoint}
+					endpoint={"global"}
 				/>
 			}
 		</div>

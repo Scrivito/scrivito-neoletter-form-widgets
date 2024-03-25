@@ -92,7 +92,7 @@ The `Form` widget has the following properties divided into several tabs:
   - Submitted message: Message shown after the form was successfully submitted.
   - Failed message: Message shown if the form submission failed.
 - "Google reCAPTCHA" Tab (Tab visible if captchaType is set to `google-recaptcha`)
-  - Enable captcha: Enables Google reCAPTCHA v2 for the current form. You need to [Setup reCAPTCHA](#developer-setup) first.
+  - Enable captcha: Enables Google reCAPTCHA v2 for the current form. You need to [Setup reCAPTCHA](#google-recaptcha-developer-setup) first.
   - Language: Select the language for the reCAPTCHA. Google reCAPTCHA automatically adapts to the browser`s language setting, this property is optional and must not be filled. Refer to the language section [here](https://developers.google.com/recaptcha/docs/language) for setting the language manually.
   - Theme: Choose between light and dark theme. You will need to refresh the page in order to reflect the changes or you can simply re-enable the captcha again.
   - Alignment: Alignment for the reCAPTCHA.
@@ -451,7 +451,7 @@ Please note that this example is intended to provide a basic demonstration of cr
 
 # Captcha Support
 
-We currently support the Google reCAPTCHA v2 Checkbox challenge and the GDPR compliant Friendly Captcha (paid service). Follow [these](#google-recaptcha-developer-setup) steps to set up Google reCAPTCHA and [these](#friendly-captcha-setup) steps to setup Friendly Captcha for your site.
+We currently support the Google reCAPTCHA v2 Checkbox challenge and the GDPR compliant Friendly Captcha with global endpoint (paid service). Follow [these](#google-recaptcha-developer-setup) steps to set up Google reCAPTCHA and [these](#friendly-captcha-setup) steps to setup Friendly Captcha for your site.
 ### Note
 You can only use one of them for your site, but you can change it later if needed.  
 
@@ -497,20 +497,8 @@ Finally you need to setup the secret key in Neoletter to be able to use Google r
         }
       );
 ```
-5. **Set Puzzle Endpoint (optional):** By default set to `global` but if you have Friendly Captcha Advanced or Enterprise plan, you can set the endpoint to a EU dedicated endpoint. Add the endpoint type to the initNeoletterFormWidgets function:
 
-```js
-   import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
-      initNeoletterFormWidgets(
-        process.env.SCRIVITO_TENANT,
-        {
-          siteKey: "your_site_key",
-          captchaType: "friendly-captcha",
-          endpoint: "eu"
-        }
-      );
-```
-6. **Configure the Content Security Policy (CSP):** Follow [these](#csp-configuration-for-captcha) instructions to configure the CSP.
+5. **Configure the Content Security Policy (CSP):** Follow [these](#csp-configuration-for-captcha) instructions to configure the CSP.
 
 Finally you need to setup the API key in Neoletter to be able to use Friendly Captcha within your forms.
 

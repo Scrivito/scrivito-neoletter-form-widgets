@@ -3,7 +3,6 @@ declare module "scrivito-neoletter-form-widgets" {
   export interface CaptchaOptions {
     siteKey: string;
     captchaType: "google-recaptcha" | "friendly-captcha" | null;
-    endpoint?: "eu" | "global";
   }
   export function insideFormContainerValidation(widget: Widget): string;
   export function initNeoletterFormWidgets(instanceId: string, captchaOptions?: CaptchaOptions): void;
