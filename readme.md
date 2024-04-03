@@ -537,7 +537,7 @@ Link the local package:
 ```shell
 npm run link:vite-project
 ```
-Edit `index.ts` in the Widgets folder and add the following import:
+Edit `index.ts` in the Widgets folder in the Example App and add the following import:
 ```js
   import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
 ```
@@ -548,6 +548,10 @@ initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
 Import the package styles into the index.scss file in the assets/stylesheets folder:
 ```scss
 @import 'scrivito-neoletter-form-widgets/index.css';
+```
+Either install the friendly-challenge & the react-google-recaptcha or link them from the node_modules folder:
+```shell
+npm install friendly-challenge react-google-recaptcha
 ```
 **Note:**
 
@@ -568,7 +572,7 @@ Link the local package:
 ```shell
 npm run link
 ```
-Edit `index.js` in the Widgets folder and add the following import:
+Edit `index.js` in the Widgets folder in the Portal App and add the following import:
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
 ```
@@ -581,4 +585,8 @@ initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
 Import the package styles into the `index.scss` file in the assets/stylesheets folder:
 ```scss
 @import 'scrivito-neoletter-form-widgets/index.css';
+```
+Either install the friendly-challenge & the react-google-recaptcha or link them from the node_modules folder:
+```shell
+npm install friendly-challenge react-google-recaptcha
 ```
