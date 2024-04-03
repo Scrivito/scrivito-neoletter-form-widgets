@@ -154,7 +154,6 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
 
     indicateProgress();
     try {
-      //TODO: add token for Neoletter when Neoletter is ready to use it.
       await submitForm(formElement, formEndpoint, widget);
       indicateSuccess();
     } catch (e) {
