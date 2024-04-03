@@ -2,6 +2,8 @@
 
 A set of Scrivito Widgets for building awesome forms
 
+**[Neoletter](https://www.neoletter.com)** | **[Scrivito](https://www.scrivito.com)**
+
 # Features
 
 - Single-step & multiple-step forms
