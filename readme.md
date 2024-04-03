@@ -2,6 +2,8 @@
 
 A set of Scrivito Widgets for building awesome forms
 
+**[Neoletter](https://www.neoletter.com)** | **[Scrivito](https://www.scrivito.com)**
+
 # Features
 
 - Single-step & multiple-step forms
@@ -11,6 +13,7 @@ A set of Scrivito Widgets for building awesome forms
 - Rating controls
 - Date & date-time controls
 - Conditionals
+- Captcha support
 
 ## Installation
 
@@ -90,6 +93,17 @@ The `Form` widget has the following properties divided into several tabs:
   - Submitting message: Message shown while the form is being submitted.
   - Submitted message: Message shown after the form was successfully submitted.
   - Failed message: Message shown if the form submission failed.
+- "Google reCAPTCHA" Tab (Tab visible if captchaType is set to `google-recaptcha`)
+  - Enable captcha: Enables Google reCAPTCHA v2 for the current form. You need to [Setup reCAPTCHA](#google-recaptcha-developer-setup) first.
+  - Language: Select the language for the reCAPTCHA. Google reCAPTCHA automatically adapts to the browser`s language setting, this property is optional and must not be filled. Refer to the language section [here](https://developers.google.com/recaptcha/docs/language) for setting the language manually.
+  - Theme: Choose between light and dark theme. You will need to refresh the page in order to reflect the changes or you can simply re-enable the captcha again.
+  - Alignment: Alignment for the reCAPTCHA.
+- "Friendly Captcha" Tab (Tab visible if captchaType is set to `friendly-captcha`)
+  - Enable captcha: Enables Friendly Captcha for the current form. You need to [Setup Friendly Captcha](#friendly-captcha-setup) first.
+  - Language: Select the language for the Friendly Captcha. Refer to the language section [here](https://docs.friendlycaptcha.com/#/widget_api?id=data-lang-attribute) to see the available language codes.
+  - Start verification: Choose when the verification should start.
+  - Theme: Choose between light and dark theme.
+  - Alignment: Alignment for the Friendly Captcha.
 - "Steps" tab (Tab visible if form has "Multiple Steps")
   - Steps: Configure the form steps.
 - "Review" tab (Tab visible if form has "Multiple Steps", content depends on review selection)
@@ -437,6 +451,78 @@ Scrivito.provideEditingConfig("FormSliderWidget", {
 
 Please note that this example is intended to provide a basic demonstration of creating a custom form widget. It does not include styles or detailed CSS. You can further enhance the appearance and functionality of your custom widgets to match your specific design and usability requirements.
 
+# Captcha Support
+
+We currently support the Google reCAPTCHA v2 Checkbox challenge and the GDPR compliant Friendly Captcha with global endpoint (paid service). Follow [these](#google-recaptcha-developer-setup) steps to set up Google reCAPTCHA and [these](#friendly-captcha-setup) steps to setup Friendly Captcha for your site.
+### Note
+You can only use one of them for your site, but you can change it later if needed.  
+
+## Google reCAPTCHA Developer Setup
+   1. **Login to Google:** Sign in to your Google account or create one.
+   2. **Go to the Google reCAPTCHA Admin Panel:** [Google reCAPTCHA Admin Panel](https://www.google.com/recaptcha/admin)
+   3. **Create a New Site:** Click on the + button to create a new site.
+   4. **Add Site Label:** Give your site a label.
+   5. **Select reCAPTCHA Type:** In the reCAPTCHA type, choose "Checkbox (v2)" and select "I'm not a robot" Checkbox.
+   6. **Add Your Domains:** Add the domains where you will be using the reCAPTCHA. You can add multiple domains.
+   7. **Submit the Request:** Click on the "Submit" button. A site key and secret will be generated.
+   8. **Use the siteKey:** Copy the site key and pass it in the initNeoletterFormWidgets function together with the `captchaType`, you will need to set the `captchaType` to `google-recaptcha` like below:
+
+```js
+   import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
+      initNeoletterFormWidgets(
+        process.env.SCRIVITO_TENANT,
+        {
+          siteKey: "your_site_key",
+          captchaType: "google-recaptcha"
+        }
+      );
+```
+   9. **Adjust Security Preferences:** Optionally, open the settings page in the admin panel and adjust the owners or the Security Preference.
+   10. **Configure the Content Security Policy (CSP):** Follow [these](#csp-configuration-for-captcha) instructions to configure the CSP.
+
+Finally you need to setup the secret key in Neoletter to be able to use Google reCAPTCHA within your forms.
+
+## Friendly Captcha Setup
+
+1. **Login to Friendly Captcha:** Login in or create a new account on the [Friendly Captcha](https://friendlycaptcha.com/) site and follow the instructions from the site.
+2. **Create a new Application:** After setup, go to the `Applications` tab and click on `Create new application` and enter the necessary details. Once you have completed this, take note of the sitekey value under the application name, we will need it later.
+3. **Create a new API Key:** Go the the `API Keys` tab and create a new API key. Copy the key somewhere, it will be needed later for the Neoletter configuration.
+4. **Use the siteKey:** Copy the site key and pass it in the initNeoletterFormWidgets function together with the `captchaType`, you will need to set the `captchaType` to `friendly-captcha` like below:
+
+```js
+   import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
+      initNeoletterFormWidgets(
+        process.env.SCRIVITO_TENANT,
+        {
+          siteKey: "your_site_key",
+          captchaType: "friendly-captcha"
+        }
+      );
+```
+
+5. **Configure the Content Security Policy (CSP):** Follow [these](#csp-configuration-for-captcha) instructions to configure the CSP.
+
+Finally you need to setup the API key in Neoletter to be able to use Friendly Captcha within your forms.
+
+### CSP Configuration for captcha
+ The configuration of the CSP is identical regardless of whether you're using the Example App or the Portal App. 
+
+For the Example App, navigate to or open _headersCsp.json located in the public folder.
+  
+For the Portal App, navigate to headers.config.ts located in the root of the project.
+
+For the Google reCAPTCHA, add the following URLs to the "script-src" section:
+```json
+"https://www.google.com/recaptcha/",
+"https://www.gstatic.com/recaptcha/"
+```
+For the Friendly Captcha, you need to add the following URLs to the "script-src" section:
+```json
+"blob:",
+"'wasm-unsafe-eval'"
+```
+For more information regarding CSP, please refer to the CSP section in the Friendly Captcha Docs found [here](https://docs.friendlycaptcha.com/#/csp) or in the Google reCAPTCHA FAQ found [here](https://developers.google.com/recaptcha/docs/faq?hl=de#im-using-content-security-policy-csp-on-my-website.-how-can-i-configure-it-to-work-with-recaptcha)
+
 # Local Development
 
 To develop and test the package locally, follow these steps:
@@ -453,7 +539,7 @@ Link the local package:
 ```shell
 npm run link:vite-project
 ```
-Edit `index.ts` in the Widgets folder and add the following import:
+Edit `index.ts` in the Widgets folder in the Example App and add the following import:
 ```js
   import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
 ```
@@ -464,6 +550,10 @@ initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
 Import the package styles into the index.scss file in the assets/stylesheets folder:
 ```scss
 @import 'scrivito-neoletter-form-widgets/index.css';
+```
+Either install the friendly-challenge & the react-google-recaptcha or link them from the node_modules folder:
+```shell
+npm install friendly-challenge react-google-recaptcha
 ```
 **Note:**
 
@@ -484,7 +574,7 @@ Link the local package:
 ```shell
 npm run link
 ```
-Edit `index.js` in the Widgets folder and add the following import:
+Edit `index.js` in the Widgets folder in the Portal App and add the following import:
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
 ```
@@ -497,4 +587,8 @@ initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
 Import the package styles into the `index.scss` file in the assets/stylesheets folder:
 ```scss
 @import 'scrivito-neoletter-form-widgets/index.css';
+```
+Either install the friendly-challenge & the react-google-recaptcha or link them from the node_modules folder:
+```shell
+npm install friendly-challenge react-google-recaptcha
 ```

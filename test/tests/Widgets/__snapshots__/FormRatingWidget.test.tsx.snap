@@ -16,6 +16,8 @@ exports[`FormRatingWidget Component renders correctly 1`] = `
         </span>
         <i
           className="bi bi-question-circle"
+          onBlur={[Function]}
+          onFocus={[Function]}
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         />

@@ -1,5 +1,6 @@
 // Styles for FormContainerWidget
 .scrivito-neoletter-form-widgets.form-container-widget {
+
   .dropdown-container,
   .select-container {
     .select-title {
@@ -7,14 +8,17 @@
       align-items: baseline;
     }
   }
+
   .text-super {
     vertical-align: super;
   }
+
   .text-mandatory {
     font-weight: 700;
     color: var(--bs-danger, #f03a47); //$secondary;
     cursor: default;
   }
+
   .rating-icon.bi {
     color: grey;
   }
@@ -28,6 +32,7 @@
     width: 0;
     z-index: -1;
   }
+
   .form-buttons {
     display: flex;
     flex-direction: row;
@@ -41,6 +46,7 @@
       justify-content: center;
       align-items: center;
     }
+
     .review-button {
       margin-right: 1em;
     }
@@ -49,41 +55,71 @@
   .hide {
     display: none;
   }
+
   &.form-border {
     border: black 1px dotted;
     padding: 0.5em;
   }
+
+  .captcha-container {
+    display: flex;
+
+    &.left {
+      justify-content: left;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.right {
+      justify-content: right;
+    }
+  }
+
+  .missing-site-key {
+    border: #f03a47 1px solid;
+    padding: 1em 0;
+  }
+
   // Bootstrap Icons - Sizes Add-on
   .bi {
     &.bi-1x {
       font-size: 1em;
       line-height: 1;
     }
+
     &.bi-default {
       font-size: 1.3em;
       line-height: 1;
     }
+
     &.bi-2x {
       font-size: 2em;
       line-height: 1;
     }
+
     &.bi-3x {
       font-size: 3em;
       line-height: 1;
     }
+
     &.bi-4x {
       font-size: 4em;
       line-height: 1;
     }
+
     &.bi-5x {
       font-size: 5em;
       line-height: 1;
     }
   }
+
   @keyframes rotate-icon {
     0% {
       transform: rotate(0deg);
     }
+
     100% {
       transform: rotate(360deg);
     }
@@ -101,28 +137,32 @@
 .bg-grey,
 .bg-greydark,
 .bg-greymiddle {
-  .missing-tenant,
-  .scrivito-neoletter-form-widgets.form-container-widget
-    .linear-scale-container,
+
+  .missing-id,
+  .missing-site-key,
+  .scrivito-neoletter-form-widgets.form-container-widget .linear-scale-container,
   .scrivito-neoletter-form-widgets.form-container-widget .reset-label span,
   .scrivito-neoletter-form-widgets.form-container-widget label,
   .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory,
   .scrivito-neoletter-form-widgets.form-container-widget .bi,
   .scrivito-neoletter-form-widgets.form-container-widget .text-super,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget label,
-  .card.card-theme
-    .scrivito-neoletter-form-widgets.form-container-widget
-    .text-mandatory,
+  .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .bi {
     color: #fff;
   }
+
   // hardcoded for now
   .card .scrivito-neoletter-form-widgets.form-container-widget label {
-    color: #495054 /*$theme-grey */ !important;
+    color: #495054
+      /*$theme-grey */
+      !important;
   }
+
   .card .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory {
     color: red !important;
   }
+
   .card .scrivito-neoletter-form-widgets.form-container-widget .bi {
     color: #ccc !important;
   }
@@ -156,6 +196,7 @@ body .modal-dialog .modal-content .modal-body.form-review {
       }
     }
   }
+
   .review-item-title {
     color: #9e9e9e;
     margin-bottom: 0;

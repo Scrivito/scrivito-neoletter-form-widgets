@@ -4,10 +4,11 @@ import * as Scrivito from "scrivito";
 interface FormFooterSingleStepProps {
   widget: Scrivito.Widget;
   onSubmit: React.MouseEventHandler;
+  submitDisabled: boolean;
 }
 
 export const FormFooterSingleStep: React.FC<FormFooterSingleStepProps> =
-  Scrivito.connect(({ widget, onSubmit }) => {
+  Scrivito.connect(({ widget, onSubmit, submitDisabled }) => {
     return (
       <div
         className={`${
@@ -21,7 +22,9 @@ export const FormFooterSingleStep: React.FC<FormFooterSingleStepProps> =
               ? " btn-block"
               : ""
           }`}
-          onClick={onSubmit}>
+          onClick={onSubmit}
+          disabled={submitDisabled}
+          >
           {widget.get("submitButtonText") as string}
         </button>
       </div>

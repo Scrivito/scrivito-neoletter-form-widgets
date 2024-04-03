@@ -16,6 +16,8 @@ exports[`FormDateWidget renders correctly 1`] = `
         </span>
         <span
           className="text-mandatory"
+          onBlur={[Function]}
+          onFocus={[Function]}
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
@@ -23,6 +25,8 @@ exports[`FormDateWidget renders correctly 1`] = `
         </span>
         <i
           className="bi bi-question-circle"
+          onBlur={[Function]}
+          onFocus={[Function]}
           onMouseOut={[Function]}
           onMouseOver={[Function]}
         />

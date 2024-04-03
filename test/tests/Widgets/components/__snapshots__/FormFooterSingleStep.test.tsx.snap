@@ -6,6 +6,7 @@ exports[`FormFooterSingleStep renders correctly 1`] = `
 >
   <button
     className="btn btn-primary"
+    disabled={false}
     onClick={[Function]}
   >
     Send

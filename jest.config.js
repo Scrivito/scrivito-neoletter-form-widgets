@@ -3,10 +3,24 @@ module.exports = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '\\.(css|scss)$': 'identity-obj-proxy',
-      "^lodash-es$": "lodash"
+    "^lodash-es$": "lodash"
   },
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        diagnostics: {
+          ignoreCodes: [1343]
+        },
+        astTransformers: {
+          before: [
+            {
+              path: 'ts-jest-mock-import-meta'
+            }
+          ]
+        }
+      }
+    ],
     '^.+\\.scss$': 'jest-transform-stub',
     '^.+\\.(js|jsx|mjs)$': 'babel-jest',
   },
