@@ -6,7 +6,6 @@ let _instanceId: string = "";
 let _captchaOptions: CaptchaOptions = {
   siteKey: "",
   captchaType: null
- // endpoint: "global"
 }
 
 export const initNeoletterFormWidgets = (instanceId: string, captchaOptions?: CaptchaOptions): void => {

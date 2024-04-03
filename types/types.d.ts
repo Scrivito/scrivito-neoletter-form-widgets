@@ -15,7 +15,6 @@ export type CaptchaType = "google-recaptcha" | "friendly-captcha" | null;
 export interface CaptchaOptions {
   siteKey: string;
   captchaType: CaptchaType;
- // endpoint: CaptchaEndpoint;
 }
 export type CaptchaStartMode = "auto" | "focus" | "none";
 export type CaptchaEndpoint = "global" | "eu";
