@@ -4,18 +4,14 @@ import { isEmpty } from "lodash-es";
 import { getCaptchaOptions } from "../../../config/scrivitoConfig";
 import { FriendlyCaptcha } from "./FriendlyCaptchaComponent";
 import { GoogleReCaptcha } from "./GoogleReCaptchaComponent";
-import { CaptchaStartMode, CaptchaTheme } from "../../../../types/types";
 interface FormCaptchaProps {
-	alignment: string;
-	theme: string;
-	startMode: CaptchaStartMode;
-	language: string;
+	widget: Scrivito.Widget;
 	onChangeCaptcha: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export const FormCaptcha: React.FC<FormCaptchaProps> = ({ onChangeCaptcha, theme, startMode, alignment, language }) => {
+export const FormCaptcha: React.FC<FormCaptchaProps> = ({ onChangeCaptcha, widget }) => {
 	const options = getCaptchaOptions();
-
+	const alignment = widget.get("captchaAlignment") || "center";
 	if (Scrivito.isInPlaceEditingActive() && isEmpty(options.siteKey)) {
 		return (
 			<div className="text-center missing-site-key">
@@ -33,16 +29,13 @@ export const FormCaptcha: React.FC<FormCaptchaProps> = ({ onChangeCaptcha, theme
 				<GoogleReCaptcha
 					onChangeCaptcha={onChangeCaptcha}
 					siteKey={options.siteKey}
-					theme={theme as CaptchaTheme}
-					language={language}
+					widget={widget}
 				/>
 				:
 				<FriendlyCaptcha
 					onChangeCaptcha={onChangeCaptcha}
 					siteKey={options.siteKey}
-					theme={theme}
-					startMode={startMode}
-					language={isEmpty(language) ? undefined : language}
+					widget={widget}
 					endpoint={"global"}
 				/>
 			}

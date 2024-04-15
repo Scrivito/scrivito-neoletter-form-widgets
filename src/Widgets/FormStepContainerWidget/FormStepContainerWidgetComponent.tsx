@@ -13,7 +13,7 @@ import { FormSubmissionSucceeded } from "./components/FormSubmissionSucceededCom
 import { FormSubmitting } from "./components/FormSubmittingComponent";
 import { FormStepContainerWidget } from "./FormStepContainerWidgetClass";
 import { FormCaptcha } from "./components/FormCaptchaComponent";
-import { CaptchaStartMode, InputValidationElement } from "../../../types/types";
+import { InputValidationElement } from "../../../types/types";
 import "./FormStepContainerWidget.scss";
 import "bootstrap-icons/font/bootstrap-icons.scss";
 
@@ -27,7 +27,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [successfullySent, setSuccessfullySent] = React.useState(false);
   const [submissionFailed, setSubmissionFailed] = React.useState(false);
-  const [reCaptchaToken, setReCaptchaToken] = React.useState<string|null>(null);
+  const [reCaptchaToken, setReCaptchaToken] = React.useState<string | null>(null);
   const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(false);
   const isSingleStep = widget.get("formType") == "single-step";
   const stepsLength = widget.get("steps").length;
@@ -88,9 +88,8 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
 
   return (
     <div
-      className={`scrivito-neoletter-form-widgets form-container-widget ${
-        widget.get("showBorder") ? "form-border" : ""
-      }`}>
+      className={`scrivito-neoletter-form-widgets form-container-widget ${widget.get("showBorder") ? "form-border" : ""
+        }`}>
       <form method="post" id={widget.get("formId")}>
         <FormHiddenFields widget={widget} />
         <Scrivito.ContentTag
@@ -114,11 +113,8 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
         />
         {(showCaptcha && (isLastPage || Scrivito.isInPlaceEditingActive())) &&
           <FormCaptcha
-            alignment={widget.get("captchaAlignment") || "center"}
-            theme={widget.get("captchaTheme") || "light"}
-            startMode={widget.get("captchaStartMode") as CaptchaStartMode || "none"}
+            widget={widget}
             onChangeCaptcha={setReCaptchaToken}
-            language={widget.get("captchaLanguage")}
           />
         }
       </form>

@@ -16,6 +16,6 @@ export interface CaptchaOptions {
   siteKey: string;
   captchaType: CaptchaType;
 }
-export type CaptchaStartMode = "auto" | "focus" | "none";
-export type CaptchaEndpoint = "global" | "eu";
+export type FriendlyCaptchaStartMode = "auto" | "focus" | "none";
+export type FriendlyCaptchaEndpoint = "global" | "eu";
 export type CaptchaTheme = "light" | "dark";

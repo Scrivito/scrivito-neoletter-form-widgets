@@ -19,17 +19,28 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       title: "Enable captcha",
       description: "Enables captcha for this form."
     },
-    captchaTheme: {
+    googleRecaptchaTheme: {
       title: "Theme",
-      description: getCaptchaOptions().captchaType == "google-recaptcha" ? "Changes are applied after refreshing the page." : "",
+      description: "Changes are applied after refreshing the page.",
       values: [
         { value: "light", title: "Light" },
         { value: "dark", title: "Dark" }
       ]
     },
-    captchaLanguage: {
+    friendlyCaptchaTheme: {
+      title: "Theme",
+      values: [
+        { value: "light", title: "Light" },
+        { value: "dark", title: "Dark" }
+      ]
+    },
+    googleRecaptchaLanguage: {
       title: "Language",
-      description: getCaptchaOptions().captchaType == "google-recaptcha" ? "Google reCAPTCHA automatically adapts to the browser`s language setting. Changes are applied after refreshing the page." : "Defaults to English. Changes are applied after refreshing the page."
+      description: "Google reCAPTCHA automatically adapts to the browser`s language setting. Changes are applied after refreshing the page."
+    },
+    friendlyCaptchaLanguage: {
+      title: "Language",
+      description: "Defaults to English. Changes are applied after refreshing the page."
     },
     captchaAlignment: {
       title: "Alignment",
@@ -39,7 +50,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
         { value: "right", title: "Right" }
       ]
     },
-    captchaStartMode: {
+    friendlyCaptchaStartMode: {
       title: "Start verification",
       description: "Specify when the captcha should start the verification process.",
       values: [
@@ -222,8 +233,9 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     showBorder: false,
     // captcha stuff
     showCaptcha: false,
-    captchaTheme: "light",
-    captchaStartMode: "none",
+    friendlyCaptchaTheme: "light",
+    googleRecaptchaTheme: "light",
+    friendlyCaptchaStartMode: "none",
     captchaAlignment: "center",
     // review stuff
     showReview: false,
@@ -341,12 +353,12 @@ function getCaptchaProperties(widget: Scrivito.Widget): string[] {
   const captchaPropsDisabled = ["showCaptcha"];
   const captchaPropsEnabled = [
     "showCaptcha",
-    "captchaLanguage",
-    "captchaTheme",
+    getCaptchaOptions().captchaType == "friendly-captcha" ? "friendlyCaptchaLanguage" : "googleRecaptchaLanguage",
+    getCaptchaOptions().captchaType == "friendly-captcha" ? "friendlyCaptchaTheme" : "googleRecaptchaTheme",
     "captchaAlignment"
   ];
   if (getCaptchaOptions().captchaType == "friendly-captcha") {
-    captchaPropsEnabled.splice(2, 0, "captchaStartMode");
+    captchaPropsEnabled.splice(2, 0, "friendlyCaptchaStartMode");
   }
   return widget.get("showCaptcha") ? captchaPropsEnabled : captchaPropsDisabled;
 }

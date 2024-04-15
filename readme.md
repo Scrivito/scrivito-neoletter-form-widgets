@@ -491,7 +491,7 @@ initNeoletterFormWidgets(process.env.SCRIVITO_TENANT, {
 
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
-initNeoletterFormWidgets({
+initNeoletterFormWidgets(null, {
   siteKey: "your_site_key",
   captchaType: "google-recaptcha"
 });
@@ -523,7 +523,7 @@ initNeoletterFormWidgets(process.env.SCRIVITO_TENANT, {
 
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
-initNeoletterFormWidgets({
+initNeoletterFormWidgets(null, {
   siteKey: "your_site_key",
   captchaType: "friendly-captcha"
 });
