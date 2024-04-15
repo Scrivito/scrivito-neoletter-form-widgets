@@ -25,12 +25,18 @@ Install the package into your scrivito app:
 npm install scrivito-neoletter-form-widgets
 ```
 
-Import the `initNeoletterFormWidgets` function from the package, and call it in your index.js file found in the Widgets folder (e.g. in `src/Widgets/index.js`), passing your Scrivito tenant ID to the function:
+## Importing and Initializing
+
+Import the `initNeoletterFormWidgets` function from the package and call it in your index.js file found in the Widgets folder (e.g., in `src/Widgets/index.js`). If you are using Scrivito version 1.39.0 or later, you do not need to pass your Scrivito tenant ID to the function. However, if you are using a Scrivito version prior to 1.39.0, you must provide your tenant ID as an argument.
 
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
 
-initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
+// If using Scrivito version 1.39.0 or later
+initNeoletterFormWidgets();
+
+// If using Scrivito version prior to 1.39.0
+// initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
 ```
 
 Add the widget styles to your app.
@@ -471,9 +477,21 @@ You can only use one of them for your site, but you can change it later if neede
 7.  **Submit the Request:** Click on the "Submit" button. A site key and secret will be generated.
 8.  **Use the siteKey:** Copy the site key and pass it in the initNeoletterFormWidgets function together with the `captchaType`, you will need to set the `captchaType` to `google-recaptcha` like below:
 
+- Using Scrivito version prior to 1.39.0:
+
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
 initNeoletterFormWidgets(process.env.SCRIVITO_TENANT, {
+  siteKey: "your_site_key",
+  captchaType: "google-recaptcha"
+});
+```
+
+- Using Scrivito version 1.39.0 or later:
+
+```js
+import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
+initNeoletterFormWidgets({
   siteKey: "your_site_key",
   captchaType: "google-recaptcha"
 });
@@ -491,9 +509,21 @@ Finally you need to setup the secret key in Neoletter to be able to use Google r
 3. **Create a new API Key:** Go the the `API Keys` tab and create a new API key. Copy the key somewhere, it will be needed later for the Neoletter configuration.
 4. **Use the siteKey:** Copy the site key and pass it in the initNeoletterFormWidgets function together with the `captchaType`, you will need to set the `captchaType` to `friendly-captcha` like below:
 
+- Using Scrivito version prior to 1.39.0:
+
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
 initNeoletterFormWidgets(process.env.SCRIVITO_TENANT, {
+  siteKey: "your_site_key",
+  captchaType: "friendly-captcha"
+});
+```
+
+- Using Scrivito version 1.39.0 or later:
+
+```js
+import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
+initNeoletterFormWidgets({
   siteKey: "your_site_key",
   captchaType: "friendly-captcha"
 });
@@ -555,10 +585,18 @@ Edit `index.ts` in the Widgets folder in the Portal App and add the following im
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets/src";
 ```
 
-Below this import, call the `initNeoletterFormWidgets` function and pass your Scrivito tenant ID:
+Below this import, call the `initNeoletterFormWidgets` function:
+
+- Using Scrivito version prior to 1.39.0:
 
 ```js
 initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
+```
+
+- Using Scrivito version 1.39.0 or later:
+
+```js
+initNeoletterFormWidgets();
 ```
 
 Either install the friendly-challenge & the react-google-recaptcha or link them from the node_modules folder:
@@ -605,10 +643,18 @@ Edit `index.js` in the Widgets folder in the Example App and add the following i
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
 ```
 
-Below this import, call the `initNeoletterFormWidgets` function and pass your Scrivito tenant ID:
+Below this import, call the `initNeoletterFormWidgets` function:
+
+- Using Scrivito version prior to 1.39.0:
 
 ```js
 initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
+```
+
+- Using Scrivito version 1.39.0 or later:
+
+```js
+initNeoletterFormWidgets();
 ```
 
 Import the package styles into the `index.scss` file in the assets/stylesheets folder:
