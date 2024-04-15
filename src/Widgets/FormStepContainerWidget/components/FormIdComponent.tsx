@@ -18,7 +18,7 @@ export const FormIdComponent: React.FC<FormIdComponentProps> = Scrivito.connect(
     if (!uiContext) return null;
 
     return (
-      <div className={`scrivito_${uiContext.theme}`}>
+      <div className={`neoletter-form-id-tab-container scrivito_${uiContext.theme}`}>
         <div className="scrivito_detail_content">
           <div className="attribute_form_id_item">
             <ContentProperty
