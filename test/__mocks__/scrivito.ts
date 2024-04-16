@@ -12,5 +12,6 @@ module.exports = {
   urlFor: jest.fn(() => "mocked-url"),
   validationResultsFor: jest.fn().mockReturnValue(validationResults),
   uiContext: jest.fn().mockReturnValue(mockUiContext),
-  canWrite: jest.fn().mockReturnValue(true)
+  canWrite: jest.fn().mockReturnValue(true),
+  getInstanceId: jest.fn().mockReturnValue("123")
 };
