@@ -4,6 +4,10 @@ A set of Scrivito Widgets for building awesome forms
 
 **[Neoletter](https://www.neoletter.com)** | **[Scrivito](https://www.scrivito.com)**
 
+## Minimum Required Scrivito Version
+
+To use this package, you must have Scrivito version 1.30.0 or later installed in your project.
+
 # Features
 
 - Single-step & multiple-step forms
