@@ -5,7 +5,6 @@ import { AllIcons } from "./AllIcons";
 import { IconSearch } from "./IconSearch";
 import { IconSearchResults } from "./IconSearchResults";
 import { getIconColor } from "../../FormStepContainerWidget/utils/getIconColor";
-import "./IconEditorTab.scss";
 
 interface IconEditorTabProps {
   widget: Scrivito.Widget;
@@ -30,14 +29,15 @@ export const IconEditorTab: React.FC<IconEditorTabProps> = ({ widget }) => {
               className={`bi ${currentIcon}`}
               style={{
                 color: color
-              }}></i>
+              }}
+            ></i>
           </div>
 
           {Scrivito.canWrite() && (
             <>
               <IconSearch
                 searchValue={searchValue}
-                setSearchValue={newSearchValue => {
+                setSearchValue={(newSearchValue) => {
                   if (searchValue !== newSearchValue) {
                     setSearchValue(newSearchValue);
                   }
