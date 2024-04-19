@@ -27,7 +27,9 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [successfullySent, setSuccessfullySent] = React.useState(false);
   const [submissionFailed, setSubmissionFailed] = React.useState(false);
-  const [reCaptchaToken, setReCaptchaToken] = React.useState<string | null>(null);
+  const [reCaptchaToken, setReCaptchaToken] = React.useState<string | null>(
+    null
+  );
   const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(false);
   const isSingleStep = widget.get("formType") == "single-step";
   const stepsLength = widget.get("steps").length;
@@ -88,8 +90,10 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
 
   return (
     <div
-      className={`scrivito-neoletter-form-widgets form-container-widget ${widget.get("showBorder") ? "form-border" : ""
-        }`}>
+      className={`scrivito-neoletter-form-widgets form-container-widget ${
+        widget.get("showBorder") ? "form-border" : ""
+      }`}
+    >
       <form method="post" id={widget.get("formId")}>
         <FormHiddenFields widget={widget} />
         <Scrivito.ContentTag
@@ -111,15 +115,16 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
             }
           }}
         />
-        {(showCaptcha && (isLastPage || Scrivito.isInPlaceEditingActive())) &&
-          <FormCaptcha
-            widget={widget}
-            onChangeCaptcha={setReCaptchaToken}
-          />
-        }
+        {showCaptcha && (isLastPage || Scrivito.isInPlaceEditingActive()) && (
+          <FormCaptcha widget={widget} onChangeCaptcha={setReCaptchaToken} />
+        )}
       </form>
       {isSingleStep ? (
-        <FormFooterSingleStep widget={widget} onSubmit={onSubmit} submitDisabled={isSubmitDisabled} />
+        <FormFooterSingleStep
+          widget={widget}
+          onSubmit={onSubmit}
+          submitDisabled={isSubmitDisabled}
+        />
       ) : (
         <FormFooterMultiSteps
           widget={widget}
