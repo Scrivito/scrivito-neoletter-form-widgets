@@ -213,3 +213,156 @@ body .modal-dialog .modal-content .modal-body.form-review {
     overflow-x: auto;
   }
 }
+
+// FormIdComponent tab 
+.neoletter-form-id-tab-container {
+  .scrivito_detail_content {
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+    margin: 0;
+    padding: 15px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+
+    .scrivito_detail_label {
+      display: block;
+      padding: 0;
+      padding-bottom: 4px;
+      width: 100%;
+
+      span {
+        padding: 7px 3px 6px 3px;
+        color: #444;
+        display: block;
+        font-size: 13px;
+        font-weight: bold;
+        font-family: "Manrope", sans-serif;
+      }
+
+      &.scrivito_error {
+
+        i,
+        span {
+          color: #c04e4e !important;
+        }
+
+        .scrivito_icon_error {
+          float: left;
+          padding: 9px 3px;
+          font-size: 11px;
+          font-style: normal;
+          font-weight: normal;
+          line-height: 13px !important;
+          vertical-align: middle;
+          text-decoration: none;
+          position: relative;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          -o-user-select: none;
+          user-select: none;
+        }
+      }
+    }
+
+    .content_property_input {
+      margin-bottom: 5px;
+      box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+      border-radius: 3px;
+      background: white;
+      color: #555;
+      display: block;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      margin-bottom: 5px;
+      padding: 0 8px;
+      min-height: 30px;
+      line-height: 30px;
+      word-break: break-all;
+
+      &.scrivito_error {
+        box-shadow: 0 0 0 2px #c04e4e inset;
+      }
+    }
+
+    .scrivito_validation_notice {
+      border-left-width: 7px !important;
+      padding: 5px 10px;
+      font-size: 11px;
+      min-height: 30px;
+      line-height: 19px;
+      font-weight: normal;
+      margin-bottom: 5px;
+      box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+      border-radius: 3px;
+      background: rgba(255, 255, 255, .6);
+
+      &.scrivito_error {
+        border-left: 2px solid #c04e4e;
+        color: #666;
+        box-shadow: 0 0 0 2px #c04e4e inset;
+      }
+    }
+
+    .scrivito_notice_body {
+      color: #666;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 0 0 10px;
+    }
+
+    .scrivito_button {
+      display: inline-block;
+      color: #555;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 14px;
+      text-align: center;
+      padding: 8px 10px;
+      margin: 0 10px 10px 0;
+      position: relative;
+      z-index: 1;
+      vertical-align: middle;
+      min-width: 90px;
+      min-height: 14px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: #fcfcfc;
+      border-radius: 3px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+      text-decoration: none;
+
+      &.scrivito_disabled {
+        color: #aaa !important;
+        cursor: not-allowed;
+        background: #eee;
+      }
+
+      &.scrivito_blue {
+        background: #426698 !important;
+        color: #fff !important;
+      }
+    }
+  }
+
+  &.scrivito_dark {
+    .scrivito_detail_label span {
+      color: #eee;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, .3), 0 0 4px rgba(0, 0, 0, .2);
+    }
+
+    .content_property_input {
+      background: rgba(222, 222, 222, .2);
+      color: #eee;
+    }
+
+    .scrivito_validation_notice {
+      color: #eee !important;
+      background: rgba(222, 222, 222, 0.2);
+    }
+  }
+}

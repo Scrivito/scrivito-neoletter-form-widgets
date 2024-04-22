@@ -5,6 +5,7 @@ import { AllIcons } from "./AllIcons";
 import { IconSearch } from "./IconSearch";
 import { IconSearchResults } from "./IconSearchResults";
 import { getIconColor } from "../../FormStepContainerWidget/utils/getIconColor";
+import "./IconEditorTab.scss";
 
 interface IconEditorTabProps {
   widget: Scrivito.Widget;

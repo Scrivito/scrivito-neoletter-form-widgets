@@ -20,11 +20,7 @@ module.exports = (_env, argv) => {
         { from: "../LICENSE", to: BUILD_PATH },
         { from: "../package.json", to: BUILD_PATH },
         { from: "../readme.md", to: BUILD_PATH },
-        { from: "../src/index.d.ts", to: BUILD_PATH },
-        {
-          from: "../src/assets/stylesheets/scrivitoExtensions.scss",
-          to: BUILD_PATH
-        }
+        { from: "../src/index.d.ts", to: BUILD_PATH }
       ]
     }),
     new MiniCssExtractPlugin({
