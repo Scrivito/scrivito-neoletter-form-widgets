@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Popover, OverlayTrigger } from "react-bootstrap";
+import OverlayTrigger from "react-bootstrap/esm/OverlayTrigger";
+import Popover from "react-bootstrap/esm/Popover";
 import * as Scrivito from "scrivito";
 interface HelpTextProps {
   widget: Scrivito.Widget;
@@ -16,7 +17,8 @@ export const HelpText: React.FC<HelpTextProps> = ({ widget }) => {
             </Scrivito.InPlaceEditingOff>
           </Popover.Body>
         </Popover>
-      }>
+      }
+    >
       <i className="bi bi-question-circle"></i>
     </OverlayTrigger>
   );

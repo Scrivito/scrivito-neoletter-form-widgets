@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Popover, OverlayTrigger } from "react-bootstrap";
+import OverlayTrigger from "react-bootstrap/esm/OverlayTrigger";
+import Popover from "react-bootstrap/esm/Popover";
 
 export const Mandatory = () => {
   return (
@@ -9,7 +10,8 @@ export const Mandatory = () => {
         <Popover>
           <Popover.Body>mandatory</Popover.Body>
         </Popover>
-      }>
+      }
+    >
       <span className="text-mandatory">*</span>
     </OverlayTrigger>
   );
