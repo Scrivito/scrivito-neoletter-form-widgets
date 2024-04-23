@@ -6,7 +6,8 @@ import { getFormContainer } from "./utils/getFormContainer";
 import { FormStepWidget } from "../FormStepWidget/FormStepWidgetClass";
 import { getCaptchaOptions, getInstanceId } from "../../config/scrivitoConfig";
 import { FormIdComponent } from "./components/FormIdComponent";
-import { isEmpty } from "lodash-es";
+import isEmpty from "lodash-es/isEmpty";
+
 Scrivito.provideEditingConfig("FormStepContainerWidget", {
   title: "Neoletter Form",
   thumbnail: formContainerWidgetIcon,

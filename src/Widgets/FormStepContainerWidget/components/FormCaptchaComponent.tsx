@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { isEmpty } from "lodash-es";
+import isEmpty from "lodash-es/isEmpty";
 import { getCaptchaOptions } from "../../../config/scrivitoConfig";
 import { FriendlyCaptcha } from "./FriendlyCaptchaComponent";
 import { GoogleReCaptcha } from "./GoogleReCaptchaComponent";

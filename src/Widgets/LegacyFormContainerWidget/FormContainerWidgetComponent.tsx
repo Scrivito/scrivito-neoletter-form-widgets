@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { isEmpty } from "lodash-es";
+import isEmpty from "lodash-es/isEmpty";
+
 import { scrollIntoView } from "../FormStepContainerWidget/utils/scrollIntoView";
 import { getInstanceId } from "../../config/scrivitoConfig";
 import { submitForm } from "../FormStepContainerWidget/utils/submitForm";

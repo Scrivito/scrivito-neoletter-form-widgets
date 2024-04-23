@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Scrivito from "scrivito";
-import { isEmpty } from "lodash-es";
+import isEmpty from "lodash-es/isEmpty";
+
 import { CaptchaOptions } from "../../types/types";
 
 export const initNeoletterFormWidgets = (

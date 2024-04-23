@@ -1,4 +1,4 @@
-import { isEmpty } from "lodash-es";
+import isEmpty from "lodash-es/isEmpty";
 
 export function loadEditingConfigs(): void {
   if (isEmpty(import.meta)) {

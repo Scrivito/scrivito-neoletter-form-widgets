@@ -1,7 +1,7 @@
 import { Widget } from "scrivito";
 import { getFieldName } from "./getFieldName";
 import { getFormContainer } from "./getFormContainer";
-import { isEmpty } from "lodash-es";
+import isEmpty from "lodash-es/isEmpty";
 
 export function isFieldNameUnique(widget: Widget) {
   const fieldName = getFieldName(widget);
@@ -17,7 +17,7 @@ export function isFieldNameUnique(widget: Widget) {
   const otherWidget = formContainer
     .widgets()
     .find(
-      child => getFieldName(child) === fieldName && child.id() !== widget.id()
+      (child) => getFieldName(child) === fieldName && child.id() !== widget.id()
     );
 
   return !otherWidget;

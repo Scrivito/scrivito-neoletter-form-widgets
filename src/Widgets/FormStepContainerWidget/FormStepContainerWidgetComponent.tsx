@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { isEmpty } from "lodash-es";
+import isEmpty from "lodash-es/isEmpty";
+
 import { scrollIntoView } from "./utils/scrollIntoView";
 import { FormFooterMultiSteps } from "./components/FormFooterMultiStepsComponent";
 import { FormFooterSingleStep } from "./components/FormFooterSingleStepComponent";

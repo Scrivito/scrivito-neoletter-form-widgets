@@ -1,7 +1,9 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { map, range } from "lodash-es";
+import map from "lodash-es/map";
+import range from "lodash-es/range";
 import { SelectItem } from "./SelectComponent";
+
 const LOWER_LIMIT_FALLBACK = 0;
 const UPPER_LIMIT_FALLBACK = 5;
 
@@ -49,5 +51,5 @@ function getScaleItems(widget: Scrivito.Widget): string[] {
     parseInt(widget.get("linearScaleUpperLimit") as string) ||
     UPPER_LIMIT_FALLBACK;
 
-  return map(range(lowerLimit, upperLimit + 1), num => num.toString());
+  return map(range(lowerLimit, upperLimit + 1), (num) => num.toString());
 }
