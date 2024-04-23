@@ -1,6 +1,6 @@
 import * as React from "react";
-import OverlayTrigger from "react-bootstrap/esm/OverlayTrigger";
-import Popover from "react-bootstrap/esm/Popover";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Popover from "react-bootstrap/Popover";
 
 export const Mandatory = () => {
   return (
