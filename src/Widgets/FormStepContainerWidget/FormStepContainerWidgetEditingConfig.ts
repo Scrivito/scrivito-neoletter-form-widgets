@@ -36,11 +36,13 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     },
     googleRecaptchaLanguage: {
       title: "Language",
-      description: "Google reCAPTCHA automatically adapts to the browser`s language setting. Changes are applied after refreshing the page."
+      description:
+        "Google reCAPTCHA automatically adapts to the browser`s language setting. Changes are applied after refreshing the page."
     },
     friendlyCaptchaLanguage: {
       title: "Language",
-      description: "Defaults to English. Changes are applied after refreshing the page."
+      description:
+        "Defaults to English. Changes are applied after refreshing the page."
     },
     captchaAlignment: {
       title: "Alignment",
@@ -52,7 +54,8 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     },
     friendlyCaptchaStartMode: {
       title: "Start verification",
-      description: "Specify when the captcha should start the verification process.",
+      description:
+        "Specify when the captcha should start the verification process.",
       values: [
         { value: "none", title: "After clicking the captcha" },
         { value: "auto", title: "When the form is ready" },
@@ -137,7 +140,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     "submittedMessage",
     "failedMessage"
   ],
-  propertiesGroups: widget => {
+  propertiesGroups: (widget) => {
     const groups = [
       {
         title: "Hidden fields",
@@ -157,7 +160,9 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       }
     ];
     if (widget.get("formType") == "multi-step")
-      groups.splice(1, 0,
+      groups.splice(
+        1,
+        0,
         {
           title: "Steps",
           key: "FormSteps",
@@ -169,9 +174,15 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
           properties: getReviewProperties(widget)
         }
       );
-    if (!isEmpty(getCaptchaOptions().captchaType) && !isEmpty(getCaptchaOptions().siteKey)) {
+    if (
+      !isEmpty(getCaptchaOptions().captchaType) &&
+      !isEmpty(getCaptchaOptions().siteKey)
+    ) {
       groups.splice(0, 0, {
-        title: getCaptchaOptions().captchaType == "friendly-captcha" ? "Friendly Captcha" : "Google reCAPTCHA",
+        title:
+          getCaptchaOptions().captchaType == "friendly-captcha"
+            ? "Friendly Captcha"
+            : "Google reCAPTCHA",
         key: "FormStepContainerWidgetCaptcha",
         properties: getCaptchaProperties(widget)
       });
@@ -267,7 +278,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
 
     [
       "submittingMessage",
-      submittingMessage => {
+      (submittingMessage) => {
         if (!submittingMessage) {
           return "Specify the message to be displayed during form submission.";
         }
@@ -276,7 +287,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
 
     [
       "submittedMessage",
-      submittedMessage => {
+      (submittedMessage) => {
         if (!submittedMessage) {
           return "Specify the message to be displayed after successful form submission.";
         }
@@ -285,7 +296,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
 
     [
       "failedMessage",
-      failedMessage => {
+      (failedMessage) => {
         if (!failedMessage) {
           return "Specify the message to be displayed after form submission failed.";
         }
@@ -353,8 +364,12 @@ function getCaptchaProperties(widget: Scrivito.Widget): string[] {
   const captchaPropsDisabled = ["showCaptcha"];
   const captchaPropsEnabled = [
     "showCaptcha",
-    getCaptchaOptions().captchaType == "friendly-captcha" ? "friendlyCaptchaLanguage" : "googleRecaptchaLanguage",
-    getCaptchaOptions().captchaType == "friendly-captcha" ? "friendlyCaptchaTheme" : "googleRecaptchaTheme",
+    getCaptchaOptions().captchaType == "friendly-captcha"
+      ? "friendlyCaptchaLanguage"
+      : "googleRecaptchaLanguage",
+    getCaptchaOptions().captchaType == "friendly-captcha"
+      ? "friendlyCaptchaTheme"
+      : "googleRecaptchaTheme",
     "captchaAlignment"
   ];
   if (getCaptchaOptions().captchaType == "friendly-captcha") {
