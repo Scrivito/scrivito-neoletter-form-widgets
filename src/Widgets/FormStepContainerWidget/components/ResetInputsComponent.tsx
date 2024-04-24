@@ -1,5 +1,4 @@
 import * as React from "react";
-import each from "lodash-es/each";
 
 interface ResetInputsProps {
   text: string;
@@ -16,7 +15,7 @@ export const ResetInputs: React.FC<ResetInputsProps> = ({
     if (parentRef.current) {
       const inputs = parentRef.current.getElementsByTagName("input");
       const inputArray = Array.from(inputs);
-      each(inputArray, (input) => {
+      inputArray.forEach((input) => {
         if (input.type === "radio") {
           input.checked = false;
         }

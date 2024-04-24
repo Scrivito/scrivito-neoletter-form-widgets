@@ -5,7 +5,7 @@ import {
   FriendlyCaptchaEndpoint,
   FriendlyCaptchaStartMode
 } from "../../../../types/types";
-import isEmpty from "lodash-es/isEmpty";
+import { isEmpty } from "../utils/lodashPolyfills";
 
 interface FriendlyCaptchaProps {
   onChangeCaptcha: React.Dispatch<React.SetStateAction<string | null>>;

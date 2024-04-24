@@ -1,4 +1,4 @@
-import times from "lodash-es/times";
+import { times } from "./lodashPolyfills";
 
 export function pseudoRandom32CharHex(): string {
   return times(32).map(pseudoRandomHex).join("");

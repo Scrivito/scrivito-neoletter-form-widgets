@@ -1,4 +1,4 @@
-import isEmpty from "lodash-es/isEmpty";
+import { isEmpty } from "./Widgets/FormStepContainerWidget/utils/lodashPolyfills";
 
 export function loadEditingConfigs(): void {
   if (isEmpty(import.meta)) {

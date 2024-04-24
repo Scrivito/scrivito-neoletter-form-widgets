@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { isEmpty } from "lodash";
+import { isEmpty } from "../../FormStepContainerWidget/utils/lodashPolyfills";
 import { AllIcons } from "./AllIcons";
 import { IconSearch } from "./IconSearch";
 import { IconSearchResults } from "./IconSearchResults";

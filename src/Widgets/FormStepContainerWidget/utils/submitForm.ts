@@ -1,5 +1,4 @@
 import { Widget } from "scrivito";
-import compact from "lodash-es/compact";
 import { getFieldName } from "./getFieldName";
 
 export async function submitForm(
@@ -34,7 +33,7 @@ function getFormData(formElement: HTMLFormElement, formWidget: Widget) {
   }
 
   const formWidgets = formWidget.widgets();
-  const fieldNames = compact(formWidgets.map((w) => getFieldName(w)));
+  const fieldNames = formWidgets.map((w) => getFieldName(w)).filter(Boolean);
   // loop over all form widgets & add unanswered ones
   // e.g. conditionals which are not selected
   for (const name of fieldNames) {

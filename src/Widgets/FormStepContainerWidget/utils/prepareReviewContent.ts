@@ -1,7 +1,5 @@
 import { Widget } from "scrivito";
-import isEmpty from "lodash-es/isEmpty";
-import uniq from "lodash-es/uniq";
-import map from "lodash-es/map";
+import { isEmpty, uniq } from "./lodashPolyfills";
 import { getFieldName } from "./getFieldName";
 import { InputValidationElement, ReviewContent } from "../../../../types/types";
 
@@ -26,7 +24,7 @@ export function prepareReviewContent(widget: Widget): ReviewContent {
   const inputs: InputValidationElement[] = Array.from(
     form.querySelectorAll("input, select, textarea")
   );
-  const inputNames = uniq(map(inputs, (i) => i.name));
+  const inputNames = uniq(inputs.map((i) => i.name));
   const reviewData: ReviewContent = [];
 
   for (const key of inputNames) {

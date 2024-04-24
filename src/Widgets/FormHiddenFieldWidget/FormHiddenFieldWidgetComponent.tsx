@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import isEmpty from "lodash-es/isEmpty";
 
 import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
 import { FormHiddenFieldWidget } from "./FormHiddenFieldWidgetClass";
+import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
 
 Scrivito.provideComponent(FormHiddenFieldWidget, ({ widget }) => {
   const name = getFieldName(widget);

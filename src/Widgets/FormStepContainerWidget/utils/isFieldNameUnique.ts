@@ -1,7 +1,7 @@
 import { Widget } from "scrivito";
 import { getFieldName } from "./getFieldName";
 import { getFormContainer } from "./getFormContainer";
-import isEmpty from "lodash-es/isEmpty";
+import { isEmpty } from "./lodashPolyfills";
 
 export function isFieldNameUnique(widget: Widget) {
   const fieldName = getFieldName(widget);
