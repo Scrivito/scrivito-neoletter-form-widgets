@@ -1,25 +1,37 @@
 import * as React from "react";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Popover from "react-bootstrap/Popover";
 import * as Scrivito from "scrivito";
 interface HelpTextProps {
   widget: Scrivito.Widget;
 }
+
 export const HelpText: React.FC<HelpTextProps> = ({ widget }) => {
+  const [showPopover, setShowPopover] = React.useState(false);
+
+  const handleMouseEnter = () => {
+    setShowPopover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowPopover(false);
+  };
+
   return (
-    <OverlayTrigger
-      placement="top"
-      overlay={
-        <Popover>
-          <Popover.Body>
+    <div className="helptext-container">
+      <i
+        className="bi bi-question-circle"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      ></i>
+
+      {showPopover && (
+        <div className="form-popover-container">
+          <div className="form-popover-body">
             <Scrivito.InPlaceEditingOff>
               <Scrivito.ContentTag content={widget} attribute="helpText" />
             </Scrivito.InPlaceEditingOff>
-          </Popover.Body>
-        </Popover>
-      }
-    >
-      <i className="bi bi-question-circle"></i>
-    </OverlayTrigger>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };

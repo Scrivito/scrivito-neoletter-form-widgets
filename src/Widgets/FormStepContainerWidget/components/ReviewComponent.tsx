@@ -1,6 +1,4 @@
 import * as React from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import { Widget } from "scrivito";
 import { ReviewContent, ReviewItemContent } from "../../../../types/types";
 
@@ -28,35 +26,51 @@ export const Review: React.FC<ReviewProps> = ({
     setShow(false);
     onHide();
   };
+  const handleOnClickContainer = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    if (event.currentTarget == event.target) {
+      handleClose();
+    }
+  };
   return (
-    <Modal show={show} onHide={handleClose} size="lg">
-      {widget.get("showReviewHeader") && (
-        <Modal.Header style={{ alignSelf: "center" }}>
-          <Modal.Title>{widget.get("reviewHeaderTitle") as string}</Modal.Title>
-        </Modal.Header>
-      )}
-      <Modal.Body className="form-review">
-        {reviewContent.map((steps, i) => (
-          <div
-            className="step-review-container"
-            key={"step-review-container-" + i}>
-            {widget.get("showStepsInReview") && (
-              <h4 className="step-review">Step {i}</h4>
-            )}
-            {steps.map((d, i) => (
-              <ReviewItem key={"item-" + i} item={d} />
+    <div
+      onClick={(e) => handleOnClickContainer(e)}
+      hidden={!show}
+      className="form-modal"
+    >
+      <div className="modal-dialog">
+        <div className="modal-content">
+          {widget.get("showReviewHeader") && (
+            <div className="modal-header">
+              <h4>{widget.get("reviewHeaderTitle") as string}</h4>
+            </div>
+          )}
+          <div className="modal-body form-review">
+            {reviewContent.map((steps, i) => (
+              <div
+                className="step-review-container"
+                key={"step-review-container-" + i}
+              >
+                {widget.get("showStepsInReview") && (
+                  <h4 className="step-review">Step {i}</h4>
+                )}
+                {steps.map((d, i) => (
+                  <ReviewItem key={"item-" + i} item={d} />
+                ))}
+              </div>
             ))}
           </div>
-        ))}
-      </Modal.Body>
-      {widget.get("showReviewFooter") && (
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            {widget.get("reviewCloseButtonText") as string}
-          </Button>
-        </Modal.Footer>
-      )}
-    </Modal>
+          {widget.get("showReviewFooter") && (
+            <div className="modal-footer">
+              <button className="" onClick={handleClose}>
+                {widget.get("reviewCloseButtonText") as string}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 
