@@ -569,7 +569,8 @@ For the Friendly Captcha, you need to add the following URLs to the "script-src"
 
 ```json
 "blob:",
-"'wasm-unsafe-eval'"
+"'wasm-unsafe-eval'",
+"https://cdn.jsdelivr.net/npm/"
 ```
 
 For more information regarding CSP, please refer to the CSP section in the Friendly Captcha Docs found [here](https://docs.friendlycaptcha.com/#/csp) or in the Google reCAPTCHA FAQ found [here](https://developers.google.com/recaptcha/docs/faq?hl=de#im-using-content-security-policy-csp-on-my-website.-how-can-i-configure-it-to-work-with-recaptcha)
