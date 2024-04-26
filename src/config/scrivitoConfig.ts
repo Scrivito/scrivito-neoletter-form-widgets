@@ -10,8 +10,8 @@ export const initNeoletterFormWidgets = (
 ): void => {
   // too early to call Scrivito.getInstanceId() here
   // attach to window in order to read them in editingConfig.
-  instanceId && ((window as any).instanceId = instanceId);
-  (window as any).captchaOptions = captchaOptions
+  instanceId && ((window as any).neoletterFormInstanceId = instanceId);
+  (window as any).neoletterFormCaptchaOptions = captchaOptions
     ? captchaOptions
     : { siteKey: "", captchaType: null };
 
@@ -20,14 +20,14 @@ export const initNeoletterFormWidgets = (
 
 export const getInstanceId = (): string => {
   return (
-    (window as any).instanceId ||
+    (window as any).neoletterFormInstanceId ||
     (Scrivito.getInstanceId && Scrivito.getInstanceId()) ||
     ""
   );
 };
 
 export const getCaptchaOptions = (): CaptchaOptions => {
-  return (window as any).captchaOptions;
+  return (window as any).neoletterFormCaptchaOptions;
 };
 
 function loadWidgets(): void {
