@@ -1,21 +1,23 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import { isEmpty } from "../utils/lodashPolyfills";
-
 import { getCaptchaOptions } from "../../../config/scrivitoConfig";
 import { FriendlyCaptcha } from "./FriendlyCaptchaComponent";
 import { GoogleReCaptcha } from "./GoogleReCaptchaComponent";
 interface FormCaptchaProps {
   widget: Scrivito.Widget;
+  alignment: string;
+  hidden: boolean;
   onChangeCaptcha: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const FormCaptcha: React.FC<FormCaptchaProps> = ({
   onChangeCaptcha,
-  widget
+  widget,
+  alignment,
+  hidden
 }) => {
   const options = getCaptchaOptions();
-  const alignment = widget.get("captchaAlignment") || "center";
   if (Scrivito.isInPlaceEditingActive() && isEmpty(options.siteKey)) {
     return (
       <div className="text-center missing-site-key">
@@ -28,7 +30,7 @@ export const FormCaptcha: React.FC<FormCaptchaProps> = ({
   }
 
   return (
-    <div className={`mb-3 captcha-container ${alignment}`}>
+    <div hidden={hidden} className={`mb-3 captcha-container ${alignment}`}>
       {options.captchaType == "google-recaptcha" ? (
         <GoogleReCaptcha
           onChangeCaptcha={onChangeCaptcha}
