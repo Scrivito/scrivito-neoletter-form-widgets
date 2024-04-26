@@ -43,6 +43,14 @@ initNeoletterFormWidgets();
 // initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
 ```
 
+Import the `loadEditingConfigs` function from the package and call it in your editingConfigs.js file also found in the Widgets folder.
+
+```js
+import { loadEditingConfigs } from "scrivito-neoletter-form-widgets/editing";
+
+loadEditingConfigs();
+```
+
 Add the widget styles to your app.
 This can be done by either loading the CSS via `css-loader` (e.g. in `src/index.js` or `src/Widgets/index.js`):
 
@@ -54,6 +62,12 @@ Or by importing the styles into your stylesheets (e.g. in `src/assets/stylesheet
 
 ```scss
 @import "scrivito-neoletter-form-widgets/index.css";
+```
+
+Add the editing styles in `scrivitoExtensions.scss`:
+
+```scss
+@import "scrivito-neoletter-form-widgets/editing.css";
 ```
 
 Delete all form widgets included in the Example App from the "Widgets" folder:
@@ -337,11 +351,10 @@ The Review feature allows users to review their answers before submitting a form
 
 ### Closing the Dialog
 
-Users can close the review dialog in three ways:
+Users can close the review dialog in two ways:
 
 1. **Click Outside:** Clicking anywhere outside the dialog will close it.
-2. **ESC Key:** Users can press the "ESC" key on their keyboard to close the dialog.
-3. **Close Button:** The dialog also includes a close button in the footer for users who prefer to close it manually.
+2. **Close Button:** The dialog also includes a close button in the footer for users who prefer to close it manually.
 
 It's important to note that the footer with the close button is not mandatory. Users can easily close the dialog using any of the methods mentioned above.
 
@@ -583,6 +596,12 @@ Link the package to your global `node_modules` folder:
 npm run link:vite-project
 ```
 
+Link the package into the Portal App with:
+
+```shell
+npm link scrivito-neoletter-form-widgets
+```
+
 Edit `index.ts` in the Widgets folder in the Portal App and add the following import:
 
 ```js
@@ -603,16 +622,12 @@ initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
 initNeoletterFormWidgets();
 ```
 
-Either install the friendly-challenge & the react-google-recaptcha or link them from the node_modules folder:
+Edit `editingConfigs.ts` in the Widgets folder in the Portal App and add the following:
 
-```shell
-npm install friendly-challenge react-google-recaptcha
-```
+```js
+import { loadEditingConfigs } from "scrivito-neoletter-form-widgets/src/editing";
 
-Link the package into the Portal App with:
-
-```shell
-npm link scrivito-neoletter-form-widgets
+loadEditingConfigs();
 ```
 
 **Note:**
@@ -641,6 +656,12 @@ Link the package to your global `node_modules` folder:
 npm run link
 ```
 
+Link the package into the Example App with:
+
+```shell
+npm link scrivito-neoletter-form-widgets
+```
+
 Edit `index.js` in the Widgets folder in the Example App and add the following import:
 
 ```js
@@ -661,20 +682,22 @@ initNeoletterFormWidgets(process.env.SCRIVITO_TENANT);
 initNeoletterFormWidgets();
 ```
 
+Edit `editingConfigs.js` in the Widgets folder and add the following:
+
+```js
+import { loadEditingConfigs } from "scrivito-neoletter-form-widgets/editing";
+
+loadEditingConfigs();
+```
+
 Import the package styles into the `index.scss` file in the assets/stylesheets folder:
 
 ```scss
 @import "scrivito-neoletter-form-widgets/index.css";
 ```
 
-Either install the friendly-challenge & the react-google-recaptcha or link them from the node_modules folder:
+Import the editing styles into the `scrivitoExtensions.scss` file in the assets/stylesheets folder:
 
-```shell
-npm install friendly-challenge react-google-recaptcha
-```
-
-Link the package into the Example App with:
-
-```shell
-npm link scrivito-neoletter-form-widgets
+```scss
+@import "scrivito-neoletter-form-widgets/editing.css";
 ```
