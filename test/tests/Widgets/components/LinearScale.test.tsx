@@ -7,7 +7,7 @@ import renderer from "react-test-renderer";
 
 describe("LinearScale", () => {
   const widgetProperties = {
-    linearScaleLowerLimit: "0",
+    linearScaleLowerLimit: "1",
     linearScaleUpperLimit: "5",
     linearScaleLowerLabel: "Lower Label",
     linearScaleUpperLabel: "Upper Label",
@@ -17,13 +17,6 @@ describe("LinearScale", () => {
   const widget = new DummyWidget(widgetProperties) as unknown as Widget;
 
   it("renders LinearScale component with provided widget properties", () => {
-    const lodashEsModule = require("lodash-es");
-    lodashEsModule.range.mockReturnValue([1, 2, 3, 4, 5]);
-    lodashEsModule.map.mockImplementation(
-      (array: number[], callback: (value: number, index: number) => string) =>
-        array.map(callback)
-    );
-
     const { getByText, getAllByRole } = render(
       <LinearScale name="linearScaleName" widget={widget} onChange={() => {}} />
     );
@@ -34,7 +27,7 @@ describe("LinearScale", () => {
     const items = getAllByRole("radio");
     expect(items).toHaveLength(5);
 
-    items.forEach(item => {
+    items.forEach((item) => {
       expect(item).toHaveAttribute("required");
     });
   });

@@ -6,7 +6,15 @@ import "../../../src/Widgets/LegacyFormContainerWidget/FormContainerWidgetCompon
 import PageRenderer from "../../helpers/pageRenderer";
 
 Scrivito.configure({ tenant: "inMemory" });
-
+jest.mock(
+  "../../../src/Widgets/FormStepContainerWidget/utils/lodashPolyfills",
+  () => ({
+    ...jest.requireActual(
+      "../../../src/Widgets/FormStepContainerWidget/utils/lodashPolyfills"
+    ),
+    isEmpty: jest.fn(() => true)
+  })
+);
 const pageRenderer = new PageRenderer();
 const widgetProps = {
   content: [],
@@ -17,20 +25,16 @@ const widgetProps = {
   hiddenFields: []
 };
 describe("FormContainerWidget", () => {
-  const lodashEsModule = require("lodash-es");
-
   it("does not render if instanceId is empty", () => {
-    lodashEsModule.isEmpty.mockReturnValue(true);
     pageRenderer.render({
       body: [new FormContainerWidget(widgetProps)]
     });
-
     const form = document.querySelector("form");
     expect(form).not.toBeInTheDocument();
+    jest.resetAllMocks();
   });
 
   it("renders the form with content", () => {
-    lodashEsModule.isEmpty.mockReturnValue(false);
     const content = [
       new FormDateWidget({
         customFieldName: "custom_date",
@@ -48,7 +52,6 @@ describe("FormContainerWidget", () => {
     expect(dateItem).toBeInTheDocument();
   });
   it("renders winnie-the-pooh", () => {
-    lodashEsModule.isEmpty.mockReturnValue(false);
     pageRenderer.render({
       body: [new FormContainerWidget(widgetProps)]
     });

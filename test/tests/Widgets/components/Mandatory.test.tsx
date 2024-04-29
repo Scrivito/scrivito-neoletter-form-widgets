@@ -4,8 +4,18 @@ import { Mandatory } from "../../../../src/Widgets/FormStepContainerWidget/compo
 import renderer from "react-test-renderer";
 
 describe("Mandatory", () => {
+  it("renders the Mandatory component", () => {
+    const { getByText } = render(<Mandatory />);
+
+    const mandatoryText = getByText("*");
+    expect(mandatoryText).toBeInTheDocument();
+
+    const popoverBody = document.querySelector(".form-popover-body");
+    expect(popoverBody).not.toBeInTheDocument();
+  });
+
   it("renders the Mandatory component with a popover on hover", () => {
-    const { getByText, getByRole } = render(<Mandatory />);
+    const { getByText } = render(<Mandatory />);
 
     const mandatoryText = getByText("*");
     expect(mandatoryText).toBeInTheDocument();
@@ -13,9 +23,6 @@ describe("Mandatory", () => {
     fireEvent.mouseOver(mandatoryText);
     const popoverBody = getByText("mandatory");
     expect(popoverBody).toBeInTheDocument();
-
-    const popover = getByRole("tooltip");
-    expect(popover).toBeInTheDocument();
   });
 
   it("renders correctly", () => {

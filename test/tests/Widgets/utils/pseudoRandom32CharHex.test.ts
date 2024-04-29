@@ -2,8 +2,6 @@ import { pseudoRandom32CharHex } from "../../../../src/Widgets/FormStepContainer
 
 describe("pseudoRandom32CharHex", () => {
   it("should generate a 32-character hexadecimal string", () => {
-    jest.spyOn(require("lodash-es"), "times").mockReturnValue([...Array(32)]);
-
     const hexString = pseudoRandom32CharHex();
 
     expect(hexString).toHaveLength(32);

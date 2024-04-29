@@ -2,19 +2,7 @@
 
 exports[`FormHiddenFields renders correctly 1`] = `
 <div>
-  <div>
-    <input
-      name={null}
-      type="hidden"
-      value="a hidden val"
-    />
-  </div>
-  <div>
-    <input
-      name={null}
-      type="hidden"
-      value="another hidden val"
-    />
-  </div>
+  <div />
+  <div />
 </div>
 `;

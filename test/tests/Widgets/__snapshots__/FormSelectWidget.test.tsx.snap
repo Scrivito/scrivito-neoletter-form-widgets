@@ -16,22 +16,26 @@ exports[`FormSelectWidget renders correctly 1`] = `
           Test Select Title
            
         </span>
-        <span
-          className="text-mandatory"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
+        <div
+          className="mandatory-container"
         >
-          *
-        </span>
-        <i
-          className="bi bi-question-circle"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        />
+          <span
+            className="text-mandatory"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            *
+          </span>
+        </div>
+        <div
+          className="helptext-container"
+        >
+          <i
+            className="bi bi-question-circle"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          />
+        </div>
       </div>
       <select
         className="dropdown-select"

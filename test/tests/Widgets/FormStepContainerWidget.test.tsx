@@ -8,10 +8,17 @@ import "../../../src/Widgets/FormStepWidget/FormStepWidgetComponent";
 import "../../../src/Widgets/FormDateWidget/FormDateWidgetComponent";
 import PageRenderer from "../../helpers/pageRenderer";
 
-jest.mock('friendly-challenge', () => ({
-  WidgetInstance: jest.fn(() => ({}))
-}));
 Scrivito.configure({ tenant: "inMemory" });
+
+jest.mock(
+  "../../../src/Widgets/FormStepContainerWidget/utils/lodashPolyfills",
+  () => ({
+    ...jest.requireActual(
+      "../../../src/Widgets/FormStepContainerWidget/utils/lodashPolyfills"
+    ),
+    isEmpty: jest.fn(() => true)
+  })
+);
 
 const pageRenderer = new PageRenderer();
 const widgetProps = {
@@ -27,7 +34,7 @@ const widgetProps = {
   submitButtonText: "submit",
   showBorder: false,
   showCaptcha: false,
-  captchaAlignment:"center",
+  captchaAlignment: "center",
   showReview: true,
   includeEmptyAnswers: false,
   showStepsInReview: false,
@@ -38,12 +45,8 @@ const widgetProps = {
   reviewCloseButtonText: "Close",
   singleSubmitButtonAlignment: "left"
 };
-
 describe("FormStepContainerWidget", () => {
-  const lodashEsModule = require("lodash-es");
-
   it("does not render with missing instanceId", () => {
-    lodashEsModule.isEmpty.mockReturnValue(true);
     pageRenderer.render({
       body: [new FormStepContainerWidget(widgetProps)]
     });
@@ -54,10 +57,10 @@ describe("FormStepContainerWidget", () => {
     );
     expect(container).not.toBeInTheDocument();
     expect(emptyTenantElement).toBeInTheDocument();
+    jest.resetAllMocks();
   });
 
   it("renders with single step mode", () => {
-    lodashEsModule.isEmpty.mockReturnValue(false);
     const items = [
       new FormDateWidget({
         customFieldName: "custom_date",
@@ -79,7 +82,6 @@ describe("FormStepContainerWidget", () => {
   });
 
   it("renders with multiple steps mode", () => {
-    lodashEsModule.isEmpty.mockReturnValue(false);
     const items = [
       new FormDateWidget({
         customFieldName: "custom_date",
@@ -109,7 +111,6 @@ describe("FormStepContainerWidget", () => {
   });
 
   it("shows submit & review buttons in the last step", () => {
-    lodashEsModule.isEmpty.mockReturnValue(false);
     const items = [
       new FormDateWidget({
         customFieldName: "custom_date",
@@ -140,7 +141,6 @@ describe("FormStepContainerWidget", () => {
   });
 
   it("shows border", () => {
-    lodashEsModule.isEmpty.mockReturnValue(false);
     pageRenderer.render({
       body: [new FormStepContainerWidget({ ...widgetProps, showBorder: true })]
     });
@@ -152,8 +152,6 @@ describe("FormStepContainerWidget", () => {
   });
 
   it("renders winnie-the-pooh", () => {
-    lodashEsModule.isEmpty.mockReturnValue(false);
-
     pageRenderer.render({
       body: [new FormStepContainerWidget(widgetProps)]
     });

@@ -18,7 +18,6 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
         <input
           name="url"
           type="hidden"
-          value="mocked-url"
         />
         <div />
         <div

@@ -53,7 +53,7 @@ describe("FormSelectWidget", () => {
     expect(selectTitle).toBeInTheDocument();
     expect(radioInputs.length).toBe(selectProps.items.length);
 
-    radioInputs.forEach(radioInput => {
+    radioInputs.forEach((radioInput) => {
       expect(radioInput).toHaveAttribute("required");
     });
   });
@@ -95,7 +95,7 @@ describe("FormSelectWidget", () => {
     expect(selectTitle).toBeInTheDocument();
     expect(checkboxes.length).toBe(selectProps.items.length); // Check the number of checkboxes
 
-    checkboxes.forEach(checkbox => {
+    checkboxes.forEach((checkbox) => {
       expect(checkbox).toHaveAttribute("type", "checkbox");
       expect(checkbox).not.toHaveAttribute("required"); // Check if the checkboxes don't have 'required' attribute
     });
@@ -105,13 +105,6 @@ describe("FormSelectWidget", () => {
   });
 
   it("renders FormSelectWidget with linear-scale selection", () => {
-    const lodashEsModule = require("lodash-es");
-    lodashEsModule.range.mockReturnValue([1, 2, 3, 4, 5]);
-    lodashEsModule.map.mockImplementation(
-      (array: number[], callback: (value: number, index: number) => string) =>
-        array.map(callback)
-    );
-
     const selectProps = {
       ...widgetProps,
       selectionType: "linear-scale"
@@ -133,7 +126,7 @@ describe("FormSelectWidget", () => {
     expect(upperScaleLabel).toBeInTheDocument();
     expect(inputRange).toHaveLength(5);
 
-    inputRange.forEach(input => {
+    inputRange.forEach((input) => {
       expect(input).toHaveAttribute("required");
       expect(input).toHaveAttribute("type", "radio");
     });

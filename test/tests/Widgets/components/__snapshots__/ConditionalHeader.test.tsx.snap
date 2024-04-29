@@ -18,15 +18,17 @@ exports[`ConditionalHeader renders correctly 1`] = `
       >
         Select some
       </span>
-      <span
-        className="text-mandatory"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
+      <div
+        className="mandatory-container"
       >
-        *
-      </span>
+        <span
+          className="text-mandatory"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          *
+        </span>
+      </div>
     </div>
     <div
       className="row "

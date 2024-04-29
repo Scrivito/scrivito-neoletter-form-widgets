@@ -4,7 +4,7 @@ exports[`FormHiddenFieldWidget renders correctly 1`] = `
 <div>
   <div>
     <input
-      name={null}
+      name="custom_hidden"
       type="hidden"
       value="hidden"
     />

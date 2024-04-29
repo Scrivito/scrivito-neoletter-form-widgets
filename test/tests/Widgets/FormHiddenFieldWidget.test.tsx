@@ -8,23 +8,20 @@ Scrivito.configure({ tenant: "inMemory" });
 const pageRenderer = new PageRenderer();
 
 const widgetProps = {
-  customFieldName: "",
-  hiddenValue: "hidden"
+  customFieldName: "custom_hidden",
+  hiddenValue: "hidden",
+  type: "custom"
 };
 describe("FormHiddenFieldWidget", () => {
-  const lodashEsModule = require("lodash-es");
-
   it("renders null when name is empty", () => {
-    lodashEsModule.isEmpty.mockReturnValue(true);
     pageRenderer.render({
-      body: [new FormHiddenFieldWidget(widgetProps)]
+      body: [new FormHiddenFieldWidget({ ...widgetProps, customFieldName: "" })]
     });
     const hiddenInput = document.querySelector('[type="hidden"]')!;
     expect(hiddenInput).not.toBeInTheDocument();
   });
 
   it("renders input field when name is not empty", () => {
-    lodashEsModule.isEmpty.mockReturnValue(false);
     pageRenderer.render({
       body: [new FormHiddenFieldWidget(widgetProps)]
     });

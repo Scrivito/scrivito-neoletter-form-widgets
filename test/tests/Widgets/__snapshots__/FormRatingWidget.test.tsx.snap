@@ -14,13 +14,15 @@ exports[`FormRatingWidget Component renders correctly 1`] = `
         >
           Test Rating Title
         </span>
-        <i
-          className="bi bi-question-circle"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        />
+        <div
+          className="helptext-container"
+        >
+          <i
+            className="bi bi-question-circle"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          />
+        </div>
       </div>
       <i
         className="bi bi-star-fill bi-default rating-icon"

@@ -12,15 +12,17 @@ exports[`DropdownHeader renders correctly 1`] = `
     >
       Select from dropdown
     </span>
-    <span
-      className="text-mandatory"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
+    <div
+      className="mandatory-container"
     >
-      *
-    </span>
+      <span
+        className="text-mandatory"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        *
+      </span>
+    </div>
   </div>
   <select
     id="fakeId"

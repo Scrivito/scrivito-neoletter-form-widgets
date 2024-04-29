@@ -14,13 +14,15 @@ exports[`HelpText renders correctly 1`] = `
         >
           Choose date
         </span>
-        <i
-          className="bi bi-question-circle"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        />
+        <div
+          className="helptext-container"
+        >
+          <i
+            className="bi bi-question-circle"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          />
+        </div>
       </div>
       <input
         className="datepicker"

@@ -41,7 +41,7 @@ describe("Select", () => {
     expect(getByText("Item 2")).toBeInTheDocument();
     expect(getByText("Item 3")).toBeInTheDocument();
     const inputs = container.querySelectorAll("input");
-    inputs.forEach(radioInput => {
+    inputs.forEach((radioInput) => {
       expect(radioInput).toHaveAttribute("type", "radio");
       expect(radioInput).toHaveAttribute("required");
     });
@@ -63,7 +63,7 @@ describe("Select", () => {
     );
 
     const inputs = container.querySelectorAll("input");
-    inputs.forEach(radioInput => {
+    inputs.forEach((radioInput) => {
       expect(radioInput).toHaveAttribute("type", "radio");
     });
 
@@ -83,7 +83,7 @@ describe("Select", () => {
     );
 
     const inputs = container.querySelectorAll("input");
-    inputs.forEach(input => {
+    inputs.forEach((input) => {
       expect(input).toHaveAttribute("type", "checkbox");
     });
 
@@ -104,7 +104,7 @@ describe("Select", () => {
     );
 
     const inputs = container.querySelectorAll("input");
-    inputs.forEach(input => {
+    inputs.forEach((input) => {
       expect(input).toHaveAttribute("type", "checkbox");
     });
     expect(container.firstChild).not.toHaveClass("row");
@@ -112,12 +112,6 @@ describe("Select", () => {
   });
 
   it("renders the Select component with linear scale type", () => {
-    const lodashEsModule = require("lodash-es");
-    lodashEsModule.range.mockReturnValue([1, 2, 3, 4, 5]);
-    lodashEsModule.map.mockImplementation(
-      (array: number[], callback: (value: number, index: number) => string) =>
-        array.map(callback)
-    );
     widget.update({ selectionType: "linear-scale" });
 
     const { getByText, container } = render(
@@ -133,11 +127,11 @@ describe("Select", () => {
     expect(getByText("highest")).toBeInTheDocument();
     expect(container.firstChild).toHaveClass("linear-scale-container");
     const inputs = container.querySelectorAll("input");
-    inputs.forEach(radioInput => {
+    inputs.forEach((radioInput) => {
       expect(radioInput).toHaveAttribute("type", "radio");
     });
     const labels = container.querySelectorAll("label");
-    labels.forEach(label => {
+    labels.forEach((label) => {
       expect(label).toHaveClass("linear-scale");
     });
   });

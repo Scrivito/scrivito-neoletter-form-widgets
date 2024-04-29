@@ -48,11 +48,13 @@ describe("FormHiddenFields", () => {
       body: [
         new FormHiddenFieldWidget({
           customFieldName: "custom_hidden1",
-          hiddenValue: "a hidden val"
+          hiddenValue: "a hidden val",
+          type: "custom"
         }),
         new FormHiddenFieldWidget({
           customFieldName: "custom_hidden2",
-          hiddenValue: "another hidden val"
+          hiddenValue: "another hidden val",
+          type: "custom"
         })
       ]
     });
