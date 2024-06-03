@@ -45,8 +45,10 @@ module.exports = (_env, argv) => {
       path: BUILD_PATH,
       library: "scrivito-form-widgets",
       libraryTarget: "umd",
-      chunkLoading: false
+      chunkLoading: false,
+      globalObject: "this"
     },
+    target: "web",
     externals: [
       ...Object.keys(DEPENDENCIES),
       ...Object.keys(PEER_DEPENDENCIES)
