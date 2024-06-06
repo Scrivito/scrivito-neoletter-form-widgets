@@ -1,1 +1,1 @@
-export declare function loadEditingConfigs(): void;
+export declare function loadEditingConfigs(): Promise<void>;
