@@ -102,7 +102,12 @@ module.exports = (_env, argv) => {
               ? MiniCssExtractPlugin.loader
               : "style-loader",
             "css-loader",
-            "sass-loader"
+            {
+              loader: "sass-loader",
+              options: {
+                implementation: require("sass")
+              }
+            }
           ]
         }
       ]
