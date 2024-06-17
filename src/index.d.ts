@@ -5,4 +5,4 @@ export interface CaptchaOptions {
 export declare function initNeoletterFormWidgets(
   instanceId?: string,
   captchaOptions?: CaptchaOptions
-): Promise<void>;
+): void;
