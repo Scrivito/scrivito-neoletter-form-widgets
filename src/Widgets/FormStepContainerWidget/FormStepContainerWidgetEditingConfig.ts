@@ -20,15 +20,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       title: "Enable captcha",
       description: "Enables captcha for this form."
     },
-    googleRecaptchaTheme: {
-      title: "Theme",
-      description: "Changes are applied after refreshing the page.",
-      values: [
-        { value: "light", title: "Light" },
-        { value: "dark", title: "Dark" }
-      ]
-    },
-    friendlyCaptchaTheme: {
+    captchaTheme: {
       title: "Theme",
       values: [
         { value: "light", title: "Light" },
@@ -245,8 +237,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     showBorder: false,
     // captcha stuff
     showCaptcha: false,
-    friendlyCaptchaTheme: "light",
-    googleRecaptchaTheme: "light",
+    captchaTheme: "light",
     friendlyCaptchaStartMode: "none",
     captchaAlignment: "center",
     // review stuff
@@ -368,9 +359,7 @@ function getCaptchaProperties(widget: Scrivito.Widget): string[] {
     getCaptchaOptions().captchaType == "friendly-captcha"
       ? "friendlyCaptchaLanguage"
       : "googleRecaptchaLanguage",
-    getCaptchaOptions().captchaType == "friendly-captcha"
-      ? "friendlyCaptchaTheme"
-      : "googleRecaptchaTheme",
+    "captchaTheme",
     "captchaAlignment"
   ];
   if (getCaptchaOptions().captchaType == "friendly-captcha") {

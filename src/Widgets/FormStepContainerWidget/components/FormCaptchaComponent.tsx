@@ -4,10 +4,12 @@ import { isEmpty } from "../utils/lodashPolyfills";
 import { getCaptchaOptions } from "../../../config/scrivitoConfig";
 import { FriendlyCaptcha } from "./FriendlyCaptchaComponent";
 import { GoogleReCaptcha } from "./GoogleReCaptchaComponent";
+import { CaptchaTheme } from "../../../../types/types";
 interface FormCaptchaProps {
   widget: Scrivito.Widget;
   alignment: string;
   hidden: boolean;
+  theme: CaptchaTheme;
   onChangeCaptcha: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
@@ -15,7 +17,8 @@ export const FormCaptcha: React.FC<FormCaptchaProps> = ({
   onChangeCaptcha,
   widget,
   alignment,
-  hidden
+  hidden,
+  theme
 }) => {
   const options = getCaptchaOptions();
   if (Scrivito.isInPlaceEditingActive() && isEmpty(options.siteKey)) {
@@ -36,6 +39,8 @@ export const FormCaptcha: React.FC<FormCaptchaProps> = ({
           onChangeCaptcha={onChangeCaptcha}
           siteKey={options.siteKey}
           widget={widget}
+          theme={theme}
+          key={theme} // force re-render on theme change.
         />
       ) : (
         <FriendlyCaptcha
@@ -43,6 +48,7 @@ export const FormCaptcha: React.FC<FormCaptchaProps> = ({
           siteKey={options.siteKey}
           widget={widget}
           endpoint={"global"}
+          theme={theme}
         />
       )}
     </div>

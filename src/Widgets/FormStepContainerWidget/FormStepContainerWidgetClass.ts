@@ -13,13 +13,7 @@ export const FormStepContainerWidget = Scrivito.provideWidgetClass(
           values: ["left", "center", "right"]
         }
       ],
-      friendlyCaptchaTheme: [
-        "enum",
-        {
-          values: ["light", "dark"]
-        }
-      ],
-      googleRecaptchaTheme: [
+      captchaTheme: [
         "enum",
         {
           values: ["light", "dark"]
