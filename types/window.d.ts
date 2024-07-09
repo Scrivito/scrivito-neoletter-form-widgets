@@ -1,3 +1,5 @@
+import { WidgetInstance } from "./friendlyChallenge";
+
 export { };
 
 declare global {
@@ -17,5 +19,8 @@ declare global {
 			reset: (widgetId?: number) => void;
 		};
 		onloadCallback?: () => void;
+		friendlyChallenge: {
+			WidgetInstance: typeof WidgetInstance;
+		}
 	}
 }
