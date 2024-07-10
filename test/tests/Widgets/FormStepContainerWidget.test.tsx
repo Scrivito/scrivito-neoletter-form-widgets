@@ -131,13 +131,17 @@ describe("FormStepContainerWidget", () => {
 
     const multiStepsFooterContainer = document.querySelector(".form-buttons");
     const reviewButton = document.querySelector(".review-button");
-    const submitButton = document.querySelector(".forward-button");
+    const submitButton = document.querySelector(".submit-button");
+    const forwardButton = document.querySelector(".forward-button");
+    const backwardButton = document.querySelector(".backward-button");
     const allSteps = document.querySelectorAll("div[data-step-number]");
     expect(multiStepsFooterContainer).toBeInTheDocument();
     expect(allSteps).toHaveLength(1);
     expect(reviewButton).toBeInTheDocument();
     expect(submitButton).toBeInTheDocument();
     expect(submitButton).toHaveTextContent(widgetProps.submitButtonText);
+    expect(forwardButton).not.toBeVisible();
+    expect(backwardButton).not.toBeVisible();
   });
 
   it("shows border", () => {

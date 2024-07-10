@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { Review } from "./ReviewComponent";
 import { prepareReviewContent } from "../utils/prepareReviewContent";
 import { ReviewContent } from "../../../../types/types";
+import { ReviewPortal } from "./ReviewPortal";
 interface FormFooterMultiStepsProps {
   widget: Scrivito.Widget;
   onPageChange: (forward: boolean) => void;
@@ -30,7 +30,7 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
       const [reviewContent, setReviewContent] = React.useState<ReviewContent>(
         []
       );
-      const doShowReview = isLastPage && showReview;
+      const doShowReview = (isLastPage || Scrivito.isInPlaceEditingActive()) && showReview;
       return (
         <>
           <div className="form-buttons">
@@ -50,18 +50,27 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
                 {widget.get("reviewButtonText") as string}
               </button>
             )}
+
             <button
-              className="btn btn-primary forward-button"
-              onClick={isLastPage ? onSubmit : () => onPageChange(true)}
-              disabled={isLastPage && submitDisabled}
-              >
-              {isLastPage
-                ? (widget.get("submitButtonText") as string)
-                : (widget.get("forwardButtonText") as string)}
+              className={`btn btn-primary forward-button ${Scrivito.isInPlaceEditingActive() ? "edit-mode-margin" : ""}`}
+              onClick={() => onPageChange(true)}
+              hidden={isLastPage}
+            >
+              {(widget.get("forwardButtonText") as string)}
             </button>
+
+            <button
+              className="btn btn-primary submit-button"
+              onClick={onSubmit}
+              disabled={isLastPage && submitDisabled}
+              hidden={!(isLastPage || Scrivito.isInPlaceEditingActive())}
+            >
+              {(widget.get("submitButtonText") as string)}
+            </button>
+
           </div>
           {doShowReview && show && (
-            <Review
+            <ReviewPortal
               widget={widget}
               reviewContent={reviewContent}
               onHide={() => setShow(false)}

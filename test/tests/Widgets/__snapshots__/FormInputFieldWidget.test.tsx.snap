@@ -7,7 +7,6 @@ exports[`FormInputFieldWidget Component renders correctly 1`] = `
       className="mb-3"
     >
       <label
-        className="form-label"
         htmlFor="form_text_input_widget_staticWidgetID"
       >
         Test Label
