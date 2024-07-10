@@ -141,8 +141,9 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   );
 
   async function onSubmit(): Promise<void> {
-    if (Scrivito.isInPlaceEditingActive()) {
-      return;
+    if (Scrivito.isInPlaceEditingActive() && widget.get("formType") == "multi-step") {
+      // eslint-disable-next-line no-console
+      console.log("In edit mode, only the first step will be validated for mandatory fields.");
     }
     const isValid = validateCurrentStep();
     if (!isValid) {
@@ -192,6 +193,8 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
     let isValid = true;
 
     if (Scrivito.isInPlaceEditingActive()) {
+      // eslint-disable-next-line no-console
+      console.log("Navigation buttons do not work in edit mode.");
       return;
     }
     if (nextPage) {

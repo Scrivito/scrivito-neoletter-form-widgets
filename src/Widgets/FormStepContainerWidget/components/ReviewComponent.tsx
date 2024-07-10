@@ -17,9 +17,17 @@ export const Review: React.FC<ReviewProps> = ({
   onHide
 }) => {
   const [show, setShow] = React.useState(false);
+  const previousOverflowRef = React.useRef<string | null>(null);
 
   React.useEffect(() => {
     setShow(true);
+    // save the current overflow value
+    previousOverflowRef.current = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflowRef.current ?? "visible";
+    };
   }, [reviewContent]);
 
   const handleClose = () => {
@@ -37,16 +45,16 @@ export const Review: React.FC<ReviewProps> = ({
     <div
       onClick={(e) => handleOnClickContainer(e)}
       hidden={!show}
-      className="form-modal"
+      className="scrivito-neoletter-review-form-modal"
     >
-      <div className="modal-dialog">
-        <div className="modal-content">
+      <div className="review-modal-dialog">
+        <div className="review-modal-content">
           {widget.get("showReviewHeader") && (
-            <div className="modal-header">
+            <div className="review-modal-header">
               <h4>{widget.get("reviewHeaderTitle") as string}</h4>
             </div>
           )}
-          <div className="modal-body form-review">
+          <div className="review-modal-body form-review">
             {reviewContent.map((steps, i) => (
               <div
                 className="step-review-container"
@@ -62,7 +70,7 @@ export const Review: React.FC<ReviewProps> = ({
             ))}
           </div>
           {widget.get("showReviewFooter") && (
-            <div className="modal-footer">
+            <div className="review-modal-footer">
               <button className="" onClick={handleClose}>
                 {widget.get("reviewCloseButtonText") as string}
               </button>

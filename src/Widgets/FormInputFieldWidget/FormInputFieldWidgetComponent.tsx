@@ -15,7 +15,6 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
         content={widget}
         attribute="label"
         tag="label"
-        className="form-label"
         htmlFor={id}
       />
       {widget.get("required") && <Mandatory />}
