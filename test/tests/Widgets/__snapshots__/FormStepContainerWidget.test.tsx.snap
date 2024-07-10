@@ -130,11 +130,19 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
           1 / 2
         </div>
         <button
-          className="btn btn-primary forward-button"
-          disabled={false}
+          className="btn btn-primary forward-button "
+          hidden={false}
           onClick={[Function]}
         >
           forward
+        </button>
+        <button
+          className="btn btn-primary submit-button"
+          disabled={false}
+          hidden={true}
+          onClick={[Function]}
+        >
+          submit
         </button>
       </div>
     </div>

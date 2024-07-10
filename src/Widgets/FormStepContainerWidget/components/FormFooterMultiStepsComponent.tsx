@@ -60,7 +60,7 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
             </button>
 
             <button
-              className="btn btn-primary"
+              className="btn btn-primary submit-button"
               onClick={onSubmit}
               disabled={isLastPage && submitDisabled}
               hidden={!(isLastPage || Scrivito.isInPlaceEditingActive())}
