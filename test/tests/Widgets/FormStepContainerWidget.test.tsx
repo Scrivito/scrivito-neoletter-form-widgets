@@ -1,5 +1,5 @@
 import * as Scrivito from "scrivito";
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { FormStepContainerWidget } from "../../../src/Widgets/FormStepContainerWidget/FormStepContainerWidgetClass";
 import { FormStepWidget } from "../../../src/Widgets/FormStepWidget/FormStepWidgetClass";
 import { FormDateWidget } from "../../../src/Widgets/FormDateWidget/FormDateWidgetClass";
@@ -187,5 +187,69 @@ describe("FormStepContainerWidget", () => {
       ]
     });
     expect(tree).toMatchSnapshot();
+  });
+
+  describe("Neoletter Tracking ID integration", () => {
+    let fetchMock: jest.Mock;
+    const testTrackingID = "test-tracking-id";
+
+    beforeAll(() => {
+      // Mock global fetch function
+      global.fetch = jest.fn().mockImplementationOnce(() =>
+        Promise.resolve({
+          status: 200,
+          ok: true,
+          json: () => Promise.resolve({})
+        })
+      );
+
+      fetchMock = global.fetch as jest.Mock;
+    });
+
+    beforeEach(() => {
+      const step = new FormStepWidget({ isSingleStep: true, items: [] });
+      pageRenderer.render({
+        body: [new FormStepContainerWidget({ ...widgetProps, steps: [step] })]
+      });
+    });
+
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
+    describe("When Tracking ID is present in Local Storage", () => {
+      beforeAll(() => {
+        localStorage.setItem("neo_tid", testTrackingID);
+      });
+
+      it("should include the tracking_id in the API call when submitting the form", async () => {
+        const submitButton = await screen.findByRole("button", {
+          name: "submit"
+        });
+
+        fireEvent.click(submitButton);
+
+        // jest displays complex objects like URLSearchParams as {}, requiring manual inspection for detailed checks.
+        const params = new URLSearchParams(fetchMock.mock.calls[0][1].body);
+        expect(params.get("tracking_id")).toBe(testTrackingID);
+      });
+    });
+
+    describe("When Tracking ID is not present in Local Storage", () => {
+      beforeAll(() => {
+        localStorage.removeItem("neo_tid");
+      });
+
+      it("should not include a tracking_id in the API call when submitting the form", async () => {
+        const submitButton = await screen.findByRole("button", {
+          name: "submit"
+        });
+        fireEvent.click(submitButton);
+
+        // jest displays complex objects like URLSearchParams as {}, requiring manual inspection for detailed checks.
+        const params = new URLSearchParams(fetchMock.mock.calls[0][1].body);
+        expect(params.get("tracking_id")).toBe(null);
+      });
+    });
   });
 });
