@@ -194,8 +194,11 @@ describe("FormStepContainerWidget", () => {
     const testTrackingID = "test-tracking-id";
 
     beforeAll(() => {
+      // Set tracking flag to true
+      (global as any).tracking = true
+      
       // Mock global fetch function
-      global.fetch = jest.fn().mockImplementationOnce(() =>
+      global.fetch = jest.fn().mockImplementation(() =>
         Promise.resolve({
           status: 200,
           ok: true,
