@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormIdInput Component renders correctly and matches snapshot 1`] = `
+[
+  <div
+    className="detail-label scrivito-error"
+  >
+    <i
+      className="scrivito-icon scrivito-icon-error"
+    />
+    <span>
+      Test Title
+    </span>
+  </div>,
+  <div
+    className="content-property-input scrivito-error"
+  >
+    <div
+      className="input-container"
+    >
+      <input
+        className=""
+        onChange={[Function]}
+        type="text"
+        value="testFormId"
+      />
+      <button
+        className="icon-button"
+        onClick={[Function]}
+      >
+        <i
+          className="bi bi-plus-circle"
+        />
+      </button>
+    </div>
+  </div>,
+  <div>
+    <div
+      className="validation-notice scrivito-error"
+    >
+      <span
+        className="validation-message"
+      >
+        Error message
+      </span>
+    </div>
+    <div
+      className="validation-notice scrivito-warning"
+    >
+      <span
+        className="validation-message"
+      >
+        Warning message
+      </span>
+    </div>
+  </div>,
+  <div
+    className="notice-body"
+  >
+    Test Description
+  </div>,
+]
+`;
