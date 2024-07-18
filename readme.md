@@ -466,7 +466,7 @@ import * as Scrivito from "scrivito";
 import {
   customFieldNameValidation,
   insideFormContainerValidation
-} from "scrivito-neoletter-form-widgets";
+} from "scrivito-neoletter-form-widgets/validations";
 
 Scrivito.provideEditingConfig("FormSliderWidget", {
   title: "Form Slider",
