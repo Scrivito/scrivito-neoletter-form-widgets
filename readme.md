@@ -80,6 +80,16 @@ Delete all form widgets included in the Example App from the "Widgets" folder:
 
 You're done! Enjoy building well-designed and cleverly arranged forms!
 
+## Prerendering with Vite
+
+When using prerender in a Vite environment, you need to add `--options.deps.external='/scrivito/'` to the script in order to create static HTML files correctly. Example:
+
+```json
+"prerender": "npm run build && vite-node --options.deps.external='/scrivito/' src/prerender_content.js"
+```
+
+**Note:** Prerender does not work when using captchas. This is because both captchas make use of the `window` object in their scripts, and the `window` object is not available when running `vite-node`.
+
 # Neoletter Form Widgets Overview
 
 <img src="images/form_widgets_all.png" width="200" alt="Screenshot">
@@ -142,7 +152,7 @@ The `Form` widget has the following properties divided into several tabs:
 - "Hidden fields" tab
   - Hidden Fields: Customize hidden fields.
 - "Form submission" tab
-  - Form ID: This ID identifies the form in Neoletter.
+  - Form ID: This ID identifies the form in Neoletter. The input field includes icons to generate a new ID and to restore the initial ID that was stored before opening the properties.
 - "Navigation area" tab (Content depends on form type i.e. single-step or multiple-steps)
   - Forward button text: Text for the forward button.
   - Backward button text: Text for the backward button.
