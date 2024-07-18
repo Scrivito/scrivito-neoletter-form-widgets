@@ -1,5 +1,8 @@
 import { Widget } from "scrivito";
+
+import { isTrackingEnabled } from "../../../config/scrivitoConfig";
 import { getFieldName } from "./getFieldName";
+import { appendTrackingIDToFormData } from "./appendNeoletterTrackingIDtoFormData";
 
 export async function submitForm(
   formElement: HTMLFormElement,
@@ -23,7 +26,9 @@ function getFormData(formElement: HTMLFormElement, formWidget: Widget) {
   const data = new FormData(formElement);
   const dataToSend = new FormData();
 
-  appendTrackingIDToFormData(dataToSend);
+  if(isTrackingEnabled()) {
+    appendTrackingIDToFormData(dataToSend);
+  }
 
   // workaround to send all field-names with equal name
   // as a comma separated string
@@ -48,29 +53,3 @@ function getFormData(formElement: HTMLFormElement, formWidget: Widget) {
   }
   return dataToSend;
 }
-
-const NEOLETTER_TRACKING_ID_KEY = "neo_tid";
-const NEOLETTER_TRACKING_ID_FIELD_NAME = "tracking_id";
-
-/**
- * Appends the Neoletter tracking ID to the provided FormData object.
- * @param {FormData} formData - The FormData object to append the tracking ID to.
- */
-const appendTrackingIDToFormData = (formData: FormData) => {
-  const trackingID = getNeoletterTrackingID();
-  if (trackingID) {
-    formData.set(NEOLETTER_TRACKING_ID_FIELD_NAME, trackingID);
-  }
-};
-
-/**
- * Retrieves the Neoletter tracking ID from local storage.
- * @returns {string} The tracking ID or an empty string if not found or in case of an error.
- */
-const getNeoletterTrackingID = (): string => {
-  try {
-    return localStorage.getItem(NEOLETTER_TRACKING_ID_KEY) || "";
-  } catch (error) {
-    return "";
-  }
-};
