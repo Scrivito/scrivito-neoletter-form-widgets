@@ -19,3 +19,9 @@ export interface CaptchaOptions {
 export type FriendlyCaptchaStartMode = "auto" | "focus" | "none";
 export type FriendlyCaptchaEndpoint = "global" | "eu";
 export type CaptchaTheme = "light" | "dark";
+
+export interface Options {
+  instanceId?: string,
+  captchaOptions?: CaptchaOptions,
+  tracking?: boolean
+}

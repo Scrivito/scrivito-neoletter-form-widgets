@@ -1,21 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Scrivito from "scrivito";
-import { CaptchaOptions } from "../../types/types";
+import { CaptchaOptions, Options } from "../../types/types";
 import { isEmpty } from "../Widgets/FormStepContainerWidget/utils/lodashPolyfills";
 
 const GLOBAL_OBJ = typeof window !== 'undefined' ? window : global;
 
 export const initNeoletterFormWidgets = (
-	instanceId?: string,
-	captchaOptions?: CaptchaOptions
+	options?: Options
 ): void => {
-	if (instanceId) {
-		(GLOBAL_OBJ as any).neoletterFormInstanceId = instanceId;
+	if (options?.instanceId) {
+		(GLOBAL_OBJ as any).neoletterFormInstanceId = options.instanceId;
 	}
-	(GLOBAL_OBJ as any).neoletterFormCaptchaOptions = captchaOptions
-		? captchaOptions
+
+	(GLOBAL_OBJ as any).neoletterFormCaptchaOptions = options?.captchaOptions
+		? options.captchaOptions
 		: { siteKey: "", captchaType: null };
 
+	(GLOBAL_OBJ as any).tracking = options?.tracking || false
+	
 	loadWidgets();
 	attachCaptchaScript();
 };
@@ -31,6 +33,10 @@ export const getInstanceId = (): string => {
 export const getCaptchaOptions = (): CaptchaOptions => {
 	return (GLOBAL_OBJ as any).neoletterFormCaptchaOptions;
 };
+
+export const isTrackingEnabled = () => {
+	return (GLOBAL_OBJ as any).tracking;
+}
 
 function loadWidgets(): void {
 	if (isEmpty(import.meta)) {
