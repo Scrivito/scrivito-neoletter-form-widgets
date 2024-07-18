@@ -585,6 +585,17 @@ For the Friendly Captcha, you need to add the following URLs to the "script-src"
 
 For more information regarding CSP, please refer to the CSP section in the Friendly Captcha Docs found [here](https://docs.friendlycaptcha.com/#/csp) or in the Google reCAPTCHA FAQ found [here](https://developers.google.com/recaptcha/docs/faq?hl=de#im-using-content-security-policy-csp-on-my-website.-how-can-i-configure-it-to-work-with-recaptcha)
 
+# Tracking
+
+Enable the Beta Neoletter Tracking capabilities with: 
+
+```js
+import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
+initNeoletterFormWidgets({
+  tracking: true
+});
+```
+
 # Local Development
 
 To develop and test the package locally, follow these steps:
