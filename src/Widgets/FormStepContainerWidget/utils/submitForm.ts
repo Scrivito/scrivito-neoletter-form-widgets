@@ -1,5 +1,8 @@
 import { Widget } from "scrivito";
+
+import { isTrackingEnabled } from "../../../config/scrivitoConfig";
 import { getFieldName } from "./getFieldName";
+import { appendTrackingIDToFormData } from "./appendNeoletterTrackingIDtoFormData";
 
 export async function submitForm(
   formElement: HTMLFormElement,
@@ -22,6 +25,11 @@ export async function submitForm(
 function getFormData(formElement: HTMLFormElement, formWidget: Widget) {
   const data = new FormData(formElement);
   const dataToSend = new FormData();
+
+  if(isTrackingEnabled()) {
+    appendTrackingIDToFormData(dataToSend);
+  }
+
   // workaround to send all field-names with equal name
   // as a comma separated string
   for (const [name] of data) {
