@@ -9,7 +9,7 @@ exports[`IconSearch renders correctly 1`] = `
   >
     <i
       aria-hidden="true"
-      className="bi bi-search"
+      className="bs-icon bi-search"
     />
     <span
       className="sr-only"
@@ -30,7 +30,7 @@ exports[`IconSearch renders correctly 1`] = `
   />
   <a
     aria-hidden="true"
-    className="bi bi-x-circle"
+    className="bs-icon bi-x-circle"
     href="#"
     id="search-clear"
     onClick={[Function]}

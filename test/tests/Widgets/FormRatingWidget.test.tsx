@@ -12,7 +12,7 @@ const widgetProps = {
   title: "Test Rating Title",
   helpText: "Sample help text",
   icon: "bi-star-fill",
-  size: "bi-default",
+  size: "bs-icon-default",
   hoverEffect: true
 };
 
