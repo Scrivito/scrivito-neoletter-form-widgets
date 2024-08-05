@@ -19,12 +19,12 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
       title: "Size",
       description: "Default: 133%",
       values: [
-        { value: "bi-1x", title: "100% (Normal)" },
-        { value: "bi-default", title: "133%" },
-        { value: "bi-2x", title: "200%" },
-        { value: "bi-3x", title: "300%" },
-        { value: "bi-4x", title: "400%" },
-        { value: "bi-5x", title: "500% (Biggest)" }
+        { value: "bs-icon-1x", title: "100% (Normal)" },
+        { value: "bs-icon-default", title: "133%" },
+        { value: "bs-icon-2x", title: "200%" },
+        { value: "bs-icon-3x", title: "300%" },
+        { value: "bs-icon-4x", title: "400%" },
+        { value: "bs-icon-5x", title: "500% (Biggest)" }
       ]
     },
     colorType: {
@@ -62,7 +62,7 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
     customColor: "#ffd700",
     hoverEffect: false,
     icon: "bi-star-fill",
-    size: "bi-default"
+    size: "bs-icon-default"
   },
   validations: [
     insideFormContainerValidation,

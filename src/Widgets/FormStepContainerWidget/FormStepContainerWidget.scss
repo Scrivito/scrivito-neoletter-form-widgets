@@ -19,7 +19,7 @@
     cursor: default;
   }
 
-  .rating-icon.bi {
+  .rating-icon.bs-icon {
     color: grey;
   }
 
@@ -121,33 +121,33 @@
   }
 
   // Bootstrap Icons - Sizes Add-on
-  .bi {
-    &.bi-1x {
+  .bs-icon {
+    &.bs-icon-1x {
       font-size: 1em;
       line-height: 1;
     }
 
-    &.bi-default {
+    &.bs-icon-default {
       font-size: 1.3em;
       line-height: 1;
     }
 
-    &.bi-2x {
+    &.bs-icon-2x {
       font-size: 2em;
       line-height: 1;
     }
 
-    &.bi-3x {
+    &.bs-icon-3x {
       font-size: 3em;
       line-height: 1;
     }
 
-    &.bi-4x {
+    &.bs-icon-4x {
       font-size: 4em;
       line-height: 1;
     }
 
-    &.bi-5x {
+    &.bs-icon-5x {
       font-size: 5em;
       line-height: 1;
     }
@@ -308,11 +308,11 @@ body .scrivito-neoletter-review-form-modal {
   .scrivito-neoletter-form-widgets.form-container-widget .reset-label span,
   .scrivito-neoletter-form-widgets.form-container-widget label,
   .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory,
-  .scrivito-neoletter-form-widgets.form-container-widget .bi,
+  .scrivito-neoletter-form-widgets.form-container-widget .bs-icon,
   .scrivito-neoletter-form-widgets.form-container-widget .text-super,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget label,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory,
-  .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .bi {
+  .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .bs-icon {
     color: #fff;
   }
 
@@ -327,7 +327,7 @@ body .scrivito-neoletter-review-form-modal {
     color: red !important;
   }
 
-  .card .scrivito-neoletter-form-widgets.form-container-widget .bi {
+  .card .scrivito-neoletter-form-widgets.form-container-widget .bs-icon {
     color: #ccc !important;
   }
 }
