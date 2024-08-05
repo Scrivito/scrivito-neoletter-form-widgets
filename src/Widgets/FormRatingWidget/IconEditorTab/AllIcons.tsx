@@ -44,12 +44,12 @@ const Icons: React.FC<IconsProps> = ({ icons, currentIcon, setWidgetIcon }) => {
         if (currentIcon === cssIcon) aClassNames.push("active");
 
         return (
-          <div key={`${icon}-${innerIndex}`} className="bi-icon">
+          <div key={`${icon}-${innerIndex}`} className="icon-container">
             <a
               href="#"
               className={aClassNames.join(" ")}
               onClick={e => setWidgetIcon(e, cssIcon)}>
-              <i className={["bi", cssIcon].join(" ")} aria-hidden="true" />
+              <i className={["bs-icon", cssIcon].join(" ")} aria-hidden="true" />
               <span className="sr-only">Example of </span>
               {icon}
             </a>

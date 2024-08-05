@@ -26,7 +26,7 @@ describe("RatingIcon", () => {
     );
 
     const ratingIcon = container.querySelector(".rating-icon")!;
-    expect(ratingIcon).toHaveClass(`bi ${icon} ${size} rating-icon`);
+    expect(ratingIcon).toHaveClass(`bs-icon ${icon} ${size} rating-icon`);
     expect(ratingIcon).toHaveStyle(`color: ${color}; paddingRight: 0.08em`);
 
     fireEvent.click(ratingIcon);

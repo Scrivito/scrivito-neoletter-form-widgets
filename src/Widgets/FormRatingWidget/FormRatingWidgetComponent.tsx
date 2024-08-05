@@ -27,7 +27,7 @@ Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
             selectedIcons > i,
             hoverEffect && hoveredIcons > i
           )}
-          size={widget.get("size") || "bi-default"}
+          size={widget.get("size") || "bs-icon-default"}
           onSelect={() => setSelectedIcons(i + 1)}
           onHover={() => hoverEffect && setHoveredIcons(i + 1)}
           onHoverOut={() => hoverEffect && setHoveredIcons(0)}

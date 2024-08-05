@@ -2,7 +2,7 @@
 
 exports[`SingleIcon component renders correctly 1`] = `
 <div
-  className="bi-icon"
+  className="icon-container"
 >
   <a
     className="active"
@@ -10,7 +10,7 @@ exports[`SingleIcon component renders correctly 1`] = `
     onClick={[Function]}
   >
     <i
-      className="bi bi-example"
+      className="bs-icon bi-example"
     />
     <span
       className="sr-only"

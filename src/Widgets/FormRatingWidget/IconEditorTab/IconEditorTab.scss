@@ -33,11 +33,11 @@
     width: 60px;
     text-align: center;
     line-height: 1.3em;
-    .bi {
+    .bs-icon {
       font-size: 26px;
     }
   }
-  .bi-icon {
+  .icon-container {
     width: 25%;
     a {
       display: flex;
@@ -55,7 +55,7 @@
       .sr-only {
         @include srOnly();
       }
-      .bi {
+      .bs-icon {
         margin-right: 10px;
         color: var(--bs-primary, #5c9dcd);
         font: normal normal normal 14px "bootstrap-icons";
@@ -64,7 +64,7 @@
         background-color: #fff;
         color: #333;
         text-decoration: none;
-        .bi {
+        .bs-icon {
           font-size: 23px;
         }
         .text-muted {
@@ -73,7 +73,7 @@
       }
       &.active {
         @include activeIcon();
-        .bi {
+        .bs-icon {
           font-size: 24px;
         }
         .text-muted {
@@ -90,7 +90,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  .bi {
+  .bs-icon {
     color: #555;
   }
   label {
@@ -107,7 +107,7 @@
       box-shadow: none;
     }
   }
-  #search-clear.bi {
+  #search-clear.bs-icon {
     text-decoration: none;
     position: absolute;
     right: 10px;
@@ -133,10 +133,10 @@
     background: #5a5a5a;
   }
   .neoletter-form-icon-editor-tab .headline,
-  .neoletter-form-icon-editor-tab .icon-editor-preview .bi {
+  .neoletter-form-icon-editor-tab .icon-editor-preview .bs-icon {
     color: #eee;
   }
-  #neoletter-icon-search .bi {
+  #neoletter-icon-search .bs-icon {
     color: #aaa;
   }
   #neoletter-icon-search #search-input {
@@ -144,7 +144,7 @@
     border: 1px solid #333;
     color: #777;
   }
-  .neoletter-form-icon-editor-tab .bi-icon a {
+  .neoletter-form-icon-editor-tab .icon-container a {
     color: #eee;
     &:hover,
     &:active {

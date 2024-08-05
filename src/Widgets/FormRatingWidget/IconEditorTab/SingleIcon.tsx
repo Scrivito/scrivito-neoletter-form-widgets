@@ -16,12 +16,12 @@ export const SingleIcon: React.FC<SingleIconProps> = ({
   if (currentIcon === cssIcon) aClassNames.push("active");
 
   return (
-    <div className="bi-icon">
+    <div className="icon-container">
       <a
         href="#"
         className={aClassNames.join(" ")}
         onClick={e => setWidgetIcon(e, cssIcon)}>
-        <i className={`bi ${cssIcon}`}></i>
+        <i className={`bs-icon ${cssIcon}`}></i>
         <span className="sr-only">Example of </span>
         {icon}
       </a>

@@ -27,7 +27,7 @@ export const IconEditorTab: React.FC<IconEditorTabProps> = ({ widget }) => {
           </div>
           <div className="icon-editor-preview">
             <i
-              className={`bi ${currentIcon}`}
+              className={`bs-icon ${currentIcon}`}
               style={{
                 color: color
               }}

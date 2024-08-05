@@ -2,7 +2,7 @@
 
 exports[`RatingIcon renders correctly 1`] = `
 <i
-  className="bi star-fill 2x rating-icon"
+  className="bs-icon star-fill 2x rating-icon"
   style={
     {
       "color": "gold",
