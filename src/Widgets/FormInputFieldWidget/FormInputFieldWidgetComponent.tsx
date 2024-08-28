@@ -5,21 +5,30 @@ import { isCustomType } from "../FormStepContainerWidget/utils/isCustomType";
 import { Mandatory } from "../FormStepContainerWidget/components/MandatoryComponent";
 import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponent";
 import { FormInputFieldWidget } from "./FormInputFieldWidgetClass";
+import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
+import "./FormInputFieldWidget.scss";
+
 Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
   const id = `form_text_input_widget_${widget.id()}`;
   const fieldName = getFieldName(widget);
+  const useFloatingLabel = widget.get("useFloatingLabel");
+  const [isSelected, setIsSelected] = React.useState(false);
 
+
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    setIsSelected(event.target.value !== "");
+  };
   return (
-    <div className="mb-3">
-      <Scrivito.ContentTag
-        content={widget}
-        attribute="label"
-        tag="label"
-        htmlFor={id}
-      />
-      {widget.get("required") && <Mandatory />}
-
-      {widget.get("helpText") && <HelpText widget={widget} />}
+    <div className={`mb-3 form-input-container ${useFloatingLabel ? 'floating-label' : ''} ${isSelected ? "is-selected" : ""}`} >
+      {!isEmpty(widget.get("label")) && (
+        <>
+          <label htmlFor={id} className="input-label">
+            {widget.get("label") as string} {widget.get("required") && <Mandatory />}
+            {widget.get("helpText") && <HelpText widget={widget} />}
+          </label>
+        </>
+      )
+      }
 
       {isCustomType(widget) && widget.get("customType") === "multi_line" ? (
         <textarea
@@ -29,6 +38,7 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
           name={fieldName}
           placeholder={widget.get("placeholder")}
           required={widget.get("required")}
+          onChange={handleChange}
         />
       ) : (
         <input
@@ -39,6 +49,7 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
           placeholder={widget.get("placeholder")}
           type={calculateType(fieldName)}
           required={widget.get("required")}
+          onChange={handleChange}
         />
       )}
     </div>

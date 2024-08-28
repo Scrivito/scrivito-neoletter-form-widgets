@@ -30,14 +30,19 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
       ]
     },
     customFieldName: { title: "Field name" },
-    helpText: { title: "Help text" }
+    helpText: { title: "Help text" },
+    useFloatingLabel: {
+      title: "Enable floating label",
+      description: "Places the label inside the input. Remove the placeholder when enabled."
+    }
   },
   initialContent: {
     label: "Custom field",
     placeholder: "Your custom field",
     type: "custom",
     customType: "single_line",
-    customFieldName: "custom_field_name"
+    customFieldName: "custom_field_name",
+    useFloatingLabel: false
   },
   properties: widget => {
     if (widget.get("type") === "custom") {
@@ -47,12 +52,13 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
         "customFieldName",
         "label",
         "placeholder",
+        "useFloatingLabel",
         "required",
         "helpText"
       ];
     }
 
-    return ["type", "label", "placeholder", "required", "helpText"];
+    return ["type", "label", "placeholder", "required", "useFloatingLabel", "helpText"];
   },
   validations: [
     insideFormContainerValidation,

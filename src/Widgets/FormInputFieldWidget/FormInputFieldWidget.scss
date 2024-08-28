@@ -1,0 +1,46 @@
+.scrivito-neoletter-form-widgets {
+
+	.form-input-container {
+		width: 100%;
+		position: relative;
+
+		&.floating-label {
+			min-height: 65px;
+			padding-top: 1.25rem;
+
+			.input-label {
+				position: absolute;
+				top: 26px;
+				left: 0.75rem;
+				transition: all 0.2s ease;
+				pointer-events: none;
+			}
+
+			&.is-selected .input-label {
+				top: -7px;
+				left: 0;
+
+				.mandatory-container span {
+					color: var(--bs-danger, #f03a47);
+				}
+
+				.helptext-container {
+					display: inline-block;
+				}
+			}
+
+			.helptext-container {
+				pointer-events: auto;
+				display: none;
+			}
+
+			.mandatory-container {
+				pointer-events: auto;
+
+				span {
+					color: #333;
+				}
+			}
+		}
+	}
+}

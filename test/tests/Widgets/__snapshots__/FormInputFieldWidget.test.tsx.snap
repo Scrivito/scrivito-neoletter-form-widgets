@@ -4,38 +4,41 @@ exports[`FormInputFieldWidget Component renders correctly 1`] = `
 <div>
   <div>
     <div
-      className="mb-3"
+      className="mb-3 form-input-container  "
     >
       <label
+        className="input-label"
         htmlFor="form_text_input_widget_staticWidgetID"
       >
         Test Label
-      </label>
-      <div
-        className="mandatory-container"
-      >
-        <span
-          className="text-mandatory"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
+         
+        <div
+          className="mandatory-container"
         >
-          *
-        </span>
-      </div>
-      <div
-        className="helptext-container"
-      >
-        <i
-          className="bi bi-question-circle"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        />
-      </div>
+          <span
+            className="text-mandatory"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            *
+          </span>
+        </div>
+        <div
+          className="helptext-container"
+        >
+          <i
+            className="bi bi-question-circle"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          />
+        </div>
+      </label>
       <input
         className="form-control"
         id="form_text_input_widget_staticWidgetID"
         maxLength={250}
         name="custom_test"
+        onChange={[Function]}
         placeholder="Test placeholder"
         required={true}
         type="text"

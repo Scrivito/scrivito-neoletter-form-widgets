@@ -26,26 +26,28 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
 
   return (
     <div className="select-container mb-3" ref={ref}>
-      <div className="select-title">
-        <span className="text-super"> {widget.get("title")} </span>
-        {!isMultiSelect && widget.get("required") && <Mandatory />}
-        {widget.get("helpText") && <HelpText widget={widget} />}
-      </div>
       {isDropdown ? (
         <Dropdown
-          id={widget.id()}
           name={getFieldName(widget)}
           options={items}
-          required={widget.get("required")}
+          useFloatingLabel={widget.get("useFloatingLabel") || false}
+          widget={widget}
         />
       ) : (
-        <Select
-          isMultiSelect={isMultiSelect}
-          required={widget.get("required")}
-          widget={widget}
-          name={getFieldName(widget)}
-          onChange={() => setSelected(true)}
-        />
+        <>
+          <div className="select-title">
+            <span className="text-super"> {widget.get("title")} </span>
+            {!isMultiSelect && widget.get("required") && <Mandatory />}
+            {widget.get("helpText") && <HelpText widget={widget} />}
+          </div>
+          <Select
+            isMultiSelect={isMultiSelect}
+            required={widget.get("required")}
+            widget={widget}
+            name={getFieldName(widget)}
+            onChange={() => setSelected(true)}
+          />
+        </>
       )}
       {showReset() && (
         <ResetInputs
