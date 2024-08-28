@@ -113,6 +113,10 @@ export function useSignatureCanvas(onChange: (dataUrl: string) => void, strokeTh
 			const context = canvasRef.current.getContext("2d");
 			if (context) {
 				context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+
+				// redraw the background color
+				context.fillStyle = backgroundColor;
+				context.fillRect(0, 0, context.canvas.width, context.canvas.height);
 			}
 		}
 		onChange("");
