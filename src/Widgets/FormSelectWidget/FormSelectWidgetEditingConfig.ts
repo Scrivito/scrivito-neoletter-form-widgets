@@ -31,6 +31,10 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     inlineView: {
       title: "Arrange items horizontally",
       description: "When enabled, all items will be displayed in a single row."
+    },
+    useFloatingLabel: {
+      title: "Enable floating label",
+      description: "Places the label inside the dropdown."
     }
   },
   properties: widget => {
@@ -44,7 +48,8 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     linearScaleLowerLimit: "1",
     linearScaleUpperLimit: "5",
     clearSelectionText: "Clear selection",
-    inlineView: false
+    inlineView: false,
+    useFloatingLabel: false
   },
   validations: [
     insideFormContainerValidation,
@@ -95,6 +100,10 @@ function getProperties(widget: Scrivito.Obj): any[] {
   // show/hide clearSelectionText
   if (!widget.get("required") && (type == "linear-scale" || type == "radio")) {
     props.splice(props.length - 1, 0, "clearSelectionText");
+  }
+  if (type == "dropdown") {
+    props.splice(props.length - 2, 0, "useFloatingLabel");
+    //   ["useFloatingLabel", { enabled: type == "dropdown" }],
   }
   return props;
 }

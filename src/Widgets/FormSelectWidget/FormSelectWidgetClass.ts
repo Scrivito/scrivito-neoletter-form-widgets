@@ -23,7 +23,8 @@ export const FormSelectWidget = Scrivito.provideWidgetClass(
       linearScaleLowerLabel: "string",
       linearScaleUpperLabel: "string",
       clearSelectionText: "string",
-      inlineView: "boolean"
+      inlineView: "boolean",
+      useFloatingLabel: "boolean"
     }
   }
 );

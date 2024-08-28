@@ -1,33 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dropdown renders correctly 1`] = `
-<select
-  class="dropdown-select"
-  id="testDropdownId"
-  name="testDropdown"
-  required=""
+<div
+  class="dropdown-wrapper  "
 >
-  <option
-    id="empty-option"
-    value=""
-  />
-  <option
-    id="0"
-    value="Option 1"
+  <label
+    class="dropdown-label"
+    for="fakeId"
   >
-    Option 1
-  </option>
-  <option
-    id="1"
-    value="Option 2"
+    Select some
+     
+    <div
+      class="mandatory-container"
+    >
+      <span
+        class="text-mandatory"
+      >
+        *
+      </span>
+    </div>
+  </label>
+  <select
+    class="dropdown-select"
+    id="fakeId"
+    name="testDropdown"
+    required=""
   >
-    Option 2
-  </option>
-  <option
-    id="2"
-    value="Option 3"
-  >
-    Option 3
-  </option>
-</select>
+    <option
+      id="empty-option"
+      value=""
+    />
+    <option
+      id="0"
+      value="Option 1"
+    >
+      Option 1
+    </option>
+    <option
+      id="1"
+      value="Option 2"
+    >
+      Option 2
+    </option>
+    <option
+      id="2"
+      value="Option 3"
+    >
+      Option 3
+    </option>
+  </select>
+</div>
 `;

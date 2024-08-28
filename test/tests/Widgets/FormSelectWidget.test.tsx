@@ -19,7 +19,8 @@ const widgetProps = {
   linearScaleUpperLimit: "5",
   linearScaleLowerLabel: "low",
   linearScaleUpperLabel: "high",
-  inlineView: false
+  inlineView: false,
+  useFloatingLabel: false
 };
 
 describe("FormSelectWidget", () => {
@@ -29,11 +30,9 @@ describe("FormSelectWidget", () => {
     });
 
     const title = screen.getByText(widgetProps.title);
-    const selectTitle = document.querySelector(".select-title");
     const dropdown = document.querySelector(".dropdown-select");
 
     expect(title).toBeInTheDocument();
-    expect(selectTitle).toBeInTheDocument();
     expect(dropdown).toBeInTheDocument();
     expect(dropdown).toHaveAttribute("required");
   });

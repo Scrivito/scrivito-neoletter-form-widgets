@@ -7,65 +7,66 @@ exports[`FormSelectWidget renders correctly 1`] = `
       className="select-container mb-3"
     >
       <div
-        className="select-title"
+        className="dropdown-wrapper  "
       >
-        <span
-          className="text-super"
+        <label
+          className="dropdown-label"
+          htmlFor="staticWidgetID"
         >
-           
           Test Select Title
            
-        </span>
-        <div
-          className="mandatory-container"
-        >
-          <span
-            className="text-mandatory"
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
+          <div
+            className="mandatory-container"
           >
-            *
-          </span>
-        </div>
-        <div
-          className="helptext-container"
+            <span
+              className="text-mandatory"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              *
+            </span>
+          </div>
+          <div
+            className="helptext-container"
+          >
+            <i
+              className="bi bi-question-circle"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            />
+          </div>
+        </label>
+        <select
+          className="dropdown-select"
+          id="staticWidgetID"
+          name=""
+          onChange={[Function]}
+          required={true}
         >
-          <i
-            className="bi bi-question-circle"
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
+          <option
+            id="empty-option"
+            value=""
           />
-        </div>
+          <option
+            id="0"
+            value="Item 1"
+          >
+            Item 1
+          </option>
+          <option
+            id="1"
+            value="Item 2"
+          >
+            Item 2
+          </option>
+          <option
+            id="2"
+            value="Item 3"
+          >
+            Item 3
+          </option>
+        </select>
       </div>
-      <select
-        className="dropdown-select"
-        id="staticWidgetID"
-        name=""
-        required={true}
-      >
-        <option
-          id="empty-option"
-          value=""
-        />
-        <option
-          id="0"
-          value="Item 1"
-        >
-          Item 1
-        </option>
-        <option
-          id="1"
-          value="Item 2"
-        >
-          Item 2
-        </option>
-        <option
-          id="2"
-          value="Item 3"
-        >
-          Item 3
-        </option>
-      </select>
     </div>
   </div>
 </div>

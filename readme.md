@@ -234,6 +234,7 @@ The `Form Input Field` widget adds customizable input fields to your form. You c
 - Field name: Define the field name for the input.
 - Label: Provide a descriptive label for the input field to convey its purpose.
 - Placeholder: Define a placeholder text for the input field, providing guidance to users.
+- Enable floating label: Places the label inside the input. Remove the placeholder when enabled.
 - Mandatory: Indicates whether the input field is required.
 - Help text: Provide optional help text for the input field.
 
@@ -308,6 +309,7 @@ The `Form Select` widget enables you to create single or multiple selection elem
 - Label: Specify the label for the select input.
 - Items: Configure the items or options available for selection. (Not visible for input type linear-scale.)
 - Field name: Define the field name for the select input.
+- Enable floating label: Places the label inside the dropdown. (Visible for dropdown only.)
 - Mandatory: Indicates whether selection is required for single select inputs (radio buttons, linear-scale and dropdowns).
 - Help text: Provide optional help text for the select input.
 - Arrange items horizontally: When enabled, all items will be displayed in a single row. (Visible for checkboxes & radios only.)
