@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormSignatureWidget renders correctly 1`] = `
+<div>
+  <div>
+    <div
+      className="form-signature mb-3"
+    >
+      <div
+        className="signature-title"
+      >
+        <span>
+          Signature Title
+        </span>
+        <div
+          className="helptext-container"
+        >
+          <i
+            className="bi bi-question-circle"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          />
+        </div>
+      </div>
+      <div
+        className="signature"
+        id="staticWidgetID"
+      >
+        <canvas
+          className="neoletter-form-canvas"
+          onMouseDown={[Function]}
+          onMouseMove={[Function]}
+          onMouseOut={[Function]}
+          onMouseUp={[Function]}
+          onTouchCancel={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+        />
+        <div
+          className=""
+        >
+          <button
+            className="delete btn btn-primary btn-block"
+            onClick={[Function]}
+          >
+            <span
+              className="delete-text"
+            >
+              Clear Signature
+            </span>
+          </button>
+        </div>
+      </div>
+      <input
+        name=""
+        type="hidden"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;

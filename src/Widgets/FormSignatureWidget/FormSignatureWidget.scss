@@ -1,0 +1,13 @@
+.scrivito-neoletter-form-widgets .form-signature {
+  .signature {
+    button.delete {
+      cursor: pointer;
+    }
+    canvas.neoletter-form-canvas {
+      background: white;
+      border: 2px solid black;
+      width: 100%;
+      aspect-ratio: 5 / 2;
+    }
+  }
+}

@@ -17,6 +17,7 @@ To use this package, you must have Scrivito version 1.30.0 or later installed in
 - Rating controls
 - Date & date-time controls
 - Conditionals
+- Signature
 - Captcha support
 
 ## Installation
@@ -101,6 +102,7 @@ The following widgets are typically added within the [Form](#form-widget) widget
 - [Form Date](#form-date-widget): Includes date and date-time input fields.
 - [Form Input Field](#form-input-field-widget): Adds customizable input fields.
 - [Form Rating](#form-rating-widget): Integrates a rating control.
+- [Form Signature](#form-signature-widget): Integrates a signature.
 - [Form Select](#form-select-widget): Provides single or multiple selection options, including radio buttons, dropdowns, and checkboxes.
 - [Hidden Form Field](#form-hidden-field-widget): Adds hidden form fields.
 - [Form Conditional Container](#form-conditional-container-widget): Allows you to conditionally show/hide other widgets based on user selections.
@@ -271,6 +273,28 @@ The `Form Rating` widget has the following properties divided into several tabs:
 ### Note
 
 The colors for "Primary" and "Secondary" are retrieved from Bootstrap variables `--bs-primary` and `--bs-secondary`, respectively. If these Bootstrap variables are not found, the widget will fallback to using `#f03a47` (for "Secondary") and `#5c9dcd` (for "Primary") as default colors. The CSS representation for these defaults is: `var(--bs-secondary, #f03a47)` and `var(--bs-primary, #5c9dcd)`.
+
+## Form Signature Widget
+
+<img src="images/form_signature_preview.png"  width="350" alt="Screenshot">
+
+The `Form Signature` widget allows users to draw a signature on the form. This widget is useful for forms that require a digital signature.
+
+### Properties
+
+- Title: Set the title for the signature widget.
+- Help text: Provide optional help text for the signature.
+- Field name: Define the field name for the signature.
+- Stroke color: Choose the color of the signature stroke.
+- Stroke thickness: Define the thickness of the signature stroke.
+- Background color: Set the background color of the signature area.
+- Delete button text: Specify the text for the delete button that allows users to clear their signature.
+- Delete button alignment: Alignment of the delete button.
+
+### Validation
+
+- The widget must be placed within a Form widget to be effective.
+- The field name must be unique and start with `custom_`.
 
 ## Form Select Widget
 
@@ -597,7 +621,7 @@ For more information regarding CSP, please refer to the CSP section in the Frien
 
 # Tracking
 
-Enable the Beta Neoletter Tracking capabilities with: 
+Enable the Beta Neoletter Tracking capabilities with:
 
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
