@@ -31,6 +31,11 @@ export function useSignatureCanvas(onChange: (dataUrl: string) => void, strokeTh
 	}, []);
 
 	useEffect(() => {
+		draw();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [backgroundColor, strokeColor, strokeThickness]);
+
+	useEffect(() => {
 		if (!isDrawing && canvasRef.current) {
 			if (drawingState.clickDrag.length > 0) {
 				const data = canvasRef.current.toDataURL();
