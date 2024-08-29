@@ -10,7 +10,8 @@ import { FormSelectWidget } from "./FormSelectWidgetClass";
 import { ResetInputs } from "../FormStepContainerWidget/components/ResetInputsComponent";
 import "./FormSelectWidget.scss";
 
-Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+Scrivito.provideComponent(FormSelectWidget, ({ widget, navigate }: any) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const [selected, setSelected] = React.useState(false);
   const items = widget.get("items");
@@ -46,6 +47,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
             widget={widget}
             name={getFieldName(widget)}
             onChange={() => setSelected(true)}
+            onClickNavigate={() => (isMultiSelect || !widget.get("navigateOnClick")) ? null : navigate(true)}
           />
         </>
       )}

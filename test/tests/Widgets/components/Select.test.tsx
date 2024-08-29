@@ -20,7 +20,8 @@ const widgetProps = {
   linearScaleLowerLabel: "lowest",
   linearScaleUpperLabel: "highest",
   clearSelectionText: "Clear",
-  inlineView: false
+  inlineView: false,
+  navigateOnClick: false
 };
 
 const widget = new DummyWidget(widgetProps) as unknown as Widget;
@@ -34,6 +35,7 @@ describe("Select", () => {
         widget={widget}
         name="testName"
         onChange={jest.fn()}
+        onClickNavigate={jest.fn()}
       />
     );
 
@@ -59,6 +61,7 @@ describe("Select", () => {
         widget={widget}
         name="testName"
         onChange={jest.fn()}
+        onClickNavigate={jest.fn()}
       />
     );
 
@@ -79,6 +82,7 @@ describe("Select", () => {
         widget={widget}
         name="testName"
         onChange={jest.fn()}
+        onClickNavigate={jest.fn()}
       />
     );
 
@@ -100,6 +104,7 @@ describe("Select", () => {
         widget={widget}
         name="testName"
         onChange={jest.fn()}
+        onClickNavigate={jest.fn()}
       />
     );
 
@@ -121,6 +126,7 @@ describe("Select", () => {
         widget={widget}
         name="testName"
         onChange={jest.fn()}
+        onClickNavigate={jest.fn()}
       />
     );
     expect(getByText("lowest")).toBeInTheDocument();
@@ -134,6 +140,23 @@ describe("Select", () => {
     labels.forEach((label) => {
       expect(label).toHaveClass("linear-scale");
     });
+  });
+
+  it("renders correctly", () => {
+    const tree = renderer
+      .create(
+        <Select
+          isMultiSelect={false}
+          required={false}
+          widget={widget}
+          name="testName"
+          onChange={jest.fn()}
+          onClickNavigate={jest.fn()}
+
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });
 
@@ -197,20 +220,6 @@ describe("SelectItem Component", () => {
     const input = container.querySelector("input");
     expect(input).toHaveAttribute("type", "checkbox");
     expect(input).not.toHaveAttribute("required");
-  });
-  it("renders correctly", () => {
-    const tree = renderer
-      .create(
-        <SelectItem
-          selectionType="multi"
-          name="testName"
-          value="lowest"
-          required={true}
-          onChange={jest.fn()}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   it("renders correctly", () => {

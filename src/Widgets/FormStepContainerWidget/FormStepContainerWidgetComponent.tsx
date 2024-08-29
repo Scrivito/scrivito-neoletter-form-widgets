@@ -106,7 +106,8 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
                 }
               });
               return { stepNumber, isActive, isSingleStep };
-            }
+            },
+            navigateOnClick: () => onPageChange
           }}
         />
         {showCaptcha && (

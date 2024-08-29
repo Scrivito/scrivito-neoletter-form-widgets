@@ -35,10 +35,14 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     useFloatingLabel: {
       title: "Enable floating label",
       description: "Places the label inside the dropdown."
+    },
+    navigateOnClick: {
+      title: "Navigate on click",
+      description: "Automatically navigate to the next step when an item is clicked."
     }
   },
   properties: widget => {
-    return getProperties(widget);
+    return getProperties(widget as unknown as Scrivito.Widget);
   },
   initialContent: {
     selectionType: "radio",
@@ -49,7 +53,8 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     linearScaleUpperLimit: "5",
     clearSelectionText: "Clear selection",
     inlineView: false,
-    useFloatingLabel: false
+    useFloatingLabel: false,
+    navigateOnClick: false
   },
   validations: [
     insideFormContainerValidation,
@@ -70,7 +75,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getProperties(widget: Scrivito.Obj): any[] {
+function getProperties(widget: Scrivito.Widget): any[] {
   const type = widget.get("selectionType");
   const props = [
     "selectionType",
@@ -101,9 +106,13 @@ function getProperties(widget: Scrivito.Obj): any[] {
   if (!widget.get("required") && (type == "linear-scale" || type == "radio")) {
     props.splice(props.length - 1, 0, "clearSelectionText");
   }
+  // show/hide useFloatingLabel
   if (type == "dropdown") {
     props.splice(props.length - 2, 0, "useFloatingLabel");
-    //   ["useFloatingLabel", { enabled: type == "dropdown" }],
+  }
+  // show/hide navigateOnClick
+  if (type == "radio" && !widget.container()?.get("isSingleStep")) {
+    props.splice(4, 0, "navigateOnClick");
   }
   return props;
 }

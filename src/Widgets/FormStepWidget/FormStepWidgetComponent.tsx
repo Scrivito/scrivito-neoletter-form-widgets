@@ -5,8 +5,9 @@ import { FormStepWidget } from "./FormStepWidgetClass";
 import "./FormStepWidget.scss";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-Scrivito.provideComponent(FormStepWidget, ({ widget, getData }: any) => {
+Scrivito.provideComponent(FormStepWidget, ({ widget, getData, navigateOnClick }: any) => {
   const data = getData ? getData(widget.id()) : { stepNumber: 0 };
+  const doNavigate = navigateOnClick ? navigateOnClick() : null;
   const items = widget.get("items");
   const isMultiStepsWithActiveEditing =
     Scrivito.isInPlaceEditingActive() && !data.isSingleStep;
@@ -21,17 +22,16 @@ Scrivito.provideComponent(FormStepWidget, ({ widget, getData }: any) => {
 
   return (
     <div
-      className={`${
-        isMultiStepsWithActiveEditing
-          ? "step-border"
-          : `${data.isActive || data.isSingleStep ? "" : "hide"}`
-      } `}
+      className={`${isMultiStepsWithActiveEditing
+        ? "step-border"
+        : `${data.isActive || data.isSingleStep ? "" : "hide"}`
+        } `}
       data-step-number={data.stepNumber}>
       {isMultiStepsWithActiveEditing && (
         <span className="step-preview-count">{"Step " + data.stepNumber}</span>
       )}
       <div className="row">
-        <Scrivito.ContentTag content={widget} attribute="items" />
+        <Scrivito.ContentTag content={widget} attribute="items" widgetProps={{ navigate: doNavigate }} />
       </div>
     </div>
   );
