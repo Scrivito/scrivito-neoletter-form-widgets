@@ -69,6 +69,18 @@
         transition: all 0.2s ease;
         pointer-events: none;
       }
+      .helptext-container {
+        pointer-events: auto;
+        display: none;
+      }
+  
+      .mandatory-container {
+        pointer-events: auto;
+  
+        span {
+          color: #333;
+        }
+      }
 
       &.is-selected .dropdown-label,
       .dropdown-select:focus+.dropdown-label {
@@ -88,19 +100,6 @@
     .dropdown-select {
       width: 100%;
       border-radius: 0.25rem;
-    }
-
-    .helptext-container {
-      pointer-events: auto;
-      display: none;
-    }
-
-    .mandatory-container {
-      pointer-events: auto;
-
-      span {
-        color: #333;
-      }
     }
   }
 

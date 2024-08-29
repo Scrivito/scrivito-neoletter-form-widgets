@@ -33,6 +33,8 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget, navigate }: any) => {
           options={items}
           useFloatingLabel={widget.get("useFloatingLabel") || false}
           widget={widget}
+          required={widget.get("required")}
+          helptext={widget.get("helpText")}
         />
       ) : (
         <>

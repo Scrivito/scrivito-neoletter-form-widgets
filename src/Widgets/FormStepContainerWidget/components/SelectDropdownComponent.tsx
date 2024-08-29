@@ -9,16 +9,20 @@ interface DropdownProps {
   name: string;
   useFloatingLabel: boolean;
   widget: Scrivito.Widget;
+  required: boolean;
+  helptext: string;
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
   options,
   name,
   useFloatingLabel,
-  widget
+  widget,
+  required,
+  helptext
 }) => {
   const id = widget.id();
-  const required = widget.get("required") as boolean;
+
   const [isSelected, setIsSelected] = React.useState(false);
 
 
@@ -30,7 +34,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
     <div className={`dropdown-wrapper ${useFloatingLabel ? 'floating-label' : ''} ${isSelected ? "is-selected" : ""}`}>
       <label htmlFor={id} className="dropdown-label">
         {widget.get("title") as string} {required && <Mandatory />}
-        {widget.get("helpText") && <HelpText widget={widget} />}
+        {helptext && <HelpText widget={widget} />}
       </label>
       <select
         className="dropdown-select"
