@@ -310,6 +310,7 @@ The `Form Select` widget enables you to create single or multiple selection elem
 - Items: Configure the items or options available for selection. (Not visible for input type linear-scale.)
 - Field name: Define the field name for the select input.
 - Enable floating label: Places the label inside the dropdown. (Visible for dropdown only.)
+- Navigate on click: Automatically navigate to the next step when an item is clicked. (Visible for radios only.)
 - Mandatory: Indicates whether selection is required for single select inputs (radio buttons, linear-scale and dropdowns).
 - Help text: Provide optional help text for the select input.
 - Arrange items horizontally: When enabled, all items will be displayed in a single row. (Visible for checkboxes & radios only.)

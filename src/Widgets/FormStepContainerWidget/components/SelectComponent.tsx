@@ -7,6 +7,7 @@ interface SelectProps {
   widget: Scrivito.Widget;
   name: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onClickNavigate: React.MouseEventHandler<HTMLInputElement>;
 }
 interface SelectItemProps {
   selectionType: string;
@@ -15,10 +16,11 @@ interface SelectItemProps {
   name: string;
   required: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onClickNavigate?: React.MouseEventHandler<HTMLInputElement>;
 }
 
 export const Select: React.FC<SelectProps> = Scrivito.connect(
-  ({ isMultiSelect, required, widget, name, onChange }) => {
+  ({ isMultiSelect, required, widget, name, onChange, onClickNavigate }) => {
     const type = widget.get("selectionType") as string;
     if (type == "radio" || type == "multi") {
       const items = widget.get("items") as string[];
@@ -32,6 +34,7 @@ export const Select: React.FC<SelectProps> = Scrivito.connect(
               required={required}
               key={index}
               onChange={onChange}
+              onClickNavigate={onClickNavigate}
             />
           ))}
         </div>
@@ -52,13 +55,13 @@ export const SelectItem: React.FC<SelectItemProps> = ({
   id,
   name,
   required,
-  onChange
+  onChange,
+  onClickNavigate
 }: SelectItemProps) => {
   return (
     <label
-      className={`select-label ${
-        selectionType == "linear-scale" ? "linear-scale" : ""
-      }`}>
+      className={`select-label ${selectionType == "linear-scale" ? "linear-scale" : ""
+        }`}>
       <input
         className="form-check-input"
         name={name}
@@ -73,6 +76,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
         }
         value={value}
         onChange={onChange}
+        onClick={onClickNavigate}
         id={id}
       />
       <span>{value}</span>
