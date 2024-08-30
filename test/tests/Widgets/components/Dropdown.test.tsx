@@ -11,29 +11,34 @@ describe("Dropdown", () => {
     required: true,
     customFieldName: "custom_dropdown"
   }) as unknown as Scrivito.Widget;
+
+  const widgetProps = {
+    options: ["Option 1", "Option 2", "Option 3"],
+    name: "testDropdown",
+    useFloatingLabel: false,
+    widget: widget,
+    required: true,
+    helptext: ""
+  }
   it("renders the Dropdown component with options and empty dropdown", () => {
-    const options = ["Option 1", "Option 2", "Option 3"];
-    const name = "testDropdown";
 
     const { container, getByText } = render(
-      <Dropdown options={options} name={name} useFloatingLabel={false} widget={widget} />
+      <Dropdown {...widgetProps} />
     );
 
     const emptyDropdown = container.querySelector("#empty-option");
     expect(emptyDropdown).toBeInTheDocument();
 
-    options.forEach(option => {
+    widgetProps.options.forEach(option => {
       const optionElement = getByText(option);
       expect(optionElement).toBeInTheDocument();
     });
   });
 
   it("applies floating label class when useFloatingLabel is true", () => {
-    const options = ["Option 1", "Option 2", "Option 3"];
-    const name = "testDropdown";
 
     const { container } = render(
-      <Dropdown options={options} name={name} useFloatingLabel={true} widget={widget} />
+      <Dropdown {...widgetProps} useFloatingLabel={true} />
     );
 
     const wrapper = container.querySelector(".dropdown-wrapper");
@@ -41,11 +46,9 @@ describe("Dropdown", () => {
   });
 
   it("toggles is-selected class based on user selection", () => {
-    const options = ["Option 1", "Option 2", "Option 3"];
-    const name = "testDropdown";
 
     const { container, getByRole } = render(
-      <Dropdown options={options} name={name} useFloatingLabel={true} widget={widget} />
+      <Dropdown  {...widgetProps} useFloatingLabel={true} />
     );
 
     const selectElement = getByRole("combobox");
@@ -59,11 +62,9 @@ describe("Dropdown", () => {
 
 
   it("renders correctly", () => {
-    const options = ["Option 1", "Option 2", "Option 3"];
-    const name = "testDropdown";
 
     const { container } = render(
-      <Dropdown options={options} name={name} useFloatingLabel={false} widget={widget} />
+      <Dropdown {...widgetProps} useFloatingLabel={false} />
     );
 
     const tree = container.firstChild;
