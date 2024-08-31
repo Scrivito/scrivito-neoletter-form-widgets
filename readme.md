@@ -314,7 +314,8 @@ The `Form Select` widget enables you to create single or multiple selection elem
 - Mandatory: Indicates whether selection is required for single select inputs (radio buttons, linear-scale and dropdowns).
 - Help text: Provide optional help text for the select input.
 - Arrange items horizontally: When enabled, all items will be displayed in a single row. (Visible for checkboxes & radios only.)
-- Clear selection text: Allows the user to change the text of the button to clear the selection. (For radios & linear-scale if mandatory is set to false.)
+- Show clear selection button. (Visible for radios & linear-scale if mandatory is set to false.)
+- Clear selection text: Allows the user to change the text of the button to clear the selection. (Visible if Show clear selection button is set to true.)
 - Lower scale limit: Choose the lower limit, which can be either 0 or 1. (Visible for linear-scale only.)
 - Upper scale limit: Choose the upper limit, which can be from 2 to 10. (Visible for linear-scale only.)
 - Optional label for lower scale limit: Add text at the beginning of the linear scale. (Visible for linear-scale only.)

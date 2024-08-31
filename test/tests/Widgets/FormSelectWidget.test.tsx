@@ -14,13 +14,14 @@ const widgetProps = {
   selectionType: "dropdown",
   required: true,
   items: ["Item 1", "Item 2", "Item 3"],
-  clearSelectionText: "Clear Selection",
+  clearSelectionButtonText: "Clear Selection",
   linearScaleLowerLimit: "1",
   linearScaleUpperLimit: "5",
   linearScaleLowerLabel: "low",
   linearScaleUpperLabel: "high",
   inlineView: false,
-  useFloatingLabel: false
+  useFloatingLabel: false,
+  showClearSelectionButton: true
 };
 
 describe("FormSelectWidget", () => {
@@ -87,16 +88,16 @@ describe("FormSelectWidget", () => {
 
     const title = screen.getByText(selectProps.title);
     const selectTitle = document.querySelector(".select-title");
-    const checkboxes = document.querySelectorAll(".form-check-input"); // Update with your actual checkbox input class name
-    const selectContainer = document.querySelector(".inline")!; // Update with your actual class name for inlineView
+    const checkboxes = document.querySelectorAll(".form-check-input");
+    const selectContainer = document.querySelector(".inline")!;
 
     expect(title).toBeInTheDocument();
     expect(selectTitle).toBeInTheDocument();
-    expect(checkboxes.length).toBe(selectProps.items.length); // Check the number of checkboxes
+    expect(checkboxes.length).toBe(selectProps.items.length);
 
     checkboxes.forEach((checkbox) => {
       expect(checkbox).toHaveAttribute("type", "checkbox");
-      expect(checkbox).not.toHaveAttribute("required"); // Check if the checkboxes don't have 'required' attribute
+      expect(checkbox).not.toHaveAttribute("required");
     });
 
     expect(selectContainer).toBeInTheDocument();
