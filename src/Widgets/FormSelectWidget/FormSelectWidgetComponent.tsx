@@ -56,7 +56,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget, navigate }: any) => {
       {showReset() && (
         <ResetInputs
           setSelectedCallback={setSelected}
-          text={widget.get("clearSelectionText")}
+          text={widget.get("clearSelectionButtonText")}
           parentRef={ref}
         />
       )}
@@ -64,6 +64,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget, navigate }: any) => {
   );
   function showReset(): boolean {
     return (
+      widget.get("showClearSelectionButton") &&
       selected &&
       !widget.get("required") &&
       (widget.get("selectionType") == "radio" ||

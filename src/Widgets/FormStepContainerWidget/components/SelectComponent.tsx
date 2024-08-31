@@ -59,9 +59,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
   onClickNavigate
 }: SelectItemProps) => {
   return (
-    <label
-      className={`select-label ${selectionType == "linear-scale" ? "linear-scale" : ""
-        }`}>
+    <label className={`select-label ${selectionType}`}>
       <input
         className="form-check-input"
         name={name}

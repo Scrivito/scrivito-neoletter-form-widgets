@@ -27,7 +27,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     linearScaleUpperLimit: { title: "Upper scale limit" },
     linearScaleLowerLabel: { title: "Optional label for lower scale limit" },
     linearScaleUpperLabel: { title: "Optional label for upper scale limit" },
-    clearSelectionText: { title: "Clear selection text" },
+    clearSelectionButtonText: { title: "Clear selection button text" },
     inlineView: {
       title: "Arrange items horizontally",
       description: "When enabled, all items will be displayed in a single row."
@@ -39,7 +39,8 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     navigateOnClick: {
       title: "Navigate on click",
       description: "Automatically navigate to the next step when an item is clicked."
-    }
+    },
+    showClearSelectionButton: { title: "Show the clear selection button" }
   },
   properties: widget => {
     return getProperties(widget as unknown as Scrivito.Widget);
@@ -51,10 +52,11 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     customFieldName: "custom_",
     linearScaleLowerLimit: "1",
     linearScaleUpperLimit: "5",
-    clearSelectionText: "Clear selection",
+    clearSelectionButtonText: "Clear selection",
     inlineView: false,
     useFloatingLabel: false,
-    navigateOnClick: false
+    navigateOnClick: false,
+    showClearSelectionButton: true
   },
   validations: [
     insideFormContainerValidation,
@@ -90,21 +92,17 @@ function getProperties(widget: Scrivito.Widget): any[] {
   }
   // show/hide items
   if (type != "linear-scale") {
-    props.splice(2, 0, "items");
+    props.splice(3, 0, "items");
   } else {
     // show/hide linear scale props
     props.splice(
-      2,
+      3,
       0,
       "linearScaleLowerLimit",
       "linearScaleUpperLimit",
       "linearScaleLowerLabel",
       "linearScaleUpperLabel"
     );
-  }
-  // show/hide clearSelectionText
-  if (!widget.get("required") && (type == "linear-scale" || type == "radio")) {
-    props.splice(props.length - 1, 0, "clearSelectionText");
   }
   // show/hide useFloatingLabel
   if (type == "dropdown") {
@@ -113,6 +111,14 @@ function getProperties(widget: Scrivito.Widget): any[] {
   // show/hide navigateOnClick
   if (type == "radio" && !widget.container()?.get("isSingleStep")) {
     props.splice(4, 0, "navigateOnClick");
+  }
+  // show/hide showClearSelectionButton
+  if (!widget.get("required") && (type == "radio" || type == "linear-scale")) {
+    props.splice(props.length - 2, 0, "showClearSelectionButton");
+  }
+  // show/hide clearSelectionButtonText
+  if (!widget.get("required") && (type == "linear-scale" || type == "radio") && widget.get("showClearSelectionButton")) {
+    props.splice(props.length - 2, 0, "clearSelectionButtonText");
   }
   return props;
 }
