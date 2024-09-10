@@ -17,28 +17,35 @@ exports[`FormCheckboxWidget renders correctly 1`] = `
         className="form-check-label"
         htmlFor="form_checkbox_widget_staticWidgetID"
       >
-        Test Checkbox
-      </label>
-      <div
-        className="mandatory-container"
-      >
         <span
-          className="text-mandatory"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          *
-        </span>
-      </div>
-      <div
-        className="helptext-container"
-      >
-        <i
-          className="bi bi-question-circle"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
+          dangerouslySetInnerHTML={
+            {
+              "__html": "Test Checkbox",
+            }
+          }
+          onClick={[Function]}
         />
-      </div>
+        <div
+          className="mandatory-container"
+        >
+          <span
+            className="text-mandatory"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            *
+          </span>
+        </div>
+        <div
+          className="helptext-container"
+        >
+          <i
+            className="bi bi-question-circle"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          />
+        </div>
+      </label>
     </div>
   </div>
 </div>

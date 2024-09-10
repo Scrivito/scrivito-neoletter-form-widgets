@@ -35,14 +35,20 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget, navigate }: any) => {
           widget={widget}
           required={widget.get("required")}
           helptext={widget.get("helpText")}
+          title={widget.get("title")}
         />
       ) : (
         <>
-          <div className="select-title">
-            <span className="text-super"> {widget.get("title")} </span>
+          {widget.get("title") && <div className="select-title">
+            <Scrivito.ContentTag
+              attribute="title"
+              content={widget}
+              tag="span"
+            />
             {!isMultiSelect && widget.get("required") && <Mandatory />}
             {widget.get("helpText") && <HelpText widget={widget} />}
           </div>
+          }
           <Select
             isMultiSelect={isMultiSelect}
             required={widget.get("required")}

@@ -20,7 +20,7 @@ export const LinearScale: React.FC<LinearScaleProps> = Scrivito.connect(
     return (
       <div className="linear-scale-container">
         {lowerScaleLabel && (
-          <span className="lower-scale-label">{lowerScaleLabel as string}</span>
+          <span className="scale-label lower">{lowerScaleLabel as string}</span>
         )}
         <div className="row">
           {items.map((itemValue, index) => (
@@ -35,7 +35,7 @@ export const LinearScale: React.FC<LinearScaleProps> = Scrivito.connect(
           ))}
         </div>
         {upperScaleLabel && (
-          <span className="upper-scale-label">{upperScaleLabel as string}</span>
+          <span className="scale-label upper">{upperScaleLabel as string}</span>
         )}
       </div>
     );

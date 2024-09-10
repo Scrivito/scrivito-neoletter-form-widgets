@@ -10,7 +10,7 @@ export const FormCheckboxWidget = Scrivito.provideWidgetClass(
         }
       ],
       customFieldName: "string",
-      label: "string",
+      label: "html",
       required: "boolean",
       helpText: "html"
     }

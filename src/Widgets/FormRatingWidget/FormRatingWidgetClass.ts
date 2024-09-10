@@ -4,7 +4,7 @@ export const FormRatingWidget = Scrivito.provideWidgetClass(
   "FormRatingWidget",
   {
     attributes: {
-      title: "string",
+      title: "html",
       colorType: [
         "enum",
         {

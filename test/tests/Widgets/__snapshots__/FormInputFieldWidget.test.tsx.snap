@@ -10,8 +10,14 @@ exports[`FormInputFieldWidget Component renders correctly 1`] = `
         className="input-label"
         htmlFor="form_text_input_widget_staticWidgetID"
       >
-        Test Label
-         
+        <span
+          dangerouslySetInnerHTML={
+            {
+              "__html": "Test Label",
+            }
+          }
+          onClick={[Function]}
+        />
         <div
           className="mandatory-container"
         >

@@ -18,7 +18,8 @@ describe("Dropdown", () => {
     useFloatingLabel: false,
     widget: widget,
     required: true,
-    helptext: ""
+    helptext: "",
+    title: "Select some"
   }
   it("renders the Dropdown component with options and empty dropdown", () => {
 

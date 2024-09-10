@@ -86,7 +86,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   return (
     <div
       className={`scrivito-neoletter-form-widgets form-container-widget ${widget.get("showBorder") ? "form-border" : ""
-        }`}
+        } ${Scrivito.isInPlaceEditingActive() ? "edit-mode" : ""}`}
     >
       <form method="post" id={widget.get("formId")}>
         <FormHiddenFields widget={widget} />

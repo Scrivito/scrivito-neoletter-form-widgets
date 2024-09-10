@@ -9,14 +9,17 @@ export const RadioButtonsHeader = Scrivito.connect(
   ({ widget, onChangeSelected }) => {
     return (
       <div
-        className={`mb-3 select-container ${
-          Scrivito.isInPlaceEditingActive() ? "condition-wrapper" : ""
-        }`}>
-        <div className="select-title">
-          <span className="text-super">{widget.get("title")}</span>
+        className={`mb-3 select-container ${Scrivito.isInPlaceEditingActive() ? "condition-wrapper" : ""
+          }`}>
+        {widget.get("title") && <div className="select-title">
+          <Scrivito.ContentTag
+            attribute="title"
+            content={widget}
+            tag="span"
+          />
           {widget.get("required") && <Mandatory />}
           {widget.get("helpText") && <HelpText widget={widget} />}
-        </div>
+        </div>}
         <div className="row ">
           {widget.get("conditions").map((condition: Scrivito.Widget) => (
             <SelectItem

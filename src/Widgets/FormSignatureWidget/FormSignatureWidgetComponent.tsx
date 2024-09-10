@@ -14,10 +14,15 @@ Scrivito.provideComponent(FormSignatureWidget, ({ widget }) => {
 
   return (
     <div className="form-signature mb-3">
-      <div className="signature-title">
-        <span>{widget.get("title")}</span>
+      {widget.get("title") && <div className="signature-title">
+        <Scrivito.ContentTag
+          attribute="title"
+          content={widget}
+          tag="span"
+        />
         {widget.get("helpText") && <HelpText widget={widget} />}
       </div>
+      }
       <Signature
         id={widget.id()}
         onChange={onChangeSignature}

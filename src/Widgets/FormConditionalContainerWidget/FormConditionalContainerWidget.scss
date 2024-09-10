@@ -3,6 +3,9 @@
     border: green 2px dotted;
     .select-title {
       margin-top: 0.3em;
+      p {
+        display: inline;
+      }
     }
   }
   .conditional-content {

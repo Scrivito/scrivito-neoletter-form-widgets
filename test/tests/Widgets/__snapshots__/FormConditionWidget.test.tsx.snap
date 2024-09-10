@@ -19,10 +19,13 @@ exports[`FormConditionWidget renders correctly 1`] = `
             className="date-title"
           >
             <span
-              className="text-super"
-            >
-              date
-            </span>
+              dangerouslySetInnerHTML={
+                {
+                  "__html": "date",
+                }
+              }
+              onClick={[Function]}
+            />
           </div>
           <input
             className="datepicker"

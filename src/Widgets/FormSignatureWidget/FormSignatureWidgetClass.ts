@@ -2,7 +2,7 @@ import * as Scrivito from "scrivito";
 
 export const FormSignatureWidget = Scrivito.provideWidgetClass("FormSignatureWidget", {
   attributes: {
-    title: "string",
+    title: "html",
     helpText: "html",
     customFieldName: "string",
     strokeThickness: "integer",

@@ -10,10 +10,13 @@ exports[`HelpText renders correctly 1`] = `
         className="date-title"
       >
         <span
-          className="text-super"
-        >
-          Choose date
-        </span>
+          dangerouslySetInnerHTML={
+            {
+              "__html": "Choose date",
+            }
+          }
+          onClick={[Function]}
+        />
         <div
           className="helptext-container"
         >

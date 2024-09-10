@@ -1,6 +1,7 @@
 .scrivito-neoletter-form-widgets .form-date {
   .date-title {
-    display: flex;
-    align-items: baseline;
+    p {
+      display: inline;
+    }
   }
 }

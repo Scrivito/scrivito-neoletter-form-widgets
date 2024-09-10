@@ -22,10 +22,17 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
     <div className={`mb-3 form-input-container ${useFloatingLabel ? 'floating-label' : ''} ${isSelected ? "is-selected" : ""}`} >
       {!isEmpty(widget.get("label")) && (
         <>
-          <label htmlFor={id} className="input-label">
-            {widget.get("label") as string} {widget.get("required") && <Mandatory />}
-            {widget.get("helpText") && <HelpText widget={widget} />}
-          </label>
+          {widget.get("label") &&
+            <label htmlFor={id} className="input-label">
+              <Scrivito.ContentTag
+                attribute="label"
+                content={widget}
+                tag="span"
+              />
+              {widget.get("required") && <Mandatory />}
+              {widget.get("helpText") && <HelpText widget={widget} />}
+            </label>
+          }
         </>
       )
       }

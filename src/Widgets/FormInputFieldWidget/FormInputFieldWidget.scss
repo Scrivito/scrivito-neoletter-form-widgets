@@ -3,6 +3,11 @@
 	.form-input-container {
 		width: 100%;
 		position: relative;
+		.input-label {
+			p {
+				display: inline;
+			}
+		}
 
 		&.floating-label {
 			min-height: 65px;
