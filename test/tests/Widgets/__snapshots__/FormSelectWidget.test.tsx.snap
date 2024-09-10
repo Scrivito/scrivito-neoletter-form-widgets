@@ -13,8 +13,14 @@ exports[`FormSelectWidget renders correctly 1`] = `
           className="dropdown-label"
           htmlFor="staticWidgetID"
         >
-          Test Select Title
-           
+          <span
+            dangerouslySetInnerHTML={
+              {
+                "__html": "Test Select Title",
+              }
+            }
+            onClick={[Function]}
+          />
           <div
             className="mandatory-container"
           >

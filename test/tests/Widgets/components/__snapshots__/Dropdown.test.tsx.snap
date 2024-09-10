@@ -8,8 +8,6 @@ exports[`Dropdown renders correctly 1`] = `
     class="dropdown-label"
     for="fakeId"
   >
-    Select some
-     
     <div
       class="mandatory-container"
     >

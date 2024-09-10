@@ -5,7 +5,7 @@ exports[`Select renders correctly 1`] = `
   className="linear-scale-container"
 >
   <span
-    className="lower-scale-label"
+    className="scale-label lower"
   >
     lowest
   </span>
@@ -89,7 +89,7 @@ exports[`Select renders correctly 1`] = `
     </label>
   </div>
   <span
-    className="upper-scale-label"
+    className="scale-label upper"
   >
     highest
   </span>
@@ -98,7 +98,7 @@ exports[`Select renders correctly 1`] = `
 
 exports[`SelectItem Component renders correctly 1`] = `
 <label
-  className="select-label "
+  className="select-label multi"
 >
   <input
     className="form-check-input"

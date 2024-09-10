@@ -5,7 +5,7 @@ exports[`LinearScale renders correctly 1`] = `
   className="linear-scale-container"
 >
   <span
-    className="lower-scale-label"
+    className="scale-label lower"
   >
     Lower Label
   </span>
@@ -89,7 +89,7 @@ exports[`LinearScale renders correctly 1`] = `
     </label>
   </div>
   <span
-    className="upper-scale-label"
+    className="scale-label upper"
   >
     Upper Label
   </span>

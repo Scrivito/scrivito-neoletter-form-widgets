@@ -7,11 +7,6 @@ exports[`DropdownHeader renders correctly 1`] = `
   <div
     className="select-title"
   >
-    <span
-      className="text-super"
-    >
-      Select from dropdown
-    </span>
     <div
       className="mandatory-container"
     >

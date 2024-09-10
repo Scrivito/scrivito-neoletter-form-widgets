@@ -10,10 +10,13 @@ exports[`FormDateWidget renders correctly 1`] = `
         className="date-title"
       >
         <span
-          className="text-super"
-        >
-          Test Date
-        </span>
+          dangerouslySetInnerHTML={
+            {
+              "__html": "Test Date",
+            }
+          }
+          onClick={[Function]}
+        />
         <div
           className="mandatory-container"
         >

@@ -10,16 +10,19 @@ exports[`FormConditionalContainerWidget renders correctly 1`] = `
         className="select-title"
       >
         <span
-          className="text-super"
-        >
-          Select something
-        </span>
+          dangerouslySetInnerHTML={
+            {
+              "__html": "Select something",
+            }
+          }
+          onClick={[Function]}
+        />
       </div>
       <div
         className="row "
       >
         <label
-          className="select-label "
+          className="select-label radio"
         >
           <input
             className="form-check-input"
@@ -35,7 +38,7 @@ exports[`FormConditionalContainerWidget renders correctly 1`] = `
           </span>
         </label>
         <label
-          className="select-label "
+          className="select-label radio"
         >
           <input
             className="form-check-input"

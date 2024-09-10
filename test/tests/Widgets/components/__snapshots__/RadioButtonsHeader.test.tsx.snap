@@ -7,11 +7,6 @@ exports[`RadioButtonsHeader renders correctly 1`] = `
   <div
     className="select-title"
   >
-    <span
-      className="text-super"
-    >
-      Select some
-    </span>
     <div
       className="mandatory-container"
     >
@@ -28,7 +23,7 @@ exports[`RadioButtonsHeader renders correctly 1`] = `
     className="row "
   >
     <label
-      className="select-label "
+      className="select-label radio"
     >
       <input
         className="form-check-input"
@@ -44,7 +39,7 @@ exports[`RadioButtonsHeader renders correctly 1`] = `
       </span>
     </label>
     <label
-      className="select-label "
+      className="select-label radio"
     >
       <input
         className="form-check-input"

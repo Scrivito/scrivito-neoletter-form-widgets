@@ -4,7 +4,7 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
 <div>
   <div>
     <div
-      className="scrivito-neoletter-form-widgets form-container-widget "
+      className="scrivito-neoletter-form-widgets form-container-widget  "
     >
       <form
         id="test-id"
@@ -49,10 +49,13 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
                         className="date-title"
                       >
                         <span
-                          className="text-super"
-                        >
-                          date
-                        </span>
+                          dangerouslySetInnerHTML={
+                            {
+                              "__html": "date",
+                            }
+                          }
+                          onClick={[Function]}
+                        />
                       </div>
                       <input
                         className="datepicker"
@@ -89,10 +92,13 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
                         className="date-title"
                       >
                         <span
-                          className="text-super"
-                        >
-                          date
-                        </span>
+                          dangerouslySetInnerHTML={
+                            {
+                              "__html": "date",
+                            }
+                          }
+                          onClick={[Function]}
+                        />
                       </div>
                       <input
                         className="datepicker"

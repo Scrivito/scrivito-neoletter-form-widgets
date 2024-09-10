@@ -10,10 +10,13 @@ exports[`FormRatingWidget Component renders correctly 1`] = `
         className="rating-title"
       >
         <span
-          className="text-super"
-        >
-          Test Rating Title
-        </span>
+          dangerouslySetInnerHTML={
+            {
+              "__html": "Test Rating Title",
+            }
+          }
+          onClick={[Function]}
+        />
         <div
           className="helptext-container"
         >

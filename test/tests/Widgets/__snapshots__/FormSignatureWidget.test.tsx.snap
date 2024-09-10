@@ -9,9 +9,14 @@ exports[`FormSignatureWidget renders correctly 1`] = `
       <div
         className="signature-title"
       >
-        <span>
-          Signature Title
-        </span>
+        <span
+          dangerouslySetInnerHTML={
+            {
+              "__html": "Signature Title",
+            }
+          }
+          onClick={[Function]}
+        />
         <div
           className="helptext-container"
         >
