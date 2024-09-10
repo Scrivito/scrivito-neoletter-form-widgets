@@ -14,10 +14,15 @@ Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
   const color = getIconColor(widget);
   return (
     <div className="form-rating mb-3">
-      <div className="rating-title">
-        <span className="text-super">{widget.get("title")}</span>
+      {widget.get("title") && <div className="rating-title">
+        <Scrivito.ContentTag
+          attribute="title"
+          content={widget}
+          tag="span"
+        />
         {widget.get("helpText") && <HelpText widget={widget} />}
       </div>
+      }
       {createArray(5).map((n, i) => (
         <RatingIcon
           key={i}

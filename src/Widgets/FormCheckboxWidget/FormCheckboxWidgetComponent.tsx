@@ -4,6 +4,7 @@ import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
 import { Mandatory } from "../FormStepContainerWidget/components/MandatoryComponent";
 import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponent";
 import { FormCheckboxWidget } from "./FormCheckboxWidgetClass";
+import "./FormCheckboxWidget.scss";
 
 Scrivito.provideComponent(FormCheckboxWidget, ({ widget }) => {
   const id = `form_checkbox_widget_${widget.id()}`;
@@ -17,16 +18,15 @@ Scrivito.provideComponent(FormCheckboxWidget, ({ widget }) => {
         name={getFieldName(widget)}
         required={widget.get("required")}
       />
-
-      <Scrivito.ContentTag
-        className="form-check-label"
-        content={widget}
-        attribute="label"
-        tag="label"
-        htmlFor={id}
-      />
-      {widget.get("required") && <Mandatory />}
-      {widget.get("helpText") && <HelpText widget={widget} />}
+      <label className="form-check-label" htmlFor={id}>
+        <Scrivito.ContentTag
+          content={widget}
+          attribute="label"
+          tag="span"
+        />
+        {widget.get("required") && <Mandatory />}
+        {widget.get("helpText") && <HelpText widget={widget} />}
+      </label>
     </div>
   );
 });

@@ -10,7 +10,7 @@ export const FormSelectWidget = Scrivito.provideWidgetClass(
           values: ["radio", "dropdown", "multi", "linear-scale"]
         }
       ],
-      title: "string",
+      title: "html",
       items: "stringlist",
       customFieldName: "string",
       required: "boolean",

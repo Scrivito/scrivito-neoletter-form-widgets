@@ -10,7 +10,7 @@ export const FormConditionalContainerWidget = Scrivito.provideWidgetClass(
           values: ["dropdown", "radio"]
         }
       ],
-      title: "string",
+      title: "html",
       customFieldName: "string",
       conditions: ["widgetlist", { only: "FormConditionWidget" }],
       required: "boolean",

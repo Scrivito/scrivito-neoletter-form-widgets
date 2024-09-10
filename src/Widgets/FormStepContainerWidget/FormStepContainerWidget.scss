@@ -1,14 +1,6 @@
 // Styles for FormContainerWidget
 .scrivito-neoletter-form-widgets.form-container-widget {
 
-  .dropdown-container,
-  .select-container {
-    .select-title {
-      display: flex;
-      align-items: baseline;
-    }
-  }
-
   .text-super {
     vertical-align: super;
   }
@@ -86,11 +78,35 @@
     padding: 1em 0;
   }
 
+  // edit-mode 
+    &.edit-mode {
+
+      .form-check,
+      .rating-title,
+      .select-title,
+      .dropdown-label,
+      .signature-title,
+      .input-label,
+      .date-title {
+
+        label,
+        span {
+          display: ruby;
+        }
+      }
+    .fr-wrapper {
+      display: inline;
+      .fr-element {
+        display: inline;
+      }
+    }
+  }
+
   // popover
   .mandatory-container,
   .helptext-container {
     position: relative;
-    display: inline-block;
+    display: inline;
     margin-left: 0.1em;
 
     .form-popover-container {

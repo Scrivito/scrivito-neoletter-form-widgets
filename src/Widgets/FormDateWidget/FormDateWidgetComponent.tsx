@@ -14,12 +14,17 @@ Scrivito.provideComponent(FormDateWidget, ({ widget }) => {
   };
   return (
     <div className="form-date mb-3">
-      <div className="date-title">
-        <span className="text-super">{widget.get("title")}</span>
-        {widget.get("required") && <Mandatory />}
-        {widget.get("helpText") && <HelpText widget={widget} />}
-      </div>
-
+      {widget.get("title") &&
+        <div className="date-title">
+          <Scrivito.ContentTag
+            attribute="title"
+            content={widget}
+            tag="span"
+          />
+          {widget.get("required") && <Mandatory />}
+          {widget.get("helpText") && <HelpText widget={widget} />}
+        </div>
+      }
       <input
         onChange={onChangeValue}
         className="datepicker"

@@ -32,10 +32,16 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
   return (
     <div className={`dropdown-wrapper ${useFloatingLabel ? 'floating-label' : ''} ${isSelected ? "is-selected" : ""}`}>
-      <label htmlFor={id} className="dropdown-label">
-        {widget.get("title") as string} {required && <Mandatory />}
+      {widget.get("title") && <label htmlFor={id} className="dropdown-label">
+        <Scrivito.ContentTag
+          attribute="title"
+          content={widget}
+          tag="span"
+        />
+        {required && <Mandatory />}
         {helptext && <HelpText widget={widget} />}
       </label>
+      }
       <select
         className="dropdown-select"
         name={name}

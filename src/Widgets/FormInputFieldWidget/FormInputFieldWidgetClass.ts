@@ -4,7 +4,7 @@ export const FormInputFieldWidget = Scrivito.provideWidgetClass(
   "FormInputFieldWidget",
   {
     attributes: {
-      label: "string",
+      label: "html",
       placeholder: "string",
       required: "boolean",
       helpText: "html",
