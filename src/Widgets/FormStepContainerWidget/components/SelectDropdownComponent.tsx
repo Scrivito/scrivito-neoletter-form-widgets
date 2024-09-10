@@ -11,6 +11,7 @@ interface DropdownProps {
   widget: Scrivito.Widget;
   required: boolean;
   helptext: string;
+  title: string;
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
@@ -19,7 +20,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
   useFloatingLabel,
   widget,
   required,
-  helptext
+  helptext,
+  title
 }) => {
   const id = widget.id();
 
@@ -32,7 +34,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
   return (
     <div className={`dropdown-wrapper ${useFloatingLabel ? 'floating-label' : ''} ${isSelected ? "is-selected" : ""}`}>
-      {widget.get("title") && <label htmlFor={id} className="dropdown-label">
+      {title && <label htmlFor={id} className="dropdown-label">
         <Scrivito.ContentTag
           attribute="title"
           content={widget}

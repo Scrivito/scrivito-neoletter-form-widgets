@@ -35,6 +35,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget, navigate }: any) => {
           widget={widget}
           required={widget.get("required")}
           helptext={widget.get("helpText")}
+          title={widget.get("title")}
         />
       ) : (
         <>
