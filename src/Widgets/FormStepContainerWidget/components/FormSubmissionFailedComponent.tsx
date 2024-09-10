@@ -11,7 +11,7 @@ export const FormSubmissionFailed: React.FC<FormSubmissionFailedProps> = ({
       <i
         className="bi bi-exclamation-triangle-fill bi-2x"
         aria-hidden="true"></i>{" "}
-      <span className="text-super">{submissionFailureText}</span>
+      <span >{submissionFailureText}</span>
     </div>
   );
 };

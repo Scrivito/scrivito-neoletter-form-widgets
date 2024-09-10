@@ -10,7 +10,7 @@ export const FormSubmitting: React.FC<FormSubmittingProps> = ({
       <i
         className="bi bi-arrow-repeat bi-2x rotate-icon"
         aria-hidden="true"></i>{" "}
-      <span className="text-super">{submittingText}</span>
+      <span>{submittingText}</span>
     </div>
   );
 };

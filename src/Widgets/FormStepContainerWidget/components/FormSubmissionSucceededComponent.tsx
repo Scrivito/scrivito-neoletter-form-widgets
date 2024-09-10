@@ -10,7 +10,7 @@ export const FormSubmissionSucceeded: React.FC<
   return (
     <div className="scrivito-neoletter-form-widgets form-container-widget text-center">
       <i className="bi bi-check-lg bi-2x" aria-hidden="true"></i>{" "}
-      <span className="text-super">{submissionSuccessText}</span>
+      <span>{submissionSuccessText}</span>
     </div>
   );
 };

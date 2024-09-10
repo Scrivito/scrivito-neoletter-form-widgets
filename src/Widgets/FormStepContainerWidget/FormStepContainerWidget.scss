@@ -1,9 +1,6 @@
 // Styles for FormContainerWidget
 .scrivito-neoletter-form-widgets.form-container-widget {
 
-  .text-super {
-    vertical-align: super;
-  }
 
   .text-mandatory {
     font-weight: 700;
@@ -326,7 +323,6 @@ body .scrivito-neoletter-review-form-modal {
   .scrivito-neoletter-form-widgets.form-container-widget label,
   .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory,
   .scrivito-neoletter-form-widgets.form-container-widget .bs-icon,
-  .scrivito-neoletter-form-widgets.form-container-widget .text-super,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget label,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .bs-icon {
