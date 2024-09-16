@@ -28,7 +28,7 @@ describe("prepareReviewContent", () => {
     expect(dateInput).toBeUndefined();
   });
 
-  it("should shoe empty answers with includeEmptyAnswers: true", () => {
+  it("should show empty answers with includeEmptyAnswers: true", () => {
     const mainWidget = setUpWidgetsAndForm(true);
     const reviewContent = prepareReviewContent(mainWidget);
     const dateInput = reviewContent[1].find((item) => item.title === "date");

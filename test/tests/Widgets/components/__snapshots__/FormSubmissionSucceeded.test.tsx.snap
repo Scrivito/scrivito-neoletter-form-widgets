@@ -9,9 +9,7 @@ exports[`FormSubmissionSucceeded renders correctly 1`] = `
     className="bi bi-check-lg bi-2x"
   />
    
-  <span
-    className="text-super"
-  >
+  <span>
     Submission successful!
   </span>
 </div>

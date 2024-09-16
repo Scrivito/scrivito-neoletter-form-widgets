@@ -9,9 +9,7 @@ exports[`FormSubmissionFailed renders correctly 1`] = `
     className="bi bi-exclamation-triangle-fill bi-2x"
   />
    
-  <span
-    className="text-super"
-  >
+  <span>
     Submission failed!
   </span>
 </div>

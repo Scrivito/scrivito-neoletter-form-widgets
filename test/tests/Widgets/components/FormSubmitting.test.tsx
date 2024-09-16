@@ -18,7 +18,6 @@ describe("FormSubmitting", () => {
 
     expect(textElement).toBeInTheDocument();
     expect(textElement.tagName.toLowerCase()).toBe("span");
-    expect(textElement).toHaveClass("text-super");
   });
 
   it("renders correctly", () => {

@@ -9,9 +9,7 @@ exports[`FormSubmitting renders correctly 1`] = `
     className="bi bi-arrow-repeat bi-2x rotate-icon"
   />
    
-  <span
-    className="text-super"
-  >
+  <span>
     Submitting...
   </span>
 </div>
