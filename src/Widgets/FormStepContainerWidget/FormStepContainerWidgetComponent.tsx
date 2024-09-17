@@ -36,6 +36,44 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const isLastPage = currentStep == stepsLength;
   const showReview = widget.get("showReview");
   const showCaptcha = widget.get("showCaptcha");
+  const showSubmittingPreview = widget.get("previewSubmittingMessage") || false;
+  const showSubmittedPreview = widget.get("previewSubmittedMessage") || false;
+  const showFailedPreview = widget.get("previewFailedMessage") || false;
+  //TODO: custom hook
+  React.useEffect(() => {
+    if (!Scrivito.isInPlaceEditingActive()) {
+      return;
+    }
+    // update some properties for older forms if they are not set!
+    if (!widget.get("submittingMessageType")) {
+      widget.update({ "submittingMessageType": "default" });
+    }
+    if (!widget.get("submittedMessageType")) {
+      widget.update({ "submittedMessageType": "default" });
+    }
+    if (!widget.get("failedMessageType")) {
+      widget.update({ "failedMessageType": "default" });
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (!Scrivito.isInPlaceEditingActive()) {
+      return;
+    }
+    if (showSubmittingPreview) {
+      indicateProgress();
+    } else if (showSubmittedPreview) {
+      indicateSuccess();
+    } else if (showFailedPreview) {
+      indicateFailure();
+    } else {
+      setIsSubmitting(false);
+      setSubmissionFailed(false);
+      setSuccessfullySent(false);
+    }
+  }, [showFailedPreview, showSubmittedPreview, showSubmittingPreview]);
+
+
 
   React.useEffect(() => {
     if (showCaptcha && isLastPage) {
@@ -64,13 +102,19 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   }, [widget.get("steps")]);
 
   if (isSubmitting) {
-    return <FormSubmitting submittingText={widget.get("submittingMessage")} />;
+    return <FormSubmitting
+      submittingText={widget.get("submittingMessage")}
+      type={widget.get("submittingMessageType") || "default"}
+      widget={widget}
+    />;
   }
 
   if (successfullySent) {
     return (
       <FormSubmissionSucceeded
         submissionSuccessText={widget.get("submittedMessage")}
+        type={widget.get("submittedMessageType") || "default"}
+        widget={widget}
       />
     );
   }
@@ -79,6 +123,8 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
     return (
       <FormSubmissionFailed
         submissionFailureText={widget.get("failedMessage")}
+        type={widget.get("failedMessageType") || "default"}
+        widget={widget}
       />
     );
   }

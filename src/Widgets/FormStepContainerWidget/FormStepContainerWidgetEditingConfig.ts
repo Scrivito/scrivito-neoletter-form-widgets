@@ -64,6 +64,55 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     failedMessage: {
       title: "Message shown if the form submission failed"
     },
+    failedMessageType: {
+      title: "Submission Failure Message Type",
+      description: "Select the type of failure message displayed upon submission failure.",
+      values: [
+        { value: "default", title: "Default text" },
+        { value: "widget-list", title: "Widget List" }
+      ]
+    },
+    submittedMessageType: {
+      title: "Submission Success Message Type",
+      description: "Select the type of message displayed after successful form submission.",
+      values: [
+        { value: "default", title: "Default text" },
+        { value: "widget-list", title: "Widget List" }
+      ]
+    },
+    submittingMessageType: {
+      title: "Submitting Message Type",
+      description: "Select the type of message displayed while the form is being submitted.",
+      values: [
+        { value: "default", title: "Default text" },
+        { value: "widget-list", title: "Widget List" }
+      ]
+    },
+    failedMessageWidgets: {
+      title: "Submission Failure Content",
+      description: "Customize the content to be displayed upon submission failure."
+    },
+    submittedMessageWidgets: {
+      title: "Submission Success Content",
+      description: "Customize the content to be displayed after successful form submission."
+    },
+    submittingMessageWidgets: {
+      title: "Submitting Content",
+      description: "Customize the content to be displayed while the form is being submitted."
+    },
+    previewFailedMessage: {
+      title: "Preview failed message/widgets",
+      description: "Preview the failure message or content in edit mode."
+    },
+    previewSubmittedMessage: {
+      title: "Preview success message/widgets",
+      description: "Preview the success message or content in edit mode."
+    },
+    previewSubmittingMessage: {
+      title: "Preview submitting message/widgets",
+      description: "Preview the message or content displayed while the form is being submitted in edit mode."
+    },
+
     hiddenFields: {
       title: "Hidden fields"
     },
@@ -127,12 +176,24 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       ]
     }
   },
-  properties: [
-    "showBorder",
-    "submittingMessage",
-    "submittedMessage",
-    "failedMessage"
-  ],
+  properties: (widget) => {
+    const showSubmittingMessage = widget.get("submittingMessageType") == "default";
+    const showSubmittedMessage = widget.get("submittedMessageType") == "default";
+    const showFailedMessage = widget.get("failedMessageType") == "default";
+
+    return [
+      "showBorder",
+      "submittingMessageType",
+      showSubmittingMessage ? "submittingMessage" : "submittingMessageWidgets",
+      "previewSubmittingMessage",
+      "submittedMessageType",
+      showSubmittedMessage ? "submittedMessage" : "submittedMessageWidgets",
+      "previewSubmittedMessage",
+      "failedMessageType",
+      showFailedMessage ? "failedMessage" : "failedMessageWidgets",
+      "previewFailedMessage"
+    ]
+  },
   propertiesGroups: (widget) => {
     const groups = [
       {
@@ -185,11 +246,6 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
 
   initialContent: {
     formId: () => pseudoRandom32CharHex(),
-    submittingMessage: "Submitting...",
-    submittedMessage:
-      "Your message has been successfully sent. Thank you for your request. We will get back to you as soon as possible.",
-    failedMessage:
-      "We are sorry, your request could not be completed. Please try again later.",
     formType: "single-step",
     singleSubmitButtonAlignment: "text-center",
     steps: [
@@ -248,7 +304,17 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     showReviewFooter: false,
     reviewButtonText: "Review",
     reviewHeaderTitle: "Review",
-    reviewCloseButtonText: "Close"
+    reviewCloseButtonText: "Close",
+    // submitting stuff
+    submittingMessage: "Submitting...",
+    submittedMessage: "Your message has been successfully sent. Thank you for your request. We will get back to you as soon as possible.",
+    failedMessage: "We are sorry, your request could not be completed. Please try again later.",
+    submittingMessageType: "default",
+    submittedMessageType: "default",
+    failedMessageType: "default",
+    previewSubmittingMessage: false,
+    previewSubmittedMessage: false,
+    previewFailedMessage: false
   },
   validations: [
     (widget: Scrivito.Widget) => {
