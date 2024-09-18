@@ -3,15 +3,14 @@ import { Widget } from "scrivito";
 import { isTrackingEnabled } from "../../../config/scrivitoConfig";
 import { getFieldName } from "./getFieldName";
 import { appendTrackingIDToFormData } from "./appendNeoletterTrackingIDtoFormData";
+import { StringMap } from "../../../../types/types";
 
 export async function submitForm(
-  formElement: HTMLFormElement,
+  formData: StringMap<string>,
   formEndpoint: string,
-  formWidget: Widget
 ) {
-  const formData = getFormData(formElement, formWidget);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const body = new URLSearchParams(formData as any);
+
+  const body = new URLSearchParams(formData);
   // uncomment below to log the data to be fetched.
   // console.log("submitting", Object.fromEntries(body.entries()));
   const response = await fetch(formEndpoint, { method: "post", body });
@@ -22,11 +21,16 @@ export async function submitForm(
   }
 }
 
-function getFormData(formElement: HTMLFormElement, formWidget: Widget) {
+export function getFormData(formWidget: Widget) {
+  const formId = formWidget.get("formId") as string;
+  const formElement = document.getElementById(formId) as HTMLFormElement;
+  if (!formElement) {
+    return;
+  }
   const data = new FormData(formElement);
   const dataToSend = new FormData();
 
-  if(isTrackingEnabled()) {
+  if (isTrackingEnabled()) {
     appendTrackingIDToFormData(dataToSend);
   }
 

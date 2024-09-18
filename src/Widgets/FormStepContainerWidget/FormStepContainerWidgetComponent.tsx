@@ -6,14 +6,14 @@ import { FormFooterMultiSteps } from "./components/FormFooterMultiStepsComponent
 import { FormFooterSingleStep } from "./components/FormFooterSingleStepComponent";
 import { FormHiddenFields } from "./components/FormHiddenFieldsComponent";
 import { getInstanceId } from "../../config/scrivitoConfig";
-import { submitForm } from "./utils/submitForm";
+import { getFormData, submitForm } from "./utils/submitForm";
 import { FormNoTenant } from "./components/FormNoTenantComponent";
 import { FormSubmissionFailed } from "./components/FormSubmissionFailedComponent";
 import { FormSubmissionSucceeded } from "./components/FormSubmissionSucceededComponent";
 import { FormSubmitting } from "./components/FormSubmittingComponent";
 import { FormStepContainerWidget } from "./FormStepContainerWidgetClass";
 import { FormCaptcha } from "./components/FormCaptchaComponent";
-import { CaptchaTheme, InputValidationElement } from "../../../types/types";
+import { CaptchaTheme, InputValidationElement, StringMap } from "../../../types/types";
 import "./FormStepContainerWidget.scss";
 import "bootstrap-icons/font/bootstrap-icons.scss";
 
@@ -27,9 +27,8 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [successfullySent, setSuccessfullySent] = React.useState(false);
   const [submissionFailed, setSubmissionFailed] = React.useState(false);
-  const [reCaptchaToken, setReCaptchaToken] = React.useState<string | null>(
-    null
-  );
+  const [reCaptchaToken, setReCaptchaToken] = React.useState<string | null>(null);
+  const [formData, setFormData] = React.useState({});
   const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(false);
   const isSingleStep = widget.get("formType") == "single-step";
   const stepsLength = widget.get("steps").length;
@@ -40,6 +39,30 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const showSubmittedPreview = widget.get("previewSubmittedMessage") || false;
   const showFailedPreview = widget.get("previewFailedMessage") || false;
   //TODO: custom hook
+
+  const handleInputChange = (fieldUpdates: StringMap<string> | string, value?: string) => {
+    if (typeof fieldUpdates === "string") {
+      // update a single field
+      setFormData(prevState => ({
+        ...prevState,
+        [fieldUpdates]: value || ""
+      }));
+    } else {
+      // batch update multiple fields
+      setFormData(prevState => ({
+        ...prevState,
+        ...fieldUpdates
+      }));
+    }
+  };
+
+  React.useEffect(() => {
+    const initialData = getFormData(widget);
+    if (initialData) {
+      setFormData(Object.fromEntries(initialData));
+    }
+  }, []);
+
   React.useEffect(() => {
     if (!Scrivito.isInPlaceEditingActive()) {
       return;
@@ -153,7 +176,8 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
               });
               return { stepNumber, isActive, isSingleStep };
             },
-            navigateOnClick: () => onPageChange
+            navigateOnClick: () => onPageChange,
+            onInputChange: handleInputChange
           }}
         />
         {showCaptcha && (
@@ -188,6 +212,9 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   );
 
   async function onSubmit(): Promise<void> {
+    if (!formData) {
+      return;
+    }
     if (Scrivito.isInPlaceEditingActive() && widget.get("formType") == "multi-step") {
       // eslint-disable-next-line no-console
       console.log("In edit mode, only the first step will be validated for mandatory fields.");
@@ -203,7 +230,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
 
     indicateProgress();
     try {
-      await submitForm(formElement, formEndpoint, widget);
+      await submitForm(formData, formEndpoint);
       indicateSuccess();
     } catch (e) {
       setTimeout(() => {
