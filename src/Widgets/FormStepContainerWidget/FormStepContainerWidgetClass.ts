@@ -52,7 +52,14 @@ export const FormStepContainerWidget = Scrivito.provideWidgetClass(
       previewFailedMessage: "boolean",
       previewSubmittedMessage: "boolean",
       previewSubmittingMessage: "boolean",
-
+      showRetryButton: "boolean",
+      retryButtonText: "string",
+      retryButtonAlignment: [
+        "enum",
+        {
+          values: ["left", "text-center", "text-end", "block"]
+        }
+      ],
       hiddenFields: ["widgetlist", { only: "FormHiddenFieldWidget" }],
       formType: [
         "enum",

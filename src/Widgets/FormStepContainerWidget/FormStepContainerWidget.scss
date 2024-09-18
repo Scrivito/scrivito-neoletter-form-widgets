@@ -183,6 +183,9 @@
   display: inline-block;
   animation: rotate-form-submitting-icon 2s linear 0s infinite;
 }
+.form-submission-failed .retry-button {
+  margin-top: 1em;
+}
 
 // review modal
 body .scrivito-neoletter-review-form-modal {

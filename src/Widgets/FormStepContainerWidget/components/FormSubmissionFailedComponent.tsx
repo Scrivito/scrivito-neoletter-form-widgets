@@ -4,14 +4,21 @@ import * as Scrivito from "scrivito";
 interface FormSubmissionFailedProps {
   submissionFailureText: string;
   type: string;
-  widget: Scrivito.Widget
+  widget: Scrivito.Widget;
+  retryButtonText: string;
+  showRetryButton: boolean;
+  buttonAlignment: string;
+  onReSubmit: React.MouseEventHandler;
 }
-// TODO: Add retry button!
 //TODO: Use OWN text-center styles
 export const FormSubmissionFailed: React.FC<FormSubmissionFailedProps> = ({
   submissionFailureText,
   type,
-  widget
+  widget,
+  retryButtonText,
+  showRetryButton,
+  buttonAlignment,
+  onReSubmit
 }) => {
   return (
     <div className="form-submission-failed">
@@ -27,6 +34,23 @@ export const FormSubmissionFailed: React.FC<FormSubmissionFailedProps> = ({
           content={widget}
           attribute={"failedMessageWidgets"}
         />
+      }
+      {showRetryButton &&
+        <div
+          className={`${buttonAlignment === "block"
+            ? ""
+            : buttonAlignment
+            }`}>
+          <button
+            className={`btn btn-primary retry-button ${buttonAlignment === "block"
+              ? " btn-block"
+              : ""
+              }`}
+            onClick={onReSubmit}
+          >
+            {retryButtonText}
+          </button>
+        </div>
       }
     </div>
   );

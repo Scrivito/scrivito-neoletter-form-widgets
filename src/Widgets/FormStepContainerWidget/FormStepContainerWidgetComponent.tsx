@@ -148,6 +148,10 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
         submissionFailureText={widget.get("failedMessage")}
         type={widget.get("failedMessageType") || "default"}
         widget={widget}
+        onReSubmit={onSubmit}
+        showRetryButton={widget.get("showRetryButton") || false}
+        retryButtonText={widget.get("retryButtonText") as string}
+        buttonAlignment={widget.get("retryButtonAlignment") as string}
       />
     );
   }
@@ -226,17 +230,14 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
     const formElement = document.getElementById(
       widget.get("formId")
     ) as HTMLFormElement;
-    scrollIntoView(formElement);
+    formElement && scrollIntoView(formElement);
 
     indicateProgress();
     try {
       await submitForm(formData, formEndpoint);
       indicateSuccess();
     } catch (e) {
-      setTimeout(() => {
-        throw e;
-      }, 0);
-
+      console.error(e);
       indicateFailure();
     }
   }

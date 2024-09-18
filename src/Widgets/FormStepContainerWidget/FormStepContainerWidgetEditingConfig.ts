@@ -112,6 +112,9 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       title: "Preview submitting message/widgets",
       description: "Preview the message or content displayed while the form is being submitted in edit mode."
     },
+    showRetryButton: { title: "Show retry button" },
+    retryButtonText: { title: "Retry button text" },
+    retryButtonAlignment: { title: "Retry button alignment" },
 
     hiddenFields: {
       title: "Hidden fields"
@@ -180,6 +183,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     const showSubmittingMessage = widget.get("submittingMessageType") == "default";
     const showSubmittedMessage = widget.get("submittedMessageType") == "default";
     const showFailedMessage = widget.get("failedMessageType") == "default";
+    const showRetryButton = widget.get("showRetryButton");
 
     return [
       "showBorder",
@@ -191,8 +195,12 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       "previewSubmittedMessage",
       "failedMessageType",
       showFailedMessage ? "failedMessage" : "failedMessageWidgets",
+      "showRetryButton",
+      ["retryButtonText", { enabled: showRetryButton }],
+      ["retryButtonAlignment", { enabled: showRetryButton }],
       "previewFailedMessage"
-    ]
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ] as any;
   },
   propertiesGroups: (widget) => {
     const groups = [
@@ -314,7 +322,10 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     failedMessageType: "default",
     previewSubmittingMessage: false,
     previewSubmittedMessage: false,
-    previewFailedMessage: false
+    previewFailedMessage: false,
+    showRetryButton: false,
+    retryButtonText: "Retry",
+    retryButtonAlignment: "text-center"
   },
   validations: [
     (widget: Scrivito.Widget) => {
