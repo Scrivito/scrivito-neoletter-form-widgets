@@ -114,7 +114,15 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     },
     showRetryButton: { title: "Show retry button" },
     retryButtonText: { title: "Retry button text" },
-    retryButtonAlignment: { title: "Retry button alignment" },
+    retryButtonAlignment: {
+      title: "Retry button alignment",
+      values: [
+        { value: "left", title: "Left" },
+        { value: "text-center", title: "Center" },
+        { value: "text-end", title: "Right" },
+        { value: "block", title: "Full width" }
+      ]
+    },
 
     hiddenFields: {
       title: "Hidden fields"
