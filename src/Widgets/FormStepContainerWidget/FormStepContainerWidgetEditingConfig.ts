@@ -187,30 +187,12 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       ]
     }
   },
-  properties: (widget) => {
+  properties: ["showBorder"],
+  propertiesGroups: (widget) => {
     const showSubmittingMessage = widget.get("submittingMessageType") == "default";
     const showSubmittedMessage = widget.get("submittedMessageType") == "default";
     const showFailedMessage = widget.get("failedMessageType") == "default";
     const showRetryButton = widget.get("showRetryButton");
-
-    return [
-      "showBorder",
-      "submittingMessageType",
-      showSubmittingMessage ? "submittingMessage" : "submittingMessageWidgets",
-      "previewSubmittingMessage",
-      "submittedMessageType",
-      showSubmittedMessage ? "submittedMessage" : "submittedMessageWidgets",
-      "previewSubmittedMessage",
-      "failedMessageType",
-      showFailedMessage ? "failedMessage" : "failedMessageWidgets",
-      "showRetryButton",
-      ["retryButtonText", { enabled: showRetryButton }],
-      ["retryButtonAlignment", { enabled: showRetryButton }],
-      "previewFailedMessage"
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ] as any;
-  },
-  propertiesGroups: (widget) => {
     const groups = [
       {
         title: "Hidden fields",
@@ -222,6 +204,25 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
         key: "FormStepContainerWidgetFormSubmissions",
         properties: ["formId"],
         component: FormIdComponent
+      },
+      {
+        title: "Submission Messages",
+        key: "FormStepContainerWidgetSubmissionMessages",
+        properties: [
+          "submittingMessageType",
+          showSubmittingMessage ? "submittingMessage" : "submittingMessageWidgets",
+          "previewSubmittingMessage",
+          "submittedMessageType",
+          showSubmittedMessage ? "submittedMessage" : "submittedMessageWidgets",
+          "previewSubmittedMessage",
+          "failedMessageType",
+          showFailedMessage ? "failedMessage" : "failedMessageWidgets",
+          "showRetryButton",
+          ["retryButtonText", { enabled: showRetryButton }],
+          ["retryButtonAlignment", { enabled: showRetryButton }],
+          "previewFailedMessage"
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ] as any
       },
       {
         title: "Navigation area",
