@@ -22,6 +22,28 @@ Scrivito.provideComponent(FormContainerWidget, ({ widget }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [successfullySent, setSuccessfullySent] = React.useState(false);
   const [submissionFailed, setSubmissionFailed] = React.useState(false);
+  const [formData, setFormData] = React.useState({});
+
+  React.useEffect(() => {
+    const initialData = getFormData(widget);
+    if (initialData) {
+      setFormData(Object.fromEntries(initialData));
+    }
+  }, []);
+
+  const handleInputChange = (fieldUpdates: StringMap<string> | string, value?: string) => {
+    if (typeof fieldUpdates === "string") {
+      setFormData(prevState => ({
+        ...prevState,
+        [fieldUpdates]: value || ""
+      }));
+    } else {
+      setFormData(prevState => ({
+        ...prevState,
+        ...fieldUpdates
+      }));
+    }
+  };
 
   if (isSubmitting) {
     return <FormSubmitting
@@ -62,6 +84,9 @@ Scrivito.provideComponent(FormContainerWidget, ({ widget }) => {
         <Scrivito.ContentTag
           content={widget}
           attribute="content"
+          widgetProps={{
+            onInputChange: handleInputChange
+          }}
         />
       </form>
     </div>
@@ -69,7 +94,6 @@ Scrivito.provideComponent(FormContainerWidget, ({ widget }) => {
 
   async function onSubmit(e: React.SyntheticEvent): Promise<void> {
     e.preventDefault();
-    const formData = getFormData(widget);
     if (!formData) {
       return;
     }
@@ -78,7 +102,7 @@ Scrivito.provideComponent(FormContainerWidget, ({ widget }) => {
 
     indicateProgress();
     try {
-      await submitForm(Object.fromEntries(formData) as StringMap<string>, tenant);
+      await submitForm(formData, tenant);
       indicateSuccess();
     } catch (e) {
       setTimeout(() => {
