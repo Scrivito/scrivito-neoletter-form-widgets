@@ -4,7 +4,7 @@ import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
 
 import { scrollIntoView } from "../FormStepContainerWidget/utils/scrollIntoView";
 import { getInstanceId } from "../../config/scrivitoConfig";
-import { submitForm } from "../FormStepContainerWidget/utils/submitForm";
+import { getFormData, submitForm } from "../FormStepContainerWidget/utils/submitForm";
 import { FormHiddenFields } from "../FormStepContainerWidget/components/FormHiddenFieldsComponent";
 import { FormNoTenant } from "../FormStepContainerWidget/components/FormNoTenantComponent";
 import { FormSubmitting } from "../FormStepContainerWidget/components/FormSubmittingComponent";
@@ -12,6 +12,7 @@ import { FormSubmissionFailed } from "../FormStepContainerWidget/components/Form
 import { FormSubmissionSucceeded } from "../FormStepContainerWidget/components/FormSubmissionSucceededComponent";
 import { FormContainerWidget } from "./FormContainerWidgetClass";
 import "../FormStepContainerWidget/FormStepContainerWidget.scss";
+import { StringMap } from "../../../types/types";
 
 Scrivito.provideComponent(FormContainerWidget, ({ widget }) => {
   const tenant = getInstanceId();
@@ -22,15 +23,43 @@ Scrivito.provideComponent(FormContainerWidget, ({ widget }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [successfullySent, setSuccessfullySent] = React.useState(false);
   const [submissionFailed, setSubmissionFailed] = React.useState(false);
+  const [formData, setFormData] = React.useState({});
+
+  React.useEffect(() => {
+    const initialData = getFormData(widget);
+    if (initialData) {
+      setFormData(Object.fromEntries(initialData));
+    }
+  }, []);
+
+  const handleInputChange = (fieldUpdates: StringMap<string> | string, value?: string) => {
+    if (typeof fieldUpdates === "string") {
+      setFormData(prevState => ({
+        ...prevState,
+        [fieldUpdates]: value || ""
+      }));
+    } else {
+      setFormData(prevState => ({
+        ...prevState,
+        ...fieldUpdates
+      }));
+    }
+  };
 
   if (isSubmitting) {
-    return <FormSubmitting submittingText={widget.get("submittingMessage")} />;
+    return <FormSubmitting
+      submittingText={widget.get("submittingMessage")}
+      type={"default"}
+      widget={widget}
+    />;
   }
 
   if (successfullySent) {
     return (
       <FormSubmissionSucceeded
         submissionSuccessText={widget.get("submittedMessage")}
+        type={"default"}
+        widget={widget}
       />
     );
   }
@@ -39,26 +68,41 @@ Scrivito.provideComponent(FormContainerWidget, ({ widget }) => {
     return (
       <FormSubmissionFailed
         submissionFailureText={widget.get("failedMessage")}
+        type={"default"}
+        widget={widget}
+        onReSubmit={onSubmit}
+        showRetryButton={false}
+        retryButtonText={"Retry"}
+        buttonAlignment={"text-center"}
       />
     );
   }
 
   return (
-    <div className="scrivito-neoletter-form-widgets form-container-widget">
+    <div className={`scrivito-neoletter-form-widgets form-container-widget ${Scrivito.isInPlaceEditingActive() ? "edit-mode" : ""}`}>
       <form method="post" action={formEndpoint} onSubmit={onSubmit}>
         <FormHiddenFields widget={widget} />
-        <Scrivito.ContentTag content={widget} attribute="content" />
+        <Scrivito.ContentTag
+          content={widget}
+          attribute="content"
+          widgetProps={{
+            onInputChange: handleInputChange
+          }}
+        />
       </form>
     </div>
   );
 
-  async function onSubmit(element: React.BaseSyntheticEvent): Promise<void> {
-    element.preventDefault();
-    scrollIntoView(element.target);
+  async function onSubmit(): Promise<void> {
+    if (!formData) {
+      return;
+    }
+    const formElement = document.getElementById(widget.get("formId")) as HTMLFormElement;
+    formElement && scrollIntoView(formElement);
 
     indicateProgress();
     try {
-      await submitForm(element.target, formEndpoint, widget);
+      await submitForm(formData, tenant);
       indicateSuccess();
     } catch (e) {
       setTimeout(() => {

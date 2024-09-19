@@ -80,7 +80,7 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     if (initialData) {
       setFormData(Object.fromEntries(initialData));
     }
-  }, [widget]);
+  }, []);
 
   useEffect(() => {
     if (showCaptcha && isLastPage) {
