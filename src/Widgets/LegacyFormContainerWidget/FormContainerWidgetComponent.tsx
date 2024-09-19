@@ -19,7 +19,6 @@ Scrivito.provideComponent(FormContainerWidget, ({ widget }) => {
   if (isEmpty(tenant)) {
     return <FormNoTenant />;
   }
-  const formEndpoint = `https://api.justrelate.com/neoletter/instances/${tenant}/form_submissions`;
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [successfullySent, setSuccessfullySent] = React.useState(false);
   const [submissionFailed, setSubmissionFailed] = React.useState(false);
@@ -80,7 +79,7 @@ Scrivito.provideComponent(FormContainerWidget, ({ widget }) => {
 
   return (
     <div className={`scrivito-neoletter-form-widgets form-container-widget ${Scrivito.isInPlaceEditingActive() ? "edit-mode" : ""}`}>
-      <form method="post" action={formEndpoint} onSubmit={onSubmit}>
+      <form method="post" id={widget.get("formId")} onSubmit={onSubmit} >
         <FormHiddenFields widget={widget} />
         <Scrivito.ContentTag
           content={widget}
