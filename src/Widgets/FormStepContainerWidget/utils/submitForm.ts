@@ -4,12 +4,17 @@ import { isTrackingEnabled } from "../../../config/scrivitoConfig";
 import { getFieldName } from "./getFieldName";
 import { appendTrackingIDToFormData } from "./appendNeoletterTrackingIDtoFormData";
 import { StringMap } from "../../../../types/types";
+import { isEmpty } from "./lodashPolyfills";
 
 export async function submitForm(
   formData: StringMap<string>,
-  formEndpoint: string,
+  tenant: string,
 ) {
-
+  if (isEmpty(tenant)) {
+    console.warn("Unable to submit form, tenant not found!");
+    return;
+  }
+  const formEndpoint = `https://api.justrelate.com/neoletter/instances/${tenant}/form_submissions`;
   const body = new URLSearchParams(formData);
   // uncomment below to log the data to be fetched.
   // console.log("submitting", Object.fromEntries(body.entries()));
