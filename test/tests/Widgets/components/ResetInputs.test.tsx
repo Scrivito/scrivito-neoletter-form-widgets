@@ -7,7 +7,7 @@ const text = "Reset";
 const parentRef = {
   current: document.createElement("div")
 };
-const setSelectedCallback = jest.fn();
+const onReset = jest.fn();
 
 describe("ResetInputs", () => {
   it("resets radio inputs when clicked", () => {
@@ -24,14 +24,14 @@ describe("ResetInputs", () => {
     const { getByText } = render(
       <ResetInputs
         parentRef={parentRef}
-        setSelectedCallback={setSelectedCallback}
+        onReset={onReset}
         text={text}
       />
     );
 
     fireEvent.click(getByText("Reset"));
 
-    expect(setSelectedCallback).toHaveBeenCalledWith(false);
+    expect(onReset).toHaveBeenCalled();
     expect(radioInput1.checked).toBe(false);
     expect(radioInput2.checked).toBe(false);
   });
@@ -41,7 +41,7 @@ describe("ResetInputs", () => {
       .create(
         <ResetInputs
           parentRef={parentRef}
-          setSelectedCallback={setSelectedCallback}
+          onReset={() => { }}
           text={text}
         />
       )

@@ -2,6 +2,156 @@
 
 exports[`FormStepContainerWidget renders correctly 1`] = `
 <div>
-  <div />
+  <div>
+    <div
+      className="scrivito-neoletter-form-widgets form-container-widget  "
+    >
+      <form
+        id="test-id"
+        method="post"
+      >
+        <input
+          name="form_id"
+          type="hidden"
+          value="test-id"
+        />
+        <input
+          name="url"
+          type="hidden"
+        />
+        <div />
+        <div
+          aria-hidden="true"
+          className="winnie-the-pooh"
+        >
+          <input
+            autoComplete="off"
+            name="fax"
+            role="presentation"
+            tabIndex={-1}
+          />
+        </div>
+        <div>
+          <div>
+            <div
+              className=" "
+              data-step-number={1}
+            >
+              <div
+                className="row"
+              >
+                <div>
+                  <div>
+                    <div
+                      className="form-date mb-3"
+                    >
+                      <div
+                        className="date-title"
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            {
+                              "__html": "date",
+                            }
+                          }
+                          onClick={[Function]}
+                        />
+                      </div>
+                      <input
+                        className="datepicker"
+                        onChange={[Function]}
+                        required={false}
+                        type="date"
+                      />
+                      <input
+                        className="show-in-review"
+                        name="custom_date"
+                        type="hidden"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div
+              className=" "
+              data-step-number={1}
+            >
+              <div
+                className="row"
+              >
+                <div>
+                  <div>
+                    <div
+                      className="form-date mb-3"
+                    >
+                      <div
+                        className="date-title"
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            {
+                              "__html": "date",
+                            }
+                          }
+                          onClick={[Function]}
+                        />
+                      </div>
+                      <input
+                        className="datepicker"
+                        onChange={[Function]}
+                        required={false}
+                        type="date"
+                      />
+                      <input
+                        className="show-in-review"
+                        name="custom_date"
+                        type="hidden"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div
+        className="form-buttons"
+      >
+        <button
+          className="btn btn-primary backward-button"
+          hidden={true}
+          onClick={[Function]}
+        >
+          back
+        </button>
+        <div
+          className="step-counter"
+        >
+          1 / 2
+        </div>
+        <button
+          className="btn btn-primary forward-button "
+          hidden={false}
+          onClick={[Function]}
+        >
+          forward
+        </button>
+        <button
+          className="btn btn-primary submit-button"
+          disabled={false}
+          hidden={true}
+          onClick={[Function]}
+        >
+          submit
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 `;

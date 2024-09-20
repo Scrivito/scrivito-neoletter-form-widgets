@@ -2,12 +2,28 @@ import * as React from "react";
 import { render } from "@testing-library/react";
 import { FormSubmissionFailed } from "../../../../src/Widgets/FormStepContainerWidget/components/FormSubmissionFailedComponent";
 import renderer from "react-test-renderer";
+import { DummyWidget } from "../../../helpers/dummyWidget";
+import { Widget } from "scrivito";
 
 const submissionFailureText = "Submission failed!";
 describe("FormSubmissionFailed", () => {
+  const widgetProps = {
+    submissionFailureText: submissionFailureText,
+    type: "default",
+
+    showRetryButton: false,
+    retryButtonText: "Retry",
+    onReSubmit: () => { },
+    buttonAlignment: "text-center"
+  }
+  const widget = new DummyWidget(widgetProps) as unknown as Widget;
+
   it("renders the exclamation icon and outputs the text", () => {
     const { container, getByText } = render(
-      <FormSubmissionFailed submissionFailureText={submissionFailureText} />
+      <FormSubmissionFailed
+        {...widgetProps}
+        widget={widget}
+      />
     );
 
     const icon = container.querySelector(".bi-exclamation-triangle-fill");
@@ -22,7 +38,10 @@ describe("FormSubmissionFailed", () => {
   it("renders correctly", () => {
     const tree = renderer
       .create(
-        <FormSubmissionFailed submissionFailureText={submissionFailureText} />
+        <FormSubmissionFailed
+          {...widgetProps}
+          widget={widget}
+        />
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

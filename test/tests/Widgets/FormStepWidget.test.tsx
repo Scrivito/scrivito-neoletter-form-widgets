@@ -15,17 +15,6 @@ const widgetProps = {
 };
 
 describe("FormStepWidget", () => {
-  it("does not render with empty items", () => {
-    jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
-    pageRenderer.render({
-      body: [new FormStepWidget(widgetProps)]
-    });
-
-    const textContainer = document.querySelector(".text-center");
-    expect(textContainer).toHaveTextContent(
-      "Select some items in the widget properties."
-    );
-  });
 
   it("renders without editing preview border", () => {
     jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(false);

@@ -2,15 +2,19 @@
 
 exports[`FormSubmitting renders correctly 1`] = `
 <div
-  className="scrivito-neoletter-form-widgets form-container-widget text-center"
+  className="form-submission-submitting"
 >
-  <i
-    aria-hidden="true"
-    className="bi bi-arrow-repeat bi-2x rotate-icon"
-  />
-   
-  <span>
-    Submitting...
-  </span>
+  <div
+    className="text-center"
+  >
+    <i
+      aria-hidden="true"
+      className="bi bi-arrow-repeat bi-2x rotate-form-submitting-icon"
+    />
+     
+    <span>
+      Submitting...
+    </span>
+  </div>
 </div>
 `;

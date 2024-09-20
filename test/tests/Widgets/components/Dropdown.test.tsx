@@ -19,7 +19,8 @@ describe("Dropdown", () => {
     widget: widget,
     required: true,
     helptext: "",
-    title: "Select some"
+    title: "Select some",
+    onInputChange: () => { }
   }
   it("renders the Dropdown component with options and empty dropdown", () => {
 

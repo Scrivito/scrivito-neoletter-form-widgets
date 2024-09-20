@@ -10,6 +10,7 @@ exports[`FormCheckboxWidget renders correctly 1`] = `
         className="form-check-input"
         id="form_checkbox_widget_staticWidgetID"
         name="custom_test"
+        onChange={[Function]}
         required={true}
         type="checkbox"
       />
