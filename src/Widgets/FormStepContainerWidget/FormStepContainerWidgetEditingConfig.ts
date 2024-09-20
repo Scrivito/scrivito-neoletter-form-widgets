@@ -65,7 +65,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       title: "Message shown if the form submission failed"
     },
     failedMessageType: {
-      title: "Submission Failure Message Type",
+      title: "Submission failure message type",
       description: "Select the type of failure message displayed upon submission failure.",
       values: [
         { value: "default", title: "Default text" },
@@ -73,7 +73,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       ]
     },
     submittedMessageType: {
-      title: "Submission Success Message Type",
+      title: "Submission success message type",
       description: "Select the type of message displayed after successful form submission.",
       values: [
         { value: "default", title: "Default text" },
@@ -81,7 +81,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       ]
     },
     submittingMessageType: {
-      title: "Submitting Message Type",
+      title: "Submitting message type",
       description: "Select the type of message displayed while the form is being submitted.",
       values: [
         { value: "default", title: "Default text" },
@@ -89,15 +89,15 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       ]
     },
     failedMessageWidgets: {
-      title: "Submission Failure Content",
+      title: "Submission failure content",
       description: "Customize the content to be displayed upon submission failure."
     },
     submittedMessageWidgets: {
-      title: "Submission Success Content",
+      title: "Submission success content",
       description: "Customize the content to be displayed after successful form submission."
     },
     submittingMessageWidgets: {
-      title: "Submitting Content",
+      title: "Submitting content",
       description: "Customize the content to be displayed while the form is being submitted."
     },
     previewFailedMessage: {
