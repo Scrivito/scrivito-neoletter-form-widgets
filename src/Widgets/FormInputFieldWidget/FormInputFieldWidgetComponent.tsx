@@ -18,7 +18,7 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget, onInputChange }: any)
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setIsSelected(event.target.value !== "");
-    onInputChange(getFieldName(widget), event.target.value);
+    onInputChange && onInputChange(getFieldName(widget), event.target.value);
   };
   return (
     <div className={`mb-3 form-input-container ${useFloatingLabel ? 'floating-label' : ''} ${isSelected ? "is-selected" : ""}`} >

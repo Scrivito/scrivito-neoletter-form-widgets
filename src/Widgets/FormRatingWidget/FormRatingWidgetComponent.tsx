@@ -16,7 +16,7 @@ Scrivito.provideComponent(FormRatingWidget, ({ widget, onInputChange }: any) => 
 
   const handleSelect = (rating: number) => {
     setSelectedIcons(rating);
-    onInputChange(getFieldName(widget), rating == 0 ? "" : rating.toString());
+    onInputChange && onInputChange(getFieldName(widget), rating == 0 ? "" : rating.toString());
 
   }
   return (

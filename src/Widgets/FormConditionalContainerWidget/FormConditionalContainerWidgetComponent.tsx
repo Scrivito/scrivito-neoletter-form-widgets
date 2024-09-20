@@ -30,6 +30,9 @@ Scrivito.provideComponent(FormConditionalContainerWidget, ({ widget, onInputChan
       ? e.target.options[e.target.selectedIndex].id
       : e.target.id;
     setSelectedConditionId(selectedId);
+    if (!onInputChange) {
+      return;
+    }
     // update the field corresponding to the selected condition
     onInputChange(widget.get("customFieldName"), e.target.value);
 
