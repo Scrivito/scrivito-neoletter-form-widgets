@@ -473,18 +473,52 @@ export const FormSliderWidget = Scrivito.provideWidgetClass(
 
 #### FormSliderWidgetComponent.js
 
-```js
+````js
 import * as React from "react";
 import * as Scrivito from "scrivito";
 
-Scrivito.provideComponent("FormSliderWidget", ({ widget }) => {
-  const [value, setValue] = React.useState(50);
+/**
+ * FormSliderWidget component for rendering a custom slider input in a form.
+ *
+ * @param {object} widget - The Scrivito widget object containing field attributes.
+ * @param {function} onInputChange - Callback function to handle form input changes.
+ *
+ * The onInputChange callback must be triggered for any form input changes. It expects:
+ *  - Field name (string)
+ *  - Field value (string)
+ *
+ * Alternatively, you can pass a StringMap where the key is the field name and the value is the corresponding string value.
+ *
+ * Example:
+ * ```js
+ * // Using individual field name and value:
+ * onInputChange("customFieldName", "42");
+ *
+ * // Using a StringMap:
+ * onInputChange({
+ *   "customFieldName1": "42",
+ *   "customFieldName2": "88"
+ * });
+ * ```
+ */
+Scrivito.provideComponent("FormSliderWidget", ({ widget, onInputChange }) => {
+  const fieldName = widget.get("customFieldName");
+  const [value, setValue] = React.useState("50");
+
+  const onChangeValue = (e) => {
+    const newValue = e.currentTarget.value;
+    setValue(newValue);
+
+    // Triggering the onInputChange callback with the field name and value (as string)
+    onInputChange(fieldName, newValue);
+  };
+
   return (
     <div className="row mb-3">
       <span className="text-super">{widget.get("label")}</span>
       <input
         type="range"
-        onChange={(e) => setValue(e.currentTarget.value)}
+        onChange={onChangeValue}
         min="0"
         max="100"
         value={value}
@@ -492,13 +526,13 @@ Scrivito.provideComponent("FormSliderWidget", ({ widget }) => {
       <input
         type="hidden"
         className="show-in-review"
-        name={widget.get("customFieldName")}
+        name={fieldName}
         value={value}
-      ></input>
+      />
     </div>
   );
 });
-```
+````
 
 #### FormSliderWidgetEditingConfig.js
 
