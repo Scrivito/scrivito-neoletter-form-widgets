@@ -1,9 +1,6 @@
 // Styles for FormContainerWidget
 .scrivito-neoletter-form-widgets.form-container-widget {
 
-  .text-super {
-    vertical-align: super;
-  }
 
   .text-mandatory {
     font-weight: 700;
@@ -170,20 +167,24 @@
     }
   }
 
-  @keyframes rotate-icon {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
+  
+}
+@keyframes rotate-form-submitting-icon {
+  0% {
+    transform: rotate(0deg);
   }
 
-  .rotate-icon {
-    display: inline-block;
-    animation: rotate-icon 2s linear 0s infinite;
+  100% {
+    transform: rotate(360deg);
   }
+}
+
+.form-submission-submitting .rotate-form-submitting-icon {
+  display: inline-block;
+  animation: rotate-form-submitting-icon 2s linear 0s infinite;
+}
+.form-submission-failed .retry-button {
+  margin-top: 1em;
 }
 
 // review modal
@@ -326,7 +327,6 @@ body .scrivito-neoletter-review-form-modal {
   .scrivito-neoletter-form-widgets.form-container-widget label,
   .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory,
   .scrivito-neoletter-form-widgets.form-container-widget .bs-icon,
-  .scrivito-neoletter-form-widgets.form-container-widget .text-super,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget label,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .text-mandatory,
   .card.card-theme .scrivito-neoletter-form-widgets.form-container-widget .bs-icon {

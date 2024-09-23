@@ -64,6 +64,66 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     failedMessage: {
       title: "Message shown if the form submission failed"
     },
+    failedMessageType: {
+      title: "Submission failure message type",
+      description: "Select the type of failure message displayed upon submission failure.",
+      values: [
+        { value: "default", title: "Default text" },
+        { value: "widget-list", title: "Widget List" }
+      ]
+    },
+    submittedMessageType: {
+      title: "Submission success message type",
+      description: "Select the type of message displayed after successful form submission.",
+      values: [
+        { value: "default", title: "Default text" },
+        { value: "widget-list", title: "Widget List" }
+      ]
+    },
+    submittingMessageType: {
+      title: "Submitting message type",
+      description: "Select the type of message displayed while the form is being submitted.",
+      values: [
+        { value: "default", title: "Default text" },
+        { value: "widget-list", title: "Widget List" }
+      ]
+    },
+    failedMessageWidgets: {
+      title: "Submission failure content",
+      description: "Customize the content to be displayed upon submission failure."
+    },
+    submittedMessageWidgets: {
+      title: "Submission success content",
+      description: "Customize the content to be displayed after successful form submission."
+    },
+    submittingMessageWidgets: {
+      title: "Submitting content",
+      description: "Customize the content to be displayed while the form is being submitted."
+    },
+    previewFailedMessage: {
+      title: "Preview failed message/widgets",
+      description: "Preview the failure message or content in edit mode."
+    },
+    previewSubmittedMessage: {
+      title: "Preview success message/widgets",
+      description: "Preview the success message or content in edit mode."
+    },
+    previewSubmittingMessage: {
+      title: "Preview submitting message/widgets",
+      description: "Preview the message or content displayed while the form is being submitted in edit mode."
+    },
+    showRetryButton: { title: "Show retry button" },
+    retryButtonText: { title: "Retry button text" },
+    retryButtonAlignment: {
+      title: "Retry button alignment",
+      values: [
+        { value: "left", title: "Left" },
+        { value: "text-center", title: "Center" },
+        { value: "text-end", title: "Right" },
+        { value: "block", title: "Full width" }
+      ]
+    },
+
     hiddenFields: {
       title: "Hidden fields"
     },
@@ -127,13 +187,12 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       ]
     }
   },
-  properties: [
-    "showBorder",
-    "submittingMessage",
-    "submittedMessage",
-    "failedMessage"
-  ],
+  properties: ["showBorder"],
   propertiesGroups: (widget) => {
+    const showSubmittingMessage = widget.get("submittingMessageType") == "default";
+    const showSubmittedMessage = widget.get("submittedMessageType") == "default";
+    const showFailedMessage = widget.get("failedMessageType") == "default";
+    const showRetryButton = widget.get("showRetryButton");
     const groups = [
       {
         title: "Hidden fields",
@@ -145,6 +204,25 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
         key: "FormStepContainerWidgetFormSubmissions",
         properties: ["formId"],
         component: FormIdComponent
+      },
+      {
+        title: "Submission Messages",
+        key: "FormStepContainerWidgetSubmissionMessages",
+        properties: [
+          "submittingMessageType",
+          showSubmittingMessage ? "submittingMessage" : "submittingMessageWidgets",
+          "previewSubmittingMessage",
+          "submittedMessageType",
+          showSubmittedMessage ? "submittedMessage" : "submittedMessageWidgets",
+          "previewSubmittedMessage",
+          "failedMessageType",
+          showFailedMessage ? "failedMessage" : "failedMessageWidgets",
+          "showRetryButton",
+          ["retryButtonText", { enabled: showRetryButton }],
+          ["retryButtonAlignment", { enabled: showRetryButton }],
+          "previewFailedMessage"
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ] as any
       },
       {
         title: "Navigation area",
@@ -185,11 +263,6 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
 
   initialContent: {
     formId: () => pseudoRandom32CharHex(),
-    submittingMessage: "Submitting...",
-    submittedMessage:
-      "Your message has been successfully sent. Thank you for your request. We will get back to you as soon as possible.",
-    failedMessage:
-      "We are sorry, your request could not be completed. Please try again later.",
     formType: "single-step",
     singleSubmitButtonAlignment: "text-center",
     steps: [
@@ -248,7 +321,20 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     showReviewFooter: false,
     reviewButtonText: "Review",
     reviewHeaderTitle: "Review",
-    reviewCloseButtonText: "Close"
+    reviewCloseButtonText: "Close",
+    // submitting stuff
+    submittingMessage: "Submitting...",
+    submittedMessage: "Your message has been successfully sent. Thank you for your request. We will get back to you as soon as possible.",
+    failedMessage: "We are sorry, your request could not be completed. Please try again later.",
+    submittingMessageType: "default",
+    submittedMessageType: "default",
+    failedMessageType: "default",
+    previewSubmittingMessage: false,
+    previewSubmittedMessage: false,
+    previewFailedMessage: false,
+    showRetryButton: false,
+    retryButtonText: "Retry",
+    retryButtonAlignment: "text-center"
   },
   validations: [
     (widget: Scrivito.Widget) => {

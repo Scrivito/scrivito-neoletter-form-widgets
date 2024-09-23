@@ -3,13 +3,13 @@ import * as React from "react";
 interface ResetInputsProps {
   text: string;
   parentRef: React.RefObject<HTMLDivElement>;
-  setSelectedCallback: React.Dispatch<React.SetStateAction<boolean>>;
+  onReset: () => void;
 }
 
 export const ResetInputs: React.FC<ResetInputsProps> = ({
   parentRef,
-  setSelectedCallback,
-  text
+  text,
+  onReset
 }) => {
   const doReset = () => {
     if (parentRef.current) {
@@ -20,7 +20,7 @@ export const ResetInputs: React.FC<ResetInputsProps> = ({
           input.checked = false;
         }
       });
-      setSelectedCallback(false);
+      onReset();
     }
   };
 

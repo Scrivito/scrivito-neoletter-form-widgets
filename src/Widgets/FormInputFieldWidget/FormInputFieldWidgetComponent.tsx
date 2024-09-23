@@ -8,7 +8,8 @@ import { FormInputFieldWidget } from "./FormInputFieldWidgetClass";
 import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
 import "./FormInputFieldWidget.scss";
 
-Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+Scrivito.provideComponent(FormInputFieldWidget, ({ widget, onInputChange }: any) => {
   const id = `form_text_input_widget_${widget.id()}`;
   const fieldName = getFieldName(widget);
   const useFloatingLabel = widget.get("useFloatingLabel");
@@ -17,6 +18,7 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setIsSelected(event.target.value !== "");
+    onInputChange && onInputChange(getFieldName(widget), event.target.value);
   };
   return (
     <div className={`mb-3 form-input-container ${useFloatingLabel ? 'floating-label' : ''} ${isSelected ? "is-selected" : ""}`} >

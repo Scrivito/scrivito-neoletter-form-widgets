@@ -126,9 +126,6 @@ The `Form` widget has the following properties divided into several tabs:
 
 - "General" tab
   - Show frame: Adds a frame around the form.
-  - Submitting message: Message shown while the form is being submitted.
-  - Submitted message: Message shown after the form was successfully submitted.
-  - Failed message: Message shown if the form submission failed.
 - "Google reCAPTCHA" Tab (Tab visible if captchaType is set to `google-recaptcha`)
   - Enable captcha: Enables Google reCAPTCHA v2 for the current form. You need to [Setup reCAPTCHA](#google-recaptcha-developer-setup) first.
   - Language: Select the language for the reCAPTCHA. Google reCAPTCHA automatically adapts to the browser`s language setting, this property is optional and must not be filled. Refer to the language section [here](https://developers.google.com/recaptcha/docs/language) for setting the language manually.
@@ -155,6 +152,22 @@ The `Form` widget has the following properties divided into several tabs:
   - Hidden Fields: Customize hidden fields.
 - "Form submission" tab
   - Form ID: This ID identifies the form in Neoletter. The input field includes icons to generate a new ID and to restore the initial ID that was stored before opening the properties.
+- "Submission messages" tab
+  - Submitting message type: Select the type of message displayed while the form is being submitted.
+  - Submitting message: Message shown while the form is being submitted. (Visible if submitting message type is set to `Default text`).
+  - Submitting content: Widgets shown while the form is being submitted. (Visible if submitting message type is set to `Widget list`).
+  - Preview submitting message/widgets: Preview the message or content displayed while the form is being submitted. Works only in edit mode.
+  - Submission success message type: Select the type of message displayed after successful form submission.
+  - Submitted message: Message shown after the form was successfully submitted. (Visible if submission success message type is set to `Default text`).
+  - Submission success content: Widgets shown after the form was successfully submitted. (Visible if submission success message type is set to `Widget list`).
+  - Preview success message/widgets: Preview the message or content displayed after the form was successfully submitted. Works only in edit mode.
+  - Submission failure message type: Select the type of failure message displayed upon submission failure.
+  - Failed message: Message shown if the form submission failed. (Visible if submission failure message type is set to `Default list`).
+  - Submission failure content: Widgets shown if the form submission failed. (Visible if submission failure message type is set to `Widget list`).
+  - Show retry button: Show a retry button at the end of the message/widgets.
+  - Retry button text: The text for the retry button.
+  - Retry button alignment: Alignment for the retry button.
+  - Preview failed message/widgets: Preview the message or content displayed if the form submission failed. Works only in edit mode.
 - "Navigation area" tab (Content depends on form type i.e. single-step or multiple-steps)
   - Forward button text: Text for the forward button.
   - Backward button text: Text for the backward button.
@@ -460,18 +473,52 @@ export const FormSliderWidget = Scrivito.provideWidgetClass(
 
 #### FormSliderWidgetComponent.js
 
-```js
+````js
 import * as React from "react";
 import * as Scrivito from "scrivito";
 
-Scrivito.provideComponent("FormSliderWidget", ({ widget }) => {
-  const [value, setValue] = React.useState(50);
+/**
+ * FormSliderWidget component for rendering a custom slider input in a form.
+ *
+ * @param {object} widget - The Scrivito widget object containing field attributes.
+ * @param {function} onInputChange - Callback function to handle form input changes.
+ *
+ * The onInputChange callback must be triggered for any form input changes. It expects:
+ *  - Field name (string)
+ *  - Field value (string)
+ *
+ * Alternatively, you can pass a StringMap where the key is the field name and the value is the corresponding string value.
+ *
+ * Example:
+ * ```js
+ * // Using individual field name and value:
+ * onInputChange("customFieldName", "42");
+ *
+ * // Using a StringMap:
+ * onInputChange({
+ *   "customFieldName1": "42",
+ *   "customFieldName2": "88"
+ * });
+ * ```
+ */
+Scrivito.provideComponent("FormSliderWidget", ({ widget, onInputChange }) => {
+  const fieldName = widget.get("customFieldName");
+  const [value, setValue] = React.useState("50");
+
+  const onChangeValue = (e) => {
+    const newValue = e.currentTarget.value;
+    setValue(newValue);
+
+    // Triggering the onInputChange callback with the field name and value (as string)
+    onInputChange(fieldName, newValue);
+  };
+
   return (
     <div className="row mb-3">
       <span className="text-super">{widget.get("label")}</span>
       <input
         type="range"
-        onChange={(e) => setValue(e.currentTarget.value)}
+        onChange={onChangeValue}
         min="0"
         max="100"
         value={value}
@@ -479,13 +526,13 @@ Scrivito.provideComponent("FormSliderWidget", ({ widget }) => {
       <input
         type="hidden"
         className="show-in-review"
-        name={widget.get("customFieldName")}
+        name={fieldName}
         value={value}
-      ></input>
+      />
     </div>
   );
 });
-```
+````
 
 #### FormSliderWidgetEditingConfig.js
 

@@ -6,7 +6,8 @@ import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponen
 import { FormCheckboxWidget } from "./FormCheckboxWidgetClass";
 import "./FormCheckboxWidget.scss";
 
-Scrivito.provideComponent(FormCheckboxWidget, ({ widget }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+Scrivito.provideComponent(FormCheckboxWidget, ({ widget, onInputChange }: any) => {
   const id = `form_checkbox_widget_${widget.id()}`;
 
   return (
@@ -17,6 +18,7 @@ Scrivito.provideComponent(FormCheckboxWidget, ({ widget }) => {
         type="checkbox"
         name={getFieldName(widget)}
         required={widget.get("required")}
+        onChange={(e) => onInputChange(getFieldName(widget), e.target.checked ? "on" : "")}
       />
       <label className="form-check-label" htmlFor={id}>
         <Scrivito.ContentTag

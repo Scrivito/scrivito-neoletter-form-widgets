@@ -3,6 +3,7 @@ import * as Scrivito from "scrivito";
 import { DropdownOption } from "./DropdownOption";
 import { Mandatory } from "./MandatoryComponent";
 import { HelpText } from "./HelpTextComponent";
+import { getFieldName } from "../utils/getFieldName";
 
 interface DropdownProps {
   options: string[];
@@ -12,6 +13,7 @@ interface DropdownProps {
   required: boolean;
   helptext: string;
   title: string;
+  onInputChange: (fieldName: string, value: string) => void;
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
@@ -21,7 +23,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
   widget,
   required,
   helptext,
-  title
+  title,
+  onInputChange
 }) => {
   const id = widget.id();
 
@@ -30,6 +33,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setIsSelected(event.target.value !== "");
+    onInputChange(getFieldName(widget), event.target.value);
   };
 
   return (

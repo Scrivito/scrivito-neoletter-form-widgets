@@ -28,6 +28,38 @@ export const FormStepContainerWidget = Scrivito.provideWidgetClass(
       failedMessage: "string",
       submittedMessage: "string",
       submittingMessage: "string",
+      failedMessageType: [
+        "enum",
+        {
+          values: ["default", "widget-list"]
+        }
+      ],
+      submittedMessageType: [
+        "enum",
+        {
+          values: ["default", "widget-list"]
+        }
+      ],
+      submittingMessageType: [
+        "enum",
+        {
+          values: ["default", "widget-list"]
+        }
+      ],
+      failedMessageWidgets: "widgetlist",
+      submittedMessageWidgets: "widgetlist",
+      submittingMessageWidgets: "widgetlist",
+      previewFailedMessage: "boolean",
+      previewSubmittedMessage: "boolean",
+      previewSubmittingMessage: "boolean",
+      showRetryButton: "boolean",
+      retryButtonText: "string",
+      retryButtonAlignment: [
+        "enum",
+        {
+          values: ["left", "text-center", "text-end", "block"]
+        }
+      ],
       hiddenFields: ["widgetlist", { only: "FormHiddenFieldWidget" }],
       formType: [
         "enum",

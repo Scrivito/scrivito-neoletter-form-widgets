@@ -11,12 +11,33 @@ import { ResetInputs } from "../FormStepContainerWidget/components/ResetInputsCo
 import "./FormSelectWidget.scss";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-Scrivito.provideComponent(FormSelectWidget, ({ widget, navigate }: any) => {
+Scrivito.provideComponent(FormSelectWidget, ({ widget, navigate, onInputChange }: any) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const [selected, setSelected] = React.useState(false);
   const items = widget.get("items");
   const isMultiSelect = widget.get("selectionType") == "multi";
   const isDropdown = widget.get("selectionType") == "dropdown";
+  const onChangeSelect = () => {
+    setSelected(true);
+    if (ref && ref.current) {
+      const inputs = ref.current.getElementsByTagName("input");
+      const inputArray = Array.from(inputs);
+      const selectedValues: string[] = [];
+      inputArray.forEach((input) => {
+        if (input.checked) {
+          selectedValues.push(input.value)
+        }
+      });
+
+      onInputChange(getFieldName(widget), selectedValues.join(", "))
+    }
+  }
+
+  const onReset = () => {
+    setSelected(false);
+    onInputChange(getFieldName(widget), "");
+  }
+
   if (!items.length && widget.get("selectionType") != "linear-scale") {
     return (
       <InPlaceEditingPlaceholder center>
@@ -36,6 +57,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget, navigate }: any) => {
           required={widget.get("required")}
           helptext={widget.get("helpText")}
           title={widget.get("title")}
+          onInputChange={onInputChange}
         />
       ) : (
         <>
@@ -54,14 +76,14 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget, navigate }: any) => {
             required={widget.get("required")}
             widget={widget}
             name={getFieldName(widget)}
-            onChange={() => setSelected(true)}
+            onChange={onChangeSelect}
             onClickNavigate={() => (isMultiSelect || !widget.get("navigateOnClick")) ? null : navigate(true)}
           />
         </>
       )}
       {showReset() && (
         <ResetInputs
-          setSelectedCallback={setSelected}
+          onReset={onReset}
           text={widget.get("clearSelectionButtonText")}
           parentRef={ref}
         />

@@ -7,11 +7,18 @@ import { FormRatingWidget } from "./FormRatingWidgetClass";
 import { getIconColor } from "../FormStepContainerWidget/utils/getIconColor";
 import "./FormRatingWidget.scss";
 
-Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+Scrivito.provideComponent(FormRatingWidget, ({ widget, onInputChange }: any) => {
   const [selectedIcons, setSelectedIcons] = React.useState(0);
   const [hoveredIcons, setHoveredIcons] = React.useState(0);
   const hoverEffect = widget.get("hoverEffect");
   const color = getIconColor(widget);
+
+  const handleSelect = (rating: number) => {
+    setSelectedIcons(rating);
+    onInputChange && onInputChange(getFieldName(widget), rating == 0 ? "" : rating.toString());
+
+  }
   return (
     <div className="form-rating mb-3">
       {widget.get("title") && <div className="rating-title">
@@ -33,7 +40,7 @@ Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
             hoverEffect && hoveredIcons > i
           )}
           size={widget.get("size") || "bs-icon-default"}
-          onSelect={() => setSelectedIcons(i + 1)}
+          onSelect={() => handleSelect(i + 1)}
           onHover={() => hoverEffect && setHoveredIcons(i + 1)}
           onHoverOut={() => hoverEffect && setHoveredIcons(0)}
         />

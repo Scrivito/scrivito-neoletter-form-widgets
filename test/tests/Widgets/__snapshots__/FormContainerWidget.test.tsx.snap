@@ -4,10 +4,10 @@ exports[`FormContainerWidget renders correctly 1`] = `
 <div>
   <div>
     <div
-      className="scrivito-neoletter-form-widgets form-container-widget"
+      className="scrivito-neoletter-form-widgets form-container-widget "
     >
       <form
-        action="https://api.justrelate.com/neoletter/instances//form_submissions"
+        id="123"
         method="post"
         onSubmit={[Function]}
       >

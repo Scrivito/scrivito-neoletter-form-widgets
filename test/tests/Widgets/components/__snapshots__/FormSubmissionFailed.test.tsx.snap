@@ -2,17 +2,19 @@
 
 exports[`FormSubmissionFailed renders correctly 1`] = `
 <div
-  className="scrivito-neoletter-form-widgets form-container-widget text-center"
+  className="form-submission-failed"
 >
-  <i
-    aria-hidden="true"
-    className="bi bi-exclamation-triangle-fill bi-2x"
-  />
-   
-  <span
-    className="text-super"
+  <div
+    className="text-center"
   >
-    Submission failed!
-  </span>
+    <i
+      aria-hidden="true"
+      className="bi bi-exclamation-triangle-fill bi-2x"
+    />
+     
+    <span>
+      Submission failed!
+    </span>
+  </div>
 </div>
 `;

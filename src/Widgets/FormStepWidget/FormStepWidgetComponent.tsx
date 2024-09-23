@@ -1,24 +1,13 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceholder";
 import { FormStepWidget } from "./FormStepWidgetClass";
 import "./FormStepWidget.scss";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-Scrivito.provideComponent(FormStepWidget, ({ widget, getData, navigateOnClick }: any) => {
+Scrivito.provideComponent(FormStepWidget, ({ widget, getData, navigateOnClick, onInputChange }: any) => {
   const data = getData ? getData(widget.id()) : { stepNumber: 0 };
   const doNavigate = navigateOnClick ? navigateOnClick() : null;
-  const items = widget.get("items");
-  const isMultiStepsWithActiveEditing =
-    Scrivito.isInPlaceEditingActive() && !data.isSingleStep;
-
-  if (!items.length) {
-    return (
-      <InPlaceEditingPlaceholder center>
-        Select some items in the widget properties.
-      </InPlaceEditingPlaceholder>
-    );
-  }
+  const isMultiStepsWithActiveEditing = Scrivito.isInPlaceEditingActive() && !data.isSingleStep;
 
   return (
     <div
@@ -31,7 +20,15 @@ Scrivito.provideComponent(FormStepWidget, ({ widget, getData, navigateOnClick }:
         <span className="step-preview-count">{"Step " + data.stepNumber}</span>
       )}
       <div className="row">
-        <Scrivito.ContentTag content={widget} attribute="items" widgetProps={{ navigate: doNavigate }} />
+        <Scrivito.ContentTag
+          content={widget}
+          attribute="items"
+          widgetProps={
+            {
+              navigate: doNavigate,
+              onInputChange
+            }
+          } />
       </div>
     </div>
   );

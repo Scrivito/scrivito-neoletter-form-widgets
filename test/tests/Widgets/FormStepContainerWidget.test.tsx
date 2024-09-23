@@ -6,6 +6,9 @@ import { FormDateWidget } from "../../../src/Widgets/FormDateWidget/FormDateWidg
 import "../../../src/Widgets/FormStepContainerWidget/FormStepContainerWidgetComponent";
 import "../../../src/Widgets/FormStepWidget/FormStepWidgetComponent";
 import "../../../src/Widgets/FormDateWidget/FormDateWidgetComponent";
+import "../../../src/Widgets/FormStepContainerWidget/components/FormSubmittingComponent";
+import "../../../src/Widgets/FormStepContainerWidget/components/FormSubmissionSucceededComponent";
+import "../../../src/Widgets/FormStepContainerWidget/components/FormSubmissionFailedComponent";
 import PageRenderer from "../../helpers/pageRenderer";
 
 Scrivito.configure({ tenant: "inMemory" });
@@ -43,8 +46,22 @@ const widgetProps = {
   reviewButtonText: "Review",
   reviewHeaderTitle: "Review header",
   reviewCloseButtonText: "Close",
-  singleSubmitButtonAlignment: "left"
+  singleSubmitButtonAlignment: "left",
+  previewSubmittingMessage: false,
+  previewFailedMessage: false,
+  previewSubmittedMessage: false,
+  submittingMessageType: "default",
+  submittedMessageType: "default",
+  failedMessageType: "default",
+  submittedMessageWidgets: [],
+  submittingMessageWidgets: [],
+  failedMessageWidgets: [],
+  showRetryButton: false,
+  retryButtonText: "retry",
+  retryButtonAlignment: "text-center"
+
 };
+
 describe("FormStepContainerWidget", () => {
   it("does not render with missing instanceId", () => {
     pageRenderer.render({
@@ -196,7 +213,7 @@ describe("FormStepContainerWidget", () => {
     beforeAll(() => {
       // Set tracking flag to true
       (global as any).tracking = true
-      
+
       // Mock global fetch function
       global.fetch = jest.fn().mockImplementation(() =>
         Promise.resolve({
@@ -253,6 +270,188 @@ describe("FormStepContainerWidget", () => {
         const params = new URLSearchParams(fetchMock.mock.calls[0][1].body);
         expect(params.get("tracking_id")).toBe(null);
       });
+    });
+  });
+
+  describe("Submission messages", () => {
+    it("renders submission succeeded widgets if edit mode is active", () => {
+      jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
+      const submissionWidgets = [
+        new FormDateWidget({
+          customFieldName: "custom_date",
+          title: "date",
+          dateType: "date"
+        })
+      ];
+
+      pageRenderer.render({
+        body: [new FormStepContainerWidget({ ...widgetProps, previewSubmittedMessage: true, submittedMessageWidgets: submissionWidgets, submittedMessageType: "widget-list" })]
+      });
+
+      const form = document.getElementById("test-id");
+      const submissionContainer = document.querySelector(".form-submission-succeeded");
+      const defaultTextContainer = submissionContainer?.querySelector(".text-center");
+      const dateWidget = document.querySelector('input[type="date"]');
+      expect(form).not.toBeInTheDocument();
+      expect(submissionContainer).toBeInTheDocument();
+      expect(defaultTextContainer).not.toBeInTheDocument();
+      expect(dateWidget).toBeInTheDocument();
+    });
+
+    it("renders submission succeeded default text if edit mode is active", () => {
+      jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
+      const submissionWidgets = [
+        new FormDateWidget({
+          customFieldName: "custom_date",
+          title: "date",
+          dateType: "date"
+        })
+      ];
+
+      pageRenderer.render({
+        body: [new FormStepContainerWidget({ ...widgetProps, previewSubmittedMessage: true, submittedMessageWidgets: submissionWidgets, submittedMessageType: "default" })]
+      });
+
+      const form = document.getElementById("test-id");
+      const submissionContainer = document.querySelector(".form-submission-succeeded");
+      const defaultTextContainer = submissionContainer?.querySelector(".text-center");
+      const dateWidget = document.querySelector('input[type="date"]');
+      expect(form).not.toBeInTheDocument();
+      expect(submissionContainer).toBeInTheDocument();
+      expect(defaultTextContainer).toBeInTheDocument();
+      expect(dateWidget).not.toBeInTheDocument();
+    });
+
+    it("renders submission failed widgets if edit mode is active", () => {
+      jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
+      const submissionWidgets = [
+        new FormDateWidget({
+          customFieldName: "custom_date",
+          title: "date",
+          dateType: "date"
+        })
+      ];
+
+      pageRenderer.render({
+        body: [new FormStepContainerWidget({ ...widgetProps, previewFailedMessage: true, failedMessageWidgets: submissionWidgets, failedMessageType: "widget-list" })]
+      });
+
+      const form = document.getElementById("test-id");
+      const failedContainer = document.querySelector(".form-submission-failed");
+      const defaultTextContainer = failedContainer?.querySelector(".text-center");
+      const dateWidget = document.querySelector('input[type="date"]');
+      expect(form).not.toBeInTheDocument();
+      expect(failedContainer).toBeInTheDocument();
+      expect(defaultTextContainer).not.toBeInTheDocument();
+      expect(dateWidget).toBeInTheDocument();
+    });
+
+    it("renders submission failed default text if edit mode is active", () => {
+      jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
+      const submissionWidgets = [
+        new FormDateWidget({
+          customFieldName: "custom_date",
+          title: "date",
+          dateType: "date"
+        })
+      ];
+
+      pageRenderer.render({
+        body: [new FormStepContainerWidget({ ...widgetProps, previewFailedMessage: true, failedMessageWidgets: submissionWidgets, failedMessageType: "default" })]
+      });
+
+      const form = document.getElementById("test-id");
+      const failedContainer = document.querySelector(".form-submission-failed");
+      const defaultTextContainer = failedContainer?.querySelector(".text-center");
+      const dateWidget = document.querySelector('input[type="date"]');
+      expect(form).not.toBeInTheDocument();
+      expect(failedContainer).toBeInTheDocument();
+      expect(defaultTextContainer).toBeInTheDocument();
+      expect(dateWidget).not.toBeInTheDocument();
+    });
+
+    it("renders submission Submitting default text if edit mode is active", () => {
+
+      jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
+      const submissionWidgets = [
+        new FormDateWidget({
+          customFieldName: "custom_date",
+          title: "date",
+          dateType: "date"
+        })
+      ];
+
+      pageRenderer.render({
+        body: [new FormStepContainerWidget({ ...widgetProps, previewSubmittingMessage: true, submittingMessageWidgets: submissionWidgets, submittingMessageType: "default" })]
+      });
+
+      const form = document.getElementById("test-id");
+      const submittingContainer = document.querySelector(".form-submission-submitting");
+      const defaultTextContainer = submittingContainer?.querySelector(".text-center");
+      const dateWidget = document.querySelector('input[type="date"]');
+      expect(form).not.toBeInTheDocument();
+      expect(submittingContainer).toBeInTheDocument();
+      expect(defaultTextContainer).toBeInTheDocument();
+      expect(dateWidget).not.toBeInTheDocument();
+    });
+
+    it("renders submission Submitting widgets if edit mode is active", () => {
+      jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
+      const submissionWidgets = [
+        new FormDateWidget({
+          customFieldName: "custom_date",
+          title: "date",
+          dateType: "date"
+        })
+      ];
+
+      pageRenderer.render({
+        body: [new FormStepContainerWidget({ ...widgetProps, previewSubmittingMessage: true, submittingMessageWidgets: submissionWidgets, submittingMessageType: "widget-list" })]
+      });
+
+      const form = document.getElementById("test-id");
+      const submittingContainer = document.querySelector(".form-submission-submitting");
+      const defaultTextContainer = submittingContainer?.querySelector(".text-center");
+      const dateWidget = document.querySelector('input[type="date"]');
+      expect(form).not.toBeInTheDocument();
+      expect(submittingContainer).toBeInTheDocument();
+      expect(defaultTextContainer).not.toBeInTheDocument();
+      expect(dateWidget).toBeInTheDocument();
+    });
+
+    it("does not render any submission component if edit mode is not active", () => {
+      jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(false);
+      const submissionWidgets = [
+        new FormDateWidget({
+          customFieldName: "custom_date",
+          title: "date",
+          dateType: "date"
+        })
+      ];
+
+      pageRenderer.render({
+        body: [
+          new FormStepContainerWidget(
+            {
+              ...widgetProps,
+              previewSubmittingMessage: true,
+              previewFailedMessage: true,
+              previewSubmittedMessage: true,
+              submittingMessageWidgets: submissionWidgets,
+              submittingMessageType: "widget-list"
+            })
+        ]
+      });
+
+      const form = document.getElementById("test-id");
+      const submittingContainer = document.querySelector(".form-submission-submitting");
+      const failedContainer = document.querySelector(".form-submission-failed");
+      const submittedContainer = document.querySelector(".form-submission-succeeded");
+
+      expect(form).toBeInTheDocument();
+      expect(submittingContainer).not.toBeInTheDocument();
+      expect(failedContainer).not.toBeInTheDocument();
+      expect(submittedContainer).not.toBeInTheDocument();
     });
   });
 });
