@@ -1,7 +1,10 @@
 // Styles for FormContainerWidget
 .scrivito-neoletter-form-widgets.form-container-widget {
 
-
+  .form-control  {
+    font-size: 1rem;
+  }
+  
   .text-mandatory {
     font-weight: 700;
     color: var(--bs-danger, #f03a47); //$secondary;
