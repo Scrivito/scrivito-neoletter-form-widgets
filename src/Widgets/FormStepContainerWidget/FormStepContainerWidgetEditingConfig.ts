@@ -16,6 +16,10 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       title: "Form ID",
       description: "This ID identifies the form in Neoletter."
     },
+    customClassNames: {
+      title: "Additional CSS Classes",
+      description: "Specify additional CSS class names to be added to the main container of the form. Separate multiple class names with spaces."
+    },
     showCaptcha: {
       title: "Enable captcha",
       description: "Enables captcha for this form."
@@ -187,7 +191,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       ]
     }
   },
-  properties: ["showBorder"],
+  properties: ["showBorder", "customClassNames"],
   propertiesGroups: (widget) => {
     const showSubmittingMessage = widget.get("submittingMessageType") == "default";
     const showSubmittedMessage = widget.get("submittedMessageType") == "default";
