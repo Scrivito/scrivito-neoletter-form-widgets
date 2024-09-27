@@ -19,7 +19,7 @@ exports[`Dropdown renders correctly 1`] = `
     </div>
   </label>
   <select
-    class="dropdown-select"
+    class="dropdown-select form-select"
     id="fakeId"
     name="testDropdown"
     required=""

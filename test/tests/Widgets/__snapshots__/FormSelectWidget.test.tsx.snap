@@ -43,7 +43,7 @@ exports[`FormSelectWidget renders correctly 1`] = `
           </div>
         </label>
         <select
-          className="dropdown-select"
+          className="dropdown-select form-select"
           id="staticWidgetID"
           name=""
           onChange={[Function]}
