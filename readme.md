@@ -126,6 +126,7 @@ The `Form` widget has the following properties divided into several tabs:
 
 - "General" tab
   - Show frame: Adds a frame around the form.
+  - Additional CSS Classes: Specify additional CSS class names to be added to the main container of the form. Separate multiple class names with spaces.
 - "Google reCAPTCHA" Tab (Tab visible if captchaType is set to `google-recaptcha`)
   - Enable captcha: Enables Google reCAPTCHA v2 for the current form. You need to [Setup reCAPTCHA](#google-recaptcha-developer-setup) first.
   - Language: Select the language for the reCAPTCHA. Google reCAPTCHA automatically adapts to the browser`s language setting, this property is optional and must not be filled. Refer to the language section [here](https://developers.google.com/recaptcha/docs/language) for setting the language manually.
@@ -155,15 +156,15 @@ The `Form` widget has the following properties divided into several tabs:
 - "Submission messages" tab
   - Submitting message type: Select the type of message displayed while the form is being submitted.
   - Submitting message: Message shown while the form is being submitted. (Visible if submitting message type is set to `Default text`).
-  - Submitting content: Widgets shown while the form is being submitted. (Visible if submitting message type is set to `Widget list`).
+  - Submitting content: Widgets shown while the form is being submitted. (Visible if submitting message type is set to `Custom content`).
   - Preview submitting message/widgets: Preview the message or content displayed while the form is being submitted. Works only in edit mode.
   - Submission success message type: Select the type of message displayed after successful form submission.
   - Submitted message: Message shown after the form was successfully submitted. (Visible if submission success message type is set to `Default text`).
-  - Submission success content: Widgets shown after the form was successfully submitted. (Visible if submission success message type is set to `Widget list`).
+  - Submission success content: Widgets shown after the form was successfully submitted. (Visible if submission success message type is set to `Custom content`).
   - Preview success message/widgets: Preview the message or content displayed after the form was successfully submitted. Works only in edit mode.
   - Submission failure message type: Select the type of failure message displayed upon submission failure.
-  - Failed message: Message shown if the form submission failed. (Visible if submission failure message type is set to `Default list`).
-  - Submission failure content: Widgets shown if the form submission failed. (Visible if submission failure message type is set to `Widget list`).
+  - Failed message: Message shown if the form submission failed. (Visible if submission failure message type is set to `Default text`).
+  - Submission failure content: Widgets shown if the form submission failed. (Visible if submission failure message type is set to `Custom content`).
   - Show retry button: Show a retry button at the end of the message/widgets.
   - Retry button text: The text for the retry button.
   - Retry button alignment: Alignment for the retry button.
