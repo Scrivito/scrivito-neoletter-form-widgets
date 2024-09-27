@@ -69,7 +69,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       description: "Select the type of failure message displayed upon submission failure.",
       values: [
         { value: "default", title: "Default text" },
-        { value: "widget-list", title: "Widget List" }
+        { value: "widget-list", title: "Custom content" }
       ]
     },
     submittedMessageType: {
@@ -77,7 +77,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       description: "Select the type of message displayed after successful form submission.",
       values: [
         { value: "default", title: "Default text" },
-        { value: "widget-list", title: "Widget List" }
+        { value: "widget-list", title: "Custom content" }
       ]
     },
     submittingMessageType: {
@@ -85,7 +85,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       description: "Select the type of message displayed while the form is being submitted.",
       values: [
         { value: "default", title: "Default text" },
-        { value: "widget-list", title: "Widget List" }
+        { value: "widget-list", title: "Custom content" }
       ]
     },
     failedMessageWidgets: {
@@ -101,15 +101,15 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       description: "Customize the content to be displayed while the form is being submitted."
     },
     previewFailedMessage: {
-      title: "Preview failed message/widgets",
+      title: "Preview failed message/content",
       description: "Preview the failure message or content in edit mode."
     },
     previewSubmittedMessage: {
-      title: "Preview success message/widgets",
+      title: "Preview success message/content",
       description: "Preview the success message or content in edit mode."
     },
     previewSubmittingMessage: {
-      title: "Preview submitting message/widgets",
+      title: "Preview submitting message/content",
       description: "Preview the message or content displayed while the form is being submitted in edit mode."
     },
     showRetryButton: { title: "Show retry button" },
