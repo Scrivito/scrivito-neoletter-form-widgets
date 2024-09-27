@@ -16,6 +16,10 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       title: "Form ID",
       description: "This ID identifies the form in Neoletter."
     },
+    customClassNames: {
+      title: "Additional CSS Classes",
+      description: "Specify additional CSS class names to be added to the main container of the form. Separate multiple class names with spaces."
+    },
     showCaptcha: {
       title: "Enable captcha",
       description: "Enables captcha for this form."
@@ -69,7 +73,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       description: "Select the type of failure message displayed upon submission failure.",
       values: [
         { value: "default", title: "Default text" },
-        { value: "widget-list", title: "Widget List" }
+        { value: "widget-list", title: "Custom content" }
       ]
     },
     submittedMessageType: {
@@ -77,7 +81,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       description: "Select the type of message displayed after successful form submission.",
       values: [
         { value: "default", title: "Default text" },
-        { value: "widget-list", title: "Widget List" }
+        { value: "widget-list", title: "Custom content" }
       ]
     },
     submittingMessageType: {
@@ -85,7 +89,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       description: "Select the type of message displayed while the form is being submitted.",
       values: [
         { value: "default", title: "Default text" },
-        { value: "widget-list", title: "Widget List" }
+        { value: "widget-list", title: "Custom content" }
       ]
     },
     failedMessageWidgets: {
@@ -101,15 +105,15 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       description: "Customize the content to be displayed while the form is being submitted."
     },
     previewFailedMessage: {
-      title: "Preview failed message/widgets",
+      title: "Preview failed message/content",
       description: "Preview the failure message or content in edit mode."
     },
     previewSubmittedMessage: {
-      title: "Preview success message/widgets",
+      title: "Preview success message/content",
       description: "Preview the success message or content in edit mode."
     },
     previewSubmittingMessage: {
-      title: "Preview submitting message/widgets",
+      title: "Preview submitting message/content",
       description: "Preview the message or content displayed while the form is being submitted in edit mode."
     },
     showRetryButton: { title: "Show retry button" },
@@ -187,7 +191,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       ]
     }
   },
-  properties: ["showBorder"],
+  properties: ["showBorder", "customClassNames"],
   propertiesGroups: (widget) => {
     const showSubmittingMessage = widget.get("submittingMessageType") == "default";
     const showSubmittedMessage = widget.get("submittedMessageType") == "default";

@@ -39,6 +39,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const isLastPage = currentStep == stepsLength;
   const showReview = widget.get("showReview");
   const showCaptcha = widget.get("showCaptcha");
+  const containerClassNames = widget.get("customClassNames") as string || "";
 
   if (isSubmitting) {
     return <FormSubmitting
@@ -74,7 +75,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
 
   return (
     <div
-      className={`scrivito-neoletter-form-widgets form-container-widget ${widget.get("showBorder") ? "form-border" : ""
+      className={`scrivito-neoletter-form-widgets form-container-widget ${containerClassNames} ${widget.get("showBorder") ? "form-border" : ""
         } ${Scrivito.isInPlaceEditingActive() ? "edit-mode" : ""}`}
     >
       <form method="post" id={widget.get("formId")}>

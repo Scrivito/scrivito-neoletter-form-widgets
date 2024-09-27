@@ -49,7 +49,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       </label>
       }
       <select
-        className="dropdown-select"
+        className="dropdown-select form-select"
         name={name}
         id={id}
         required={required}
