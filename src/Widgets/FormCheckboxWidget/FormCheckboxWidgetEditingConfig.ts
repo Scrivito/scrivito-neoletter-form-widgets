@@ -4,11 +4,13 @@ import { isCustomType } from "../FormStepContainerWidget/utils/isCustomType";
 import { customFieldNameValidation } from "../FormStepContainerWidget/utils/validations/customFieldNameValidation";
 import { typeValidation } from "../FormStepContainerWidget/utils/validations/typeValidation";
 import { insideFormContainerValidation } from "../FormStepContainerWidget/utils/validations/insideFormContainerValidation";
+import localizer from "../../localization/localizer";
+
 Scrivito.provideEditingConfig("FormCheckboxWidget", {
   title: "Neoletter Form Checkbox",
   thumbnail: formCheckboxWidgetIcon,
   attributes: {
-    required: { title: "Mandatory" },
+    required: { title: localizer.localize("required") },
     type: {
       title: "Input type",
       values: [

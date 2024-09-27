@@ -1,0 +1,10 @@
+ {
+	"alignment": "Alignement",
+	"left": "Gauche",
+	"right": "Droite",
+	"center": "Centré",
+	"title": "Titre",
+	"required": "Champ obligatoire",
+	"fieldName": "Nom du champ",
+	"helpText": "Texte d'aide"
+}

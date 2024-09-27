@@ -2,6 +2,7 @@
 import * as Scrivito from "scrivito";
 import { CaptchaOptions, Options } from "../../types/types";
 import { isEmpty } from "../Widgets/FormStepContainerWidget/utils/lodashPolyfills";
+import localizer from "../localization/localizer";
 
 const GLOBAL_OBJ = typeof window !== 'undefined' ? window : global;
 
@@ -17,9 +18,12 @@ export const initNeoletterFormWidgets = (
 		: { siteKey: "", captchaType: null };
 
 	(GLOBAL_OBJ as any).tracking = options?.tracking || false
-	
+
 	loadWidgets();
 	attachCaptchaScript();
+	if (Scrivito.isInPlaceEditingActive()) {
+		localizer.initialize();
+	}
 };
 
 export const getInstanceId = (): string => {

@@ -1,0 +1,10 @@
+ {
+	"alignment": "Alignment",
+	"left": "Left",
+	"right": "Right",
+	"center": "Center",
+	"title": "Title",
+	"required": "Mandatory",
+	"fieldName": "Field name",
+	"helpText": "Help text"
+}

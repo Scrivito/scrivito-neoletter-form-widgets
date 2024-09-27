@@ -1,0 +1,10 @@
+{
+	"alignment": "Ausrichtung",
+	"left": "Links",
+	"right": "Rechts",
+	"center": "Zentriert",
+	"title": "Titel",
+	"required": "Pflichtfeld",
+	"fieldName": "Feldname",
+	"helpText": "Hilfetext"
+}
