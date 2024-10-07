@@ -1,6 +1,22 @@
 // Styles for FormContainerWidget
 .scrivito-neoletter-form-widgets.form-container-widget {
 
+  .fixed-container-height {
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+  
+    .no-overscroll-y {
+      overscroll-behavior-y: none;
+    }
+  
+    .thin-scrollbar {
+      scrollbar-width: thin;
+    }
+  
+    .hidden-scrollbar {
+      scrollbar-width: none;
+    }
   .btn-block {
     width: 100%;
   }

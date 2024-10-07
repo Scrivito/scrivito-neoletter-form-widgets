@@ -58,7 +58,11 @@ const widgetProps = {
   failedMessageWidgets: [],
   showRetryButton: false,
   retryButtonText: "retry",
-  retryButtonAlignment: "text-center"
+  retryButtonAlignment: "text-center",
+  fixedFormHeight: false,
+  formHeight: 35,
+  scrollbarWidth: "default",
+  overscrollBehavior: "default"
 
 };
 
@@ -178,6 +182,68 @@ describe("FormStepContainerWidget", () => {
     });
     const input = document.querySelector('input[name="fax"]');
     expect(input).toBeInTheDocument();
+  });
+
+  it("renders with dynamic height", () => {
+    pageRenderer.render({
+      body: [new FormStepContainerWidget(widgetProps)]
+    });
+
+    const form = document.querySelector('form');
+
+    expect(form).not.toHaveStyle("height: 35em;");
+    expect(form).not.toHaveClass("fixed-container-height");
+    expect(form).not.toHaveClass("thin-scrollbar");
+    expect(form).not.toHaveClass("hidden-scrollbar");
+    expect(form).not.toHaveClass("no-overscroll-yr");
+  });
+
+  it("renders with fixed height", () => {
+    pageRenderer.render({
+      body: [new FormStepContainerWidget({ ...widgetProps, fixedFormHeight: true, formHeight: 22 })]
+    });
+    const form = document.querySelector('form');
+
+    expect(form).toHaveStyle("height: 22em;");
+    expect(form).toHaveClass("fixed-container-height");
+    expect(form).not.toHaveClass("thin-scrollbar");
+    expect(form).not.toHaveClass("hidden-scrollbar");
+
+  });
+
+  it("renders with thin scrollbar", () => {
+    pageRenderer.render({
+      body: [new FormStepContainerWidget({ ...widgetProps, fixedFormHeight: true, scrollbarWidth: "thin" })]
+    });
+
+    const form = document.querySelector('form');
+
+    expect(form).toHaveClass("fixed-container-height");
+    expect(form).toHaveClass("thin-scrollbar");
+    expect(form).not.toHaveClass("hidden-scrollbar");
+  });
+
+  it("renders with hidden scrollbar", () => {
+    pageRenderer.render({
+      body: [new FormStepContainerWidget({ ...widgetProps, fixedFormHeight: true, scrollbarWidth: "none" })]
+    });
+
+    const form = document.querySelector('form');
+
+    expect(form).toHaveClass("fixed-container-height");
+    expect(form).not.toHaveClass("thin-scrollbar");
+    expect(form).toHaveClass("hidden-scrollbar");
+  });
+
+  it("renders with no overscroll-y", () => {
+    pageRenderer.render({
+      body: [new FormStepContainerWidget({ ...widgetProps, fixedFormHeight: true, overscrollBehavior: "none" })]
+    });
+
+    const form = document.querySelector('form');
+
+    expect(form).toHaveClass("fixed-container-height");
+    expect(form).toHaveClass("no-overscroll-y");
   });
 
   it("renders correctly", () => {

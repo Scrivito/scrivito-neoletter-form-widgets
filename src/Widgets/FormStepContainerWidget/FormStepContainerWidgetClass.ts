@@ -4,6 +4,19 @@ export const FormStepContainerWidget = Scrivito.provideWidgetClass(
   "FormStepContainerWidget",
   {
     attributes: {
+      overscrollBehavior: ["enum",
+        {
+          values: ["default", "none"]
+        }
+      ],
+
+      fixedFormHeight: "boolean",
+      formHeight: "integer",
+      scrollbarWidth: ["enum",
+        {
+          values: ["default", "thin", "none"]
+        }
+      ],
       showCaptcha: "boolean",
       friendlyCaptchaLanguage: "string",
       googleRecaptchaLanguage: "string",

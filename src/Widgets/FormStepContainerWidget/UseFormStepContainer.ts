@@ -22,6 +22,10 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
   const showSubmittedPreview = widget.get("previewSubmittedMessage") || false;
   const showFailedPreview = widget.get("previewFailedMessage") || false;
 
+  const fixedFormHeight = widget.get("fixedFormHeight") || false;
+  const formScrollbarWidth = widget.get("scrollbarWidth");
+  const formOverscrollBehavior = widget.get("overscrollBehavior");
+
   useEffect(() => {
     if (!isInPlaceEditingActive()) {
       return;
@@ -171,6 +175,23 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     return doValidate(formId, currentStep);
   };
 
+  const getFormClassNames = () => {
+    const classNames = [];
+
+    if (fixedFormHeight) {
+      classNames.push("fixed-container-height");
+      if (formOverscrollBehavior == "none") {
+        classNames.push("no-overscroll-y");
+      }
+      if (formScrollbarWidth == "thin") {
+        classNames.push("thin-scrollbar");
+      } else if (formScrollbarWidth == "none") {
+        classNames.push("hidden-scrollbar");
+      }
+    }
+    return classNames.join(" ");
+  }
+
   return {
     currentStep,
     isSingleStep,
@@ -185,7 +206,8 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     onPageChange,
     indicateProgress,
     indicateSuccess,
-    indicateFailure
+    indicateFailure,
+    getFormClassNames
   };
 };
 

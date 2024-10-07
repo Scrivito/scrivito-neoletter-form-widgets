@@ -7,8 +7,10 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
       className="scrivito-neoletter-form-widgets form-container-widget   "
     >
       <form
+        className=""
         id="test-id"
         method="post"
+        style={{}}
       >
         <input
           name="form_id"
