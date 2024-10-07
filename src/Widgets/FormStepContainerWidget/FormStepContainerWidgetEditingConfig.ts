@@ -189,9 +189,44 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
         { value: "text-end", title: "Right" },
         { value: "block", title: "Full width" }
       ]
+    },
+    fixedFormHeight: {
+      title: "Enable fixed height",
+      description: "Manually set the form height."
+
+    },
+    overscrollBehavior: {
+      title: "Overscroll behavior",
+      description: "Select how overscrolling should behave, i.e. it scrolls also the container.",
+      values: [
+        { value: "default", title: "Default" },
+        { value: "none", title: "No scroll" }
+      ]
+    },
+    formHeight: {
+      title: "Form height",
+      description: "Enter the height of the form content in em."
+    },
+    scrollbarWidth:
+    {
+      title: "Scrollbar width",
+      description: 'The width of the scrollbar. "None" will hide the scrolbar.',
+      values: [{ value: "default", title: "Default" }, { value: "thin", title: "Thin" }, { value: "none", title: "None" }]
     }
   },
-  properties: ["showBorder", "customClassNames"],
+  properties: (widget) => {
+    const useFixedHeight = widget.get("fixedFormHeight");
+
+    return [
+      "showBorder",
+      "customClassNames",
+      "fixedFormHeight",
+      ["formHeight", { enabled: useFixedHeight }],
+      ["scrollbarWidth", { enabled: useFixedHeight }],
+      ["overscrollBehavior", { enabled: useFixedHeight }]
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ] as any;
+  },
   propertiesGroups: (widget) => {
     const showSubmittingMessage = widget.get("submittingMessageType") == "default";
     const showSubmittedMessage = widget.get("submittedMessageType") == "default";
@@ -267,6 +302,10 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
 
   initialContent: {
     formId: () => pseudoRandom32CharHex(),
+    fixedFormHeight: false,
+    formHeight: 35,
+    scrollbarWidth: "default",
+    overscrollBehavior: "default",
     formType: "single-step",
     singleSubmitButtonAlignment: "text-center",
     steps: [

@@ -127,6 +127,10 @@ The `Form` widget has the following properties divided into several tabs:
 - "General" tab
   - Show frame: Adds a frame around the form.
   - Additional CSS Classes: Specify additional CSS class names to be added to the main container of the form. Separate multiple class names with spaces.
+  - Enable fixed height: Manually set the form height if enabled.
+  - Form height: Enter the height of the form content measured in em units.
+  - Scrollbar width: Select the width of the scrollbar. "None" will hide the scrolbar.
+  - Overscroll behavior: Select how overscrolling should behave, i.e. it scrolls also the container."
 - "Google reCAPTCHA" Tab (Tab visible if captchaType is set to `google-recaptcha`)
   - Enable captcha: Enables Google reCAPTCHA v2 for the current form. You need to [Setup reCAPTCHA](#google-recaptcha-developer-setup) first.
   - Language: Select the language for the reCAPTCHA. Google reCAPTCHA automatically adapts to the browser`s language setting, this property is optional and must not be filled. Refer to the language section [here](https://developers.google.com/recaptcha/docs/language) for setting the language manually.

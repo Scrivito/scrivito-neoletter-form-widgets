@@ -33,13 +33,16 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
     isSubmitDisabled,
     handleInputChange,
     onSubmit,
-    onPageChange
+    onPageChange,
+    getFormClassNames
   } = useFormStepContainer(widget, tenant);
 
   const isLastPage = currentStep == stepsLength;
   const showReview = widget.get("showReview");
   const showCaptcha = widget.get("showCaptcha");
   const containerClassNames = widget.get("customClassNames") as string || "";
+  const fixedFormHeight = widget.get("fixedFormHeight") || false;
+  const formHeight = widget.get("formHeight") || 35;
 
   if (isSubmitting) {
     return <FormSubmitting
@@ -78,7 +81,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
       className={`scrivito-neoletter-form-widgets form-container-widget ${containerClassNames} ${widget.get("showBorder") ? "form-border" : ""
         } ${Scrivito.isInPlaceEditingActive() ? "edit-mode" : ""}`}
     >
-      <form method="post" id={widget.get("formId")}>
+      <form method="post" id={widget.get("formId")} className={getFormClassNames()} style={fixedFormHeight ? { height: `${formHeight}em` } : {}}>
         <FormHiddenFields widget={widget} />
         <Scrivito.ContentTag
           content={widget}
@@ -111,24 +114,26 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
           />
         )}
       </form>
-      {isSingleStep ? (
-        <FormFooterSingleStep
-          widget={widget}
-          onSubmit={onSubmit}
-          submitDisabled={isSubmitDisabled}
-        />
-      ) : (
-        <FormFooterMultiSteps
-          widget={widget}
-          onSubmit={onSubmit}
-          onPageChange={onPageChange}
-          currentStep={currentStep}
-          stepsLength={stepsLength}
-          isLastPage={isLastPage}
-          showReview={showReview}
-          submitDisabled={isSubmitDisabled}
-        />
-      )}
-    </div>
+      {
+        isSingleStep ? (
+          <FormFooterSingleStep
+            widget={widget}
+            onSubmit={onSubmit}
+            submitDisabled={isSubmitDisabled}
+          />
+        ) : (
+          <FormFooterMultiSteps
+            widget={widget}
+            onSubmit={onSubmit}
+            onPageChange={onPageChange}
+            currentStep={currentStep}
+            stepsLength={stepsLength}
+            isLastPage={isLastPage}
+            showReview={showReview}
+            submitDisabled={isSubmitDisabled}
+          />
+        )
+      }
+    </div >
   );
 });
