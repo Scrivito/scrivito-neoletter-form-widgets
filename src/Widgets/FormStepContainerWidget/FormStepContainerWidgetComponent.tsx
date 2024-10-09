@@ -43,7 +43,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const containerClassNames = widget.get("customClassNames") as string || "";
   const fixedFormHeight = widget.get("fixedFormHeight") || false;
   const formHeight = widget.get("formHeight") || 35;
-
+  //TODO: add fixed height to submission components
   if (isSubmitting) {
     return <FormSubmitting
       submittingText={widget.get("submittingMessage")}
