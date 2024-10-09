@@ -20,6 +20,7 @@ exports[`DropdownHeader renders correctly 1`] = `
     </div>
   </div>
   <select
+    className="form-select form-control"
     id="fakeId"
     name="custom_dropdown"
     onChange={[Function]}

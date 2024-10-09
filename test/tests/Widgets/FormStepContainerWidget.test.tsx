@@ -67,6 +67,11 @@ const widgetProps = {
 };
 
 describe("FormStepContainerWidget", () => {
+
+  beforeAll(() => {
+    window.HTMLElement.prototype.scroll = jest.fn();
+  });
+
   it("does not render with missing instanceId", () => {
     pageRenderer.render({
       body: [new FormStepContainerWidget(widgetProps)]
