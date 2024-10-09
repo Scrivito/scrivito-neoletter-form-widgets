@@ -79,12 +79,6 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     }
   }, [widget.get("steps")]);
 
-  useEffect(() => {
-    const initialData = getFormData(widget);
-    if (initialData) {
-      setFormData(Object.fromEntries(initialData));
-    }
-  }, []);
 
   useEffect(() => {
     if (showCaptcha && isLastPage) {
@@ -123,7 +117,9 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
 
     indicateProgress();
     try {
-      await submitForm(formData, tenant);
+      const completeFormData = Object.fromEntries(getFormData(widget)!);
+      setFormData(completeFormData);
+      await submitForm(completeFormData as StringMap<string>, tenant);
       indicateSuccess();
     } catch (e) {
       console.error(e);
