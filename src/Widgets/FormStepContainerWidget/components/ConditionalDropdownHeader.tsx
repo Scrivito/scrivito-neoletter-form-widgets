@@ -20,6 +20,7 @@ export const DropdownHeader = Scrivito.connect(
           {widget.get("helpText") && <HelpText widget={widget} />}
         </div>}
         <select
+          className="form-select form-control"
           name={getFieldName(widget)}
           id={widget.id()}
           required={widget.get("required")}
