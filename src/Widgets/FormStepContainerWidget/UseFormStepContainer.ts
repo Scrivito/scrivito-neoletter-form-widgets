@@ -149,8 +149,10 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
       ? Math.min(currentStep + 1, stepsLength)
       : Math.max(currentStep - 1, 1);
     setCurrentStepNumber(stepNumber);
-    const formElement = document.getElementById(formId) as HTMLFormElement;
-    scrollIntoView(formElement);
+    setTimeout(() => {
+      const formElement = document.getElementById(formId) as HTMLFormElement;
+      scrollIntoView(formElement);
+    }, 0);
   };
 
   const indicateProgress = () => {
