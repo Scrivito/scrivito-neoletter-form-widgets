@@ -210,7 +210,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     scrollbarWidth:
     {
       title: "Scrollbar width",
-      description: 'The width of the scrollbar. "None" will hide the scrolbar.',
+      description: 'The width of the scrollbar. "None" will hide the scrollbar.',
       values: [{ value: "default", title: "Default" }, { value: "thin", title: "Thin" }, { value: "none", title: "None" }]
     }
   },
