@@ -1,8 +1,9 @@
 import * as Scrivito from "scrivito";
 import { customFieldNameValidation } from "../FormStepContainerWidget/utils/validations/customFieldNameValidation";
 import { insideFormContainerValidation } from "../FormStepContainerWidget/utils/validations/insideFormContainerValidation";
+import { ScrivitoBootstrapIconEditor } from 'scrivito-icon-editor';
+
 import formContainerWidgetIcon from "../../assets/images/form_widget_rating.svg";
-import { IconEditorTab } from "./IconEditorTab/IconEditorTab";
 
 Scrivito.provideEditingConfig("FormRatingWidget", {
   title: "Neoletter Form Rating",
@@ -50,7 +51,7 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
       {
         title: "Icon",
         properties: [],
-        component: IconEditorTab,
+        component: ScrivitoBootstrapIconEditor,
         key: "form-icon-group"
       }
     ];
