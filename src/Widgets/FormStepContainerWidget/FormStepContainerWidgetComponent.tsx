@@ -14,7 +14,6 @@ import { FormCaptcha } from "./components/FormCaptchaComponent";
 import { CaptchaTheme } from "../../../types/types";
 import { useFormStepContainer } from "./UseFormStepContainer";
 import "./FormStepContainerWidget.scss";
-import "bootstrap-icons/font/bootstrap-icons.scss";
 
 Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const tenant = getInstanceId();

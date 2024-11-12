@@ -71,6 +71,13 @@ Add the editing styles in `scrivitoExtensions.scss`:
 @import "scrivito-neoletter-form-widgets/editing.css";
 ```
 
+If your project does not include the `scrivito-icon-editor` package, you will need to manually include the styles for icons and editor support:
+
+```scss
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'scrivito-icon-editor/ScrivitoIconEditor.css';
+```
+
 Delete all form widgets included in the Example App from the "Widgets" folder:
 
 - FormButtonWidget
