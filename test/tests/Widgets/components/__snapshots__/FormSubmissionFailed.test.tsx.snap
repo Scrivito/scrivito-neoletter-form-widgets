@@ -2,7 +2,8 @@
 
 exports[`FormSubmissionFailed renders correctly 1`] = `
 <div
-  className="form-submission-failed"
+  className="form-submission-failed "
+  style={{}}
 >
   <div
     className="text-center"

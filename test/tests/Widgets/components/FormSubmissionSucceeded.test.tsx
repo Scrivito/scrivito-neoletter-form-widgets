@@ -58,6 +58,9 @@ describe("FormSubmissionSucceeded", () => {
         submissionSuccessText={submissionSuccessText}
         type="default"
         widget={widget}
+        fixedFormHeight={false}
+        formHeight={0}
+        getClassNames={() => ""}
       />
     );
 
@@ -145,6 +148,24 @@ describe("FormSubmissionSucceeded", () => {
     expect(form).toBeInTheDocument();
   });
 
+  it("has fixed height if set", () => {
+    const { container, getByText } = render(
+      <FormSubmissionSucceeded
+        submissionSuccessText={submissionSuccessText}
+        type="default"
+        widget={widget}
+        fixedFormHeight={true}
+        formHeight={150}
+        getClassNames={() => "test-class"}
+      />
+    );
+
+    const submissionElement = container.querySelector(".form-submission-succeeded");
+
+    expect(submissionElement).toHaveClass("test-class");
+    expect(submissionElement).toHaveStyle("height: 150px");
+    expect(getByText(submissionSuccessText)).toBeInTheDocument();
+  });
 
   it("renders correctly", () => {
     const tree = renderer
@@ -153,6 +174,9 @@ describe("FormSubmissionSucceeded", () => {
           submissionSuccessText={submissionSuccessText}
           type="default"
           widget={widget}
+          fixedFormHeight={false}
+          formHeight={0}
+          getClassNames={() => ""}
         />
       )
       .toJSON();

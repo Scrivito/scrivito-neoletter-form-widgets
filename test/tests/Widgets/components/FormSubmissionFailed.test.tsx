@@ -60,7 +60,11 @@ describe("FormSubmissionFailed", () => {
     showRetryButton: false,
     retryButtonText: "Retry",
     onReSubmit: () => { },
-    buttonAlignment: "text-center"
+    buttonAlignment: "text-center",
+    fixedFormHeight: false,
+    formHeight: 0,
+    getClassNames: () => ""
+
   }
   const widget = new DummyWidget(widgetProps) as unknown as Widget;
 

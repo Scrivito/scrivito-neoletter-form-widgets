@@ -2,7 +2,8 @@
 
 exports[`FormSubmitting renders correctly 1`] = `
 <div
-  className="form-submission-submitting"
+  className="form-submission-submitting "
+  style={{}}
 >
   <div
     className="text-center"

@@ -57,6 +57,9 @@ describe("FormSubmitting", () => {
         submittingText={submittingText}
         type="default"
         widget={widget}
+        fixedFormHeight={false}
+        formHeight={0}
+        getClassNames={() => ""}
       />
     );
 
@@ -149,6 +152,9 @@ describe("FormSubmitting", () => {
         submittingText={submittingText}
         type="default"
         widget={widget}
+        fixedFormHeight={false}
+        formHeight={0}
+        getClassNames={() => ""}
       />)
       .toJSON();
     expect(tree).toMatchSnapshot();
