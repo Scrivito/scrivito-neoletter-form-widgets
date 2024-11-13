@@ -50,6 +50,9 @@ Scrivito.provideComponent(FormContainerWidget, ({ widget }) => {
       submittingText={widget.get("submittingMessage")}
       type={"default"}
       widget={widget}
+      fixedFormHeight={false}
+      formHeight={0}
+      getClassNames={() => ""}
     />;
   }
 
@@ -59,6 +62,9 @@ Scrivito.provideComponent(FormContainerWidget, ({ widget }) => {
         submissionSuccessText={widget.get("submittedMessage")}
         type={"default"}
         widget={widget}
+        fixedFormHeight={false}
+        formHeight={0}
+        getClassNames={() => ""}
       />
     );
   }
@@ -73,6 +79,9 @@ Scrivito.provideComponent(FormContainerWidget, ({ widget }) => {
         showRetryButton={false}
         retryButtonText={"Retry"}
         buttonAlignment={"text-center"}
+        fixedFormHeight={false}
+        formHeight={0}
+        getClassNames={() => ""}
       />
     );
   }

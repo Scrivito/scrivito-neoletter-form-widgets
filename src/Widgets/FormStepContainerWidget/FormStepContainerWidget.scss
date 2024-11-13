@@ -1,22 +1,6 @@
 // Styles for FormContainerWidget
 .scrivito-neoletter-form-widgets.form-container-widget {
 
-  .fixed-container-height {
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
-  
-    .no-overscroll-y {
-      overscroll-behavior-y: none;
-    }
-  
-    .thin-scrollbar {
-      scrollbar-width: thin;
-    }
-  
-    .hidden-scrollbar {
-      scrollbar-width: none;
-    }
   .btn-block {
     width: 100%;
   }
@@ -200,6 +184,29 @@
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.form-container-widget form,
+.form-submission-submitting,
+.form-submission-failed,
+.form-submission-succeeded {
+
+  &.fixed-container-height {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &.no-overscroll-y {
+    overscroll-behavior-y: none;
+  }
+
+  &.thin-scrollbar {
+    scrollbar-width: thin;
+  }
+
+  &.hidden-scrollbar {
+    scrollbar-width: none;
   }
 }
 

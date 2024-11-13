@@ -29,6 +29,8 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
     isSubmitting,
     successfullySent,
     submissionFailed,
+    totalFormHeight,
+    containerRef,
     setReCaptchaToken,
     isSubmitDisabled,
     handleInputChange,
@@ -44,11 +46,14 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const containerClassNames = widget.get("customClassNames") as string || "";
   const fixedFormHeight = widget.get("fixedFormHeight") || false;
   const formHeight = widget.get("formHeight") || 35;
-  //TODO: add fixed height to submission components
+
   if (isSubmitting) {
     return <FormSubmitting
       submittingText={widget.get("submittingMessage")}
       type={widget.get("submittingMessageType") || "default"}
+      fixedFormHeight={fixedFormHeight}
+      formHeight={totalFormHeight || formHeight}
+      getClassNames={getFormClassNames}
       widget={widget}
     />;
   }
@@ -58,6 +63,9 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
       <FormSubmissionSucceeded
         submissionSuccessText={widget.get("submittedMessage")}
         type={widget.get("submittedMessageType") || "default"}
+        fixedFormHeight={fixedFormHeight}
+        formHeight={totalFormHeight || formHeight}
+        getClassNames={getFormClassNames}
         widget={widget}
       />
     );
@@ -73,12 +81,16 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
         showRetryButton={widget.get("showRetryButton") || false}
         retryButtonText={widget.get("retryButtonText") as string}
         buttonAlignment={widget.get("retryButtonAlignment") as string}
+        fixedFormHeight={fixedFormHeight}
+        formHeight={totalFormHeight || formHeight}
+        getClassNames={getFormClassNames}
       />
     );
   }
 
   return (
     <div
+      ref={containerRef}
       className={`scrivito-neoletter-form-widgets form-container-widget ${containerClassNames} ${widget.get("showBorder") ? "form-border" : ""
         } ${Scrivito.isInPlaceEditingActive() ? "edit-mode" : ""}`}
     >

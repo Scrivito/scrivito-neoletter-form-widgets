@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { isInPlaceEditingActive, Widget } from "scrivito";
 import { StringMap } from "../../../types/types";
 import { getFormData, submitForm } from "./utils/submitForm";
@@ -12,6 +12,9 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
   const [reCaptchaToken, setReCaptchaToken] = useState<string | null>(null);
   const [formData, setFormData] = useState({});
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+  const [totalFormHeight, setTotalFormHeight] = useState<number | null>(null);
+
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const stepsLength = (widget.get("steps") as Widget[]).length;
   const isLastPage = currentStep === stepsLength;
@@ -79,6 +82,12 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     }
   }, [widget.get("steps")]);
 
+  useEffect(() => {
+    if (fixedFormHeight && containerRef.current) {
+      const containerRect = containerRef.current.getBoundingClientRect();
+      setTotalFormHeight(containerRect.height);
+    }
+  }, [fixedFormHeight]);
 
   useEffect(() => {
     if (showCaptcha && isLastPage) {
@@ -214,6 +223,8 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     isSubmitting,
     successfullySent,
     submissionFailed,
+    totalFormHeight,
+    containerRef,
     setReCaptchaToken,
     isSubmitDisabled,
     handleInputChange,
