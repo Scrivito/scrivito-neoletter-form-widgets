@@ -8,6 +8,9 @@ interface FormSubmissionFailedProps {
   retryButtonText: string;
   showRetryButton: boolean;
   buttonAlignment: string;
+  fixedFormHeight: boolean;
+  formHeight: number;
+  getClassNames: () => string;
   onReSubmit: React.MouseEventHandler;
 }
 //TODO: Use OWN text-center styles
@@ -18,10 +21,13 @@ export const FormSubmissionFailed: React.FC<FormSubmissionFailedProps> = ({
   retryButtonText,
   showRetryButton,
   buttonAlignment,
+  fixedFormHeight,
+  formHeight,
+  getClassNames,
   onReSubmit
 }) => {
   return (
-    <div className="form-submission-failed">
+    <div className={`form-submission-failed ${getClassNames()}`} style={fixedFormHeight ? { height: `${formHeight}px` } : {}}>
       {type == "default" ?
         <div className="text-center">
           <i

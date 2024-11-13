@@ -2,7 +2,8 @@
 
 exports[`FormSubmissionSucceeded renders correctly 1`] = `
 <div
-  className="form-submission-succeeded"
+  className="form-submission-succeeded "
+  style={{}}
 >
   <div
     className="text-center"

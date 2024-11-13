@@ -4,14 +4,22 @@ interface FormSubmittingProps {
   submittingText: string;
   type: string,
   widget: Scrivito.Widget
+  fixedFormHeight: boolean
+  formHeight: number
+  getClassNames: () => string
 }
 export const FormSubmitting: React.FC<FormSubmittingProps> = ({
   submittingText,
   type,
-  widget
+  widget,
+  fixedFormHeight,
+  formHeight,
+  getClassNames
 }) => {
+
+
   return (
-    <div className="form-submission-submitting">
+    <div className={`form-submission-submitting ${getClassNames()}`} style={fixedFormHeight ? { height: `${formHeight}px` } : {}}>
       {
         type == "default" ?
           <div className="text-center">
@@ -26,6 +34,6 @@ export const FormSubmitting: React.FC<FormSubmittingProps> = ({
             attribute={"submittingMessageWidgets"}
           />
       }
-    </div>
+    </div >
   );
 };
