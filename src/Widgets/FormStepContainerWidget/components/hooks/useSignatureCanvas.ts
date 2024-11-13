@@ -42,7 +42,7 @@ export function useSignatureCanvas(onChange: (dataUrl: string) => void, strokeTh
 				onChange(data);
 			}
 		}
-	}, [isDrawing, drawingState.clickDrag.length, onChange]);
+	}, [isDrawing, drawingState.clickDrag.length]);
 
 	function handleDrawStart(e: SignatureDrawEvent): void {
 		setIsDrawing(true);

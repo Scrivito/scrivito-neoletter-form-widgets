@@ -6,14 +6,15 @@ import { Mandatory } from "../FormStepContainerWidget/components/MandatoryCompon
 import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponent";
 import { FormInputFieldWidget } from "./FormInputFieldWidgetClass";
 import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
+import { useFormContext } from "../FormStepContainerWidget/FormContext";
 import "./FormInputFieldWidget.scss";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-Scrivito.provideComponent(FormInputFieldWidget, ({ widget, onInputChange }: any) => {
+Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
   const id = `form_text_input_widget_${widget.id()}`;
   const fieldName = getFieldName(widget);
   const useFloatingLabel = widget.get("useFloatingLabel");
   const [isSelected, setIsSelected] = React.useState(false);
+  const { onInputChange } = useFormContext();
 
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {

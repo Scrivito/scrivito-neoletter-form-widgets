@@ -5,14 +5,15 @@ import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
 import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponent";
 import { FormRatingWidget } from "./FormRatingWidgetClass";
 import { getIconColor } from "../FormStepContainerWidget/utils/getIconColor";
+import { useFormContext } from "../FormStepContainerWidget/FormContext";
 import "./FormRatingWidget.scss";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-Scrivito.provideComponent(FormRatingWidget, ({ widget, onInputChange }: any) => {
+Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
   const [selectedIcons, setSelectedIcons] = React.useState(0);
   const [hoveredIcons, setHoveredIcons] = React.useState(0);
   const hoverEffect = widget.get("hoverEffect");
   const color = getIconColor(widget);
+  const { onInputChange } = useFormContext();
 
   const handleSelect = (rating: number) => {
     setSelectedIcons(rating);

@@ -86,6 +86,23 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     }
   }, [reCaptchaToken, showCaptcha, isLastPage]);
 
+  const getStepInfo = (stepId: string) => {
+    const steps = widget.get("steps") as Widget[] || [];
+    let isActive = false;
+    let stepNumber = 0;
+
+    steps.some((step: Widget, index: number) => {
+      if (step.id() === stepId) {
+        stepNumber = index + 1;
+        isActive = stepNumber === currentStep;
+        return true;
+      }
+      return false;
+    });
+
+    return { stepNumber, isActive, isSingleStep };
+  };
+
   const handleInputChange = (fieldUpdates: StringMap<string> | string, value?: string) => {
     if (typeof fieldUpdates === "string") {
       setFormData(prevState => ({
@@ -200,6 +217,7 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     setReCaptchaToken,
     isSubmitDisabled,
     handleInputChange,
+    getStepInfo,
     onSubmit,
     onPageChange,
     indicateProgress,

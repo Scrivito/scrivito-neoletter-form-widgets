@@ -9,14 +9,16 @@ import { Dropdown } from "../FormStepContainerWidget/components/SelectDropdownCo
 import { FormSelectWidget } from "./FormSelectWidgetClass";
 import { ResetInputs } from "../FormStepContainerWidget/components/ResetInputsComponent";
 import "./FormSelectWidget.scss";
+import { useFormContext } from "../FormStepContainerWidget/FormContext";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-Scrivito.provideComponent(FormSelectWidget, ({ widget, navigate, onInputChange }: any) => {
+Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const [selected, setSelected] = React.useState(false);
   const items = widget.get("items");
   const isMultiSelect = widget.get("selectionType") == "multi";
   const isDropdown = widget.get("selectionType") == "dropdown";
+  const { onInputChange, navigateOnClick } = useFormContext();
+
   const onChangeSelect = () => {
     setSelected(true);
     if (ref && ref.current) {
@@ -77,7 +79,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget, navigate, onInputChange }
             widget={widget}
             name={getFieldName(widget)}
             onChange={onChangeSelect}
-            onClickNavigate={() => (isMultiSelect || !widget.get("navigateOnClick")) ? null : navigate(true)}
+            onClickNavigate={() => (isMultiSelect || !widget.get("navigateOnClick")) ? null : navigateOnClick()}
           />
         </>
       )}

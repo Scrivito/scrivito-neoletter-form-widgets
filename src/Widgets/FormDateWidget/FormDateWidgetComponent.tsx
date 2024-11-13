@@ -5,11 +5,13 @@ import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponen
 import { Mandatory } from "../FormStepContainerWidget/components/MandatoryComponent";
 import { FormDateWidget } from "./FormDateWidgetClass";
 import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
+import { useFormContext } from "../FormStepContainerWidget/FormContext";
 import "./FormDateWidget.scss";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-Scrivito.provideComponent(FormDateWidget, ({ widget, onInputChange }: any) => {
+
+Scrivito.provideComponent(FormDateWidget, ({ widget }) => {
   const [value, setValue] = React.useState("");
+  const { onInputChange } = useFormContext();
   const onChangeValue = (e: React.BaseSyntheticEvent) => {
 
     const isoStringDate = isEmpty(e.target.value) ? "" : new Date(e.target.value).toISOString();
