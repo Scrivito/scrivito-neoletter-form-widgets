@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import { FormConditionWidget } from "./FormConditionWidgetClass";
+import { useConditionContext } from "../FormConditionalContainerWidget/ConditionContext";
 import "./FormConditionWidget.scss";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-Scrivito.provideComponent(FormConditionWidget, ({ widget, getData, onInputChange }: any) => {
-  const data = getData ? getData(widget.id()) : { isActive: false };
-
+Scrivito.provideComponent(FormConditionWidget, ({ widget }) => {
+  const { getConditionData } = useConditionContext();
+  const data = getConditionData(widget.id());
   if (!data.isActive && !Scrivito.isInPlaceEditingActive()) {
     return null;
   }
@@ -24,7 +24,6 @@ Scrivito.provideComponent(FormConditionWidget, ({ widget, getData, onInputChange
         className={
           Scrivito.isInPlaceEditingActive() ? "conditional-content" : ""
         }
-        widgetProps={{ onInputChange }}
       />
     </>
   );

@@ -5,12 +5,14 @@ import { FormConditionalContainerWidget } from "./FormConditionalContainerWidget
 import { StringMap } from "../../../types/types";
 import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
 import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
+import { useFormContext } from "../FormStepContainerWidget/FormContext";
+import { ConditionProvider } from "./ConditionContext";
 import "./FormConditionalContainerWidget.scss";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-Scrivito.provideComponent(FormConditionalContainerWidget, ({ widget, onInputChange }: any) => {
+Scrivito.provideComponent(FormConditionalContainerWidget, ({ widget }) => {
   const [selectedConditionId, setSelectedConditionId] = React.useState("");
   const isDropdownHeader = widget.get("headerType") == "dropdown";
+  const { onInputChange } = useFormContext();
 
   const resetFieldsInConditions = (conditions: Scrivito.Widget[]) => {
     const resetFields = conditions
@@ -41,28 +43,28 @@ Scrivito.provideComponent(FormConditionalContainerWidget, ({ widget, onInputChan
     resetFieldsInConditions(conditions);
   };
 
+  const getConditionData = (conditionId: string) => {
+    const conditions: Scrivito.Widget[] = widget.get("conditions") || [];
+    let isActive = false;
+    conditions.some(condition => {
+      if (condition.id() === conditionId) {
+        isActive = selectedConditionId === conditionId;
+        return true;
+      }
+      return false;
+    });
+    return { isActive };
+  };
+
   return (
     <>
       <ConditionalHeader widget={widget} onChangeSelected={onChangeSelected} />
-      <Scrivito.ContentTag
-        content={widget}
-        attribute="conditions"
-        widgetProps={{
-          getData: (conditionId: string) => {
-            const conditions: Scrivito.Widget[] = widget.get("conditions");
-            let isActive = false;
-            conditions.some(condition => {
-              if (condition.id() == conditionId) {
-                isActive = selectedConditionId == conditionId;
-                return true;
-              }
-            });
-            return { isActive };
-          },
-          onInputChange
-        }
-        }
-      />
+      <ConditionProvider value={{ getConditionData }}>
+        <Scrivito.ContentTag
+          content={widget}
+          attribute="conditions"
+        />
+      </ConditionProvider>
     </>
   );
 });

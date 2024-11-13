@@ -48,15 +48,15 @@ describe("FormConditionalContainerWidget", () => {
     pageRenderer.render({
       body: [new FormConditionalContainerWidget(widgetProps)]
     });
-    const condtionalContentInfo = document.querySelector(
+    const conditionalContentInfo = document.querySelector(
       ".conditional-content"
     );
-    const condtionalHeaderInfo = document.querySelector(".header-info");
-    expect(condtionalContentInfo).toBeInTheDocument();
-    expect(condtionalHeaderInfo).toBeInTheDocument();
+    const conditionalHeaderInfo = document.querySelector(".header-info");
+    expect(conditionalContentInfo).toBeInTheDocument();
+    expect(conditionalHeaderInfo).toBeInTheDocument();
   });
 
-  it("should have radios as header", () => {
+  it("should have radios as header and hide header/condition-info", () => {
     jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(false);
 
     pageRenderer.render({
@@ -91,10 +91,14 @@ describe("FormConditionalContainerWidget", () => {
     });
 
     const headerInputs = document.querySelectorAll(".form-check-input");
+    const contentInfo = document.querySelector(".conditional-content");
+    const headerInfo = document.querySelector(".header-info");
     expect(headerInputs).toHaveLength(2);
     headerInputs.forEach(input => {
       expect(input).toHaveAttribute("type", "radio");
     });
+    expect(contentInfo).not.toBeInTheDocument();
+    expect(headerInfo).not.toBeInTheDocument();
   });
   it("should have dropdown as header", () => {
     jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(false);

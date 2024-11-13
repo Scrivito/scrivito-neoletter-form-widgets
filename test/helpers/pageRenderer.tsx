@@ -3,6 +3,7 @@ import React from "react";
 import * as Scrivito from "scrivito";
 import { render } from "@testing-library/react";
 import renderer from "react-test-renderer";
+import { FormProvider } from "../../src/Widgets/FormStepContainerWidget/FormContext";
 
 const PageDummy = Scrivito.provideObjClass("PageDummy", {
   attributes: {
@@ -20,18 +21,26 @@ class PageRenderer {
     const page = this._pageClass.create(configuration);
     (Scrivito as any).__setCurrentPage(page);
 
-    return <Scrivito.ContentTag tag="div" content={page} attribute="body" />;
+    return (
+      <FormProvider
+        value={{
+          onInputChange: jest.fn(),
+          getStepInfo: jest.fn(() => ({ stepNumber: 1, isActive: true, isSingleStep: false })),
+          navigateOnClick: jest.fn()
+        }}
+      >
+        <Scrivito.ContentTag tag="div" content={page} attribute="body" />
+      </FormProvider>
+    );
   }
 
   render(configuration: any = {}) {
     const content = this._getContentTag(configuration);
-
     return render(content);
   }
 
   getAsJSON(configuration: any = {}) {
     const content = this._getContentTag(configuration);
-
     return renderer.create(content).toJSON();
   }
 }

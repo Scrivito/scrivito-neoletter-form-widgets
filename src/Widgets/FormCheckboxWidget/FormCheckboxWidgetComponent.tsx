@@ -4,12 +4,12 @@ import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
 import { Mandatory } from "../FormStepContainerWidget/components/MandatoryComponent";
 import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponent";
 import { FormCheckboxWidget } from "./FormCheckboxWidgetClass";
+import { useFormContext } from "../FormStepContainerWidget/FormContext";
 import "./FormCheckboxWidget.scss";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-Scrivito.provideComponent(FormCheckboxWidget, ({ widget, onInputChange }: any) => {
+Scrivito.provideComponent(FormCheckboxWidget, ({ widget }) => {
   const id = `form_checkbox_widget_${widget.id()}`;
-
+  const { onInputChange } = useFormContext();
   return (
     <div className="form-check mb-3">
       <input

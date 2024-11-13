@@ -4,12 +4,15 @@ import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponen
 import { FormSignatureWidget } from "./FormSignatureWidgetClass";
 import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
 import { Signature } from "../FormStepContainerWidget/components/SignatureComponent";
+import { useFormContext } from "../FormStepContainerWidget/FormContext";
 import "./FormSignatureWidget.scss";
 Scrivito.provideComponent(FormSignatureWidget, ({ widget }) => {
   const [signatureDataUrl, setSignatureDataUrl] = React.useState<string>("")
+  const { onInputChange } = useFormContext();
 
   const onChangeSignature = (dataUrl: string) => {
     setSignatureDataUrl(dataUrl);
+    onInputChange(getFieldName(widget), dataUrl);
   }
 
   return (

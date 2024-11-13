@@ -4,13 +4,13 @@ exports[`FormStepWidget renders correctly 1`] = `
 <div>
   <div>
     <div
-      className="step-border "
-      data-step-number={0}
+      className="step-border"
+      data-step-number={1}
     >
       <span
         className="step-preview-count"
       >
-        Step 0
+        Step 1
       </span>
       <div
         className="row"

@@ -13,6 +13,7 @@ import { FormStepContainerWidget } from "./FormStepContainerWidgetClass";
 import { FormCaptcha } from "./components/FormCaptchaComponent";
 import { CaptchaTheme } from "../../../types/types";
 import { useFormStepContainer } from "./UseFormStepContainer";
+import { FormProvider } from "./FormContext";
 import "./FormStepContainerWidget.scss";
 
 Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
@@ -31,6 +32,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
     setReCaptchaToken,
     isSubmitDisabled,
     handleInputChange,
+    getStepInfo,
     onSubmit,
     onPageChange,
     getFormClassNames
@@ -82,27 +84,18 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
     >
       <form method="post" id={widget.get("formId")} className={getFormClassNames()} style={fixedFormHeight ? { height: `${formHeight}em` } : {}}>
         <FormHiddenFields widget={widget} />
-        <Scrivito.ContentTag
-          content={widget}
-          attribute={"steps"}
-          widgetProps={{
-            getData: (stepId: string) => {
-              const steps = widget.get("steps");
-              let isActive = false;
-              let stepNumber = 0;
-              steps.some((step, index) => {
-                if (step.id() === stepId) {
-                  stepNumber = index + 1;
-                  isActive = stepNumber === currentStep;
-                  return true;
-                }
-              });
-              return { stepNumber, isActive, isSingleStep };
-            },
-            navigateOnClick: () => onPageChange,
+        <FormProvider
+          value={{
+            getStepInfo,
+            navigateOnClick: () => onPageChange(true),
             onInputChange: handleInputChange
           }}
-        />
+        >
+          <Scrivito.ContentTag
+            content={widget}
+            attribute={"steps"}
+          />
+        </FormProvider>
         {showCaptcha && (
           <FormCaptcha
             widget={widget}
