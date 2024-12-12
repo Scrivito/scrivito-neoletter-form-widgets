@@ -19,15 +19,21 @@ Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
       title: "Input type",
       values: [
         { value: "custom", title: "Custom" },
-        { value: "subscription", title: "Subscription" }
+        { value: "subscription", title: "Subscription" },
+        { value: "email", title: "Email" },
+        { value: "name", title: "Name" }
       ]
     }
   },
   properties: (widget: Scrivito.Widget) => {
-    if (!isCustomType(widget)) {
-      return ["type", "hiddenValue"];
+    if (isCustomType(widget)) {
+      return ["type", "customFieldName", "hiddenValue"];
+
     }
-    return ["type", "customFieldName", "hiddenValue"];
+    if (widget.get("type") == "email" || widget.get("type") == "name") {
+      return ["type"]
+    }
+    return ["type", "hiddenValue"];
   },
   initialContent: {
     customFieldName: "custom_hidden_field",
@@ -65,7 +71,12 @@ Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
           };
         }
       }
-    ]
+    ],
+    ["type", (type) => {
+      if (!Scrivito.currentPage()?.isRestricted() && (type == "email" || type == "name")) {
+        return "This option can only be enabled on pages that require user login (restricted pages)."
+      }
+    }]
   ],
 
   titleForContent: widget => {
