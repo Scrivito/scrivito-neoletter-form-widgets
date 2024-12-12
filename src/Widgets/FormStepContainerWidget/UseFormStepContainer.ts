@@ -43,6 +43,7 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     if (!widget.get("failedMessageType")) {
       widget.update({ "failedMessageType": "default" });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -80,6 +81,7 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     } else if (stepsLength == 1 && !isSingleStep) {
       widget.update({ formType: "single-step" });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [widget.get("steps")]);
 
   useEffect(() => {
