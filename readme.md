@@ -255,6 +255,7 @@ The `Form Input Field` widget adds customizable input fields to your form. You c
 ### Properties
 
 - Input type: Select the type of input, such as name, email, phone number, or custom.
+- Auto-fill with logged-in user details: Automatically populates the field with the logged-in user’s details. This feature is available only on restricted pages (pages that require user login). This option is shown only when the Input type is set to Email or Name.
 - Custom input type: Specify custom input types, single-line or multi-line.
 - Field name: Define the field name for the input.
 - Label: Provide a descriptive label for the input field to convey its purpose.
@@ -267,6 +268,7 @@ The `Form Input Field` widget adds customizable input fields to your form. You c
 
 - This input field widget must be placed within a Form widget to be effective.
 - The field name must be unique and start with `custom_`, if the selected input type is `custom`.
+- The Auto-fill with logged-in user details option is only enabled on restricted pages.
 
 ## Form Rating Widget
 
@@ -364,12 +366,15 @@ The `Form Hidden Field` widget includes hidden form fields. These fields are typ
 - Input type:
   - Custom: Allows the creation of a custom hidden field.
   - Subscription: Activates the subscription process on every form submission. If this type is selected, the hidden value needs to be set to "on" to trigger the subscription process.
+- Email: Automatically populates the field with the logged-in user’s email. This feature is available only on restricted pages (pages that require user login).
+- Name: Automatically populates the field with the logged-in user’s name. This feature is available only on restricted pages (pages that require user login).
 
 ### Validation
 
 - This hidden field widget must be placed within a Form widget to be effective.
 - For custom-type hidden fields, the field name must be unique and start with `custom_`.
 - When utilizing the Subscription type, it's essential to set the hidden value to "on" to activate the subscription process during form submissions.
+- When utilizing the Email or Name type, it's essential that the form is placed in a restricted page with a user login.
 
 ## Form Conditional Container Widget
 
