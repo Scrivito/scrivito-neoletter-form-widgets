@@ -14,7 +14,7 @@ export const FormHiddenFieldWidget = Scrivito.provideWidgetClass(
       type: [
         "enum",
         {
-          values: ["custom", "subscription"]
+          values: ["custom", "subscription", "email", "name"]
         }
       ]
     }

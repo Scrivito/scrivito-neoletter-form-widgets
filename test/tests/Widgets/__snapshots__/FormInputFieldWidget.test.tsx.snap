@@ -41,6 +41,7 @@ exports[`FormInputFieldWidget Component renders correctly 1`] = `
       </label>
       <input
         className="form-control"
+        defaultValue=""
         id="form_text_input_widget_staticWidgetID"
         maxLength={250}
         name="custom_test"

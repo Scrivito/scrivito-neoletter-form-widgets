@@ -21,6 +21,24 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
     setIsSelected(event.target.value !== "");
     onInputChange && onInputChange(getFieldName(widget), event.target.value);
   };
+
+  const getDefaultInputValue = () => {
+    const type = widget.get("type") as string
+    if (!widget.get("useUserCredentials")) {
+      return "";
+    }
+    if (!Scrivito.isUserLoggedIn() || !Scrivito.currentPage()?.isRestricted()) {
+      return "";
+    }
+    if (type == "email") {
+      return Scrivito.currentUser()?.email() || "";
+    }
+    if (type == "name") {
+      return Scrivito.currentUser()?.name() || "";
+    }
+    return "";
+  }
+
   return (
     <div className={`mb-3 form-input-container ${useFloatingLabel ? 'floating-label' : ''} ${isSelected ? "is-selected" : ""}`} >
       {!isEmpty(widget.get("label")) && (
@@ -58,6 +76,7 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
           maxLength={calculateMaxLength(fieldName)}
           placeholder={widget.get("placeholder")}
           type={calculateType(fieldName)}
+          defaultValue={getDefaultInputValue()}
           required={widget.get("required")}
           onChange={handleChange}
         />

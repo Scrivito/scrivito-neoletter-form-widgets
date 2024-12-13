@@ -51,6 +51,7 @@ export const FriendlyCaptcha: React.FC<FriendlyCaptchaProps> = ({
         widgetInstance.current.reset();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [container]);
 
   return <div ref={container} className={`frc-captcha ${theme}`} />;
