@@ -228,9 +228,9 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     ] as any;
   },
   propertiesGroups: (widget) => {
-    const showSubmittingMessage = widget.get("submittingMessageType") == "default";
-    const showSubmittedMessage = widget.get("submittedMessageType") == "default";
-    const showFailedMessage = widget.get("failedMessageType") == "default";
+    const showSubmittingMessage = widget.get("submittingMessageType") !== "widget-list";
+    const showSubmittedMessage = widget.get("submittedMessageType") !== "widget-list";
+    const showFailedMessage = widget.get("failedMessageType") !== "widget-list";
     const showRetryButton = widget.get("showRetryButton");
     const groups = [
       {

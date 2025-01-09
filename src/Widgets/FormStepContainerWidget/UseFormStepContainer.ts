@@ -29,23 +29,7 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
   const formScrollbarWidth = widget.get("scrollbarWidth");
   const formOverscrollBehavior = widget.get("overscrollBehavior");
 
-  useEffect(() => {
-    if (!isInPlaceEditingActive()) {
-      return;
-    }
-    // update some properties for older forms if they are not set!
-    if (!widget.get("submittingMessageType")) {
-      widget.update({ "submittingMessageType": "default" });
-    }
-    if (!widget.get("submittedMessageType")) {
-      widget.update({ "submittedMessageType": "default" });
-    }
-    if (!widget.get("failedMessageType")) {
-      widget.update({ "failedMessageType": "default" });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  
   useEffect(() => {
     if (!isInPlaceEditingActive()) {
       return;
