@@ -38,7 +38,7 @@ export function getFormData(formWidget: Widget) {
   if (isTrackingEnabled()) {
     appendTrackingIDToFormData(dataToSend);
   }
-
+  
   // workaround to send all field-names with equal name
   // as a comma separated string
   for (const [name] of data) {
