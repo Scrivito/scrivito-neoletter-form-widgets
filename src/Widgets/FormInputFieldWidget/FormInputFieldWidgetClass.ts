@@ -1,4 +1,5 @@
 import * as Scrivito from "scrivito";
+import { defaultInputTypes } from "../FormStepContainerWidget/utils/formConstants";
 
 export const FormInputFieldWidget = Scrivito.provideWidgetClass(
   "FormInputFieldWidget",
@@ -12,13 +13,7 @@ export const FormInputFieldWidget = Scrivito.provideWidgetClass(
         "enum",
         {
           values: [
-            "email",
-            "name",
-            "given_name",
-            "family_name",
-            "middle_name",
-            "company",
-            "phone_number",
+            ...defaultInputTypes,
             "custom"
           ]
         }
