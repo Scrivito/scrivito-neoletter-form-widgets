@@ -37,7 +37,7 @@ Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
     urlParameterFieldName: {
       title: "Field Name",
       description: "The name used to send the parameter value."
-    },
+    }
   },
   properties: (widget: Scrivito.Widget) => {
     if (isCustomType(widget)) {

@@ -1,6 +1,5 @@
 import { Widget } from "scrivito";
 import { isCustomType } from "../isCustomType";
-import { isFieldNameUnique } from "../isFieldNameUnique";
 import { validateCustomFieldName } from "./validateCustomFieldName";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

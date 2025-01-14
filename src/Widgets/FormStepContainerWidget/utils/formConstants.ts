@@ -9,5 +9,5 @@ export const defaultInputTypes = [
   "family_name",
   "middle_name",
   "company",
-  "phone_number",
+  "phone_number"
 ];
