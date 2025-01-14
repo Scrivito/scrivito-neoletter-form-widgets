@@ -5,6 +5,7 @@ import { getFieldName } from "./getFieldName";
 import { appendTrackingIDToFormData } from "./appendNeoletterTrackingIDtoFormData";
 import { StringMap } from "../../../../types/types";
 import { isEmpty } from "./lodashPolyfills";
+import { appendUrlParamsToFormData } from "./appendUrlParamsToFormData";
 
 export async function submitForm(
   formData: StringMap<string>,
@@ -38,6 +39,8 @@ export function getFormData(formWidget: Widget) {
   if (isTrackingEnabled()) {
     appendTrackingIDToFormData(dataToSend);
   }
+  
+  appendUrlParamsToFormData(dataToSend);
 
   // workaround to send all field-names with equal name
   // as a comma separated string
