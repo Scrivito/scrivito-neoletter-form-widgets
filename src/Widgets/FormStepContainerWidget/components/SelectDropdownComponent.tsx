@@ -13,6 +13,7 @@ interface DropdownProps {
   required: boolean;
   helptext: string;
   title: string;
+  isInvalid: boolean;
   onInputChange: (fieldName: string, value: string) => void;
 }
 
@@ -24,6 +25,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   required,
   helptext,
   title,
+  isInvalid,
   onInputChange
 }) => {
   const id = widget.id();
@@ -49,10 +51,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
       </label>
       }
       <select
-        className="dropdown-select form-select form-control"
+        className={`dropdown-select form-select ${required && isInvalid ? "is-invalid" : ""}`}
         name={name}
         id={id}
-        required={required}
         onChange={handleChange}
       >
         <DropdownOption value={""} id={"empty-option"} key={"empty-option"} />

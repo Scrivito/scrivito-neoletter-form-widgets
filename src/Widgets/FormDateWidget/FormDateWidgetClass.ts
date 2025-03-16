@@ -11,6 +11,7 @@ export const FormDateWidget = Scrivito.provideWidgetClass("FormDateWidget", {
       {
         values: ["date", "datetime-local"]
       }
-    ]
+    ],
+    validationText: "string"
   }
 });

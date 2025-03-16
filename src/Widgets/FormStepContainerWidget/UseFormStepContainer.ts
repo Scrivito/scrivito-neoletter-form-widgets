@@ -3,6 +3,7 @@ import { isInPlaceEditingActive, Widget } from "scrivito";
 import { StringMap } from "../../../types/types";
 import { getFormData, submitForm } from "./utils/submitForm";
 import { scrollIntoView } from "./utils/scrollIntoView";
+import { useValidationContext } from "../../FormValidation/ValidationContext";
 
 export const useFormStepContainer = (widget: Widget, tenant: string) => {
   const [currentStep, setCurrentStepNumber] = useState(1);
@@ -29,7 +30,8 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
   const formScrollbarWidth = widget.get("scrollbarWidth");
   const formOverscrollBehavior = widget.get("overscrollBehavior");
 
-  
+  const { validate } = useValidationContext();
+
   useEffect(() => {
     if (!isInPlaceEditingActive()) {
       return;
@@ -182,7 +184,7 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
   };
 
   const validateCurrentStep = (): boolean => {
-    return doValidate(formId, currentStep);
+    return validate(formId, currentStep);
   };
 
   const getFormClassNames = () => {
@@ -223,22 +225,3 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     getFormClassNames
   };
 };
-
-function doValidate(formId: string, currentStep: number): boolean {
-  let isValid = true;
-  const form = document.getElementById(formId);
-  if (form) {
-    const step = form.querySelector(`[data-step-number='${currentStep}']`);
-    if (step) {
-      const allInputs: NodeListOf<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement> =
-        step.querySelectorAll("input, select, textarea") || [];
-      for (const node of allInputs.values()) {
-        if (!node.checkValidity()) {
-          node.reportValidity();
-          return (isValid = false);
-        }
-      }
-    }
-  }
-  return isValid;
-}

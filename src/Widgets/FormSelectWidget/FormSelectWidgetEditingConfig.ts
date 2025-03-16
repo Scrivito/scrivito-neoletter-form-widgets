@@ -22,6 +22,10 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     title: { title: "Label" },
     customFieldName: { title: "Field name" },
     required: { title: "Mandatory" },
+    validationText: {
+      title: "Validation Message",
+      description: "This message appears when the input is invalid."
+    },
     helpText: { title: "Help text" },
     linearScaleLowerLimit: { title: "Lower scale limit" },
     linearScaleUpperLimit: { title: "Upper scale limit" },
@@ -56,7 +60,8 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     inlineView: false,
     useFloatingLabel: false,
     navigateOnClick: false,
-    showClearSelectionButton: true
+    showClearSelectionButton: true,
+    validationText: "Please select an item"
   },
   validations: [
     insideFormContainerValidation,

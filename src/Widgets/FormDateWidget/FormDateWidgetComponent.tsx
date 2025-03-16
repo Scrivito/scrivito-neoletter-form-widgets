@@ -6,20 +6,31 @@ import { Mandatory } from "../FormStepContainerWidget/components/MandatoryCompon
 import { FormDateWidget } from "./FormDateWidgetClass";
 import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
 import { useFormContext } from "../FormStepContainerWidget/FormContext";
+import { useValidationField } from "../../FormValidation/hooks/useValidationField";
 import "./FormDateWidget.scss";
 
 
 Scrivito.provideComponent(FormDateWidget, ({ widget }) => {
+  const fieldName = getFieldName(widget);
   const [value, setValue] = React.useState("");
-  const { onInputChange } = useFormContext();
-  const onChangeValue = (e: React.BaseSyntheticEvent) => {
+  const mandatory = widget.get("required");
+  const validationText = widget.get("validationText") || "Please enter a date";
 
+  const { onInputChange } = useFormContext();
+  const { isLocallyValid, setIsLocallyValid, ref } = useValidationField(fieldName, mandatory);
+
+  const onChangeValue = (e: React.BaseSyntheticEvent) => {
     const isoStringDate = isEmpty(e.target.value) ? "" : new Date(e.target.value).toISOString();
+    mandatory && setIsLocallyValid(!isEmpty(isoStringDate));
     setValue(isoStringDate);
-    onInputChange(getFieldName(widget), isoStringDate);
+    onInputChange(fieldName, isoStringDate);
   };
+  const isInvalid = !isLocallyValid;
   return (
-    <div className="form-date mb-3">
+    <div
+      ref={ref}
+      className="form-date mb-3"
+    >
       {widget.get("title") &&
         <div className="date-title">
           <Scrivito.ContentTag
@@ -33,14 +44,19 @@ Scrivito.provideComponent(FormDateWidget, ({ widget }) => {
       }
       <input
         onChange={onChangeValue}
-        className="datepicker"
+        className={`datepicker form-control ${isInvalid ? "is-invalid" : ""}`}
         type={widget.get("dateType")!}
-        required={widget.get("required")}></input>
+      />
       <input
         type="hidden"
         className="show-in-review"
         name={getFieldName(widget)}
-        value={value}></input>
+        value={value} />
+      {
+        isInvalid && <div className="invalid-feedback">
+          {validationText}
+        </div>
+      }
     </div>
   );
 });
