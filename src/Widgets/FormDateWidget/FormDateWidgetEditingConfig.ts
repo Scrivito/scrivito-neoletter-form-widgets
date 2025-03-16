@@ -13,7 +13,7 @@ Scrivito.provideEditingConfig("FormDateWidget", {
       values: [
         { value: "date", title: "Date" },
         { value: "datetime-local", title: "Date and time" }
-      ],
+      ]
     },
     validationText: {
       title: "Validation Message",

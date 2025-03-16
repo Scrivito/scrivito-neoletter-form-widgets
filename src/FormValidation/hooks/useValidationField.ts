@@ -22,7 +22,7 @@ export const useValidationField = (fieldName: string, mandatory: boolean) => {
 				ref.current!.scrollIntoView({
 					behavior: "smooth",
 					block: "center",
-					inline: "nearest",
+					inline: "nearest"
 				});
 				setFirstInvalidField(null);
 			});

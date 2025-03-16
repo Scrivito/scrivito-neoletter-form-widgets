@@ -35,7 +35,7 @@ export const ValidationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 	const registerField = (fieldName: string, isMandatory: boolean) => {
 		setMandatoryFields(prev => ({
 			...prev,
-			[fieldName]: isMandatory,
+			[fieldName]: isMandatory
 		}));
 	};
 

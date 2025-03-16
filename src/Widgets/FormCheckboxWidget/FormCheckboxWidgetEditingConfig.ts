@@ -23,7 +23,7 @@ Scrivito.provideEditingConfig("FormCheckboxWidget", {
     validationText: {
       title: "Validation Message",
       description: "This message appears when the input is invalid."
-    },
+    }
   },
   properties: (widget: Scrivito.Widget): any =>
     isCustomType(widget)
