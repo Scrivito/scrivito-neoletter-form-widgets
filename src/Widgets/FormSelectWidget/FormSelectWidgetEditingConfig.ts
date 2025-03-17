@@ -83,12 +83,15 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getProperties(widget: Scrivito.Widget): any[] {
-  const type = widget.get("selectionType");
+  const type = widget.get("selectionType") as string;
+  const required = widget.get("required") as boolean;
+  const showClearSelectionButton = widget.get("showClearSelectionButton") as boolean;
   const props = [
     "selectionType",
     "title",
     "customFieldName",
     ["required", { enabled: type !== "multi" }],
+    ["validationText", { enabled: widget.get("required") }],
     "helpText"
   ];
   // show/hide inlineView
@@ -111,19 +114,15 @@ function getProperties(widget: Scrivito.Widget): any[] {
   }
   // show/hide useFloatingLabel
   if (type == "dropdown") {
-    props.splice(props.length - 2, 0, "useFloatingLabel");
+    props.splice(props.length - 3, 0, "useFloatingLabel");
   }
   // show/hide navigateOnClick
   if (type == "radio" && !widget.container()?.get("isSingleStep")) {
     props.splice(4, 0, "navigateOnClick");
   }
-  // show/hide showClearSelectionButton
-  if (!widget.get("required") && (type == "radio" || type == "linear-scale")) {
-    props.splice(props.length - 2, 0, "showClearSelectionButton");
-  }
-  // show/hide clearSelectionButtonText
-  if (!widget.get("required") && (type == "linear-scale" || type == "radio") && widget.get("showClearSelectionButton")) {
-    props.splice(props.length - 2, 0, "clearSelectionButtonText");
+  // show/hide showClearSelectionButton & text
+  if (!required && (type == "radio" || type == "linear-scale")) {
+    props.splice(props.length - 3, 0, "showClearSelectionButton", ["clearSelectionButtonText", { enabled: showClearSelectionButton }]);
   }
   return props;
 }
