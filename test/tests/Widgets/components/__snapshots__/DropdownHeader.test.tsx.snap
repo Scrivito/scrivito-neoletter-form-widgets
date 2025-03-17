@@ -20,11 +20,10 @@ exports[`DropdownHeader renders correctly 1`] = `
     </div>
   </div>
   <select
-    className="form-select form-control"
+    className="form-select "
     id="fakeId"
     name="custom_dropdown"
     onChange={[Function]}
-    required={true}
   >
     <option
       id="empty-option"

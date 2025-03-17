@@ -27,11 +27,12 @@ const widgetProps = {
 const widget = new DummyWidget(widgetProps) as unknown as Widget;
 
 describe("Select", () => {
-  it("renders the Select component with radio type and required", () => {
+  it("renders the Select component with radio type", () => {
     const { getByText, container } = render(
       <Select
         isMultiSelect={false}
-        required={true}
+        required={false}
+        isInvalid={false}
         widget={widget}
         name="testName"
         onChange={jest.fn()}
@@ -45,7 +46,6 @@ describe("Select", () => {
     const inputs = container.querySelectorAll("input");
     inputs.forEach((radioInput) => {
       expect(radioInput).toHaveAttribute("type", "radio");
-      expect(radioInput).toHaveAttribute("required");
     });
 
     expect(container.firstChild).toHaveClass("row");
@@ -58,6 +58,7 @@ describe("Select", () => {
       <Select
         isMultiSelect={false}
         required={false}
+        isInvalid={false}
         widget={widget}
         name="testName"
         onChange={jest.fn()}
@@ -79,6 +80,7 @@ describe("Select", () => {
       <Select
         isMultiSelect={true}
         required={false}
+        isInvalid={false}
         widget={widget}
         name="testName"
         onChange={jest.fn()}
@@ -101,6 +103,7 @@ describe("Select", () => {
       <Select
         isMultiSelect={true}
         required={false}
+        isInvalid={false}
         widget={widget}
         name="testName"
         onChange={jest.fn()}
@@ -123,6 +126,7 @@ describe("Select", () => {
       <Select
         isMultiSelect={false}
         required={false}
+        isInvalid={false}
         widget={widget}
         name="testName"
         onChange={jest.fn()}
@@ -142,12 +146,54 @@ describe("Select", () => {
     });
   });
 
+  it("does not show is-invalid class when linear scale input is valid", () => {
+    widget.update({ selectionType: "linear-scale", required: true });
+
+    const { container } = render(
+      <Select
+        isMultiSelect={false}
+        required={true}
+        isInvalid={false}
+        widget={widget}
+        name="testName"
+        onChange={jest.fn()}
+        onClickNavigate={jest.fn()}
+      />
+    );
+
+    const inputs = container.querySelectorAll("input");
+    inputs.forEach((radioInput) => {
+      expect(radioInput).not.toHaveClass("is-invalid");
+    });
+  });
+
+  it("shows is-invalid class when linear scale input is invalid", () => {
+    widget.update({ selectionType: "linear-scale", required: true });
+
+    const { container } = render(
+      <Select
+        isMultiSelect={false}
+        required={true}
+        isInvalid={true}
+        widget={widget}
+        name="testName"
+        onChange={jest.fn()}
+        onClickNavigate={jest.fn()}
+      />
+    );
+    const inputs = container.querySelectorAll("input");
+    inputs.forEach((radioInput) => {
+      expect(radioInput).toHaveClass("is-invalid");
+    });
+  });
+
   it("renders correctly", () => {
     const tree = renderer
       .create(
         <Select
           isMultiSelect={false}
           required={false}
+          isInvalid={false}
           widget={widget}
           name="testName"
           onChange={jest.fn()}
@@ -168,6 +214,7 @@ describe("SelectItem Component", () => {
         name="testName"
         value="Item 1"
         required={false}
+        isInvalid={false}
         onChange={jest.fn()}
       />
     );
@@ -182,7 +229,8 @@ describe("SelectItem Component", () => {
         selectionType="checkbox"
         name="testName"
         value="Item 2"
-        required={true}
+        required={false}
+        isInvalid={false}
         onChange={jest.fn()}
       />
     );
@@ -198,6 +246,7 @@ describe("SelectItem Component", () => {
         name="testName"
         value="lowest"
         required={false}
+        isInvalid={false}
         onChange={jest.fn()}
       />
     );
@@ -206,21 +255,6 @@ describe("SelectItem Component", () => {
     expect(container.firstChild).toHaveClass("linear-scale");
   });
 
-  it("should not have required for checkboxes", () => {
-    const { container } = render(
-      <SelectItem
-        selectionType="multi"
-        name="testName"
-        value="lowest"
-        required={true}
-        onChange={jest.fn()}
-      />
-    );
-
-    const input = container.querySelector("input");
-    expect(input).toHaveAttribute("type", "checkbox");
-    expect(input).not.toHaveAttribute("required");
-  });
 
   it("renders correctly", () => {
     const tree = renderer
@@ -229,7 +263,8 @@ describe("SelectItem Component", () => {
           selectionType="multi"
           name="testName"
           value="lowest"
-          required={true}
+          required={false}
+          isInvalid={false}
           onChange={jest.fn()}
         />
       )

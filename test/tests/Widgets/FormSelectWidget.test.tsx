@@ -35,7 +35,6 @@ describe("FormSelectWidget", () => {
 
     expect(title).toBeInTheDocument();
     expect(dropdown).toBeInTheDocument();
-    expect(dropdown).toHaveAttribute("required");
   });
 
   it("renders FormSelectWidget as a select list", () => {
@@ -53,9 +52,6 @@ describe("FormSelectWidget", () => {
     expect(selectTitle).toBeInTheDocument();
     expect(radioInputs.length).toBe(selectProps.items.length);
 
-    radioInputs.forEach((radioInput) => {
-      expect(radioInput).toHaveAttribute("required");
-    });
   });
 
   it("handles selection change in the select list", () => {
@@ -127,7 +123,6 @@ describe("FormSelectWidget", () => {
     expect(inputRange).toHaveLength(5);
 
     inputRange.forEach((input) => {
-      expect(input).toHaveAttribute("required");
       expect(input).toHaveAttribute("type", "radio");
     });
   });

@@ -4,6 +4,7 @@ import { fireEvent, render } from "@testing-library/react";
 import { DropdownHeader } from "../../../../src/Widgets/FormStepContainerWidget/components/ConditionalDropdownHeader";
 import { DummyWidget } from "../../../helpers/dummyWidget";
 import renderer from "react-test-renderer";
+import { ValidationProvider } from "../../../../src/FormValidation/ValidationContext";
 
 const widget = new DummyWidget({
   title: "Select from dropdown",
@@ -17,19 +18,23 @@ const widget = new DummyWidget({
 }) as unknown as Scrivito.Widget;
 
 describe("DropdownHeader", () => {
-  const onChangeMock = () => {};
+  const onChangeMock = () => { };
 
   it("has condition-wrapper when isInPlaceEditingActive is true", () => {
     jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
     const { container } = render(
-      <DropdownHeader widget={widget} onChangeSelected={onChangeMock} />
+      <ValidationProvider>
+        <DropdownHeader widget={widget} onChangeSelected={onChangeMock} />
+      </ValidationProvider>
     );
     expect(container.firstChild).toHaveClass("condition-wrapper");
   });
 
   it("renders dropdown options based on conditions", () => {
     const { getByText } = render(
-      <DropdownHeader widget={widget} onChangeSelected={onChangeMock} />
+      <ValidationProvider>
+        <DropdownHeader widget={widget} onChangeSelected={onChangeMock} />
+      </ValidationProvider>
     );
 
     expect(getByText("Apples")).toBeInTheDocument();
@@ -39,14 +44,20 @@ describe("DropdownHeader", () => {
   it("triggers onChangeSelected callback", () => {
     const onChangeMock = jest.fn();
     const { getByRole } = render(
-      <DropdownHeader widget={widget} onChangeSelected={onChangeMock} />
+      <ValidationProvider>
+        <DropdownHeader widget={widget} onChangeSelected={onChangeMock} />
+      </ValidationProvider>
     );
     fireEvent.change(getByRole("combobox"));
     expect(onChangeMock).toHaveBeenCalled();
   });
 
   it("renders the empty option", () => {
-    render(<DropdownHeader widget={widget} onChangeSelected={onChangeMock} />);
+    render(
+      <ValidationProvider>
+        <DropdownHeader widget={widget} onChangeSelected={onChangeMock} />
+      </ValidationProvider>
+    );
     const emptyOption = document.querySelector("#empty-option");
     expect(emptyOption).toBeInTheDocument();
   });
@@ -54,7 +65,9 @@ describe("DropdownHeader", () => {
   it("renders correctly", () => {
     const tree = renderer
       .create(
-        <DropdownHeader widget={widget} onChangeSelected={onChangeMock} />
+        <ValidationProvider>
+          <DropdownHeader widget={widget} onChangeSelected={onChangeMock} />
+        </ValidationProvider>
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

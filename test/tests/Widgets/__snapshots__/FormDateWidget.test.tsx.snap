@@ -39,9 +39,8 @@ exports[`FormDateWidget renders correctly 1`] = `
         </div>
       </div>
       <input
-        className="datepicker"
+        className="datepicker form-control "
         onChange={[Function]}
-        required={true}
         type="date"
       />
       <input

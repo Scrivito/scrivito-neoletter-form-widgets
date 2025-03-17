@@ -11,14 +11,15 @@ describe("LinearScale", () => {
     linearScaleUpperLimit: "5",
     linearScaleLowerLabel: "Lower Label",
     linearScaleUpperLabel: "Upper Label",
-    required: true
+    required: true,
+    isInvalid: false
   };
 
   const widget = new DummyWidget(widgetProperties) as unknown as Widget;
 
   it("renders LinearScale component with provided widget properties", () => {
     const { getByText, getAllByRole } = render(
-      <LinearScale name="linearScaleName" widget={widget} onChange={() => {}} />
+      <LinearScale name="linearScaleName" isInvalid={false} widget={widget} onChange={() => { }} />
     );
 
     expect(getByText("Lower Label")).toBeInTheDocument();
@@ -26,9 +27,30 @@ describe("LinearScale", () => {
 
     const items = getAllByRole("radio");
     expect(items).toHaveLength(5);
+  });
 
-    items.forEach((item) => {
-      expect(item).toHaveAttribute("required");
+  it("does not show is-invalid class when input is valid", () => {
+    widget.update({ required: true });
+    const { container } = render(
+      <LinearScale name="linearScaleName" isInvalid={false} widget={widget} onChange={() => { }} />
+    );
+
+    const radios = container.querySelectorAll(".form-check-input");
+    radios.forEach(radio => {
+      expect(radio).not.toHaveClass("is-invalid");
+    });
+  });
+
+  it("shows is-invalid class when input is invalid", () => {
+    widget.update({ required: true });
+
+    const { container } = render(
+      <LinearScale name="linearScaleName" isInvalid={true} widget={widget} onChange={() => { }} />
+    );
+
+    const radios = container.querySelectorAll(".form-check-input");
+    radios.forEach(radio => {
+      expect(radio).toHaveClass("is-invalid");
     });
   });
 
@@ -37,8 +59,9 @@ describe("LinearScale", () => {
       .create(
         <LinearScale
           name="linearScaleName"
+          isInvalid={false}
           widget={widget}
-          onChange={() => {}}
+          onChange={() => { }}
         />
       )
       .toJSON();

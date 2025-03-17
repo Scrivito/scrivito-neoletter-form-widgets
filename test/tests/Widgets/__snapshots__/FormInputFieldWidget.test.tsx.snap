@@ -40,14 +40,13 @@ exports[`FormInputFieldWidget Component renders correctly 1`] = `
         </div>
       </label>
       <input
-        className="form-control"
+        className="form-control "
         defaultValue=""
         id="form_text_input_widget_staticWidgetID"
         maxLength={250}
         name="custom_test"
         onChange={[Function]}
         placeholder="Test placeholder"
-        required={true}
         type="text"
       />
     </div>

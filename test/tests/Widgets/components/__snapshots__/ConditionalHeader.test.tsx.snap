@@ -32,11 +32,10 @@ exports[`ConditionalHeader renders correctly 1`] = `
         className="select-label radio"
       >
         <input
-          className="form-check-input"
+          className="form-check-input "
           id="fakeId"
           name="custom_header"
-          onChange={[MockFunction]}
-          required={true}
+          onChange={[Function]}
           type="radio"
           value="Apples"
         />
@@ -48,11 +47,10 @@ exports[`ConditionalHeader renders correctly 1`] = `
         className="select-label radio"
       >
         <input
-          className="form-check-input"
+          className="form-check-input "
           id="fakeId"
           name="custom_header"
-          onChange={[MockFunction]}
-          required={true}
+          onChange={[Function]}
           type="radio"
           value="Bananas"
         />

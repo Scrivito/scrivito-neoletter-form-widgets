@@ -60,9 +60,8 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
                         />
                       </div>
                       <input
-                        className="datepicker"
+                        className="datepicker form-control "
                         onChange={[Function]}
-                        required={false}
                         type="date"
                       />
                       <input
@@ -103,9 +102,8 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
                         />
                       </div>
                       <input
-                        className="datepicker"
+                        className="datepicker form-control "
                         onChange={[Function]}
-                        required={false}
                         type="date"
                       />
                       <input

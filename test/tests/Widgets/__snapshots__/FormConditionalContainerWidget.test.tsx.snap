@@ -25,11 +25,10 @@ exports[`FormConditionalContainerWidget renders correctly 1`] = `
           className="select-label radio"
         >
           <input
-            className="form-check-input"
+            className="form-check-input "
             id="staticWidgetID"
             name="custom_test"
             onChange={[Function]}
-            required={false}
             type="radio"
             value="select me"
           />
@@ -41,11 +40,10 @@ exports[`FormConditionalContainerWidget renders correctly 1`] = `
           className="select-label radio"
         >
           <input
-            className="form-check-input"
+            className="form-check-input "
             id="staticWidgetID"
             name="custom_test"
             onChange={[Function]}
-            required={false}
             type="radio"
             value="i am better :)"
           />
