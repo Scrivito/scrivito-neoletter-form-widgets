@@ -4,6 +4,7 @@ import { fireEvent, render } from "@testing-library/react";
 import { RadioButtonsHeader } from "../../../../src/Widgets/FormStepContainerWidget/components/ConditionalRadioButtonsHeader";
 import { DummyWidget } from "../../../helpers/dummyWidget";
 import renderer from "react-test-renderer";
+import { ValidationProvider } from "../../../../src/FormValidation/ValidationContext";
 
 const widget = new DummyWidget({
   title: "Select some",
@@ -17,19 +18,23 @@ const widget = new DummyWidget({
 }) as unknown as Scrivito.Widget;
 
 describe("RadioButtonsHeader", () => {
-  const onChangeMock = () => {};
+  const onChangeMock = () => { };
 
   it("has condition-wrapper when isInPlaceEditingActive is true", () => {
     jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
     const { container } = render(
-      <RadioButtonsHeader widget={widget} onChangeSelected={onChangeMock} />
+      <ValidationProvider>
+        <RadioButtonsHeader widget={widget} onChangeSelected={onChangeMock} />
+      </ValidationProvider>
     );
     expect(container.firstChild).toHaveClass("condition-wrapper");
   });
 
   it("renders radios based on conditions", () => {
     const { getByText } = render(
-      <RadioButtonsHeader widget={widget} onChangeSelected={onChangeMock} />
+      <ValidationProvider>
+        <RadioButtonsHeader widget={widget} onChangeSelected={onChangeMock} />
+      </ValidationProvider>
     );
 
     expect(getByText("Apples")).toBeInTheDocument();
@@ -39,7 +44,9 @@ describe("RadioButtonsHeader", () => {
   it("triggers onChangeSelected callback", () => {
     const onChangeMock = jest.fn();
     const { getByLabelText } = render(
-      <RadioButtonsHeader widget={widget} onChangeSelected={onChangeMock} />
+      <ValidationProvider>
+        <RadioButtonsHeader widget={widget} onChangeSelected={onChangeMock} />
+      </ValidationProvider>
     );
     const applesRadio = getByLabelText("Apples") as HTMLInputElement;
     fireEvent.click(applesRadio);
@@ -49,7 +56,9 @@ describe("RadioButtonsHeader", () => {
   it("renders correctly", () => {
     const tree = renderer
       .create(
-        <RadioButtonsHeader widget={widget} onChangeSelected={onChangeMock} />
+        <ValidationProvider>
+          <RadioButtonsHeader widget={widget} onChangeSelected={onChangeMock} />
+        </ValidationProvider>
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

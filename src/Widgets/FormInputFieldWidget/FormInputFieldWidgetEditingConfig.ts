@@ -4,11 +4,16 @@ import { isCustomType } from "../FormStepContainerWidget/utils/isCustomType";
 import { customFieldNameValidation } from "../FormStepContainerWidget/utils/validations/customFieldNameValidation";
 import { typeValidation } from "../FormStepContainerWidget/utils/validations/typeValidation";
 import { insideFormContainerValidation } from "../FormStepContainerWidget/utils/validations/insideFormContainerValidation";
+
 Scrivito.provideEditingConfig("FormInputFieldWidget", {
   title: "Neoletter Form Input Field",
   thumbnail: formInputFieldWidgetIcon,
   attributes: {
     required: { title: "Mandatory" },
+    validationText: {
+      title: "Validation Message",
+      description: "This message appears when the input is invalid."
+    },
     type: {
       title: "Input type",
       values: [
@@ -47,7 +52,8 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
     customType: "single_line",
     customFieldName: "custom_field_name",
     useFloatingLabel: false,
-    useUserCredentials: false
+    useUserCredentials: false,
+    validationText: "Please fill out this field"
   },
   properties: widget => {
     const customProps = [
@@ -58,16 +64,17 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
       "placeholder",
       "useFloatingLabel",
       "required",
+      ["validationText", { enabled: widget.get("required") }],
       "helpText"
     ];
     if (widget.get("type") === "custom") {
-      return customProps
+      return customProps as any
     }
     if (widget.get("type") === "email" || widget.get("type") === "name") {
-      return ["type", "useUserCredentials", "label", "placeholder", "required", "useFloatingLabel", "helpText"];
+      return ["type", "useUserCredentials", "label", "placeholder", "required", ["validationText", { enabled: widget.get("required") }], "useFloatingLabel", "helpText"];
     }
 
-    return ["type", "label", "placeholder", "required", "useFloatingLabel", "helpText"];
+    return ["type", "label", "placeholder", "required", ["validationText", { enabled: widget.get("required") }], "useFloatingLabel", "helpText"];
   },
   validations: [
     insideFormContainerValidation,

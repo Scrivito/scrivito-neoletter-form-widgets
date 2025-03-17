@@ -23,18 +23,23 @@ Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
     },
     title: { title: "Label" },
     customFieldName: { title: "Field name" },
+    validationText: {
+      title: "Validation Message",
+      description: "This message appears when the input is invalid."
+    },
     required: { title: "Mandatory" },
     helpText: { title: "Help text" },
     conditions: {
       title: "Conditions"
     }
   },
-  properties: [
+  properties: (widget) => [
     "headerType",
     "title",
     "conditions",
     "customFieldName",
     "required",
+    ["validationText", { enabled: widget.get("required") }] as any,
     "helpText"
   ],
   initialContent: {

@@ -21,7 +21,8 @@ export const FormInputFieldWidget = Scrivito.provideWidgetClass(
       customType: ["enum", { values: ["single_line", "multi_line"] }],
       customFieldName: "string",
       useFloatingLabel: "boolean",
-      useUserCredentials: "boolean"
+      useUserCredentials: "boolean",
+      validationText: "string"
     }
   }
 );

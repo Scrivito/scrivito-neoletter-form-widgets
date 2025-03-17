@@ -220,6 +220,7 @@ The `Form Checkbox` widget lets you add individual single checkbox input fields 
 - Field name: Define the field name for the checkbox.
 - Label: Provide a descriptive label for the checkbox to convey its purpose.
 - Mandatory: Indicates whether the checkbox is required.
+- Validation Message: The text displayed when the input is invalid.
 - Help text: Provide optional help text for the checkbox.
 
 ### Validation
@@ -239,6 +240,7 @@ The `Form Date` widget allows users to input dates in various formats. You can c
 - Format: Choose between date-only and date-and-time formats.
 - Field name: Define the field name for the date input.
 - Mandatory: Indicates whether the date input is required.
+- Validation Message: The text displayed when the input is invalid.
 - Help text: Provide optional help text for the date input.
 
 ### Validation
@@ -262,6 +264,7 @@ The `Form Input Field` widget adds customizable input fields to your form. You c
 - Placeholder: Define a placeholder text for the input field, providing guidance to users.
 - Enable floating label: Places the label inside the input. Remove the placeholder when enabled.
 - Mandatory: Indicates whether the input field is required.
+- Validation Message: The text displayed when the input is invalid.
 - Help text: Provide optional help text for the input field.
 
 ### Validation
@@ -339,6 +342,7 @@ The `Form Select` widget enables you to create single or multiple selection elem
 - Enable floating label: Places the label inside the dropdown. (Visible for dropdown only.)
 - Navigate on click: Automatically navigate to the next step when an item is clicked. (Visible for radios only.)
 - Mandatory: Indicates whether selection is required for single select inputs (radio buttons, linear-scale and dropdowns).
+- Validation Message: The text displayed when the input is invalid.
 - Help text: Provide optional help text for the select input.
 - Arrange items horizontally: When enabled, all items will be displayed in a single row. (Visible for checkboxes & radios only.)
 - Show clear selection button. (Visible for radios & linear-scale if mandatory is set to false.)
@@ -389,6 +393,7 @@ The `Form Conditional Container` widget allows you to conditionally show or hide
 - Conditions: Define conditions that determine which content is shown.
 - Field name: Define the field name for the conditional container.
 - Mandatory: Indicates whether the conditional container is required.
+- Validation Message: The text displayed when the input is invalid.
 - Help text: Provide optional help text for the conditional container.
 
 ### Validation

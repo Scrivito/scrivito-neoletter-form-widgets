@@ -14,6 +14,7 @@ import { FormCaptcha } from "./components/FormCaptchaComponent";
 import { CaptchaTheme } from "../../../types/types";
 import { useFormStepContainer } from "./UseFormStepContainer";
 import { FormProvider } from "./FormContext";
+import { ValidationProvider } from "../../FormValidation/ValidationContext";
 import "./FormStepContainerWidget.scss";
 
 Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
@@ -21,6 +22,14 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   if (isEmpty(tenant)) {
     return <FormNoTenant />;
   }
+  return (
+    <ValidationProvider>
+      <FormStepContainerWidgetContent widget={widget} tenant={tenant} />
+    </ValidationProvider>
+  )
+});
+
+const FormStepContainerWidgetContent = ({ widget, tenant }: { widget: Scrivito.Widget, tenant: string }) => {
 
   const {
     currentStep,
@@ -41,16 +50,16 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   } = useFormStepContainer(widget, tenant);
 
   const isLastPage = currentStep == stepsLength;
-  const showReview = widget.get("showReview");
-  const showCaptcha = widget.get("showCaptcha");
+  const showReview = widget.get("showReview") as boolean;
+  const showCaptcha = widget.get("showCaptcha") as boolean;
   const containerClassNames = widget.get("customClassNames") as string || "";
-  const fixedFormHeight = widget.get("fixedFormHeight") || false;
-  const formHeight = widget.get("formHeight") || 35;
+  const fixedFormHeight = widget.get("fixedFormHeight") as boolean || false;
+  const formHeight = widget.get("formHeight") as number || 35;
 
   if (isSubmitting) {
     return <FormSubmitting
-      submittingText={widget.get("submittingMessage")}
-      type={widget.get("submittingMessageType") || "default"}
+      submittingText={widget.get("submittingMessage") as string}
+      type={widget.get("submittingMessageType") as string || "default"}
       fixedFormHeight={fixedFormHeight}
       formHeight={totalFormHeight || formHeight}
       getClassNames={getFormClassNames}
@@ -61,8 +70,8 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   if (successfullySent) {
     return (
       <FormSubmissionSucceeded
-        submissionSuccessText={widget.get("submittedMessage")}
-        type={widget.get("submittedMessageType") || "default"}
+        submissionSuccessText={widget.get("submittedMessage") as string}
+        type={widget.get("submittedMessageType") as string || "default"}
         fixedFormHeight={fixedFormHeight}
         formHeight={totalFormHeight || formHeight}
         getClassNames={getFormClassNames}
@@ -74,11 +83,11 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   if (submissionFailed) {
     return (
       <FormSubmissionFailed
-        submissionFailureText={widget.get("failedMessage")}
-        type={widget.get("failedMessageType") || "default"}
+        submissionFailureText={widget.get("failedMessage") as string}
+        type={widget.get("failedMessageType") as string || "default"}
         widget={widget}
         onReSubmit={onSubmit}
-        showRetryButton={widget.get("showRetryButton") || false}
+        showRetryButton={widget.get("showRetryButton") as boolean || false}
         retryButtonText={widget.get("retryButtonText") as string}
         buttonAlignment={widget.get("retryButtonAlignment") as string}
         fixedFormHeight={fixedFormHeight}
@@ -94,7 +103,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
       className={`scrivito-neoletter-form-widgets form-container-widget ${containerClassNames} ${widget.get("showBorder") ? "form-border" : ""
         } ${Scrivito.isInPlaceEditingActive() ? "edit-mode" : ""}`}
     >
-      <form method="post" id={widget.get("formId")} className={getFormClassNames()} style={fixedFormHeight ? { height: `${formHeight}em` } : {}}>
+      <form method="post" id={widget.get("formId") as string} className={getFormClassNames()} style={fixedFormHeight ? { height: `${formHeight}em` } : {}}>
         <FormHiddenFields widget={widget} />
         <FormProvider
           value={{
@@ -111,7 +120,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
         {showCaptcha && (
           <FormCaptcha
             widget={widget}
-            alignment={widget.get("captchaAlignment") || "center"}
+            alignment={widget.get("captchaAlignment") as string || "center"}
             theme={(widget.get("captchaTheme") || "light") as CaptchaTheme}
             hidden={!(isLastPage || Scrivito.isInPlaceEditingActive())}
             onChangeCaptcha={setReCaptchaToken}
@@ -140,4 +149,4 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
       }
     </div >
   );
-});
+}

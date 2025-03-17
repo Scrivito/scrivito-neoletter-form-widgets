@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
+import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
 import { InPlaceEditingPlaceholder } from "../../Components/InPlaceEditingPlaceholder";
 import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
 import { Select } from "../FormStepContainerWidget/components/SelectComponent";
@@ -8,16 +9,22 @@ import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponen
 import { Dropdown } from "../FormStepContainerWidget/components/SelectDropdownComponent";
 import { FormSelectWidget } from "./FormSelectWidgetClass";
 import { ResetInputs } from "../FormStepContainerWidget/components/ResetInputsComponent";
-import "./FormSelectWidget.scss";
 import { useFormContext } from "../FormStepContainerWidget/FormContext";
+import { useValidationField } from "../../FormValidation/hooks/useValidationField";
+import "./FormSelectWidget.scss";
 
 Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
-  const ref = React.useRef<HTMLDivElement>(null);
   const [selected, setSelected] = React.useState(false);
   const items = widget.get("items");
+  const fieldName = getFieldName(widget);
+  const mandatory = widget.get("required");
   const isMultiSelect = widget.get("selectionType") == "multi";
   const isDropdown = widget.get("selectionType") == "dropdown";
+  const validationText = widget.get("validationText") as string || "Please select an item ";
   const { onInputChange, navigateOnClick } = useFormContext();
+  const { isLocallyValid, setIsLocallyValid, ref } = useValidationField(fieldName, mandatory);
+
+  const isInvalid = !isLocallyValid;
 
   const onChangeSelect = () => {
     setSelected(true);
@@ -30,14 +37,19 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
           selectedValues.push(input.value)
         }
       });
-
-      onInputChange(getFieldName(widget), selectedValues.join(", "))
+      mandatory && setIsLocallyValid(!isEmpty(selectedValues));
+      onInputChange(getFieldName(widget), selectedValues.join(", "));
     }
+  }
+  const onChangeDropdown = (fieldName: string, value: string) => {
+    mandatory && setIsLocallyValid(!isEmpty(value));
+    onInputChange(fieldName, value);
   }
 
   const onReset = () => {
     setSelected(false);
     onInputChange(getFieldName(widget), "");
+    mandatory && setIsLocallyValid(false);
   }
 
   if (!items.length && widget.get("selectionType") != "linear-scale") {
@@ -59,7 +71,8 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
           required={widget.get("required")}
           helptext={widget.get("helpText")}
           title={widget.get("title")}
-          onInputChange={onInputChange}
+          onInputChange={onChangeDropdown}
+          isInvalid={isInvalid}
         />
       ) : (
         <>
@@ -76,6 +89,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
           <Select
             isMultiSelect={isMultiSelect}
             required={widget.get("required")}
+            isInvalid={isInvalid}
             widget={widget}
             name={getFieldName(widget)}
             onChange={onChangeSelect}
@@ -90,8 +104,12 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
           parentRef={ref}
         />
       )}
+      {(mandatory && isInvalid) && <div className="invalid-feedback">
+        {validationText}
+      </div>}
     </div>
   );
+
   function showReset(): boolean {
     return (
       widget.get("showClearSelectionButton") &&

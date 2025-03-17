@@ -35,10 +35,9 @@ describe("FormInputFieldWidget Component", () => {
     expect(inputElement).toHaveAttribute("type", "text");
     expect(inputElement).toHaveAttribute("name", "custom_test");
     expect(inputElement).toHaveAttribute("maxLength", "250");
-    expect(inputElement).toHaveAttribute("required");
   });
 
-  it("renders input field with email type, not required & no helptext", () => {
+  it("renders input field with email type & no helptext", () => {
     pageRenderer.render({
       body: [
         new FormInputFieldWidget({
@@ -61,10 +60,9 @@ describe("FormInputFieldWidget Component", () => {
     expect(inputElement).toBeInTheDocument();
     expect(inputElement).toHaveAttribute("type", "email");
     expect(inputElement).toHaveAttribute("maxLength", "120");
-    expect(inputElement).not.toHaveAttribute("required");
   });
 
-  it("renders input field with telephone type, required & with help text", () => {
+  it("renders input field with telephone type & with help text", () => {
     pageRenderer.render({
       body: [
         new FormInputFieldWidget({
@@ -88,7 +86,6 @@ describe("FormInputFieldWidget Component", () => {
     expect(inputElement).toBeInTheDocument();
     expect(inputElement).toHaveAttribute("type", "tel");
     expect(inputElement).toHaveAttribute("maxLength", "50");
-    expect(inputElement).toHaveAttribute("required");
   });
 
   it("renders correctly", () => {

@@ -14,6 +14,7 @@ export const FormConditionalContainerWidget = Scrivito.provideWidgetClass(
       customFieldName: "string",
       conditions: ["widgetlist", { only: "FormConditionWidget" }],
       required: "boolean",
+      validationText: "string",
       helpText: "html"
     }
   }

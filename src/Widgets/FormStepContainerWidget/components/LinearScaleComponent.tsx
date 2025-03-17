@@ -8,11 +8,12 @@ const UPPER_LIMIT_FALLBACK = 5;
 
 interface LinearScaleProps {
   name: string;
+  isInvalid: boolean;
   widget: Scrivito.Widget;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 export const LinearScale: React.FC<LinearScaleProps> = Scrivito.connect(
-  ({ name, widget, onChange }) => {
+  ({ name, isInvalid, widget, onChange }) => {
     const required = widget.get("required") as boolean;
     const items = getScaleItems(widget);
     const lowerScaleLabel = widget.get("linearScaleLowerLabel");
@@ -29,6 +30,7 @@ export const LinearScale: React.FC<LinearScaleProps> = Scrivito.connect(
               name={name}
               value={itemValue}
               required={required}
+              isInvalid={isInvalid}
               key={index}
               onChange={onChange}
             />

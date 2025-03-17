@@ -43,11 +43,10 @@ exports[`FormSelectWidget renders correctly 1`] = `
           </div>
         </label>
         <select
-          className="dropdown-select form-select form-control"
+          className="dropdown-select form-select "
           id="staticWidgetID"
           name=""
           onChange={[Function]}
-          required={true}
         >
           <option
             id="empty-option"

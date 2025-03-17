@@ -15,15 +15,21 @@ Scrivito.provideEditingConfig("FormDateWidget", {
         { value: "datetime-local", title: "Date and time" }
       ]
     },
+    validationText: {
+      title: "Validation Message",
+      description: "This message appears when the input is invalid."
+    },
     customFieldName: { title: "Field name" },
     helpText: { title: "Help text" },
     required: { title: "Mandatory" }
   },
-  properties: ["title", "dateType", "customFieldName", "required", "helpText"],
+  properties: (widget) => ["title", "dateType", "customFieldName", "required", ["validationText", { enabled: widget.get("required") }], "helpText"] as any,
   initialContent: {
     title: "Please enter a date",
     customFieldName: "custom_",
-    dateType: "date"
+    dateType: "date",
+    validationText: "Please enter a date"
+
   },
   validations: [insideFormContainerValidation, customFieldNameValidation]
 });

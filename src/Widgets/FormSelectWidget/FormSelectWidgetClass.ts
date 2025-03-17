@@ -26,7 +26,8 @@ export const FormSelectWidget = Scrivito.provideWidgetClass(
       inlineView: "boolean",
       useFloatingLabel: "boolean",
       navigateOnClick: "boolean",
-      showClearSelectionButton: "boolean"
+      showClearSelectionButton: "boolean",
+      validationText: "string"
     }
   }
 );

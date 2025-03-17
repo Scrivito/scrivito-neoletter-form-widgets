@@ -20,6 +20,7 @@ describe("Dropdown", () => {
     required: true,
     helptext: "",
     title: "Select some",
+    isInvalid: false,
     onInputChange: () => { }
   }
   it("renders the Dropdown component with options and empty dropdown", () => {
@@ -61,6 +62,23 @@ describe("Dropdown", () => {
     expect(wrapper).toHaveClass("is-selected");
   });
 
+  it("doesn't show is-invalid class for valid input", () => {
+    const { container } = render(
+      <Dropdown {...widgetProps} isInvalid={false} />
+    );
+
+    const selectElement = container.querySelector(".dropdown-select");
+    expect(selectElement).not.toHaveClass("is-invalid");
+  });
+
+  it("shows is-invalid class for invalid input", () => {
+    const { container } = render(
+      <Dropdown {...widgetProps} isInvalid={true} />
+    );
+
+    const selectElement = container.querySelector(".dropdown-select");
+    expect(selectElement).toHaveClass("is-invalid");
+  });
 
 
   it("renders correctly", () => {

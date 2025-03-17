@@ -4,6 +4,7 @@ import { LinearScale } from "./LinearScaleComponent";
 interface SelectProps {
   isMultiSelect: boolean;
   required: boolean;
+  isInvalid: boolean;
   widget: Scrivito.Widget;
   name: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -15,12 +16,13 @@ interface SelectItemProps {
   id?: string;
   name: string;
   required: boolean;
+  isInvalid: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onClickNavigate?: React.MouseEventHandler<HTMLInputElement>;
 }
 
 export const Select: React.FC<SelectProps> = Scrivito.connect(
-  ({ isMultiSelect, required, widget, name, onChange, onClickNavigate }) => {
+  ({ isMultiSelect, required, isInvalid, widget, name, onChange, onClickNavigate }) => {
     const type = widget.get("selectionType") as string;
     if (type == "radio" || type == "multi") {
       const items = widget.get("items") as string[];
@@ -32,6 +34,7 @@ export const Select: React.FC<SelectProps> = Scrivito.connect(
               name={name}
               value={itemValue}
               required={required}
+              isInvalid={isInvalid}
               key={index}
               onChange={onChange}
               onClickNavigate={onClickNavigate}
@@ -43,6 +46,7 @@ export const Select: React.FC<SelectProps> = Scrivito.connect(
     return (
       <LinearScale
         name={name}
+        isInvalid={isInvalid}
         widget={widget}
         onChange={onChange}></LinearScale>
     );
@@ -55,23 +59,18 @@ export const SelectItem: React.FC<SelectItemProps> = ({
   id,
   name,
   required,
+  isInvalid,
   onChange,
   onClickNavigate
 }: SelectItemProps) => {
+  const isRequired = required && (selectionType == "radio" || selectionType == "linear-scale");
+  const type = selectionType == "radio" || selectionType == "linear-scale" ? "radio" : "checkbox";
   return (
     <label className={`select-label ${selectionType}`}>
       <input
-        className="form-check-input"
+        className={`form-check-input ${(isRequired && isInvalid) ? "is-invalid" : ""}`}
         name={name}
-        required={
-          (selectionType == "radio" || selectionType == "linear-scale") &&
-          required
-        }
-        type={
-          selectionType == "radio" || selectionType == "linear-scale"
-            ? "radio"
-            : "checkbox"
-        }
+        type={type}
         value={value}
         onChange={onChange}
         onClick={onClickNavigate}

@@ -26,11 +26,10 @@ exports[`RadioButtonsHeader renders correctly 1`] = `
       className="select-label radio"
     >
       <input
-        className="form-check-input"
+        className="form-check-input "
         id="fakeId"
         name="custom_radio"
         onChange={[Function]}
-        required={true}
         type="radio"
         value="Apples"
       />
@@ -42,11 +41,10 @@ exports[`RadioButtonsHeader renders correctly 1`] = `
       className="select-label radio"
     >
       <input
-        className="form-check-input"
+        className="form-check-input "
         id="fakeId"
         name="custom_radio"
         onChange={[Function]}
-        required={true}
         type="radio"
         value="Bananas"
       />

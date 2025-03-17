@@ -7,18 +7,24 @@ import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponen
 import { FormInputFieldWidget } from "./FormInputFieldWidgetClass";
 import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
 import { useFormContext } from "../FormStepContainerWidget/FormContext";
+import { useValidationField } from "../../FormValidation/hooks/useValidationField";
 import "./FormInputFieldWidget.scss";
 
 Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
   const id = `form_text_input_widget_${widget.id()}`;
   const fieldName = getFieldName(widget);
+  const mandatory = widget.get("required");
+  const validationText = widget.get("validationText") || "Please fill out this field ";
   const useFloatingLabel = widget.get("useFloatingLabel");
   const [isSelected, setIsSelected] = React.useState(false);
   const { onInputChange } = useFormContext();
+  const { isLocallyValid, setIsLocallyValid, ref } = useValidationField(fieldName, mandatory);
 
+  const isInvalid = !isLocallyValid;
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setIsSelected(event.target.value !== "");
+    mandatory && setIsLocallyValid(event.target.value !== "");
     onInputChange && onInputChange(getFieldName(widget), event.target.value);
   };
 
@@ -40,7 +46,10 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
   }
 
   return (
-    <div className={`mb-3 form-input-container ${useFloatingLabel ? 'floating-label' : ''} ${isSelected ? "is-selected" : ""}`} >
+    <div
+      ref={ref}
+      className={`mb-3 form-input-container ${useFloatingLabel ? 'floating-label' : ''} ${isSelected ? "is-selected" : ""}`}
+    >
       {!isEmpty(widget.get("label")) && (
         <>
           {widget.get("label") &&
@@ -60,28 +69,30 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
 
       {isCustomType(widget) && widget.get("customType") === "multi_line" ? (
         <textarea
-          className="form-control"
+          className={`form-control ${isInvalid ? "is-invalid" : ""}`}
           id={id}
           rows={3}
           name={fieldName}
           placeholder={widget.get("placeholder")}
-          required={widget.get("required")}
           onChange={handleChange}
         />
       ) : (
         <input
-          className="form-control"
+          className={`form-control ${isInvalid ? "is-invalid" : ""}`}
           id={id}
           name={fieldName}
           maxLength={calculateMaxLength(fieldName)}
           placeholder={widget.get("placeholder")}
           type={calculateType(fieldName)}
           defaultValue={getDefaultInputValue()}
-          required={widget.get("required")}
           onChange={handleChange}
         />
-      )}
-    </div>
+      )
+      }
+      {isInvalid && <div className="invalid-feedback">
+        {validationText}
+      </div>}
+    </div >
   );
 });
 
