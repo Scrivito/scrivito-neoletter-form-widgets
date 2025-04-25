@@ -17,7 +17,7 @@ export const initNeoletterFormWidgets = (
 		: { siteKey: "", captchaType: null };
 
 	(GLOBAL_OBJ as any).tracking = options?.tracking || false
-	
+
 	loadWidgets();
 	attachCaptchaScript();
 };
@@ -58,7 +58,7 @@ function loadWidgets(): void {
 }
 
 function attachCaptchaScript() {
-	if (isEmpty(getCaptchaOptions().siteKey)) {
+	if (isEmpty(getCaptchaOptions().siteKey) || (typeof window === "undefined")) {
 		return;
 	}
 	if (getCaptchaOptions().captchaType == "friendly-captcha") {
