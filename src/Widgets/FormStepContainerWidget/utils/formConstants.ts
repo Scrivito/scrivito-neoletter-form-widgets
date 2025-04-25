@@ -8,6 +8,8 @@ export const defaultInputTypes = [
   "given_name",
   "family_name",
   "middle_name",
+  "gender",
+  "salutation",
   "company",
   "phone_number"
 ];
