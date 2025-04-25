@@ -96,7 +96,7 @@ When using prerender in a Vite environment, you need to add `--options.deps.exte
 "prerender": "npm run build && vite-node --options.deps.external='/scrivito/' src/prerender_content.js"
 ```
 
-**Note:** Prerender does not work when using captchas. This is because both captchas make use of the `window` object in their scripts, and the `window` object is not available when running `vite-node`.
+**Note:** Prerender with active captchas will not render the captchas. This is because both captchas make use of the `window` object in their scripts, and the `window` object is not available when running `vite-node`.
 
 # Neoletter Form Widgets Overview
 
