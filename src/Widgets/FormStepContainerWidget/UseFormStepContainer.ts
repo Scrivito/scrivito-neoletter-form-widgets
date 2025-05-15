@@ -4,13 +4,14 @@ import { StringMap } from "../../../types/types";
 import { getFormData, submitForm } from "./utils/submitForm";
 import { scrollIntoView } from "./utils/scrollIntoView";
 import { useValidationContext } from "../../FormValidation/ValidationContext";
+import { useCaptcha } from "./CaptchaContext";
+import { getCaptchaOptions } from "../../config/scrivitoConfig";
 
 export const useFormStepContainer = (widget: Widget, tenant: string) => {
   const [currentStep, setCurrentStepNumber] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successfullySent, setSuccessfullySent] = useState(false);
   const [submissionFailed, setSubmissionFailed] = useState(false);
-  const [reCaptchaToken, setReCaptchaToken] = useState<string | null>(null);
   const [formData, setFormData] = useState({});
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
   const [totalFormHeight, setTotalFormHeight] = useState<number | null>(null);
@@ -31,6 +32,11 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
   const formOverscrollBehavior = widget.get("overscrollBehavior");
 
   const { validate } = useValidationContext();
+  const { captchaType } = getCaptchaOptions();
+  const {
+    triggerCaptcha,
+    isCaptchaResolved
+  } = useCaptcha();
 
   useEffect(() => {
     if (!isInPlaceEditingActive()) {
@@ -78,10 +84,12 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
   }, [fixedFormHeight]);
 
   useEffect(() => {
-    if (showCaptcha && isLastPage) {
-      setIsSubmitDisabled(reCaptchaToken == null);
+    if (captchaType == "google-recaptcha-v3") {
+      setIsSubmitDisabled(false);
+    } else if (showCaptcha && isLastPage) {
+      setIsSubmitDisabled(!isCaptchaResolved);
     }
-  }, [reCaptchaToken, showCaptcha, isLastPage]);
+  }, [isCaptchaResolved, showCaptcha, isLastPage]);
 
   const getStepInfo = (stepId: string) => {
     const steps = widget.get("steps") as Widget[] || [];
@@ -132,6 +140,13 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     indicateProgress();
     try {
       const completeFormData = Object.fromEntries(getFormData(widget)!);
+
+      if (captchaType === "google-recaptcha-v3") {
+        const token = await triggerCaptcha();
+        // Inject v3 captcha token manually
+        completeFormData["g-recaptcha-response"] = token;
+      }
+
       setFormData(completeFormData);
       await submitForm(completeFormData as StringMap<string>, tenant);
       indicateSuccess();
@@ -213,7 +228,6 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     submissionFailed,
     totalFormHeight,
     containerRef,
-    setReCaptchaToken,
     isSubmitDisabled,
     handleInputChange,
     getStepInfo,

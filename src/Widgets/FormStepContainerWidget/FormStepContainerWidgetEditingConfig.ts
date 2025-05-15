@@ -232,6 +232,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     const showSubmittedMessage = widget.get("submittedMessageType") !== "widget-list";
     const showFailedMessage = widget.get("failedMessageType") !== "widget-list";
     const showRetryButton = widget.get("showRetryButton");
+    const { siteKey, captchaType } = getCaptchaOptions();
     const groups = [
       {
         title: "Hidden fields",
@@ -285,14 +286,15 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
         }
       );
     if (
-      !isEmpty(getCaptchaOptions().captchaType) &&
-      !isEmpty(getCaptchaOptions().siteKey)
+      !isEmpty(captchaType) &&
+      !isEmpty(siteKey) &&
+      captchaType !== "google-recaptcha-v3"
     ) {
       groups.splice(0, 0, {
         title:
-          getCaptchaOptions().captchaType == "friendly-captcha"
+          captchaType == "friendly-captcha"
             ? "Friendly Captcha"
-            : "Google reCAPTCHA",
+            : "Google reCAPTCHA V2",
         key: "FormStepContainerWidgetCaptcha",
         properties: getCaptchaProperties(widget)
       });

@@ -7,9 +7,9 @@ import {
 } from "../../../../types/types";
 import { isEmpty } from "../utils/lodashPolyfills";
 import { localizations, WidgetInstance } from "../../../../types/friendlyChallenge";
+import { useCaptcha } from "../CaptchaContext";
 
 interface FriendlyCaptchaProps {
-  onChangeCaptcha: React.Dispatch<React.SetStateAction<string | null>>;
   siteKey: string;
   widget: Scrivito.Widget;
   theme: CaptchaTheme
@@ -20,11 +20,11 @@ const EU_ENDPOINT = "https://eu-api.friendlycaptcha.eu/api/v1/puzzle";
 
 export const FriendlyCaptcha: React.FC<FriendlyCaptchaProps> = ({
   siteKey,
-  onChangeCaptcha,
   widget,
   theme,
   endpoint
 }) => {
+  const { setCaptchaToken } = useCaptcha();
   const startMode =
     (widget.get("friendlyCaptchaStartMode") as FriendlyCaptchaStartMode) ||
     "none";
@@ -39,7 +39,7 @@ export const FriendlyCaptcha: React.FC<FriendlyCaptchaProps> = ({
     if (!widgetInstance.current && container.current && window.friendlyChallenge) {
       widgetInstance.current = new window.friendlyChallenge.WidgetInstance(container.current, {
         startMode: startMode,
-        doneCallback: onChangeCaptcha,
+        doneCallback: setCaptchaToken,
         sitekey: siteKey,
         language: language as keyof typeof localizations,
 

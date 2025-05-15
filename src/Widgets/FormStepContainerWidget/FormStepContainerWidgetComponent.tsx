@@ -4,7 +4,7 @@ import { isEmpty } from "./utils/lodashPolyfills";
 import { FormFooterMultiSteps } from "./components/FormFooterMultiStepsComponent";
 import { FormFooterSingleStep } from "./components/FormFooterSingleStepComponent";
 import { FormHiddenFields } from "./components/FormHiddenFieldsComponent";
-import { getInstanceId } from "../../config/scrivitoConfig";
+import { getCaptchaOptions, getInstanceId } from "../../config/scrivitoConfig";
 import { FormNoTenant } from "./components/FormNoTenantComponent";
 import { FormSubmissionFailed } from "./components/FormSubmissionFailedComponent";
 import { FormSubmissionSucceeded } from "./components/FormSubmissionSucceededComponent";
@@ -15,6 +15,7 @@ import { CaptchaTheme } from "../../../types/types";
 import { useFormStepContainer } from "./UseFormStepContainer";
 import { FormProvider } from "./FormContext";
 import { ValidationProvider } from "../../FormValidation/ValidationContext";
+import { CaptchaProvider } from "./CaptchaContext";
 import "./FormStepContainerWidget.scss";
 
 Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
@@ -23,9 +24,11 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
     return <FormNoTenant />;
   }
   return (
-    <ValidationProvider>
-      <FormStepContainerWidgetContent widget={widget} tenant={tenant} />
-    </ValidationProvider>
+    <CaptchaProvider>
+      <ValidationProvider>
+        <FormStepContainerWidgetContent widget={widget} tenant={tenant} />
+      </ValidationProvider>
+    </CaptchaProvider>
   )
 });
 
@@ -40,7 +43,6 @@ const FormStepContainerWidgetContent = ({ widget, tenant }: { widget: Scrivito.W
     submissionFailed,
     totalFormHeight,
     containerRef,
-    setReCaptchaToken,
     isSubmitDisabled,
     handleInputChange,
     getStepInfo,
@@ -48,10 +50,10 @@ const FormStepContainerWidgetContent = ({ widget, tenant }: { widget: Scrivito.W
     onPageChange,
     getFormClassNames
   } = useFormStepContainer(widget, tenant);
-
+  const { captchaType } = getCaptchaOptions();
   const isLastPage = currentStep == stepsLength;
   const showReview = widget.get("showReview") as boolean;
-  const showCaptcha = widget.get("showCaptcha") as boolean;
+  const showCaptcha = captchaType == "google-recaptcha-v3" || widget.get("showCaptcha") as boolean;
   const containerClassNames = widget.get("customClassNames") as string || "";
   const fixedFormHeight = widget.get("fixedFormHeight") as boolean || false;
   const formHeight = widget.get("formHeight") as number || 35;
@@ -123,7 +125,6 @@ const FormStepContainerWidgetContent = ({ widget, tenant }: { widget: Scrivito.W
             alignment={widget.get("captchaAlignment") as string || "center"}
             theme={(widget.get("captchaTheme") || "light") as CaptchaTheme}
             hidden={!(isLastPage || Scrivito.isInPlaceEditingActive())}
-            onChangeCaptcha={setReCaptchaToken}
           />
         )}
       </form>

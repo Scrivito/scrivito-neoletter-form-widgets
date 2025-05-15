@@ -58,13 +58,22 @@ function loadWidgets(): void {
 }
 
 function attachCaptchaScript() {
-	if (isEmpty(getCaptchaOptions().siteKey) || (typeof window === "undefined")) {
-		return;
-	}
-	if (getCaptchaOptions().captchaType == "friendly-captcha") {
-		attachFriendlyCaptchaScript();
-	} else {
-		attachGoogleRecaptchaScript();
+	if (typeof window === "undefined") return;
+
+	const { captchaType, siteKey } = getCaptchaOptions();
+	if (isEmpty(siteKey)) return;
+
+	switch (captchaType) {
+		case "friendly-captcha":
+			attachFriendlyCaptchaScript();
+			break;
+		case "google-recaptcha-v2":
+		case "google-recaptcha":
+			attachGoogleRecaptchaV2Script();
+			break;
+		case "google-recaptcha-v3":
+			// attached elsewhere to avoid attaching it in all iFrames.
+			break;
 	}
 }
 
@@ -84,8 +93,7 @@ const attachFriendlyCaptchaScript = () => {
 	document.body.appendChild(script);
 };
 
-const attachGoogleRecaptchaScript = () => {
-	// check if the script is already attached
+const attachGoogleRecaptchaV2Script = () => {
 	const existingScript = document.querySelector(
 		'script[src^="https://www.google.com/recaptcha/api.js"]'
 	);
@@ -93,7 +101,7 @@ const attachGoogleRecaptchaScript = () => {
 		return;
 	}
 	const script = document.createElement("script");
-	script.src = `https://www.google.com/recaptcha/api.js?render=explicit`;
+	script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
 	script.async = true;
 	script.defer = true;
 	document.body.appendChild(script);
