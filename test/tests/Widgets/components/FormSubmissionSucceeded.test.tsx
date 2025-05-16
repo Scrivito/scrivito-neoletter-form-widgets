@@ -47,6 +47,12 @@ const formProps = {
   failedMessageWidgets: []
 };
 
+jest.mock("../../../../src/config/scrivitoConfig", () => ({
+  getInstanceId: () => "abc",
+  getCaptchaOptions: () => ({ siteKey: "", captchaType: "none" }),
+  isTrackingEnabled: () => true
+}));
+
 const pageRenderer = new PageRenderer();
 
 describe("FormSubmissionSucceeded", () => {
