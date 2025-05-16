@@ -1,6 +1,6 @@
 export interface CaptchaOptions {
   siteKey: string;
-  captchaType: "google-recaptcha" | "friendly-captcha" | null;
+  captchaType: "google-recaptcha" | "google-recaptcha-v2" | "google-recaptcha-v3" | "friendly-captcha" | null;
 }
 
 export interface Options {

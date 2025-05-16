@@ -138,7 +138,7 @@ The `Form` widget has the following properties divided into several tabs:
   - Form height: Enter the height of the form content measured in em units.
   - Scrollbar width: Select the width of the scrollbar. "None" will hide the scrolbar.
   - Overscroll behavior: Select how overscrolling should behave, i.e. it scrolls also the container."
-- "Google reCAPTCHA" Tab (Tab visible if captchaType is set to `google-recaptcha`)
+- "Google reCAPTCHA V2" Tab (Tab visible if captchaType is set to `google-recaptcha-v2`)
   - Enable captcha: Enables Google reCAPTCHA v2 for the current form. You need to [Setup reCAPTCHA](#google-recaptcha-developer-setup) first.
   - Language: Select the language for the reCAPTCHA. Google reCAPTCHA automatically adapts to the browser`s language setting, this property is optional and must not be filled. Refer to the language section [here](https://developers.google.com/recaptcha/docs/language) for setting the language manually.
   - Theme: Choose between light and dark theme. You will need to refresh the page in order to reflect the changes or you can simply re-enable the captcha again.
@@ -584,11 +584,15 @@ Please note that this example is intended to provide a basic demonstration of cr
 
 # Captcha Support
 
-We currently support the Google reCAPTCHA v2 Checkbox challenge and the GDPR compliant Friendly Captcha with global endpoint (paid service). Follow [these](#google-recaptcha-developer-setup) steps to set up Google reCAPTCHA and [these](#friendly-captcha-setup) steps to setup Friendly Captcha for your site.
+We currently support Google reCAPTCHA v3 (score based), v2 Checkbox challenge, and the GDPR-compliant Friendly Captcha with global endpoint (paid service). Follow [these](#google-recaptcha-developer-setup) steps to set up Google reCAPTCHA and [these](#friendly-captcha-setup) steps to setup Friendly Captcha for your site.
 
-### Note
 
-You can only use one of them for your site, but you can change it later if needed.
+
+### Notes:
+- You can only use one of them for your site, but you can change it later if needed.
+- reCAPTCHA v3 is activated globally for all forms once configured. After a page with a form is rendered, the badge will appear and remain visible across all pages, as required by Google.
+- If you want per-form activation, use reCAPTCHA v2 or Friendly Captcha instead.
+
 
 ## Google reCAPTCHA Developer Setup
 
@@ -596,7 +600,7 @@ You can only use one of them for your site, but you can change it later if neede
 2.  **Go to the Google reCAPTCHA Admin Panel:** [Google reCAPTCHA Admin Panel](https://www.google.com/recaptcha/admin)
 3.  **Create a New Site:** Click on the + button to create a new site.
 4.  **Add Site Label:** Give your site a label.
-5.  **Select reCAPTCHA Type:** In the reCAPTCHA type, choose "Checkbox (v2)" and select "I'm not a robot" Checkbox.
+5.  **Select reCAPTCHA Type:** In the reCAPTCHA type, either choose "Score based (v3)" or "Challenge (v2)" and select "I'm not a robot" Checkbox.
 6.  **Add Your Domains:** Add the domains where you will be using the reCAPTCHA. You can add multiple domains.
 7.  **Submit the Request:** Click on the "Submit" button. A site key and secret will be generated.
 8.  **Use the siteKey:** Copy the site key and pass it in the initNeoletterFormWidgets function together with the `captchaType`, you will need to set the `captchaType` to `google-recaptcha` like below:
@@ -609,7 +613,7 @@ initNeoletterFormWidgets({
   instanceId: process.env.SCRIVITO_TENANT,
   captchaOptions: {
     siteKey: "your_site_key",
-    captchaType: "google-recaptcha"
+    captchaType: "google-recaptcha-v3" // or "google-recaptcha-v2"
   }
 });
 ```
@@ -621,7 +625,7 @@ import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
 initNeoletterFormWidgets({
   captchaOptions: {
     siteKey: "your_site_key",
-    captchaType: "google-recaptcha"
+    captchaType: "google-recaptcha-v3" // or "google-recaptcha-v2"
   }
 });
 ```

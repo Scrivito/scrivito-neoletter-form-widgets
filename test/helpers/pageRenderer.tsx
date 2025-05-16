@@ -5,6 +5,7 @@ import { render } from "@testing-library/react";
 import renderer from "react-test-renderer";
 import { FormProvider } from "../../src/Widgets/FormStepContainerWidget/FormContext";
 import { ValidationProvider } from "../../src/FormValidation/ValidationContext";
+import { CaptchaProvider } from "../../src/Widgets/FormStepContainerWidget/CaptchaContext";
 
 const PageDummy = Scrivito.provideObjClass("PageDummy", {
   attributes: {
@@ -23,17 +24,20 @@ class PageRenderer {
     (Scrivito as any).__setCurrentPage(page);
 
     return (
-      <ValidationProvider>
-        <FormProvider
-          value={{
-            onInputChange: jest.fn(),
-            getStepInfo: jest.fn(() => ({ stepNumber: 1, isActive: true, isSingleStep: false })),
-            navigateOnClick: jest.fn()
-          }}
-        >
-          <Scrivito.ContentTag tag="div" content={page} attribute="body" />
-        </FormProvider>
-      </ValidationProvider>
+      <CaptchaProvider>
+
+        <ValidationProvider>
+          <FormProvider
+            value={{
+              onInputChange: jest.fn(),
+              getStepInfo: jest.fn(() => ({ stepNumber: 1, isActive: true, isSingleStep: false })),
+              navigateOnClick: jest.fn()
+            }}
+          >
+            <Scrivito.ContentTag tag="div" content={page} attribute="body" />
+          </FormProvider>
+        </ValidationProvider>
+      </CaptchaProvider>
     );
   }
 

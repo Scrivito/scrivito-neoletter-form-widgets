@@ -23,6 +23,12 @@ jest.mock(
   })
 );
 
+jest.mock("../../../src/config/scrivitoConfig", () => ({
+  getInstanceId: () => "",
+  getCaptchaOptions: () => ({ siteKey: "", captchaType: "none" }),
+  isTrackingEnabled: () => true
+}));
+
 const pageRenderer = new PageRenderer();
 const widgetProps = {
   formId: "test-id",
