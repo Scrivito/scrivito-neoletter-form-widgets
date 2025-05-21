@@ -1,3 +1,5 @@
+import { Widget } from "scrivito";
+
 export type InputValidationElement =
   | HTMLInputElement
   | HTMLSelectElement
@@ -24,4 +26,33 @@ export interface Options {
   instanceId?: string,
   captchaOptions?: CaptchaOptions,
   tracking?: boolean
+}
+
+export interface FormWidgetAttributes {
+  showReview: boolean;
+  showCaptcha: boolean;
+  containerClassNames: string;
+  fixedFormHeight: boolean;
+  formHeight: number;
+  captchaAlignment: string;
+  captchaTheme: CaptchaTheme;
+  showBorder: boolean;
+  submittingMessage: string;
+  submittingMessageType: string;
+  submittedMessage: string;
+  submittedMessageType: string;
+  failedMessage: string;
+  failedMessageType: string;
+  showRetryButton: boolean;
+  retryButtonText: string;
+  retryButtonAlignment: string;
+  formId: string,
+  showSubmittingPreview: boolean,
+  showSubmittedPreview: boolean,
+  showFailedPreview: boolean,
+  formScrollbarWidth: string,
+  formOverscrollBehavior: string,
+  formType: string,
+  steps: Widget[]
+
 }

@@ -11,29 +11,39 @@ import { FormSubmissionSucceeded } from "./components/FormSubmissionSucceededCom
 import { FormSubmitting } from "./components/FormSubmittingComponent";
 import { FormStepContainerWidget } from "./FormStepContainerWidgetClass";
 import { FormCaptcha } from "./components/FormCaptchaComponent";
-import { CaptchaTheme } from "../../../types/types";
 import { useFormStepContainer } from "./UseFormStepContainer";
 import { FormProvider } from "./FormContext";
 import { ValidationProvider } from "../../FormValidation/ValidationContext";
 import { CaptchaProvider } from "./CaptchaContext";
+import { FormAttributesProvider, useFormAttributesContext } from "./FormAttributesContext";
+import { useFormWidgetAttributes } from "./UseFormAttributes";
 import "./FormStepContainerWidget.scss";
 
 Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const tenant = getInstanceId();
+  const values = useFormWidgetAttributes(widget);
+
   if (isEmpty(tenant)) {
     return <FormNoTenant />;
   }
   return (
     <CaptchaProvider>
       <ValidationProvider>
-        <FormStepContainerWidgetContent widget={widget} tenant={tenant} />
+        <FormAttributesProvider values={values}>
+          <FormStepContainerWidgetContent widget={widget} tenant={tenant} />
+        </FormAttributesProvider>
       </ValidationProvider>
     </CaptchaProvider>
   )
 });
 
-const FormStepContainerWidgetContent = ({ widget, tenant }: { widget: Scrivito.Widget, tenant: string }) => {
+interface FormStepContainerWidgetContentProps {
+  widget: Scrivito.Widget;
+  tenant: string
+}
+const FormStepContainerWidgetContent: React.FC<FormStepContainerWidgetContentProps> = ({ widget, tenant }) => {
 
+  const { formId, showBorder, failedMessage, failedMessageType, retryButtonAlignment, retryButtonText, showRetryButton, submittedMessage, submittedMessageType, submittingMessage, submittingMessageType, fixedFormHeight, showCaptcha, showReview, containerClassNames, formHeight } = useFormAttributesContext()
   const {
     currentStep,
     isSingleStep,
@@ -52,16 +62,12 @@ const FormStepContainerWidgetContent = ({ widget, tenant }: { widget: Scrivito.W
   } = useFormStepContainer(widget, tenant);
   const { captchaType } = getCaptchaOptions();
   const isLastPage = currentStep == stepsLength;
-  const showReview = widget.get("showReview") as boolean;
-  const showCaptcha = captchaType == "google-recaptcha-v3" || widget.get("showCaptcha") as boolean;
-  const containerClassNames = widget.get("customClassNames") as string || "";
-  const fixedFormHeight = widget.get("fixedFormHeight") as boolean || false;
-  const formHeight = widget.get("formHeight") as number || 35;
+  const doShowCaptcha = captchaType == "google-recaptcha-v3" || showCaptcha
 
   if (isSubmitting) {
     return <FormSubmitting
-      submittingText={widget.get("submittingMessage") as string}
-      type={widget.get("submittingMessageType") as string || "default"}
+      submittingText={submittingMessage}
+      type={submittingMessageType}
       fixedFormHeight={fixedFormHeight}
       formHeight={totalFormHeight || formHeight}
       getClassNames={getFormClassNames}
@@ -72,8 +78,8 @@ const FormStepContainerWidgetContent = ({ widget, tenant }: { widget: Scrivito.W
   if (successfullySent) {
     return (
       <FormSubmissionSucceeded
-        submissionSuccessText={widget.get("submittedMessage") as string}
-        type={widget.get("submittedMessageType") as string || "default"}
+        submissionSuccessText={submittedMessage}
+        type={submittedMessageType}
         fixedFormHeight={fixedFormHeight}
         formHeight={totalFormHeight || formHeight}
         getClassNames={getFormClassNames}
@@ -85,13 +91,13 @@ const FormStepContainerWidgetContent = ({ widget, tenant }: { widget: Scrivito.W
   if (submissionFailed) {
     return (
       <FormSubmissionFailed
-        submissionFailureText={widget.get("failedMessage") as string}
-        type={widget.get("failedMessageType") as string || "default"}
+        submissionFailureText={failedMessage}
+        type={failedMessageType}
         widget={widget}
         onReSubmit={onSubmit}
-        showRetryButton={widget.get("showRetryButton") as boolean || false}
-        retryButtonText={widget.get("retryButtonText") as string}
-        buttonAlignment={widget.get("retryButtonAlignment") as string}
+        showRetryButton={showRetryButton}
+        retryButtonText={retryButtonText}
+        buttonAlignment={retryButtonAlignment}
         fixedFormHeight={fixedFormHeight}
         formHeight={totalFormHeight || formHeight}
         getClassNames={getFormClassNames}
@@ -102,10 +108,10 @@ const FormStepContainerWidgetContent = ({ widget, tenant }: { widget: Scrivito.W
   return (
     <div
       ref={containerRef}
-      className={`scrivito-neoletter-form-widgets form-container-widget ${containerClassNames} ${widget.get("showBorder") ? "form-border" : ""
+      className={`scrivito-neoletter-form-widgets form-container-widget ${containerClassNames} ${showBorder ? "form-border" : ""
         } ${Scrivito.isInPlaceEditingActive() ? "edit-mode" : ""}`}
     >
-      <form method="post" id={widget.get("formId") as string} className={getFormClassNames()} style={fixedFormHeight ? { height: `${formHeight}em` } : {}}>
+      <form method="post" id={formId} className={getFormClassNames()} style={fixedFormHeight ? { height: `${formHeight}em` } : {}}>
         <FormHiddenFields widget={widget} />
         <FormProvider
           value={{
@@ -119,11 +125,9 @@ const FormStepContainerWidgetContent = ({ widget, tenant }: { widget: Scrivito.W
             attribute={"steps"}
           />
         </FormProvider>
-        {showCaptcha && (
+        {doShowCaptcha && (
           <FormCaptcha
             widget={widget}
-            alignment={widget.get("captchaAlignment") as string || "center"}
-            theme={(widget.get("captchaTheme") || "light") as CaptchaTheme}
             hidden={!(isLastPage || Scrivito.isInPlaceEditingActive())}
           />
         )}

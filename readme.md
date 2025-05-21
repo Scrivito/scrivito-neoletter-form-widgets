@@ -22,7 +22,12 @@ To use this package, you must have Scrivito version 1.30.0 or later installed in
 
 ## Installation
 
-**Note:** If you have existing forms, they will run in legacy mode after installing this package. Legacy mode allows you to continue using your existing forms, but the new form features such as `review` or `steps` cannot be used by them. You can still add new widgets to existing forms.
+
+> ⚠️ **Legacy Form Support Removed**
+>
+> Starting from **version `0.0.32`**, support for legacy forms has been **completely removed**.  
+> If your project still uses legacy forms, **do not update** to this version.  
+> We recommend migrating to the new form system before upgrading.
 
 Install the package into your scrivito app:
 

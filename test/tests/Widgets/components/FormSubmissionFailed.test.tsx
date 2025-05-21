@@ -180,12 +180,10 @@ describe("FormSubmissionFailed", () => {
       body: [new FormStepContainerWidget({ ...formProps, failedMessageWidgets: submissionWidgets, failedMessageType: "widget-list", previewFailedMessage: true, showRetryButton: true })]
     });
 
-    const textContainer = document.querySelector(".text-center");
     const spanElement = screen.queryByText(submissionFailureText);
     const dateWidget = document.querySelector('input[type="date"]');
     const form = document.getElementById("test-id");
     const retryButton = screen.getByRole("button");
-    expect(textContainer).not.toBeInTheDocument();
     expect(spanElement).not.toBeInTheDocument();
     expect(dateWidget).toBeInTheDocument();
     expect(form).not.toBeInTheDocument();
