@@ -124,7 +124,6 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
         { value: "left", title: "Left" },
         { value: "text-center", title: "Center" },
         { value: "text-end", title: "Right" },
-        { value: "block", title: "Full width" }
       ]
     },
 
@@ -379,7 +378,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     previewFailedMessage: false,
     showRetryButton: false,
     retryButtonText: "Retry",
-    retryButtonAlignment: "text-center"
+    retryButtonAlignment: "text-center",
   },
   validations: [
     (widget: Scrivito.Widget) => {

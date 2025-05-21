@@ -5,21 +5,19 @@ import { getCaptchaOptions } from "../../../config/scrivitoConfig";
 import { FriendlyCaptcha } from "./FriendlyCaptchaComponent";
 import { GoogleReCaptcha } from "./GoogleReCaptchaComponent";
 import { CaptchaTheme } from "../../../../types/types";
+import { useFormAttributesContext } from "../FormAttributesContext";
 
 interface FormCaptchaProps {
   widget: Scrivito.Widget;
-  alignment: string;
   hidden: boolean;
-  theme: CaptchaTheme;
 }
 
 export const FormCaptcha: React.FC<FormCaptchaProps> = ({
   widget,
-  alignment,
-  hidden,
-  theme
+  hidden
 }) => {
   const options = getCaptchaOptions();
+  const { captchaAlignment, captchaTheme } = useFormAttributesContext()
   if (Scrivito.isInPlaceEditingActive() && isEmpty(options.siteKey)) {
     return (
       <div className="text-center missing-site-key">
@@ -32,21 +30,21 @@ export const FormCaptcha: React.FC<FormCaptchaProps> = ({
   }
 
   return (
-    <div hidden={hidden} className={`mb-3 captcha-container ${alignment}`}>
+    <div hidden={hidden} className={`mb-3 captcha-container ${captchaAlignment}`}>
       {options.captchaType === "friendly-captcha" ? (
         <FriendlyCaptcha
           siteKey={options.siteKey}
           widget={widget}
           endpoint={"global"}
-          theme={theme}
+          theme={captchaTheme}
         />
       ) : (
         <GoogleReCaptcha
           siteKey={options.siteKey}
           type={options.captchaType}
           widget={widget}
-          theme={theme}
-          key={theme} // force re-render on theme change.
+          theme={captchaTheme}
+          key={captchaTheme} // force re-render on theme change.
         />
       )}
     </div>

@@ -6,6 +6,7 @@ import { scrollIntoView } from "./utils/scrollIntoView";
 import { useValidationContext } from "../../FormValidation/ValidationContext";
 import { useCaptcha } from "./CaptchaContext";
 import { getCaptchaOptions } from "../../config/scrivitoConfig";
+import { useFormAttributesContext } from "./FormAttributesContext";
 
 export const useFormStepContainer = (widget: Widget, tenant: string) => {
   const [currentStep, setCurrentStepNumber] = useState(1);
@@ -17,19 +18,11 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
   const [totalFormHeight, setTotalFormHeight] = useState<number | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const stepsLength = (widget.get("steps") as Widget[]).length;
+  const { formType, steps, showCaptcha, fixedFormHeight, formId, formOverscrollBehavior, formScrollbarWidth, showFailedPreview, showSubmittedPreview, showSubmittingPreview } = useFormAttributesContext();
+  const stepsLength = steps.length;
   const isLastPage = currentStep === stepsLength;
-  const isSingleStep = widget.get("formType") === "single-step";
-  const showCaptcha = widget.get("showCaptcha");
-  const formId = widget.get("formId") as string;
-  const showSubmittingPreview = widget.get("previewSubmittingMessage") || false;
-  const showSubmittedPreview = widget.get("previewSubmittedMessage") || false;
-  const showFailedPreview = widget.get("previewFailedMessage") || false;
+  const isSingleStep = formType === "single-step";
 
-  const fixedFormHeight = widget.get("fixedFormHeight") || false;
-  const formScrollbarWidth = widget.get("scrollbarWidth");
-  const formOverscrollBehavior = widget.get("overscrollBehavior");
 
   const { validate } = useValidationContext();
   const { captchaType } = getCaptchaOptions();
@@ -60,7 +53,6 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
       return;
     }
     // in order to show step number in the props title of each step
-    const steps = widget.get("steps") as Widget[];
     steps.forEach((step, i) => {
       const stepNumber = i + 1;
       step.update({
@@ -74,7 +66,7 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
       widget.update({ formType: "single-step" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [widget.get("steps")]);
+  }, [steps]);
 
   useEffect(() => {
     if (fixedFormHeight && containerRef.current) {
@@ -92,7 +84,6 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
   }, [isCaptchaResolved, showCaptcha, isLastPage]);
 
   const getStepInfo = (stepId: string) => {
-    const steps = widget.get("steps") as Widget[] || [];
     let isActive = false;
     let stepNumber = 0;
 
@@ -126,7 +117,7 @@ export const useFormStepContainer = (widget: Widget, tenant: string) => {
     if (!formData) {
       return;
     }
-    if (isInPlaceEditingActive() && widget.get("formType") == "multi-step") {
+    if (isInPlaceEditingActive() && formType == "multi-step") {
       // eslint-disable-next-line no-console
       console.log("In edit mode, only the first step will be validated for mandatory fields.");
     }
