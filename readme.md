@@ -370,13 +370,17 @@ The `Form Hidden Field` widget includes hidden form fields. These fields are typ
 
 ### Properties
 
-- Field name: Define the field name for the hidden field.
-- Hidden value: Specify the hidden value for this field.
 - Input type:
   - Custom: Allows the creation of a custom hidden field.
   - Subscription: Activates the subscription process on every form submission. If this type is selected, the hidden value needs to be set to "on" to trigger the subscription process.
-- Email: Automatically populates the field with the logged-in user’s email. This feature is available only on restricted pages (pages that require user login).
-- Name: Automatically populates the field with the logged-in user’s name. This feature is available only on restricted pages (pages that require user login).
+  - Email: Automatically populates the field with the logged-in user’s email. This feature is available only on restricted pages (pages that require user login).
+  - Name: Automatically populates the field with the logged-in user’s name. This feature is available only on restricted pages (pages that require user login).
+  - URL Parameter: Reads the value from the current page’s URL parameters and sends it with the form.
+- Field name: Define the field name for the hidden field.
+- Hidden value: Specify the hidden value for this field.
+- URL Parameter Key: The name of the query parameter in the URL from which to read the value. For example, if the page URL is
+`https://example.com/form?gid=abc123`, and the key is set to gid, then abc123 will be used as the field value.
+
 
 ### Validation
 

@@ -48,7 +48,7 @@ Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
       return ["type"]
     }
     if (widget.get("type") == "urlParam") {
-      return ["type", "urlParameterKey", "urlParameterFieldName"];
+      return ["type", "urlParameterFieldName", "urlParameterKey"];
     }
     return ["type", "hiddenValue"];
   },
