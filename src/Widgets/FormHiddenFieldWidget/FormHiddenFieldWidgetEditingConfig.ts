@@ -27,7 +27,8 @@ Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
         { value: "subscription", title: "Subscription" },
         { value: "email", title: "Email" },
         { value: "name", title: "Name" },
-        { value: "urlParam", title: "URL Parameter" }
+        { value: "urlParam", title: "URL Parameter" },
+        { value: "mailing_delivery_id", title: "Mailing Delivery ID" }
       ]
     },
     urlParameterKey: {
@@ -44,7 +45,7 @@ Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
       return ["type", "customFieldName", "hiddenValue"];
 
     }
-    if (widget.get("type") == "email" || widget.get("type") == "name") {
+    if (widget.get("type") == "email" || widget.get("type") == "name" || widget.get("type") == "mailing_delivery_id") {
       return ["type"]
     }
     if (widget.get("type") == "urlParam") {
@@ -133,8 +134,13 @@ Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
 
   titleForContent: widget => {
     const fieldName = getFieldName(widget);
-    return `Hidden Form Field: ${[fieldName, widget.get("hiddenValue")]
-      .filter(e => e)
-      .join(" - ")}`;
+    const type = widget.get("type") as string;
+
+    if (type == "subscription" || type == "custom") {
+      return `Hidden Form Field: ${[fieldName, widget.get("hiddenValue")]
+        .filter(e => e)
+        .join(" - ")}`;
+    }
+    return `Hidden Form Field: ${fieldName}`;
   }
 });

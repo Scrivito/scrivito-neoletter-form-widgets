@@ -6,6 +6,8 @@ import { FormHiddenFieldWidget } from "./FormHiddenFieldWidgetClass";
 import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
 import { getUrlParameter } from "../FormStepContainerWidget/utils/getUrlParamter";
 
+const MAILING_DELIVERY_ID_KEY = "__neomdid";
+
 Scrivito.provideComponent(FormHiddenFieldWidget, ({ widget }) => {
   const name = getFieldName(widget);
   const value = getValue(widget, name);
@@ -21,6 +23,9 @@ const getValue = (widget: Scrivito.Widget, fieldName: string) => {
   if (widget.get("type") == "urlParam") {
     const key = widget.get("urlParameterKey") as string || "";
     return getUrlParameter(key);
+  }
+  if (widget.get("type") == "mailing_delivery_id") {
+    return getUrlParameter(MAILING_DELIVERY_ID_KEY);
   }
   return widget.get("hiddenValue") as string;
 }
