@@ -6,7 +6,7 @@ import { FormHiddenFieldWidget } from "./FormHiddenFieldWidgetClass";
 import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
 import { getUrlParameter } from "../FormStepContainerWidget/utils/getUrlParamter";
 
-const MAILING_DELIVERY_ID_KEY = "__neomdid";
+const MAILING_DELIVERY_ID_KEY = "__neoMdID";
 
 Scrivito.provideComponent(FormHiddenFieldWidget, ({ widget }) => {
   const name = getFieldName(widget);
