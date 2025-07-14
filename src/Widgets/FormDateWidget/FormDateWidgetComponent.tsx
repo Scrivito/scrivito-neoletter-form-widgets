@@ -7,6 +7,7 @@ import { FormDateWidget } from "./FormDateWidgetClass";
 import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
 import { useFormContext } from "../FormStepContainerWidget/FormContext";
 import { useValidationField } from "../../FormValidation/hooks/useValidationField";
+import { MessageBlock } from "../FormStepContainerWidget/components/MessageBlock";
 import "./FormDateWidget.scss";
 
 
@@ -16,14 +17,17 @@ Scrivito.provideComponent(FormDateWidget, ({ widget }) => {
   const mandatory = widget.get("required");
   const validationText = widget.get("validationText") || "Please enter a date";
 
-  const { onInputChange } = useFormContext();
+  const ctx = useFormContext();
+  if (!ctx) {
+    return <MessageBlock type="noContext" />;
+  }
   const { isLocallyValid, setIsLocallyValid, ref } = useValidationField(fieldName, mandatory);
 
   const onChangeValue = (e: React.BaseSyntheticEvent) => {
     const isoStringDate = isEmpty(e.target.value) ? "" : new Date(e.target.value).toISOString();
     mandatory && setIsLocallyValid(!isEmpty(isoStringDate));
     setValue(isoStringDate);
-    onInputChange(fieldName, isoStringDate);
+    ctx.onInputChange(fieldName, isoStringDate);
   };
   const isInvalid = !isLocallyValid;
   return (

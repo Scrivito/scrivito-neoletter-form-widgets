@@ -5,14 +5,19 @@ import { FormSignatureWidget } from "./FormSignatureWidgetClass";
 import { getFieldName } from "../FormStepContainerWidget/utils/getFieldName";
 import { Signature } from "../FormStepContainerWidget/components/SignatureComponent";
 import { useFormContext } from "../FormStepContainerWidget/FormContext";
+import { MessageBlock } from "../FormStepContainerWidget/components/MessageBlock";
 import "./FormSignatureWidget.scss";
+
 Scrivito.provideComponent(FormSignatureWidget, ({ widget }) => {
   const [signatureDataUrl, setSignatureDataUrl] = React.useState<string>("")
-  const { onInputChange } = useFormContext();
+  const ctx = useFormContext();
+  if (!ctx) {
+    return <MessageBlock type="noContext" />;
+  }
 
   const onChangeSignature = (dataUrl: string) => {
     setSignatureDataUrl(dataUrl);
-    onInputChange(getFieldName(widget), dataUrl);
+    ctx.onInputChange(getFieldName(widget), dataUrl);
   }
 
   return (

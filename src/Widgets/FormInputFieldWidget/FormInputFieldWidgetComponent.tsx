@@ -8,6 +8,7 @@ import { FormInputFieldWidget } from "./FormInputFieldWidgetClass";
 import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
 import { useFormContext } from "../FormStepContainerWidget/FormContext";
 import { useValidationField } from "../../FormValidation/hooks/useValidationField";
+import { MessageBlock } from "../FormStepContainerWidget/components/MessageBlock";
 import "./FormInputFieldWidget.scss";
 
 Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
@@ -17,7 +18,11 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
   const validationText = widget.get("validationText") || "Please fill out this field ";
   const useFloatingLabel = widget.get("useFloatingLabel");
   const [isSelected, setIsSelected] = React.useState(false);
-  const { onInputChange } = useFormContext();
+  const ctx = useFormContext();
+  if (!ctx) {
+    return <MessageBlock type="noContext" />;
+  }
+
   const { isLocallyValid, setIsLocallyValid, ref } = useValidationField(fieldName, mandatory);
 
   const isInvalid = !isLocallyValid;
@@ -25,7 +30,7 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setIsSelected(event.target.value !== "");
     mandatory && setIsLocallyValid(event.target.value !== "");
-    onInputChange && onInputChange(getFieldName(widget), event.target.value);
+    ctx.onInputChange && ctx.onInputChange(getFieldName(widget), event.target.value);
   };
 
   const getDefaultInputValue = () => {

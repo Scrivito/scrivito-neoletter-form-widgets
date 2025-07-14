@@ -6,6 +6,7 @@ import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponen
 import { FormRatingWidget } from "./FormRatingWidgetClass";
 import { getIconColor } from "../FormStepContainerWidget/utils/getIconColor";
 import { useFormContext } from "../FormStepContainerWidget/FormContext";
+import { MessageBlock } from "../FormStepContainerWidget/components/MessageBlock";
 import "./FormRatingWidget.scss";
 
 Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
@@ -13,11 +14,14 @@ Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
   const [hoveredIcons, setHoveredIcons] = React.useState(0);
   const hoverEffect = widget.get("hoverEffect");
   const color = getIconColor(widget);
-  const { onInputChange } = useFormContext();
+  const ctx = useFormContext();
+  if (!ctx) {
+    return <MessageBlock type="noContext" />;
+  }
 
   const handleSelect = (rating: number) => {
     setSelectedIcons(rating);
-    onInputChange && onInputChange(getFieldName(widget), rating == 0 ? "" : rating.toString());
+    ctx.onInputChange && ctx.onInputChange(getFieldName(widget), rating == 0 ? "" : rating.toString());
 
   }
   return (
