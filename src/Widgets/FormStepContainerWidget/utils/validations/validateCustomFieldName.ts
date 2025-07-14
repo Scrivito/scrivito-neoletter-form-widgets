@@ -16,6 +16,11 @@ export const validateCustomFieldName = (customFieldName: string, widget: Widget)
     return "Specify the custom field's name.";
   }
 
+  const nameAfterPrefix = customFieldName.slice("custom_".length);
+  if (/^[0-9]/.test(nameAfterPrefix)) {
+    return 'Custom field names must not start with a number after "custom_".';
+  }
+
   if (customFieldName.match(/^[A-Za-z_][A-Za-z0-9_]*$/) === null) {
     return 'Custom field names may consist of the following characters: "a-z", "A-Z", "0-9", "_".';
   }
