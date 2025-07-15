@@ -6,6 +6,7 @@ import { FriendlyCaptcha } from "./FriendlyCaptchaComponent";
 import { GoogleReCaptcha } from "./GoogleReCaptchaComponent";
 import { CaptchaTheme } from "../../../../types/types";
 import { useFormAttributesContext } from "../FormAttributesContext";
+import { MessageBlock } from "./MessageBlock";
 
 interface FormCaptchaProps {
   widget: Scrivito.Widget;
@@ -19,11 +20,7 @@ export const FormCaptcha: React.FC<FormCaptchaProps> = ({
   const options = getCaptchaOptions();
   const { captchaAlignment, captchaTheme } = useFormAttributesContext()
   if (Scrivito.isInPlaceEditingActive() && isEmpty(options.siteKey)) {
-    return (
-      <div className="text-center missing-site-key">
-        <span>Warning: You activated CAPTCHA but did not set a site key!</span>
-      </div>
-    );
+    return <MessageBlock type="noCaptcha" />;
   }
   if (isEmpty(options.siteKey)) {
     return null;

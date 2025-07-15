@@ -2,11 +2,15 @@ import React from "react";
 import * as Scrivito from "scrivito";
 import { FormStepWidget } from "./FormStepWidgetClass";
 import { useFormContext } from "../FormStepContainerWidget/FormContext";
+import { MessageBlock } from "../FormStepContainerWidget/components/MessageBlock";
 import "./FormStepWidget.scss";
 
 Scrivito.provideComponent(FormStepWidget, ({ widget }) => {
-  const { getStepInfo } = useFormContext();
-  const data = getStepInfo(widget.id());
+  const ctx = useFormContext();
+  if (!ctx) {
+    return <MessageBlock type="noContext" />;
+  }
+  const data = ctx.getStepInfo(widget.id());
   const isMultiStepsWithActiveEditing = Scrivito.isInPlaceEditingActive() && !data.isSingleStep;
 
   return (

@@ -351,7 +351,6 @@ body .scrivito-neoletter-review-form-modal {
 .bg-greydark,
 .bg-greymiddle {
 
-  .missing-id,
   .missing-site-key,
   .scrivito-neoletter-form-widgets.form-container-widget .linear-scale-container,
   .scrivito-neoletter-form-widgets.form-container-widget .reset-label span,
@@ -391,10 +390,6 @@ body .scrivito-neoletter-review-form-modal {
   }
 }
 
-.scrivito-neoletter-form-widgets.missing-id {
-  display: flex;
-  justify-content: center;
-}
 
 // FormIdComponent tab 
 .neoletter-form-id-tab-container {

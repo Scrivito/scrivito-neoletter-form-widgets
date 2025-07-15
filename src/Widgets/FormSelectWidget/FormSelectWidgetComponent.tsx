@@ -11,9 +11,11 @@ import { FormSelectWidget } from "./FormSelectWidgetClass";
 import { ResetInputs } from "../FormStepContainerWidget/components/ResetInputsComponent";
 import { useFormContext } from "../FormStepContainerWidget/FormContext";
 import { useValidationField } from "../../FormValidation/hooks/useValidationField";
+import { MessageBlock } from "../FormStepContainerWidget/components/MessageBlock";
 import "./FormSelectWidget.scss";
 
 Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
+
   const [selected, setSelected] = React.useState(false);
   const items = widget.get("items");
   const fieldName = getFieldName(widget);
@@ -21,7 +23,11 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
   const isMultiSelect = widget.get("selectionType") == "multi";
   const isDropdown = widget.get("selectionType") == "dropdown";
   const validationText = widget.get("validationText") as string || "Please select an item ";
-  const { onInputChange, navigateOnClick } = useFormContext();
+  const ctx = useFormContext();
+  if (!ctx) {
+    return <MessageBlock type="noContext" />;
+  }
+
   const { isLocallyValid, setIsLocallyValid, ref } = useValidationField(fieldName, mandatory);
 
   const isInvalid = !isLocallyValid;
@@ -38,17 +44,17 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
         }
       });
       mandatory && setIsLocallyValid(!isEmpty(selectedValues));
-      onInputChange(getFieldName(widget), selectedValues.join(", "));
+      ctx.onInputChange(getFieldName(widget), selectedValues.join(", "));
     }
   }
   const onChangeDropdown = (fieldName: string, value: string) => {
     mandatory && setIsLocallyValid(!isEmpty(value));
-    onInputChange(fieldName, value);
+    ctx.onInputChange(fieldName, value);
   }
 
   const onReset = () => {
     setSelected(false);
-    onInputChange(getFieldName(widget), "");
+    ctx.onInputChange(getFieldName(widget), "");
     mandatory && setIsLocallyValid(false);
   }
 
@@ -93,7 +99,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
             widget={widget}
             name={getFieldName(widget)}
             onChange={onChangeSelect}
-            onClickNavigate={() => (isMultiSelect || !widget.get("navigateOnClick")) ? null : navigateOnClick()}
+            onClickNavigate={() => (isMultiSelect || !widget.get("navigateOnClick")) ? null : ctx.navigateOnClick()}
           />
         </>
       )}

@@ -5,7 +5,6 @@ import { FormFooterMultiSteps } from "./components/FormFooterMultiStepsComponent
 import { FormFooterSingleStep } from "./components/FormFooterSingleStepComponent";
 import { FormHiddenFields } from "./components/FormHiddenFieldsComponent";
 import { getCaptchaOptions, getInstanceId } from "../../config/scrivitoConfig";
-import { FormNoTenant } from "./components/FormNoTenantComponent";
 import { FormSubmissionFailed } from "./components/FormSubmissionFailedComponent";
 import { FormSubmissionSucceeded } from "./components/FormSubmissionSucceededComponent";
 import { FormSubmitting } from "./components/FormSubmittingComponent";
@@ -17,6 +16,7 @@ import { ValidationProvider } from "../../FormValidation/ValidationContext";
 import { CaptchaProvider } from "./CaptchaContext";
 import { FormAttributesProvider, useFormAttributesContext } from "./FormAttributesContext";
 import { useFormWidgetAttributes } from "./UseFormAttributes";
+import { MessageBlock } from "./components/MessageBlock";
 import "./FormStepContainerWidget.scss";
 
 Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
@@ -24,7 +24,7 @@ Scrivito.provideComponent(FormStepContainerWidget, ({ widget }) => {
   const values = useFormWidgetAttributes(widget);
 
   if (isEmpty(tenant)) {
-    return <FormNoTenant />;
+    return <MessageBlock type="noTenant" />;
   }
   return (
     <CaptchaProvider>

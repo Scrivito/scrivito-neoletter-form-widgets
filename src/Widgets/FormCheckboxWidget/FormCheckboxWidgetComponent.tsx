@@ -6,6 +6,7 @@ import { HelpText } from "../FormStepContainerWidget/components/HelpTextComponen
 import { FormCheckboxWidget } from "./FormCheckboxWidgetClass";
 import { useFormContext } from "../FormStepContainerWidget/FormContext";
 import { useValidationField } from "../../FormValidation/hooks/useValidationField";
+import { MessageBlock } from "../FormStepContainerWidget/components/MessageBlock";
 import "./FormCheckboxWidget.scss";
 
 Scrivito.provideComponent(FormCheckboxWidget, ({ widget }) => {
@@ -13,7 +14,10 @@ Scrivito.provideComponent(FormCheckboxWidget, ({ widget }) => {
   const fieldName = getFieldName(widget);
   const mandatory = widget.get("required");
   const validationText = widget.get("validationText") || "Please tick the box";
-  const { onInputChange } = useFormContext();
+  const ctx = useFormContext();
+  if (!ctx) {
+    return <MessageBlock type="noContext" />;
+  }
   const { isLocallyValid, setIsLocallyValid, ref } = useValidationField(fieldName, mandatory);
 
   const isInvalid = !isLocallyValid;
@@ -21,7 +25,7 @@ Scrivito.provideComponent(FormCheckboxWidget, ({ widget }) => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const checked = e.currentTarget.checked;
     mandatory && setIsLocallyValid(checked);
-    onInputChange(fieldName, checked ? "on" : "");
+    ctx.onInputChange(fieldName, checked ? "on" : "");
   }
 
   return (

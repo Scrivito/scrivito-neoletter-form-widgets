@@ -8,11 +8,16 @@ import { isEmpty } from "../FormStepContainerWidget/utils/lodashPolyfills";
 import { useFormContext } from "../FormStepContainerWidget/FormContext";
 import { ConditionProvider } from "./ConditionContext";
 import "./FormConditionalContainerWidget.scss";
+import { MessageBlock } from "../FormStepContainerWidget/components/MessageBlock";
 
 Scrivito.provideComponent(FormConditionalContainerWidget, ({ widget }) => {
   const [selectedConditionId, setSelectedConditionId] = React.useState("");
   const isDropdownHeader = widget.get("headerType") == "dropdown";
-  const { onInputChange } = useFormContext();
+
+  const ctx = useFormContext();
+  if (!ctx) {
+    return <MessageBlock type="noContext" />;
+  }
 
   const resetFieldsInConditions = (conditions: Scrivito.Widget[]) => {
     const resetFields = conditions
@@ -24,7 +29,7 @@ Scrivito.provideComponent(FormConditionalContainerWidget, ({ widget }) => {
         return acc;
       }, {} as StringMap<string>);
 
-    onInputChange(resetFields);
+    ctx.onInputChange(resetFields);
   };
 
   const onChangeSelected = (e: React.BaseSyntheticEvent) => {
@@ -32,11 +37,11 @@ Scrivito.provideComponent(FormConditionalContainerWidget, ({ widget }) => {
       ? e.target.options[e.target.selectedIndex].id
       : e.target.id;
     setSelectedConditionId(selectedId);
-    if (!onInputChange) {
+    if (!ctx.onInputChange) {
       return;
     }
     // update the field corresponding to the selected condition
-    onInputChange(widget.get("customFieldName"), e.target.value);
+    ctx.onInputChange(widget.get("customFieldName"), e.target.value);
 
     // gather all field names to reset for the current condition
     const conditions: Scrivito.Widget[] = widget.get("conditions");
