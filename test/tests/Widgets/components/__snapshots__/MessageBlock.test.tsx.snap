@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageBlock renders correctly 1`] = `
+<div
+  className="qst-message-block-container"
+>
+  <div
+    className="message-block alert fade show alert-warning "
+  >
+    <p
+      className="m-0"
+    >
+      <strong>
+        Editor's info:
+      </strong>
+       
+      This widget must be placed within a Neoletter Form.
+    </p>
+  </div>
+</div>
+`;

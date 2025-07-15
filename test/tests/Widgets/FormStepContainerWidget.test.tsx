@@ -1,5 +1,5 @@
 import * as Scrivito from "scrivito";
-import { fireEvent, screen } from "@testing-library/react";
+import { fireEvent, getByText, screen } from "@testing-library/react";
 import { FormStepContainerWidget } from "../../../src/Widgets/FormStepContainerWidget/FormStepContainerWidgetClass";
 import { FormStepWidget } from "../../../src/Widgets/FormStepWidget/FormStepWidgetClass";
 import { FormDateWidget } from "../../../src/Widgets/FormDateWidget/FormDateWidgetClass";
@@ -82,13 +82,14 @@ describe("FormStepContainerWidget", () => {
     pageRenderer.render({
       body: [new FormStepContainerWidget(widgetProps)]
     });
-
+    console.log(document.documentElement.outerHTML)
     const container = document.querySelector("form");
-    const emptyTenantElement = document.querySelector(
-      ".scrivito-neoletter-form-widgets.missing-id"
+    const warningMessageContainer = document.querySelector(".qst-message-block-container");
+    const warningMessage = getByText(warningMessageContainer! as HTMLElement,
+      "Tenant has not been configured for the form widget."
     );
+    expect(warningMessage).toBeInTheDocument();
     expect(container).not.toBeInTheDocument();
-    expect(emptyTenantElement).toBeInTheDocument();
     jest.resetAllMocks();
   });
 
