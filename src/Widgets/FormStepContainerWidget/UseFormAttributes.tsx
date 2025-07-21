@@ -20,6 +20,8 @@ export function useFormWidgetAttributes(widget: Widget): FormWidgetAttributes {
 		showRetryButton: widget.get("showRetryButton") as boolean || false,
 		retryButtonText: widget.get("retryButtonText") as string || "",
 		retryButtonAlignment: widget.get("retryButtonAlignment") as string || "text-center",
+		retryButtonSize: widget.get("retryButtonSize") as string || "btn-md",
+		footerButtonsSize: widget.get("footerButtonsSize") as string || "btn-md",
 		formId: widget.get("formId") as string,
 		showSubmittingPreview: widget.get("previewSubmittingMessage") as boolean || false,
 		showSubmittedPreview: widget.get("previewSubmittedMessage") as boolean || false,
