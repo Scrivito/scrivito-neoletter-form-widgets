@@ -22,9 +22,14 @@ Scrivito.provideEditingConfig("FormSignatureWidget", {
         { value: "block", title: "Full width" }
       ]
     },
+    buttonSize: {
+      title: "Button size",
+      description: "Default: Medium",
+      values: [{ value: "btn-sm", title: "Small" }, { value: "btn-md", title: "Medium" }, { value: "btn-lg", title: "Large" }]
+    },
     helpText: { title: "Help text" }
   },
-  properties: ["title", "customFieldName", "strokeThickness", "strokeColor", "backgroundColor", "deleteButtonText", "deleteButtonAlignment", "helpText"],
+  properties: ["title", "customFieldName", "strokeThickness", "strokeColor", "backgroundColor", "deleteButtonText", "deleteButtonAlignment", "buttonSize", "helpText"],
   initialContent: {
     title: "Sign here",
     customFieldName: "custom_",
@@ -32,7 +37,8 @@ Scrivito.provideEditingConfig("FormSignatureWidget", {
     strokeThickness: 2,
     strokeColor: "black",
     backgroundColor: "#ffffff",
-    deleteButtonAlignment: "left"
+    deleteButtonAlignment: "left",
+    buttonSize: "btn-md"
 
   },
   validations: [insideFormContainerValidation, customFieldNameValidation]

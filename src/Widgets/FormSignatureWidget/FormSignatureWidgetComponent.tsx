@@ -39,6 +39,7 @@ Scrivito.provideComponent(FormSignatureWidget, ({ widget }) => {
         strokeThickness={widget.get("strokeThickness") || 2}
         backgroundColor={widget.get("backgroundColor") || "#ffffff"}
         deleteButtonAlignment={widget.get("deleteButtonAlignment") || "block"}
+        buttonSize={widget.get("buttonSize") as string || ""}
       ></Signature>
       <input
         type="hidden"
