@@ -23,6 +23,8 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
   const isMultiSelect = widget.get("selectionType") == "multi";
   const isDropdown = widget.get("selectionType") == "dropdown";
   const validationText = widget.get("validationText") as string || "Please select an item ";
+  const titleAlignment = widget.get("titleAlignment") as string || "left;"
+
   const ctx = useFormContext();
   if (!ctx) {
     return <MessageBlock type="noContext" />;
@@ -77,12 +79,13 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
           required={widget.get("required")}
           helptext={widget.get("helpText")}
           title={widget.get("title")}
+          titleAlignment={titleAlignment}
           onInputChange={onChangeDropdown}
           isInvalid={isInvalid}
         />
       ) : (
         <>
-          {widget.get("title") && <div className="select-title">
+          {widget.get("title") && <div className={`select-title ${titleAlignment}`}>
             <Scrivito.ContentTag
               attribute="title"
               content={widget}

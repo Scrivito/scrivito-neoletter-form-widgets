@@ -20,6 +20,9 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
       title: "Items"
     },
     title: { title: "Label" },
+    titleAlignment: {
+      title: "Label position",
+    },
     customFieldName: { title: "Field name" },
     required: { title: "Mandatory" },
     validationText: {
@@ -36,6 +39,9 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
       title: "Arrange items horizontally",
       description: "When enabled, all items will be displayed in a single row."
     },
+    inlineViewAlignment: {
+      title: "Align items",
+    },
     useFloatingLabel: {
       title: "Enable floating label",
       description: "Places the label inside the dropdown."
@@ -50,6 +56,8 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     return getProperties(widget as unknown as Scrivito.Widget);
   },
   initialContent: {
+    titleAlignment: "left",
+    inlineViewAlignment: "left",
     selectionType: "radio",
     title: "Please choose",
     items: ["Yes", "No"],
@@ -80,23 +88,27 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     customFieldNameValidation
   ]
 });
-
+//TODO: improve order
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getProperties(widget: Scrivito.Widget): any[] {
   const type = widget.get("selectionType") as string;
   const required = widget.get("required") as boolean;
   const showClearSelectionButton = widget.get("showClearSelectionButton") as boolean;
+  const inlineViewEnabled = widget.get("inlineView") as boolean;
+  const floatingLabelEnabled = widget.get("useFloatingLabel") as boolean;
   const props = [
     "selectionType",
     "title",
+    ["titleAlignment", { enabled: !floatingLabelEnabled }],
+    "helpText",
     "customFieldName",
     ["required", { enabled: type !== "multi" }],
     ["validationText", { enabled: widget.get("required") }],
-    "helpText"
+
   ];
-  // show/hide inlineView
+  // show/hide inlineView & alignment for items
   if (type == "radio" || type == "multi") {
-    props.splice(3, 0, "inlineView");
+    props.splice(3, 0, "inlineView", ["inlineViewAlignment", { enabled: inlineViewEnabled }]);
   }
   // show/hide items
   if (type != "linear-scale") {

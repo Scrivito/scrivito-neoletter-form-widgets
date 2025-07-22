@@ -26,6 +26,18 @@
     p {
       display: inline;
     }
+      &.left {
+      text-align: start;
+    }
+
+    &.center {
+     text-align: center;
+    }
+
+    &.right {
+     text-align: end;
+  
+  }
   }
 
   .select-label {
@@ -59,6 +71,21 @@
     &>* {
       padding-right: 1em;
     }
+  }
+
+  .inline {
+     &.left {
+      justify-content: flex-start;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.right {
+      justify-content: flex-end;
+  
+  }
   }
 
   .linear-scale-container {
@@ -126,6 +153,19 @@
       display: inline;
     }
 
+    label {
+      display: flex;
+
+      &.left {
+        justify-content: flex-start;
+      }
+      &.center {
+        justify-content: center;
+      }
+      &.right {
+        justify-content: flex-end;
+      }
+    }
     &.floating-label {
       min-height: 54px;
       padding-top: 1.25rem;
