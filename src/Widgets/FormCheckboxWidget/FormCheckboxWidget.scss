@@ -1,14 +1,14 @@
 .scrivito-neoletter-form-widgets.form-container-widget .form-check {
   .form-check-label {
     display: inline;
-    &.is-invalid {
-    color: initial;
-    }
     color: inherit;
+
+    &.is-invalid {
+      color: initial;
+    }
     p {
       display: inline;
       margin: 0;
     }
   }
 }
-
