@@ -613,3 +613,18 @@ body .scrivito-neoletter-review-form-modal {
 .grecaptcha-badge {
   z-index: 999999;
 }
+
+.invalid-feedback {
+  	&.left {
+			text-align: start;
+		}
+
+		&.center {
+			text-align: center;
+		}
+
+		&.right {
+			text-align: end;
+
+		}
+}

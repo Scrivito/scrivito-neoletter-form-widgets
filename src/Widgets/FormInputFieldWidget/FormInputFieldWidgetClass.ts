@@ -6,6 +6,11 @@ export const FormInputFieldWidget = Scrivito.provideWidgetClass(
   {
     attributes: {
       label: "html",
+      alignment: [
+        "enum", {
+          values: ["left", "center", "right"]
+        }
+      ],
       placeholder: "string",
       required: "boolean",
       helpText: "html",

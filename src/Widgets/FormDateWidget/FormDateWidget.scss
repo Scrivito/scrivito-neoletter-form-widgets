@@ -1,7 +1,37 @@
 .scrivito-neoletter-form-widgets .form-date {
+  display: inline-block;
+  width: 100%;
   .date-title {
+
     p {
       display: inline;
+    }
+
+  &.left {
+      text-align: start;
+    }
+
+    &.center {
+      text-align: center;
+    }
+
+    &.right {
+      text-align: end;
+
+    }
+  }
+  .date-title, input {
+    &.left {
+      text-align: start;
+    }
+
+    &.center {
+      text-align: center;
+    }
+
+    &.right {
+      text-align: end;
+
     }
   }
 }

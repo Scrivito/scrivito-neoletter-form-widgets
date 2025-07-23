@@ -10,6 +10,9 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
   thumbnail: formInputFieldWidgetIcon,
   attributes: {
     required: { title: "Mandatory" },
+    alignment: {
+      title: "Alignment",
+    },
     validationText: {
       title: "Validation Message",
       description: "This message appears when the input is invalid."
@@ -49,6 +52,7 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
   },
   initialContent: {
     label: "Custom field",
+    alignment: "left",
     placeholder: "Your custom field",
     type: "custom",
     customType: "single_line",
@@ -63,6 +67,7 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
       "customType",
       "customFieldName",
       "label",
+      ["alignment", { enabled: !widget.get("useFloatingLabel") }],
       "placeholder",
       "useFloatingLabel",
       "required",
@@ -73,10 +78,10 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
       return customProps as any
     }
     if (widget.get("type") === "email" || widget.get("type") === "name") {
-      return ["type", "useUserCredentials", "label", "placeholder", "required", ["validationText", { enabled: widget.get("required") }], "useFloatingLabel", "helpText"];
+      return ["type", "useUserCredentials", "label", ["alignment", { enabled: !widget.get("useFloatingLabel") }], "placeholder", "required", ["validationText", { enabled: widget.get("required") }], "placeholder", "required", ["validationText", { enabled: widget.get("required") }], "useFloatingLabel", "helpText"];
     }
 
-    return ["type", "label", "placeholder", "required", ["validationText", { enabled: widget.get("required") }], "useFloatingLabel", "helpText"];
+    return ["type", "label", ["alignment", { enabled: !widget.get("useFloatingLabel") }], "placeholder", "required", ["validationText", { enabled: widget.get("required") }], "useFloatingLabel", "helpText"];
   },
   validations: [
     insideFormContainerValidation,

@@ -13,6 +13,7 @@ Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
   const [selectedIcons, setSelectedIcons] = React.useState(0);
   const [hoveredIcons, setHoveredIcons] = React.useState(0);
   const hoverEffect = widget.get("hoverEffect");
+  const alignment = widget.get("alignment");
   const color = getIconColor(widget);
   const ctx = useFormContext();
   if (!ctx) {
@@ -25,8 +26,8 @@ Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
 
   }
   return (
-    <div className="form-rating mb-3">
-      {widget.get("title") && <div className="rating-title">
+    <div className={`form-rating mb-3 ${alignment}`}>
+      {widget.get("title") && <div className={`rating-title `}>
         <Scrivito.ContentTag
           attribute="title"
           content={widget}
@@ -35,21 +36,23 @@ Scrivito.provideComponent(FormRatingWidget, ({ widget }) => {
         {widget.get("helpText") && <HelpText widget={widget} />}
       </div>
       }
-      {createArray(5).map((n, i) => (
-        <RatingIcon
-          key={i}
-          icon={widget.get("icon") || "bi-star-fill"}
-          color={getColor(
-            color,
-            selectedIcons > i,
-            hoverEffect && hoveredIcons > i
-          )}
-          size={widget.get("size") || "bs-icon-default"}
-          onSelect={() => handleSelect(i + 1)}
-          onHover={() => hoverEffect && setHoveredIcons(i + 1)}
-          onHoverOut={() => hoverEffect && setHoveredIcons(0)}
-        />
-      ))}
+      <div className="icons-container">
+        {createArray(5).map((n, i) => (
+          <RatingIcon
+            key={i}
+            icon={widget.get("icon") || "bi-star-fill"}
+            color={getColor(
+              color,
+              selectedIcons > i,
+              hoverEffect && hoveredIcons > i
+            )}
+            size={widget.get("size") || "bs-icon-default"}
+            onSelect={() => handleSelect(i + 1)}
+            onHover={() => hoverEffect && setHoveredIcons(i + 1)}
+            onHoverOut={() => hoverEffect && setHoveredIcons(0)}
+          />
+        ))}
+      </div>
       <input
         type="hidden"
         className="show-in-review"

@@ -14,6 +14,7 @@ Scrivito.provideComponent(FormCheckboxWidget, ({ widget }) => {
   const fieldName = getFieldName(widget);
   const mandatory = widget.get("required");
   const validationText = widget.get("validationText") || "Please tick the box";
+  const alignment = widget.get("alignment") as string || "left";
   const ctx = useFormContext();
   if (!ctx) {
     return <MessageBlock type="noContext" />;
@@ -31,7 +32,7 @@ Scrivito.provideComponent(FormCheckboxWidget, ({ widget }) => {
   return (
     <div
       ref={ref}
-      className="form-check mb-3"
+      className={`form-check mb-3 ${alignment}`}
     >
       <input
         className={`form-check-input ${isInvalid ? "is-invalid" : ""}`}
@@ -49,7 +50,7 @@ Scrivito.provideComponent(FormCheckboxWidget, ({ widget }) => {
         {widget.get("required") && <Mandatory />}
         {widget.get("helpText") && <HelpText widget={widget} />}
       </label>
-      {isInvalid && <div className="invalid-feedback">
+      {isInvalid && <div className={`invalid-feedback ${alignment}`}>
         {validationText}
       </div>}
     </div>

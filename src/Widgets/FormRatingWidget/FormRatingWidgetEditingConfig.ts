@@ -10,6 +10,9 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
   thumbnail: formContainerWidgetIcon,
   attributes: {
     title: { title: "Label" },
+    alignment: {
+      title: "Alignment",
+    },
     customFieldName: { title: "Field name" },
     helpText: { title: "Help text" },
     hoverEffect: {
@@ -40,7 +43,7 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
     },
     customColor: { title: "Custom Hex Color" }
   },
-  properties: ["title", "customFieldName", "helpText"],
+  properties: ["title", "alignment", "customFieldName", "helpText"],
   propertiesGroups: (widget: Scrivito.Widget) => {
     return [
       {
@@ -58,6 +61,7 @@ Scrivito.provideEditingConfig("FormRatingWidget", {
   },
   initialContent: {
     title: "Please leave your rating",
+    alignment: "left",
     customFieldName: "custom_",
     colorType: "default",
     customColor: "#ffd700",

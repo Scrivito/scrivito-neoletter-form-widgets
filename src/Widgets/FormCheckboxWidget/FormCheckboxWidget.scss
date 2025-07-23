@@ -1,4 +1,17 @@
 .scrivito-neoletter-form-widgets.form-container-widget .form-check {
+
+   &.left {
+      text-align: start;
+    }
+
+    &.center {
+      text-align: center;
+    }
+
+    &.right {
+      text-align: end;
+
+    }
   .form-check-label {
     display: inline;
     color: inherit;
@@ -10,5 +23,8 @@
       display: inline;
       margin: 0;
     }
+  }
+  input {
+    position: absolute;
   }
 }

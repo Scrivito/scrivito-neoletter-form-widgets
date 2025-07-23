@@ -22,9 +22,9 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
   const mandatory = widget.get("required");
   const isMultiSelect = widget.get("selectionType") == "multi";
   const isDropdown = widget.get("selectionType") == "dropdown";
-  const validationText = widget.get("validationText") as string || "Please select an item ";
-  const titleAlignment = widget.get("titleAlignment") as string || "left;"
-
+  const validationText = widget.get("validationText") || "Please select an item ";
+  const titleAlignment = widget.get("titleAlignment") || "left";
+  const floatingLabel = widget.get("useFloatingLabel")
   const ctx = useFormContext();
   if (!ctx) {
     return <MessageBlock type="noContext" />;
@@ -113,7 +113,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
           parentRef={ref}
         />
       )}
-      {(mandatory && isInvalid) && <div className="invalid-feedback">
+      {(mandatory && isInvalid) && <div className={`invalid-feedback ${!floatingLabel ? `${titleAlignment}` : ``}`}>
         {validationText}
       </div>}
     </div>

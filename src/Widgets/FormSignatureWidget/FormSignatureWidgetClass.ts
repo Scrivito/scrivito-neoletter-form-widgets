@@ -3,6 +3,11 @@ import * as Scrivito from "scrivito";
 export const FormSignatureWidget = Scrivito.provideWidgetClass("FormSignatureWidget", {
   attributes: {
     title: "html",
+    alignment: [
+      "enum", {
+        values: ["left", "center", "right"]
+      }
+    ],
     helpText: "html",
     customFieldName: "string",
     strokeThickness: "integer",

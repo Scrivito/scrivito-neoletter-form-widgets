@@ -53,7 +53,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       </label>
       }
       <select
-        className={`dropdown-select form-select ${required && isInvalid ? "is-invalid" : ""}`}
+        className={`dropdown-select form-select ${required && isInvalid ? "is-invalid" : ""} ${!useFloatingLabel ? `${titleAlignment}` : ""}`}
         name={name}
         id={id}
         onChange={handleChange}

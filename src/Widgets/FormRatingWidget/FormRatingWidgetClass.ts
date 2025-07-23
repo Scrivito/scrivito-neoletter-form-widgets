@@ -5,6 +5,11 @@ export const FormRatingWidget = Scrivito.provideWidgetClass(
   {
     attributes: {
       title: "html",
+      alignment: [
+        "enum", {
+          values: ["left", "center", "right"]
+        }
+      ],
       colorType: [
         "enum",
         {

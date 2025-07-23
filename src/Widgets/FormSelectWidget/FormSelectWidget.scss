@@ -61,6 +61,15 @@
 
   .dropdown-select {
     width: 100%;
+    &.left {
+        text-align: start;
+      }
+      &.center {
+        text-align: center;
+      }
+      &.right {
+        text-align: end;
+      }
   }
 
   .inline {
