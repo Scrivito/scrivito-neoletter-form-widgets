@@ -404,7 +404,8 @@ The `Form Conditional Container` widget allows you to conditionally show or hide
 
 - Input type: Choose the input type for conditional selection including radio buttons or dropdowns.
 - Label: Set the label for the conditional container.
-- Alignment: Aligns the widget. Enabled only for radio buttons. Not available for conditional dropdowns.
+- Alignment: Aligns the widget. Enabled only for radio buttons. Arrange items horizontally needs to be enabled. Not available for conditional dropdowns.
+- Arrange items horizontally: When enabled, all items will be displayed in a single row. (Radio buttons only.)
 - Conditions: Define conditions that determine which content is shown.
 - Field name: Define the field name for the conditional container.
 - Mandatory: Indicates whether the conditional container is required.
