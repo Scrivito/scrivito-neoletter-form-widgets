@@ -4,6 +4,7 @@ import { render } from "@testing-library/react";
 import { FormFooterSingleStep } from "../../../../src/Widgets/FormStepContainerWidget/components/FormFooterSingleStepComponent";
 import { DummyWidget } from "../../../helpers/dummyWidget";
 import renderer from "react-test-renderer";
+import { renderWithFormContext } from "../../../helpers/renderWithFormContext";
 
 const widget = new DummyWidget({
   singleSubmitButtonAlignment: "block",
@@ -11,11 +12,11 @@ const widget = new DummyWidget({
 }) as unknown as Scrivito.Widget;
 
 describe("FormFooterSingleStep", () => {
-  const onSubmitMock = () => {};
+  const onSubmitMock = () => { };
 
   it("renders correctly with block alignment", () => {
-    const { getByText } = render(
-      <FormFooterSingleStep widget={widget} onSubmit={() => {}} submitDisabled={false} />
+    const { getByText } = renderWithFormContext(
+      <FormFooterSingleStep widget={widget} onSubmit={() => { }} submitDisabled={false} />
     );
 
     const button = getByText("Submit");
@@ -26,7 +27,7 @@ describe("FormFooterSingleStep", () => {
   it("renders correctly with left alignment", () => {
     widget.update({ singleSubmitButtonAlignment: "left" });
 
-    const { getByText, container } = render(
+    const { getByText, container } = renderWithFormContext(
       <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />
     );
 
@@ -42,7 +43,7 @@ describe("FormFooterSingleStep", () => {
       submitButtonText: "Send"
     });
 
-    const { getByText, container } = render(
+    const { getByText, container } = renderWithFormContext(
       <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />
     );
 
@@ -55,8 +56,8 @@ describe("FormFooterSingleStep", () => {
   it("renders correctly with centered alignment", () => {
     widget.update({ singleSubmitButtonAlignment: "text-center" });
 
-    const { getByText, container } = render(
-      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false}/>
+    const { getByText, container } = renderWithFormContext(
+      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />
     );
 
     const button = getByText("Send");
@@ -66,7 +67,7 @@ describe("FormFooterSingleStep", () => {
   });
 
   it("renders correctly with disabled submit button", () => {
-    const { getByText } = render(
+    const { getByText } = renderWithFormContext(
       <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={true} />
     );
 
@@ -76,9 +77,8 @@ describe("FormFooterSingleStep", () => {
   });
 
   it("renders correctly", () => {
-    const tree = renderer
-      .create(<FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { container } = renderWithFormContext(<FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />)
+    expect(container).toMatchSnapshot();
   });
+
 });

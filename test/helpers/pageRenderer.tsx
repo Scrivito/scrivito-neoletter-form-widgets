@@ -6,6 +6,8 @@ import renderer from "react-test-renderer";
 import { FormProvider } from "../../src/Widgets/FormStepContainerWidget/FormContext";
 import { ValidationProvider } from "../../src/FormValidation/ValidationContext";
 import { CaptchaProvider } from "../../src/Widgets/FormStepContainerWidget/CaptchaContext";
+import { FormAttributesProvider } from "../../src/Widgets/FormStepContainerWidget/FormAttributesContext";
+import { defaultFormContextAttrValues } from "./testData";
 
 const PageDummy = Scrivito.provideObjClass("PageDummy", {
   attributes: {
@@ -25,18 +27,20 @@ class PageRenderer {
 
     return (
       <CaptchaProvider>
+        <FormAttributesProvider values={defaultFormContextAttrValues}>
 
-        <ValidationProvider>
-          <FormProvider
-            value={{
-              onInputChange: jest.fn(),
-              getStepInfo: jest.fn(() => ({ stepNumber: 1, isActive: true, isSingleStep: false })),
-              navigateOnClick: jest.fn()
-            }}
-          >
-            <Scrivito.ContentTag tag="div" content={page} attribute="body" />
-          </FormProvider>
-        </ValidationProvider>
+          <ValidationProvider>
+            <FormProvider
+              value={{
+                onInputChange: jest.fn(),
+                getStepInfo: jest.fn(() => ({ stepNumber: 1, isActive: true, isSingleStep: false })),
+                navigateOnClick: jest.fn()
+              }}
+            >
+              <Scrivito.ContentTag tag="div" content={page} attribute="body" />
+            </FormProvider>
+          </ValidationProvider>
+        </FormAttributesProvider>
       </CaptchaProvider>
     );
   }

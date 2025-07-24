@@ -10,6 +10,7 @@ const pageRenderer = new PageRenderer();
 
 const widgetProps = {
   title: "Test Rating Title",
+  alignment: "left",
   helpText: "Sample help text",
   icon: "bi-star-fill",
   size: "bs-icon-default",

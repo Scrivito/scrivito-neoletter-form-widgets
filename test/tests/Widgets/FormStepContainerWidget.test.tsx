@@ -82,7 +82,6 @@ describe("FormStepContainerWidget", () => {
     pageRenderer.render({
       body: [new FormStepContainerWidget(widgetProps)]
     });
-    console.log(document.documentElement.outerHTML)
     const container = document.querySelector("form");
     const warningMessageContainer = document.querySelector(".qst-message-block-container");
     const warningMessage = getByText(warningMessageContainer! as HTMLElement,

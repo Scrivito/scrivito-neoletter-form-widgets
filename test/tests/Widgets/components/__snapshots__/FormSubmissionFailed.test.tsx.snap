@@ -1,21 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FormSubmissionFailed renders correctly 1`] = `
-<div
-  className="form-submission-failed "
-  style={{}}
->
+<div>
   <div
-    className="text-center"
+    class="form-submission-failed "
   >
-    <i
-      aria-hidden="true"
-      className="bi bi-exclamation-triangle-fill bi-2x"
-    />
-     
-    <span>
-      Submission failed!
-    </span>
+    <div
+      class="text-center"
+    >
+      <i
+        aria-hidden="true"
+        class="bi bi-exclamation-triangle-fill bi-2x"
+      />
+       
+      <span>
+        Submission failed!
+      </span>
+    </div>
   </div>
 </div>
 `;

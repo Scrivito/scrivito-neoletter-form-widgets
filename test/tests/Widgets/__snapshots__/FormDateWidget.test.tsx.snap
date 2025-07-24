@@ -7,7 +7,7 @@ exports[`FormDateWidget renders correctly 1`] = `
       className="form-date mb-3"
     >
       <div
-        className="date-title"
+        className="date-title left"
       >
         <span
           dangerouslySetInnerHTML={
@@ -39,7 +39,7 @@ exports[`FormDateWidget renders correctly 1`] = `
         </div>
       </div>
       <input
-        className="datepicker form-control "
+        className="datepicker form-control  left"
         onChange={[Function]}
         type="date"
       />

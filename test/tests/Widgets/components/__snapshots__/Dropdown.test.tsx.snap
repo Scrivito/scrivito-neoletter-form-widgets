@@ -5,7 +5,7 @@ exports[`Dropdown renders correctly 1`] = `
   class="dropdown-wrapper  "
 >
   <label
-    class="dropdown-label"
+    class="dropdown-label left"
     for="fakeId"
   >
     <div
@@ -19,7 +19,7 @@ exports[`Dropdown renders correctly 1`] = `
     </div>
   </label>
   <select
-    class="dropdown-select form-select "
+    class="dropdown-select form-select  left"
     id="fakeId"
     name="testDropdown"
   >

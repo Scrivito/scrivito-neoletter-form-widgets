@@ -1,10 +1,10 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
-import { render, fireEvent } from "@testing-library/react";
+import { fireEvent } from "@testing-library/react";
 import { FormFooterMultiSteps } from "../../../../src/Widgets/FormStepContainerWidget/components/FormFooterMultiStepsComponent";
 import { DummyWidget } from "../../../helpers/dummyWidget";
 import { prepareReviewContent } from "../../../../src/Widgets/FormStepContainerWidget/utils/prepareReviewContent";
-import renderer from "react-test-renderer";
+import { renderWithFormContext } from "../../../helpers/renderWithFormContext";
 
 jest.mock(
   "../../../../src/Widgets/FormStepContainerWidget/utils/prepareReviewContent"
@@ -30,17 +30,20 @@ describe("FormFooterMultiSteps", () => {
   });
 
   it("renders correctly with required buttons", () => {
-    const { getByText } = render(
+    const { getByText } = renderWithFormContext(
+
+
       <FormFooterMultiSteps
         widget={widget}
-        onPageChange={() => {}}
-        onSubmit={() => {}}
+        onPageChange={() => { }}
+        onSubmit={() => { }}
         currentStep={1}
         isLastPage={false}
         stepsLength={3}
         showReview={true}
         submitDisabled={false}
       />
+
     );
 
     expect(getByText("Back")).toBeInTheDocument();
@@ -49,18 +52,18 @@ describe("FormFooterMultiSteps", () => {
   });
 
   it("renders correctly with disabled submit button", () => {
-    const { getByText } = render(
+    const { getByText } = renderWithFormContext(
       <FormFooterMultiSteps
         widget={widget}
-        onPageChange={() => {}}
-        onSubmit={() => {}}
+        onPageChange={() => { }}
+        onSubmit={() => { }}
         currentStep={3}
         isLastPage={true}
         stepsLength={3}
         showReview={true}
         submitDisabled={true}
       />
-      );
+    );
 
     const button = getByText("Submit");
     expect(button).toHaveAttribute("disabled");
@@ -68,11 +71,11 @@ describe("FormFooterMultiSteps", () => {
   });
 
   it("triggers review display correctly when Review button is clicked", () => {
-    const { getByText } = render(
+    const { getByText } = renderWithFormContext(
       <FormFooterMultiSteps
         widget={widget}
-        onPageChange={() => {}}
-        onSubmit={() => {}}
+        onPageChange={() => { }}
+        onSubmit={() => { }}
         currentStep={1}
         isLastPage={true}
         stepsLength={3}
@@ -88,11 +91,11 @@ describe("FormFooterMultiSteps", () => {
   });
 
   it("displays Submit button on last page", () => {
-    const { getByText } = render(
+    const { getByText } = renderWithFormContext(
       <FormFooterMultiSteps
         widget={widget}
-        onPageChange={() => {}}
-        onSubmit={() => {}}
+        onPageChange={() => { }}
+        onSubmit={() => { }}
         currentStep={3}
         isLastPage={true}
         stepsLength={3}
@@ -105,11 +108,11 @@ describe("FormFooterMultiSteps", () => {
   });
 
   it("hides backward-button on the first page", () => {
-    const { getByText } = render(
+    const { getByText } = renderWithFormContext(
       <FormFooterMultiSteps
         widget={widget}
-        onPageChange={() => {}}
-        onSubmit={() => {}}
+        onPageChange={() => { }}
+        onSubmit={() => { }}
         currentStep={1}
         isLastPage={false}
         stepsLength={3}
@@ -123,11 +126,11 @@ describe("FormFooterMultiSteps", () => {
   });
 
   it("shows backward-button on page 2", () => {
-    const { getByText } = render(
+    const { getByText } = renderWithFormContext(
       <FormFooterMultiSteps
         widget={widget}
-        onPageChange={() => {}}
-        onSubmit={() => {}}
+        onPageChange={() => { }}
+        onSubmit={() => { }}
         currentStep={2}
         isLastPage={false}
         stepsLength={3}
@@ -141,11 +144,11 @@ describe("FormFooterMultiSteps", () => {
   });
 
   it("does not show Review button on last page if showReview is false", () => {
-    const { queryByText } = render(
+    const { queryByText } = renderWithFormContext(
       <FormFooterMultiSteps
         widget={widget}
-        onPageChange={() => {}}
-        onSubmit={() => {}}
+        onPageChange={() => { }}
+        onSubmit={() => { }}
         currentStep={3}
         isLastPage={true}
         stepsLength={3}
@@ -158,20 +161,18 @@ describe("FormFooterMultiSteps", () => {
   });
 
   it("renders correctly", () => {
-    const tree = renderer
-      .create(
-        <FormFooterMultiSteps
-          widget={widget}
-          onPageChange={() => {}}
-          onSubmit={() => {}}
-          currentStep={1}
-          isLastPage={true}
-          stepsLength={3}
-          showReview={true}
-          submitDisabled={false}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { container } = renderWithFormContext(
+      <FormFooterMultiSteps
+        widget={widget}
+        onPageChange={() => { }}
+        onSubmit={() => { }}
+        currentStep={1}
+        isLastPage={true}
+        stepsLength={3}
+        showReview={true}
+        submitDisabled={false}
+      />
+    );
+    expect(container).toMatchSnapshot();
   });
 });

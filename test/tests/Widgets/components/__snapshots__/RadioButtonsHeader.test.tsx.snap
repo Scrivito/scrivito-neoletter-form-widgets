@@ -5,7 +5,7 @@ exports[`RadioButtonsHeader renders correctly 1`] = `
   className="mb-3 select-container condition-wrapper"
 >
   <div
-    className="select-title"
+    className="select-title "
   >
     <div
       className="mandatory-container"
@@ -20,7 +20,7 @@ exports[`RadioButtonsHeader renders correctly 1`] = `
     </div>
   </div>
   <div
-    className="row "
+    className="row"
   >
     <label
       className="select-label radio"

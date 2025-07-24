@@ -3,6 +3,7 @@ import * as Scrivito from "scrivito";
 import { fireEvent, render } from "@testing-library/react";
 import { Dropdown } from "../../../../src/Widgets/FormStepContainerWidget/components/SelectDropdownComponent";
 import { DummyWidget } from "../../../helpers/dummyWidget";
+import { renderWithFormContext } from "../../../helpers/renderWithFormContext";
 
 describe("Dropdown", () => {
   const widget = new DummyWidget({
@@ -16,6 +17,7 @@ describe("Dropdown", () => {
     options: ["Option 1", "Option 2", "Option 3"],
     name: "testDropdown",
     useFloatingLabel: false,
+    alignment: "left",
     widget: widget,
     required: true,
     helptext: "",
@@ -25,7 +27,7 @@ describe("Dropdown", () => {
   }
   it("renders the Dropdown component with options and empty dropdown", () => {
 
-    const { container, getByText } = render(
+    const { container, getByText } = renderWithFormContext(
       <Dropdown {...widgetProps} />
     );
 
@@ -40,7 +42,7 @@ describe("Dropdown", () => {
 
   it("applies floating label class when useFloatingLabel is true", () => {
 
-    const { container } = render(
+    const { container } = renderWithFormContext(
       <Dropdown {...widgetProps} useFloatingLabel={true} />
     );
 
@@ -50,7 +52,7 @@ describe("Dropdown", () => {
 
   it("toggles is-selected class based on user selection", () => {
 
-    const { container, getByRole } = render(
+    const { container, getByRole } = renderWithFormContext(
       <Dropdown  {...widgetProps} useFloatingLabel={true} />
     );
 
@@ -63,7 +65,7 @@ describe("Dropdown", () => {
   });
 
   it("doesn't show is-invalid class for valid input", () => {
-    const { container } = render(
+    const { container } = renderWithFormContext(
       <Dropdown {...widgetProps} isInvalid={false} />
     );
 
@@ -72,7 +74,7 @@ describe("Dropdown", () => {
   });
 
   it("shows is-invalid class for invalid input", () => {
-    const { container } = render(
+    const { container } = renderWithFormContext(
       <Dropdown {...widgetProps} isInvalid={true} />
     );
 
@@ -83,7 +85,7 @@ describe("Dropdown", () => {
 
   it("renders correctly", () => {
 
-    const { container } = render(
+    const { container } = renderWithFormContext(
       <Dropdown {...widgetProps} useFloatingLabel={false} />
     );
 

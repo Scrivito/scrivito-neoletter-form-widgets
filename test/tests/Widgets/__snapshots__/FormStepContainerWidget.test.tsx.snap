@@ -48,7 +48,7 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
                       className="form-date mb-3"
                     >
                       <div
-                        className="date-title"
+                        className="date-title left"
                       >
                         <span
                           dangerouslySetInnerHTML={
@@ -60,7 +60,7 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
                         />
                       </div>
                       <input
-                        className="datepicker form-control "
+                        className="datepicker form-control  left"
                         onChange={[Function]}
                         type="date"
                       />
@@ -90,7 +90,7 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
                       className="form-date mb-3"
                     >
                       <div
-                        className="date-title"
+                        className="date-title left"
                       >
                         <span
                           dangerouslySetInnerHTML={
@@ -102,7 +102,7 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
                         />
                       </div>
                       <input
-                        className="datepicker form-control "
+                        className="datepicker form-control  left"
                         onChange={[Function]}
                         type="date"
                       />
@@ -124,7 +124,7 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
         className="form-buttons"
       >
         <button
-          className="btn btn-primary backward-button"
+          className="btn btn-primary backward-button btn-md"
           hidden={true}
           onClick={[Function]}
         >
@@ -136,14 +136,14 @@ exports[`FormStepContainerWidget renders correctly 1`] = `
           1 / 2
         </div>
         <button
-          className="btn btn-primary forward-button "
+          className="btn btn-primary btn-md forward-button "
           hidden={false}
           onClick={[Function]}
         >
           forward
         </button>
         <button
-          className="btn btn-primary submit-button"
+          className="btn btn-primary submit-button btn-md"
           disabled={false}
           hidden={true}
           onClick={[Function]}
