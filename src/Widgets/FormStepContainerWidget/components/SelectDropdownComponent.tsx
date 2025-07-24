@@ -13,7 +13,7 @@ interface DropdownProps {
   required: boolean;
   helptext: string;
   title: string;
-  titleAlignment: string;
+  alignment: string;
   isInvalid: boolean;
   onInputChange: (fieldName: string, value: string) => void;
 }
@@ -26,7 +26,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   required,
   helptext,
   title,
-  titleAlignment,
+  alignment,
   isInvalid,
   onInputChange
 }) => {
@@ -42,7 +42,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
   return (
     <div className={`dropdown-wrapper ${useFloatingLabel ? 'floating-label' : ``} ${isSelected ? "is-selected" : ""}`}>
-      {title && <label htmlFor={id} className={`dropdown-label ${!useFloatingLabel ? `${titleAlignment}` : ``}`}>
+      {title && <label htmlFor={id} className={`dropdown-label ${!useFloatingLabel ? `${alignment}` : ``}`}>
         <Scrivito.ContentTag
           attribute="title"
           content={widget}
@@ -53,7 +53,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       </label>
       }
       <select
-        className={`dropdown-select form-select ${required && isInvalid ? "is-invalid" : ""} ${!useFloatingLabel ? `${titleAlignment}` : ""}`}
+        className={`dropdown-select form-select ${required && isInvalid ? "is-invalid" : ""} ${!useFloatingLabel ? `${alignment}` : ""}`}
         name={name}
         id={id}
         onChange={handleChange}

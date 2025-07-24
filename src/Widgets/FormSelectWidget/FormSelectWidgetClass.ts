@@ -11,7 +11,7 @@ export const FormSelectWidget = Scrivito.provideWidgetClass(
         }
       ],
       title: "html",
-      titleAlignment: [
+      alignment: [
         "enum", {
           values: ["left", "center", "right"]
         }
@@ -29,11 +29,6 @@ export const FormSelectWidget = Scrivito.provideWidgetClass(
       linearScaleUpperLabel: "string",
       clearSelectionButtonText: "string",
       inlineView: "boolean",
-      inlineViewAlignment: [
-        "enum", {
-          values: ["left", "center", "right"]
-        }
-      ],
       useFloatingLabel: "boolean",
       navigateOnClick: "boolean",
       showClearSelectionButton: "boolean",

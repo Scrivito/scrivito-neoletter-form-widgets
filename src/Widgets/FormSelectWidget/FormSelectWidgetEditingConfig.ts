@@ -20,8 +20,8 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
       title: "Items"
     },
     title: { title: "Label" },
-    titleAlignment: {
-      title: "Label position",
+    alignment: {
+      title: "Alignment",
     },
     customFieldName: { title: "Field name" },
     required: { title: "Mandatory" },
@@ -39,9 +39,6 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
       title: "Arrange items horizontally",
       description: "When enabled, all items will be displayed in a single row."
     },
-    inlineViewAlignment: {
-      title: "Align items",
-    },
     useFloatingLabel: {
       title: "Enable floating label",
       description: "Places the label inside the dropdown."
@@ -56,8 +53,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     return getProperties(widget as unknown as Scrivito.Widget);
   },
   initialContent: {
-    titleAlignment: "left",
-    inlineViewAlignment: "left",
+    alignment: "left",
     selectionType: "radio",
     title: "Please choose",
     items: ["Yes", "No"],
@@ -99,16 +95,16 @@ function getProperties(widget: Scrivito.Widget): any[] {
   const props = [
     "selectionType",
     "title",
-    ["titleAlignment", { enabled: !floatingLabelEnabled }],
+    ["alignment", { enabled: !floatingLabelEnabled && inlineViewEnabled }],
     "helpText",
     "customFieldName",
     ["required", { enabled: type !== "multi" }],
     ["validationText", { enabled: widget.get("required") }],
 
   ];
-  // show/hide inlineView & alignment for items
+  // show/hide inlineView for items
   if (type == "radio" || type == "multi") {
-    props.splice(3, 0, "inlineView", ["inlineViewAlignment", { enabled: inlineViewEnabled }]);
+    props.splice(3, 0, "inlineView");
   }
   // show/hide items
   if (type != "linear-scale") {

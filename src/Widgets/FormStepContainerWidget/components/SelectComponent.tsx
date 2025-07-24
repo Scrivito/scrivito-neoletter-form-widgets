@@ -25,7 +25,7 @@ export const Select: React.FC<SelectProps> = Scrivito.connect(
   ({ isMultiSelect, required, isInvalid, widget, name, onChange, onClickNavigate }) => {
     const type = widget.get("selectionType") as string;
     // works only for inline view for now
-    const itemsAlignment = widget.get("inlineViewAlignment") as string || "left";
+    const itemsAlignment = widget.get("alignment") as string || "left";
     if (type == "radio" || type == "multi") {
       const items = widget.get("items") as string[];
       return (
