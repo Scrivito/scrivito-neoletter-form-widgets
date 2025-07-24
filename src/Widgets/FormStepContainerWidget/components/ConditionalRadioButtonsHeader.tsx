@@ -12,6 +12,8 @@ export const RadioButtonsHeader = Scrivito.connect(
     const fieldName = getFieldName(widget);
     const mandatory = widget.get("required") as boolean;
     const validationText = widget.get("validationText") as string || "Please select an item ";
+    const inline = widget.get("inlineView") as boolean;
+    const alignment = widget.get("alignment") as string || "left";
     const { isLocallyValid, setIsLocallyValid, ref } = useValidationField(fieldName, mandatory);
 
     const isInvalid = !isLocallyValid;
@@ -25,7 +27,7 @@ export const RadioButtonsHeader = Scrivito.connect(
         ref={ref}
         className={`mb-3 select-container ${Scrivito.isInPlaceEditingActive() ? "condition-wrapper" : ""
           }`}>
-        {widget.get("title") && <div className="select-title">
+        {widget.get("title") && <div className={`select-title ${inline ? `${alignment}` : ``}`}>
           <Scrivito.ContentTag
             attribute="title"
             content={widget}
@@ -34,7 +36,7 @@ export const RadioButtonsHeader = Scrivito.connect(
           {widget.get("required") && <Mandatory />}
           {widget.get("helpText") && <HelpText widget={widget} />}
         </div>}
-        <div className="row ">
+        <div className={`${inline ? `inline ${alignment}` : "row"}`}>
           {widget.get("conditions").map((condition: Scrivito.Widget) => (
             <SelectItem
               selectionType={"radio"}
@@ -48,7 +50,7 @@ export const RadioButtonsHeader = Scrivito.connect(
             />
           ))}
         </div>
-        {(mandatory && isInvalid) && <div className="invalid-feedback">
+        {(mandatory && isInvalid) && <div className={`invalid-feedback ${alignment}`}>
           {validationText}
         </div>}
       </div>

@@ -95,7 +95,7 @@ function getProperties(widget: Scrivito.Widget): any[] {
   const props = [
     "selectionType",
     "title",
-    ["alignment", { enabled: !floatingLabelEnabled && inlineViewEnabled }],
+    ["alignment", { enabled: (type == "dropdown" && !floatingLabelEnabled) || (type == "radio" && inlineViewEnabled) }],
     "helpText",
     "customFieldName",
     ["required", { enabled: type !== "multi" }],
