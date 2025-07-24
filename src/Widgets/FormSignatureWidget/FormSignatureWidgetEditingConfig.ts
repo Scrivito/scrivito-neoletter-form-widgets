@@ -26,7 +26,7 @@ Scrivito.provideEditingConfig("FormSignatureWidget", {
       ]
     },
     buttonSize: {
-      title: "Button size",
+      title: "Delete Button size",
       description: "Default: Medium",
       values: [{ value: "btn-sm", title: "Small" }, { value: "btn-md", title: "Medium" }, { value: "btn-lg", title: "Large" }]
     },

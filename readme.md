@@ -184,12 +184,14 @@ The `Form` widget has the following properties divided into several tabs:
   - Show retry button: Show a retry button at the end of the message/widgets.
   - Retry button text: The text for the retry button.
   - Retry button alignment: Alignment for the retry button.
+  - Retry button size: Select the size of the retry button.
   - Preview failed message/widgets: Preview the message or content displayed if the form submission failed. Works only in edit mode.
 - "Navigation area" tab (Content depends on form type i.e. single-step or multiple-steps)
   - Forward button text: Text for the forward button.
   - Backward button text: Text for the backward button.
   - Submit button text: Text for the submit button.
   - Alignment: Alignment for the single-step form submit button.
+  - Button size: Select the size of all footer buttons.
 
 ### Validation
 
@@ -330,6 +332,7 @@ The `Form Signature` widget allows users to draw a signature on the form. This w
 - Background color: Set the background color of the signature area.
 - Delete button text: Specify the text for the delete button that allows users to clear their signature.
 - Delete button alignment: Alignment of the delete button.
+- Delete Button size: Select the size of all footer buttons.
 
 ### Validation
 

@@ -218,7 +218,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       values: [{ value: "btn-sm", title: "Small" }, { value: "btn-md", title: "Medium" }, { value: "btn-lg", title: "Large" }]
     },
     retryButtonSize: {
-      title: "Button size",
+      title: "Retry button size",
       description: "Default: Medium",
       values: [{ value: "btn-sm", title: "Small" }, { value: "btn-md", title: "Medium" }, { value: "btn-lg", title: "Large" }]
     },
