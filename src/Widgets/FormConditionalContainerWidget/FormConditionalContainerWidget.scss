@@ -1,16 +1,20 @@
 .scrivito-neoletter-form-widgets {
   .condition-wrapper {
     border: green 2px dotted;
+
     .select-title {
       margin-top: 0.3em;
+
       p {
         display: inline;
       }
     }
   }
+
   .conditional-content {
     border: orange 2px dotted;
   }
+
   .header-info {
     position: absolute;
     top: 6px;
@@ -20,7 +24,15 @@
     padding: 0 5px;
     margin: 0;
   }
+
   .dropdown-container {
+    .select-title {
+      p {
+        display: inline;
+        margin: 0;
+      }
+    }
+
     select {
       width: 100%;
     }

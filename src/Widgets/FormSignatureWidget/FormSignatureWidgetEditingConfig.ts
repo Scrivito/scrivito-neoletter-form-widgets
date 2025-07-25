@@ -8,6 +8,9 @@ Scrivito.provideEditingConfig("FormSignatureWidget", {
   thumbnail: formSignatureWidgetIcon,
   attributes: {
     title: { title: "Label" },
+    alignment: {
+      title: "Alignment",
+    },
     customFieldName: { title: "Field name" },
     strokeThickness: { title: "Stroke thickness", description: 'Default: "2"' },
     strokeColor: { title: "Stroke color", description: 'Default: "black"' },
@@ -22,17 +25,24 @@ Scrivito.provideEditingConfig("FormSignatureWidget", {
         { value: "block", title: "Full width" }
       ]
     },
+    buttonSize: {
+      title: "Delete Button size",
+      description: "Default: Medium",
+      values: [{ value: "btn-sm", title: "Small" }, { value: "btn-md", title: "Medium" }, { value: "btn-lg", title: "Large" }]
+    },
     helpText: { title: "Help text" }
   },
-  properties: ["title", "customFieldName", "strokeThickness", "strokeColor", "backgroundColor", "deleteButtonText", "deleteButtonAlignment", "helpText"],
+  properties: ["title", "alignment", "customFieldName", "strokeThickness", "strokeColor", "backgroundColor", "deleteButtonText", "deleteButtonAlignment", "buttonSize", "helpText"],
   initialContent: {
     title: "Sign here",
+    alignment: "left",
     customFieldName: "custom_",
     deleteButtonText: "Delete",
     strokeThickness: 2,
     strokeColor: "black",
     backgroundColor: "#ffffff",
-    deleteButtonAlignment: "left"
+    deleteButtonAlignment: "left",
+    buttonSize: "btn-md"
 
   },
   validations: [insideFormContainerValidation, customFieldNameValidation]

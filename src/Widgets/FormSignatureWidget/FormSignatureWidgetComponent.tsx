@@ -9,6 +9,7 @@ import { MessageBlock } from "../FormStepContainerWidget/components/MessageBlock
 import "./FormSignatureWidget.scss";
 
 Scrivito.provideComponent(FormSignatureWidget, ({ widget }) => {
+  const alignment = widget.get("alignment") || "left";
   const [signatureDataUrl, setSignatureDataUrl] = React.useState<string>("")
   const ctx = useFormContext();
   if (!ctx) {
@@ -22,7 +23,7 @@ Scrivito.provideComponent(FormSignatureWidget, ({ widget }) => {
 
   return (
     <div className="form-signature mb-3">
-      {widget.get("title") && <div className="signature-title">
+      {widget.get("title") && <div className={`signature-title ${alignment}`}>
         <Scrivito.ContentTag
           attribute="title"
           content={widget}
@@ -39,6 +40,7 @@ Scrivito.provideComponent(FormSignatureWidget, ({ widget }) => {
         strokeThickness={widget.get("strokeThickness") || 2}
         backgroundColor={widget.get("backgroundColor") || "#ffffff"}
         deleteButtonAlignment={widget.get("deleteButtonAlignment") || "block"}
+        buttonSize={widget.get("buttonSize") as string || ""}
       ></Signature>
       <input
         type="hidden"

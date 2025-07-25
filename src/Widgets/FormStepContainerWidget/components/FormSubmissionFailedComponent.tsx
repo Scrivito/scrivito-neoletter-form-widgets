@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
+import { useFormAttributesContext } from "../FormAttributesContext";
 
 interface FormSubmissionFailedProps {
   submissionFailureText: string;
@@ -26,6 +27,7 @@ export const FormSubmissionFailed: React.FC<FormSubmissionFailedProps> = ({
   getClassNames,
   onReSubmit
 }) => {
+  const { retryButtonSize } = useFormAttributesContext();
   return (
     <div className={`form-submission-failed ${getClassNames()}`} style={fixedFormHeight ? { height: `${formHeight}px` } : {}}>
       {type == "default" ?
@@ -48,7 +50,7 @@ export const FormSubmissionFailed: React.FC<FormSubmissionFailedProps> = ({
             : buttonAlignment
             }`}>
           <button
-            className={`btn btn-primary retry-button ${buttonAlignment === "block"
+            className={`btn btn-primary retry-button ${retryButtonSize} ${buttonAlignment === "block"
               ? " btn-block"
               : ""
               }`}

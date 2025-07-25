@@ -11,6 +11,7 @@ export const DropdownHeader = Scrivito.connect(
     const mandatory = widget.get("required") as boolean;
     const fieldName = getFieldName(widget);
     const validationText = widget.get("validationText") as string || "Please select an item";
+    const alignment = widget.get("alignment") as string || "left";
     const { isLocallyValid, setIsLocallyValid, ref } = useValidationField(fieldName, mandatory);
 
     const isInvalid = !isLocallyValid;
@@ -24,7 +25,7 @@ export const DropdownHeader = Scrivito.connect(
         ref={ref}
         className={`mb-3 dropdown-container ${Scrivito.isInPlaceEditingActive() ? "condition-wrapper" : ""
           }`}>
-        {widget.get("title") && <div className="select-title">
+        {widget.get("title") && <div className={`select-title dropdown-label ${alignment}`}>
           <Scrivito.ContentTag
             attribute="title"
             content={widget}
@@ -34,7 +35,7 @@ export const DropdownHeader = Scrivito.connect(
           {widget.get("helpText") && <HelpText widget={widget} />}
         </div>}
         <select
-          className={`form-select ${isInvalid ? "is-invalid" : ""}`}
+          className={`form-select ${isInvalid ? "is-invalid" : ""} ${alignment}`}
           name={getFieldName(widget)}
           id={widget.id()}
           onChange={onChange}>

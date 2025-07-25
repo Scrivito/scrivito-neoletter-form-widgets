@@ -8,6 +8,9 @@ Scrivito.provideEditingConfig("FormDateWidget", {
   thumbnail: formDateWidgetIcon,
   attributes: {
     title: { title: "Label" },
+    alignment: {
+      title: "Alignment",
+    },
     dateType: {
       title: "Format",
       values: [
@@ -23,9 +26,10 @@ Scrivito.provideEditingConfig("FormDateWidget", {
     helpText: { title: "Help text" },
     required: { title: "Mandatory" }
   },
-  properties: (widget) => ["title", "dateType", "customFieldName", "required", ["validationText", { enabled: widget.get("required") }], "helpText"] as any,
+  properties: (widget) => ["title", "alignment", "dateType", "customFieldName", "required", ["validationText", { enabled: widget.get("required") }], "helpText"] as any,
   initialContent: {
     title: "Please enter a date",
+    alignment: "left",
     customFieldName: "custom_",
     dateType: "date",
     validationText: "Please enter a date"

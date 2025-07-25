@@ -16,6 +16,7 @@ Scrivito.provideComponent(FormDateWidget, ({ widget }) => {
   const [value, setValue] = React.useState("");
   const mandatory = widget.get("required");
   const validationText = widget.get("validationText") || "Please enter a date";
+  const alignment = widget.get("alignment") as string || "left";
 
   const ctx = useFormContext();
   if (!ctx) {
@@ -36,7 +37,7 @@ Scrivito.provideComponent(FormDateWidget, ({ widget }) => {
       className="form-date mb-3"
     >
       {widget.get("title") &&
-        <div className="date-title">
+        <div className={`date-title ${alignment}`} >
           <Scrivito.ContentTag
             attribute="title"
             content={widget}
@@ -48,7 +49,7 @@ Scrivito.provideComponent(FormDateWidget, ({ widget }) => {
       }
       <input
         onChange={onChangeValue}
-        className={`datepicker form-control ${isInvalid ? "is-invalid" : ""}`}
+        className={`datepicker form-control ${isInvalid ? "is-invalid" : ""} ${alignment}`}
         type={widget.get("dateType")!}
       />
       <input
@@ -57,7 +58,7 @@ Scrivito.provideComponent(FormDateWidget, ({ widget }) => {
         name={getFieldName(widget)}
         value={value} />
       {
-        isInvalid && <div className="invalid-feedback">
+        isInvalid && <div className={`invalid-feedback ${alignment}`}>
           {validationText}
         </div>
       }

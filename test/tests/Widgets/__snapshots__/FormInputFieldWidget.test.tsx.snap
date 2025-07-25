@@ -4,7 +4,7 @@ exports[`FormInputFieldWidget Component renders correctly 1`] = `
 <div>
   <div>
     <div
-      className="mb-3 form-input-container  "
+      className="mb-3 form-input-container   left"
     >
       <label
         className="input-label"
@@ -40,7 +40,7 @@ exports[`FormInputFieldWidget Component renders correctly 1`] = `
         </div>
       </label>
       <input
-        className="form-control "
+        className="form-control  left"
         defaultValue=""
         id="form_text_input_widget_staticWidgetID"
         maxLength={250}

@@ -4,10 +4,10 @@ exports[`FormRatingWidget Component renders correctly 1`] = `
 <div>
   <div>
     <div
-      className="form-rating mb-3"
+      className="form-rating mb-3 left"
     >
       <div
-        className="rating-title"
+        className="rating-title "
       >
         <span
           dangerouslySetInnerHTML={
@@ -27,66 +27,70 @@ exports[`FormRatingWidget Component renders correctly 1`] = `
           />
         </div>
       </div>
-      <i
-        className="bs-icon bi-star-fill bs-icon-default rating-icon"
-        onClick={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-        style={
-          {
-            "color": "",
-            "paddingRight": "0.08em",
+      <div
+        className="icons-container"
+      >
+        <i
+          className="bs-icon bi-star-fill bs-icon-default rating-icon"
+          onClick={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          style={
+            {
+              "color": "",
+              "paddingRight": "0.08em",
+            }
           }
-        }
-      />
-      <i
-        className="bs-icon bi-star-fill bs-icon-default rating-icon"
-        onClick={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-        style={
-          {
-            "color": "",
-            "paddingRight": "0.08em",
+        />
+        <i
+          className="bs-icon bi-star-fill bs-icon-default rating-icon"
+          onClick={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          style={
+            {
+              "color": "",
+              "paddingRight": "0.08em",
+            }
           }
-        }
-      />
-      <i
-        className="bs-icon bi-star-fill bs-icon-default rating-icon"
-        onClick={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-        style={
-          {
-            "color": "",
-            "paddingRight": "0.08em",
+        />
+        <i
+          className="bs-icon bi-star-fill bs-icon-default rating-icon"
+          onClick={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          style={
+            {
+              "color": "",
+              "paddingRight": "0.08em",
+            }
           }
-        }
-      />
-      <i
-        className="bs-icon bi-star-fill bs-icon-default rating-icon"
-        onClick={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-        style={
-          {
-            "color": "",
-            "paddingRight": "0.08em",
+        />
+        <i
+          className="bs-icon bi-star-fill bs-icon-default rating-icon"
+          onClick={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          style={
+            {
+              "color": "",
+              "paddingRight": "0.08em",
+            }
           }
-        }
-      />
-      <i
-        className="bs-icon bi-star-fill bs-icon-default rating-icon"
-        onClick={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-        style={
-          {
-            "color": "",
-            "paddingRight": "0.08em",
+        />
+        <i
+          className="bs-icon bi-star-fill bs-icon-default rating-icon"
+          onClick={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          style={
+            {
+              "color": "",
+              "paddingRight": "0.08em",
+            }
           }
-        }
-      />
+        />
+      </div>
       <input
         className="show-in-review"
         name=""

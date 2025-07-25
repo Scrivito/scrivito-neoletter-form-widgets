@@ -184,12 +184,14 @@ The `Form` widget has the following properties divided into several tabs:
   - Show retry button: Show a retry button at the end of the message/widgets.
   - Retry button text: The text for the retry button.
   - Retry button alignment: Alignment for the retry button.
+  - Retry button size: Select the size of the retry button.
   - Preview failed message/widgets: Preview the message or content displayed if the form submission failed. Works only in edit mode.
 - "Navigation area" tab (Content depends on form type i.e. single-step or multiple-steps)
   - Forward button text: Text for the forward button.
   - Backward button text: Text for the backward button.
   - Submit button text: Text for the submit button.
   - Alignment: Alignment for the single-step form submit button.
+  - Button size: Select the size of all footer buttons.
 
 ### Validation
 
@@ -224,6 +226,7 @@ The `Form Checkbox` widget lets you add individual single checkbox input fields 
 - Input type: The checkbox type for accepting terms, a subscription, or a custom option.
 - Field name: Define the field name for the checkbox.
 - Label: Provide a descriptive label for the checkbox to convey its purpose.
+- Alignment: Aligns the widget.
 - Mandatory: Indicates whether the checkbox is required.
 - Validation Message: The text displayed when the input is invalid.
 - Help text: Provide optional help text for the checkbox.
@@ -242,6 +245,7 @@ The `Form Date` widget allows users to input dates in various formats. You can c
 ### Properties
 
 - Label: Set the label for the date input field.
+- Alignment: Aligns the widget.
 - Format: Choose between date-only and date-and-time formats.
 - Field name: Define the field name for the date input.
 - Mandatory: Indicates whether the date input is required.
@@ -290,6 +294,7 @@ The `Form Rating` widget has the following properties divided into several tabs:
 
 - "General" tab
   - Label: Set the label for the rating control.
+  - Alignment: Aligns the widget.
   - Field name: Define the field name for the rating.
   - Help text: Provide optional help text for the rating control.
 - "Stylings" tab
@@ -319,6 +324,7 @@ The `Form Signature` widget allows users to draw a signature on the form. This w
 ### Properties
 
 - Title: Set the title for the signature widget.
+- Alignment: Aligns the widget.
 - Help text: Provide optional help text for the signature.
 - Field name: Define the field name for the signature.
 - Stroke color: Choose the color of the signature stroke.
@@ -326,6 +332,7 @@ The `Form Signature` widget allows users to draw a signature on the form. This w
 - Background color: Set the background color of the signature area.
 - Delete button text: Specify the text for the delete button that allows users to clear their signature.
 - Delete button alignment: Alignment of the delete button.
+- Delete Button size: Select the size of all footer buttons.
 
 ### Validation
 
@@ -342,6 +349,7 @@ The `Form Select` widget enables you to create single or multiple selection elem
 
 - Input type: Choose the type of input, which can be single select (radio buttons, linear-scale or dropdown) or multi-select (checkboxes).
 - Label: Specify the label for the select input.
+- Alignment: Aligns the widget. Enabled if “Arrange items horizontally” is enabled for radio buttons or “Enable floating label” is disabled for dropdowns.
 - Items: Configure the items or options available for selection. (Not visible for input type linear-scale.)
 - Field name: Define the field name for the select input.
 - Enable floating label: Places the label inside the dropdown. (Visible for dropdown only.)
@@ -399,6 +407,8 @@ The `Form Conditional Container` widget allows you to conditionally show or hide
 
 - Input type: Choose the input type for conditional selection including radio buttons or dropdowns.
 - Label: Set the label for the conditional container.
+- Alignment: Aligns the widget. Enabled only for radio buttons. Arrange items horizontally needs to be enabled. Not available for conditional dropdowns.
+- Arrange items horizontally: When enabled, all items will be displayed in a single row. (Radio buttons only.)
 - Conditions: Define conditions that determine which content is shown.
 - Field name: Define the field name for the conditional container.
 - Mandatory: Indicates whether the conditional container is required.

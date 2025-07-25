@@ -211,7 +211,17 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       title: "Scrollbar width",
       description: 'The width of the scrollbar. "None" will hide the scrollbar.',
       values: [{ value: "default", title: "Default" }, { value: "thin", title: "Thin" }, { value: "none", title: "None" }]
-    }
+    },
+    footerButtonsSize: {
+      title: "Button size",
+      description: "Default: Medium",
+      values: [{ value: "btn-sm", title: "Small" }, { value: "btn-md", title: "Medium" }, { value: "btn-lg", title: "Large" }]
+    },
+    retryButtonSize: {
+      title: "Retry button size",
+      description: "Default: Medium",
+      values: [{ value: "btn-sm", title: "Small" }, { value: "btn-md", title: "Medium" }, { value: "btn-lg", title: "Large" }]
+    },
   },
   properties: (widget) => {
     const useFixedHeight = widget.get("fixedFormHeight");
@@ -259,6 +269,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
           "showRetryButton",
           ["retryButtonText", { enabled: showRetryButton }],
           ["retryButtonAlignment", { enabled: showRetryButton }],
+          ["retryButtonSize", { enabled: showRetryButton }],
           "previewFailedMessage"
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ] as any
@@ -379,6 +390,8 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     showRetryButton: false,
     retryButtonText: "Retry",
     retryButtonAlignment: "text-center",
+    footerButtonsSize: "btn-md",
+    retryButtonSize: "btn-md"
   },
   validations: [
     (widget: Scrivito.Widget) => {
@@ -448,12 +461,14 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
 function getNavigationProperties(widget: Scrivito.Widget): string[] {
   const singleStepNavigationProps = [
     "submitButtonText",
-    "singleSubmitButtonAlignment"
+    "singleSubmitButtonAlignment",
+    "footerButtonsSize"
   ];
   const MultiStepNavigationProps = [
     "forwardButtonText",
     "backwardButtonText",
-    "submitButtonText"
+    "submitButtonText",
+    "footerButtonsSize"
   ];
   if (widget.get("formType") == "single-step") {
     return singleStepNavigationProps;

@@ -7,7 +7,7 @@ exports[`FormSignatureWidget renders correctly 1`] = `
       className="form-signature mb-3"
     >
       <div
-        className="signature-title"
+        className="signature-title left"
       >
         <span
           dangerouslySetInnerHTML={
@@ -46,7 +46,7 @@ exports[`FormSignatureWidget renders correctly 1`] = `
           className=""
         >
           <button
-            className="delete btn btn-primary btn-block"
+            className="delete btn btn-primary btn-block "
             onClick={[Function]}
           >
             <span

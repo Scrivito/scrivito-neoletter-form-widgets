@@ -1,7 +1,24 @@
 .scrivito-neoletter-form-widgets .form-rating {
+  width: 100%;
+    &.left {
+      text-align: start;
+    }
+
+    &.center {
+      text-align: center;
+    }
+
+    &.right {
+      text-align: end;
+
+    }
   .rating-title {
+    display: inline-block;
+
     p {
       display: inline;
     }
+
+  
   }
 }

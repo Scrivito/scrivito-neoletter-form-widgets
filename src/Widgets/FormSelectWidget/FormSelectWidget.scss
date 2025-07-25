@@ -26,6 +26,18 @@
     p {
       display: inline;
     }
+      &.left {
+      text-align: start;
+    }
+
+    &.center {
+     text-align: center;
+    }
+
+    &.right {
+     text-align: end;
+  
+  }
   }
 
   .select-label {
@@ -49,6 +61,15 @@
 
   .dropdown-select {
     width: 100%;
+    &.left {
+        text-align: start;
+      }
+      &.center {
+        text-align: center;
+      }
+      &.right {
+        text-align: end;
+      }
   }
 
   .inline {
@@ -59,6 +80,21 @@
     &>* {
       padding-right: 1em;
     }
+  }
+
+  .inline {
+     &.left {
+      justify-content: flex-start;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.right {
+      justify-content: flex-end;
+  
+  }
   }
 
   .linear-scale-container {
@@ -121,12 +157,24 @@
 
   .dropdown-wrapper {
     position: relative;
-    margin-top: 1.5rem;
 
     p {
       display: inline;
     }
 
+    label {
+      display: flex;
+
+      &.left {
+        justify-content: flex-start;
+      }
+      &.center {
+        justify-content: center;
+      }
+      &.right {
+        justify-content: flex-end;
+      }
+    }
     &.floating-label {
       min-height: 54px;
       padding-top: 1.25rem;

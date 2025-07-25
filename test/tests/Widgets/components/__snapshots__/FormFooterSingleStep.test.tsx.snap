@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FormFooterSingleStep renders correctly 1`] = `
-<div
-  className="text-center"
->
-  <button
-    className="btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
+<div>
+  <div
+    class="text-center"
   >
-    Send
-  </button>
+    <button
+      class="btn btn-primary  btn-md"
+    >
+      Send
+    </button>
+  </div>
 </div>
 `;

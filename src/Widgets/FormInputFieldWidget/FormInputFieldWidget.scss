@@ -3,11 +3,45 @@
 	.form-input-container {
 		width: 100%;
 		position: relative;
+		display: inline-block;
+
+		&.left {
+			text-align: start;
+		}
+
+		&.center {
+			text-align: center;
+		}
+
+		&.right {
+			text-align: end;
+
+		}
+
 		.input-label {
 			p {
 				display: inline;
 			}
+
+
 		}
+
+		textarea,
+		input {
+			&.left {
+				text-align: start;
+			}
+
+			&.center {
+				text-align: center;
+			}
+
+			&.right {
+				text-align: end;
+
+			}
+		}
+
 
 		&.floating-label {
 			min-height: 65px;

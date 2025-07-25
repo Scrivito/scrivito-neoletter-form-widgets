@@ -5,7 +5,7 @@ exports[`DropdownHeader renders correctly 1`] = `
   className="mb-3 dropdown-container condition-wrapper"
 >
   <div
-    className="select-title"
+    className="select-title dropdown-label left"
   >
     <div
       className="mandatory-container"
@@ -20,7 +20,7 @@ exports[`DropdownHeader renders correctly 1`] = `
     </div>
   </div>
   <select
-    className="form-select "
+    className="form-select  left"
     id="fakeId"
     name="custom_dropdown"
     onChange={[Function]}

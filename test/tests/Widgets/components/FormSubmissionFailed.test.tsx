@@ -10,6 +10,7 @@ import { FormStepContainerWidget } from "../../../../src/Widgets/FormStepContain
 import "../../../../src/Widgets/FormStepContainerWidget/FormStepContainerWidgetComponent";
 import "../../../../src/Widgets/FormDateWidget/FormDateWidgetComponent";
 import PageRenderer from "../../../helpers/pageRenderer";
+import { renderWithFormContext } from "../../../helpers/renderWithFormContext";
 
 Scrivito.configure({ tenant: "inMemory" });
 const submissionFailureText = "Submission failed!";
@@ -75,7 +76,7 @@ describe("FormSubmissionFailed", () => {
   const widget = new DummyWidget(widgetProps) as unknown as Widget;
 
   it("renders the exclamation icon and outputs the text", () => {
-    const { container, getByText } = render(
+    const { container, getByText } = renderWithFormContext(
       <FormSubmissionFailed
         {...widgetProps}
         widget={widget}
@@ -191,15 +192,15 @@ describe("FormSubmissionFailed", () => {
     expect(retryButton).toHaveTextContent("retry");
   });
 
+
   it("renders correctly", () => {
-    const tree = renderer
-      .create(
-        <FormSubmissionFailed
-          {...widgetProps}
-          widget={widget}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { container } = renderWithFormContext(
+      <FormSubmissionFailed
+        {...widgetProps}
+        widget={widget}
+      />
+    )
+
+    expect(container).toMatchSnapshot();
   });
 });

@@ -11,6 +11,11 @@ export const FormSelectWidget = Scrivito.provideWidgetClass(
         }
       ],
       title: "html",
+      alignment: [
+        "enum", {
+          values: ["left", "center", "right"]
+        }
+      ],
       items: "stringlist",
       customFieldName: "string",
       required: "boolean",

@@ -15,7 +15,13 @@ export const FormConditionalContainerWidget = Scrivito.provideWidgetClass(
       conditions: ["widgetlist", { only: "FormConditionWidget" }],
       required: "boolean",
       validationText: "string",
-      helpText: "html"
+      helpText: "html",
+      inlineView: "boolean",
+      alignment: [
+        "enum", {
+          values: ["left", "center", "right"]
+        }
+      ],
     }
   }
 );

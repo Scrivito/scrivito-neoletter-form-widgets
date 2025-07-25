@@ -1,6 +1,22 @@
 .scrivito-neoletter-form-widgets .form-signature {
-  p {
-    display: inline;
+  display: inline-block;
+  width: 100%;
+  .signature-title {
+     &.left {
+      text-align: start;
+    }
+
+    &.center {
+      text-align: center;
+    }
+
+    &.right {
+      text-align: end;
+
+    }
+    p {
+      display: inline;
+    }
   }
   .signature {
     button.delete {

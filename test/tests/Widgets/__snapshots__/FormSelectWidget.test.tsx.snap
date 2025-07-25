@@ -10,7 +10,7 @@ exports[`FormSelectWidget renders correctly 1`] = `
         className="dropdown-wrapper  "
       >
         <label
-          className="dropdown-label"
+          className="dropdown-label left"
           htmlFor="staticWidgetID"
         >
           <span
@@ -43,7 +43,7 @@ exports[`FormSelectWidget renders correctly 1`] = `
           </div>
         </label>
         <select
-          className="dropdown-select form-select "
+          className="dropdown-select form-select  left"
           id="staticWidgetID"
           name=""
           onChange={[Function]}

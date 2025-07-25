@@ -31,19 +31,37 @@ Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
     helpText: { title: "Help text" },
     conditions: {
       title: "Conditions"
-    }
+    },
+    alignment: {
+      title: "Alignment",
+    },
+    inlineView: {
+      title: "Arrange items horizontally",
+      description: "When enabled, all items will be displayed in a single row."
+    },
   },
-  properties: (widget) => [
-    "headerType",
-    "title",
-    "conditions",
-    "customFieldName",
-    "required",
-    ["validationText", { enabled: widget.get("required") }] as any,
-    "helpText"
-  ],
+  properties: (widget) => {
+    const type = widget.get("headerType") as string;
+    const inlineView = widget.get("inlineView") as string;
+    const enableAlignment = (type == "radio" && inlineView);
+    const props = [
+      "headerType",
+      "title",
+      "conditions",
+      "customFieldName",
+      "required",
+      "helpText",
+      ["validationText", { enabled: widget.get("required") }] as any,
+    ];
+    if (type == "radio") {
+      props.splice(2, 0, "inlineView", ["alignment", { enabled: enableAlignment }]);
+    }
+    return props;
+  },
   initialContent: {
     headerType: "radio",
+    alignment: "left",
+    inlineView: false,
     title: "Select the reason for your request",
     customFieldName: "custom_request_reason",
     conditions: [

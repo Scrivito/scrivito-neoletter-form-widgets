@@ -22,7 +22,9 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
   const mandatory = widget.get("required");
   const isMultiSelect = widget.get("selectionType") == "multi";
   const isDropdown = widget.get("selectionType") == "dropdown";
-  const validationText = widget.get("validationText") as string || "Please select an item ";
+  const validationText = widget.get("validationText") || "Please select an item ";
+  const alignment = widget.get("alignment") || "left";
+  const floatingLabel = widget.get("useFloatingLabel")
   const ctx = useFormContext();
   if (!ctx) {
     return <MessageBlock type="noContext" />;
@@ -77,12 +79,13 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
           required={widget.get("required")}
           helptext={widget.get("helpText")}
           title={widget.get("title")}
+          alignment={alignment}
           onInputChange={onChangeDropdown}
           isInvalid={isInvalid}
         />
       ) : (
         <>
-          {widget.get("title") && <div className="select-title">
+          {widget.get("title") && <div className={`select-title ${alignment}`}>
             <Scrivito.ContentTag
               attribute="title"
               content={widget}
@@ -110,7 +113,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
           parentRef={ref}
         />
       )}
-      {(mandatory && isInvalid) && <div className="invalid-feedback">
+      {(mandatory && isInvalid) && <div className={`invalid-feedback ${!floatingLabel ? `${alignment}` : ``}`}>
         {validationText}
       </div>}
     </div>

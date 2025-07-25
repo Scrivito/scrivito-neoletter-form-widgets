@@ -7,7 +7,7 @@ exports[`FormConditionalContainerWidget renders correctly 1`] = `
       className="mb-3 select-container "
     >
       <div
-        className="select-title"
+        className="select-title "
       >
         <span
           dangerouslySetInnerHTML={
@@ -19,7 +19,7 @@ exports[`FormConditionalContainerWidget renders correctly 1`] = `
         />
       </div>
       <div
-        className="row "
+        className="row"
       >
         <label
           className="select-label radio"

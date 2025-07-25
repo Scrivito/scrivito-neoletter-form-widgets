@@ -17,6 +17,7 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
   const mandatory = widget.get("required");
   const validationText = widget.get("validationText") || "Please fill out this field ";
   const useFloatingLabel = widget.get("useFloatingLabel");
+  const alignment = widget.get("alignment") || "left";
   const [isSelected, setIsSelected] = React.useState(false);
   const ctx = useFormContext();
   if (!ctx) {
@@ -53,12 +54,12 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
   return (
     <div
       ref={ref}
-      className={`mb-3 form-input-container ${useFloatingLabel ? 'floating-label' : ''} ${isSelected ? "is-selected" : ""}`}
+      className={`mb-3 form-input-container ${useFloatingLabel ? 'floating-label' : ''} ${isSelected ? "is-selected" : ""} ${!useFloatingLabel ? `${alignment}` : ``}`}
     >
       {!isEmpty(widget.get("label")) && (
         <>
           {widget.get("label") &&
-            <label htmlFor={id} className="input-label">
+            <label htmlFor={id} className={`input-label`}>
               <Scrivito.ContentTag
                 attribute="label"
                 content={widget}
@@ -74,7 +75,7 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
 
       {isCustomType(widget) && widget.get("customType") === "multi_line" ? (
         <textarea
-          className={`form-control ${isInvalid ? "is-invalid" : ""}`}
+          className={`form-control ${isInvalid ? "is-invalid" : ""} ${!useFloatingLabel ? `${alignment}` : ``}`}
           id={id}
           rows={3}
           name={fieldName}
@@ -83,7 +84,7 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
         />
       ) : (
         <input
-          className={`form-control ${isInvalid ? "is-invalid" : ""}`}
+          className={`form-control ${isInvalid ? "is-invalid" : ""} ${!useFloatingLabel ? `${alignment}` : ``}`}
           id={id}
           name={fieldName}
           maxLength={calculateMaxLength(fieldName)}
@@ -94,7 +95,7 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
         />
       )
       }
-      {isInvalid && <div className="invalid-feedback">
+      {isInvalid && <div className={`invalid-feedback ${!useFloatingLabel ? `${alignment}` : ``}`}>
         {validationText}
       </div>}
     </div >

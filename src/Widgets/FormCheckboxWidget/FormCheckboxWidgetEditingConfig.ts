@@ -23,17 +23,21 @@ Scrivito.provideEditingConfig("FormCheckboxWidget", {
     validationText: {
       title: "Validation Message",
       description: "This message appears when the input is invalid."
-    }
+    },
+    alignment: {
+      title: "Alignment",
+    },
   },
   properties: (widget: Scrivito.Widget): any =>
     isCustomType(widget)
-      ? ["type", "customFieldName", "label", "required", ["validationText", { enabled: widget.get("required") }], "helpText"]
-      : ["type", "label", "required", ["validationText", { enabled: widget.get("required") }], "helpText"],
+      ? ["type", "customFieldName", "label", "alignment", "required", ["validationText", { enabled: widget.get("required") }], "helpText"]
+      : ["type", "label", "alignment", "required", ["validationText", { enabled: widget.get("required") }], "helpText"],
   initialContent: {
     type: "custom",
     customFieldName: "custom_checkbox",
     label: "Please send me your free printed product catalog.",
-    validationText: "Please tick the box"
+    validationText: "Please tick the box",
+    alignment: "left",
 
   },
   validations: [

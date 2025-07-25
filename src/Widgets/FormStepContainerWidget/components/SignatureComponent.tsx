@@ -9,9 +9,10 @@ interface SignatureProps {
 	backgroundColor: string;
 	deleteButtonText: string;
 	deleteButtonAlignment: string;
+	buttonSize: string;
 }
 
-export const Signature: React.FC<SignatureProps> = ({ id, onChange, deleteButtonText, strokeColor, strokeThickness, backgroundColor, deleteButtonAlignment }) => {
+export const Signature: React.FC<SignatureProps> = ({ id, onChange, deleteButtonText, strokeColor, strokeThickness, backgroundColor, deleteButtonAlignment, buttonSize }) => {
 	const { canvasRef, handleDrawStart, handleDrawEnd, handleDrawMove, deleteSignature } = useSignatureCanvas(onChange, strokeThickness, strokeColor, backgroundColor);
 
 	return (
@@ -29,7 +30,7 @@ export const Signature: React.FC<SignatureProps> = ({ id, onChange, deleteButton
 				onTouchCancel={handleDrawEnd}
 			></canvas>
 			<div className={`${deleteButtonAlignment === "block" ? "" : deleteButtonAlignment}`}>
-				<button className={`delete btn btn-primary${deleteButtonAlignment === "block" ? " btn-block" : ""}`} onClick={deleteSignature}>
+				<button className={`delete btn btn-primary${deleteButtonAlignment === "block" ? " btn-block" : ""} ${buttonSize}`} onClick={deleteSignature}>
 					<span className="delete-text">{deleteButtonText}</span>
 				</button>
 			</div>

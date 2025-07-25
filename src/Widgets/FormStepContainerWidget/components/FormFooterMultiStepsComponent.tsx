@@ -3,6 +3,7 @@ import * as Scrivito from "scrivito";
 import { prepareReviewContent } from "../utils/prepareReviewContent";
 import { ReviewContent } from "../../../../types/types";
 import { ReviewPortal } from "./ReviewPortal";
+import { useFormAttributesContext } from "../FormAttributesContext";
 interface FormFooterMultiStepsProps {
   widget: Scrivito.Widget;
   onPageChange: (forward: boolean) => void;
@@ -30,12 +31,14 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
       const [reviewContent, setReviewContent] = React.useState<ReviewContent>(
         []
       );
+      const { footerButtonsSize } = useFormAttributesContext();
       const doShowReview = (isLastPage || Scrivito.isInPlaceEditingActive()) && showReview;
+
       return (
         <>
           <div className="form-buttons">
             <button
-              className="btn btn-primary backward-button"
+              className={`btn btn-primary backward-button ${footerButtonsSize}`}
               onClick={() => onPageChange(false)}
               hidden={currentStep == 1 && !Scrivito.isInPlaceEditingActive()}>
               {widget.get("backwardButtonText") as string}
@@ -45,14 +48,14 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
             </div>
             {doShowReview && (
               <button
-                className="btn btn-primary review-button"
+                className={`btn btn-primary review-button ${footerButtonsSize}`}
                 onClick={() => onShowReview(widget, setReviewContent, setShow)}>
                 {widget.get("reviewButtonText") as string}
               </button>
             )}
 
             <button
-              className={`btn btn-primary forward-button ${Scrivito.isInPlaceEditingActive() ? "edit-mode-margin" : ""}`}
+              className={`btn btn-primary ${footerButtonsSize} forward-button ${Scrivito.isInPlaceEditingActive() ? "edit-mode-margin" : ""}`}
               onClick={() => onPageChange(true)}
               hidden={isLastPage}
             >
@@ -60,7 +63,7 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
             </button>
 
             <button
-              className="btn btn-primary submit-button"
+              className={`btn btn-primary submit-button ${footerButtonsSize}`}
               onClick={onSubmit}
               disabled={isLastPage && submitDisabled}
               hidden={!(isLastPage || Scrivito.isInPlaceEditingActive())}
