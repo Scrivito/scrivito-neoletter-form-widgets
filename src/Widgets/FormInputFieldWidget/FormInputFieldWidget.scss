@@ -1,3 +1,4 @@
+@use "../../assets/styles/alignment.scss" as align;
 .scrivito-neoletter-form-widgets {
 
 	.form-input-container {
@@ -5,41 +6,17 @@
 		position: relative;
 		display: inline-block;
 
-		&.left {
-			text-align: start;
-		}
-
-		&.center {
-			text-align: center;
-		}
-
-		&.right {
-			text-align: end;
-
-		}
+		@include align.text-alignment;
 
 		.input-label {
 			p {
 				display: inline;
 			}
-
-
 		}
-
+		
 		textarea,
 		input {
-			&.left {
-				text-align: start;
-			}
-
-			&.center {
-				text-align: center;
-			}
-
-			&.right {
-				text-align: end;
-
-			}
+			@include align.text-alignment;
 		}
 
 

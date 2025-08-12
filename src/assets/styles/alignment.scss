@@ -1,0 +1,29 @@
+@mixin text-alignment {
+  &.left {
+    text-align: start;
+  }
+
+  &.center {
+    text-align: center;
+  }
+
+  &.right {
+    text-align: end;
+  }
+}
+
+@mixin flex-alignment {
+  display: flex;
+
+  &.left {
+    justify-content: flex-start;
+  }
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.right {
+    justify-content: flex-end;
+  }
+}

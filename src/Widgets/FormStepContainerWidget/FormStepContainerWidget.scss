@@ -1,3 +1,5 @@
+
+@use "../../assets/styles/alignment.scss" as align;
 // Styles for FormContainerWidget
 .scrivito-neoletter-form-widgets.form-container-widget {
 
@@ -63,19 +65,7 @@
   }
 
   .captcha-container {
-    display: flex;
-
-    &.left {
-      justify-content: left;
-    }
-
-    &.center {
-      justify-content: center;
-    }
-
-    &.right {
-      justify-content: right;
-    }
+  @include align.flex-alignment;
   }
 
   .missing-site-key {
@@ -615,16 +605,5 @@ body .scrivito-neoletter-review-form-modal {
 }
 
 .invalid-feedback {
-  	&.left {
-			text-align: start;
-		}
-
-		&.center {
-			text-align: center;
-		}
-
-		&.right {
-			text-align: end;
-
-		}
+  @include align.text-alignment;
 }

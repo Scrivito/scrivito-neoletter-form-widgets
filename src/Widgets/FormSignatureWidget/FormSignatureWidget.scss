@@ -1,19 +1,9 @@
+@use '../../assets/styles/alignment.scss' as align;
 .scrivito-neoletter-form-widgets .form-signature {
   display: inline-block;
   width: 100%;
   .signature-title {
-     &.left {
-      text-align: start;
-    }
-
-    &.center {
-      text-align: center;
-    }
-
-    &.right {
-      text-align: end;
-
-    }
+    @include align.text-alignment;
     p {
       display: inline;
     }

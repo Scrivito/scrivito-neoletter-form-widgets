@@ -1,3 +1,5 @@
+@use "../../assets/styles/alignment.scss" as align;
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -22,22 +24,11 @@
 
   .select-title {
     display: inline-block;
+    @include align.text-alignment;
 
     p {
       display: inline;
     }
-      &.left {
-      text-align: start;
-    }
-
-    &.center {
-     text-align: center;
-    }
-
-    &.right {
-     text-align: end;
-  
-  }
   }
 
   .select-label {
@@ -61,15 +52,7 @@
 
   .dropdown-select {
     width: 100%;
-    &.left {
-        text-align: start;
-      }
-      &.center {
-        text-align: center;
-      }
-      &.right {
-        text-align: end;
-      }
+    @include align.text-alignment;
   }
 
   .inline {
@@ -163,18 +146,9 @@
     }
 
     label {
-      display: flex;
-
-      &.left {
-        justify-content: flex-start;
-      }
-      &.center {
-        justify-content: center;
-      }
-      &.right {
-        justify-content: flex-end;
-      }
+      @include align.flex-alignment;
     }
+
     &.floating-label {
       min-height: 54px;
       padding-top: 1.25rem;
