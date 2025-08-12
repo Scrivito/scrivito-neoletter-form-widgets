@@ -42,7 +42,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
   return (
     <div className={`dropdown-wrapper ${useFloatingLabel ? 'floating-label' : ``} ${isSelected ? "is-selected" : ""}`}>
-      {title && <label htmlFor={id} className={`dropdown-label ${!useFloatingLabel ? `${alignment}` : ``}`}>
+      {title && <label htmlFor={id} className={`dropdown-label ${alignment}`}>
         <Scrivito.ContentTag
           attribute="title"
           content={widget}
@@ -53,7 +53,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       </label>
       }
       <select
-        className={`dropdown-select form-select ${required && isInvalid ? "is-invalid" : ""} ${!useFloatingLabel ? `${alignment}` : ""}`}
+        className={`dropdown-select form-select ${required && isInvalid ? "is-invalid" : ""} ${alignment}`}
         name={name}
         id={id}
         onChange={handleChange}

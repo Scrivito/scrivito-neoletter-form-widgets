@@ -17,11 +17,13 @@ Scrivito.provideComponent(FormDateWidget, ({ widget }) => {
   const mandatory = widget.get("required");
   const validationText = widget.get("validationText") || "Please enter a date";
   const alignment = widget.get("alignment") as string || "left";
+  const inputType = widget.get("dateType") as string || "date";
 
   const ctx = useFormContext();
   if (!ctx) {
     return <MessageBlock type="noContext" />;
   }
+
   const { isLocallyValid, setIsLocallyValid, ref } = useValidationField(fieldName, mandatory);
 
   const onChangeValue = (e: React.BaseSyntheticEvent) => {
@@ -50,7 +52,7 @@ Scrivito.provideComponent(FormDateWidget, ({ widget }) => {
       <input
         onChange={onChangeValue}
         className={`datepicker form-control ${isInvalid ? "is-invalid" : ""} ${alignment}`}
-        type={widget.get("dateType")!}
+        type={inputType}
       />
       <input
         type="hidden"

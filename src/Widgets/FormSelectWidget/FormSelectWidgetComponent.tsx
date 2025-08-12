@@ -12,6 +12,7 @@ import { ResetInputs } from "../FormStepContainerWidget/components/ResetInputsCo
 import { useFormContext } from "../FormStepContainerWidget/FormContext";
 import { useValidationField } from "../../FormValidation/hooks/useValidationField";
 import { MessageBlock } from "../FormStepContainerWidget/components/MessageBlock";
+import { isAlignmentEnabled } from "./selectUtils";
 import "./FormSelectWidget.scss";
 
 Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
@@ -23,8 +24,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
   const isMultiSelect = widget.get("selectionType") == "multi";
   const isDropdown = widget.get("selectionType") == "dropdown";
   const validationText = widget.get("validationText") || "Please select an item ";
-  const alignment = widget.get("alignment") || "left";
-  const floatingLabel = widget.get("useFloatingLabel")
+  const alignment = isAlignmentEnabled(widget) ? widget.get("alignment") || "left" : "left";
   const ctx = useFormContext();
   if (!ctx) {
     return <MessageBlock type="noContext" />;
@@ -113,7 +113,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
           parentRef={ref}
         />
       )}
-      {(mandatory && isInvalid) && <div className={`invalid-feedback ${!floatingLabel ? `${alignment}` : ``}`}>
+      {(mandatory && isInvalid) && <div className={`invalid-feedback ${alignment}`}>
         {validationText}
       </div>}
     </div>
