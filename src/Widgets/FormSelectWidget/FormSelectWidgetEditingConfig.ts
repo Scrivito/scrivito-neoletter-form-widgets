@@ -1,6 +1,7 @@
 import * as Scrivito from "scrivito";
 import { customFieldNameValidation } from "../FormStepContainerWidget/utils/validations/customFieldNameValidation";
 import { insideFormContainerValidation } from "../FormStepContainerWidget/utils/validations/insideFormContainerValidation";
+import { isAlignmentEnabled } from "./selectUtils";
 import formSelectWidgetIcon from "../../assets/images/form_widget_select.svg";
 
 Scrivito.provideEditingConfig("FormSelectWidget", {
@@ -90,12 +91,11 @@ function getProperties(widget: Scrivito.Widget): any[] {
   const type = widget.get("selectionType") as string;
   const required = widget.get("required") as boolean;
   const showClearSelectionButton = widget.get("showClearSelectionButton") as boolean;
-  const inlineViewEnabled = widget.get("inlineView") as boolean;
-  const floatingLabelEnabled = widget.get("useFloatingLabel") as boolean;
+
   const props = [
     "selectionType",
     "title",
-    ["alignment", { enabled: (type == "dropdown" && !floatingLabelEnabled) || (type == "radio" && inlineViewEnabled) }],
+    ["alignment", { enabled: isAlignmentEnabled(widget) }],
     "helpText",
     "customFieldName",
     ["required", { enabled: type !== "multi" }],
