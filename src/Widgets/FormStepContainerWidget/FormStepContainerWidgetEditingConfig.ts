@@ -244,6 +244,11 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     const { siteKey, captchaType } = getCaptchaOptions();
     const groups = [
       {
+        title: "Steps",
+        key: "FormSteps",
+        properties: ["steps"]
+      },
+      {
         title: "Hidden fields",
         key: "FormStepContainerWidgetHiddenFields",
         properties: ["hiddenFields"]
@@ -284,11 +289,6 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       groups.splice(
         1,
         0,
-        {
-          title: "Steps",
-          key: "FormSteps",
-          properties: ["steps"]
-        },
         {
           title: "Review",
           key: "FormReview",
@@ -410,34 +410,6 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
         return "No instanceId specified for form widgets.";
       }
     },
-
-    [
-      "submittingMessage",
-      (submittingMessage) => {
-        if (!submittingMessage) {
-          return "Specify the message to be displayed during form submission.";
-        }
-      }
-    ],
-
-    [
-      "submittedMessage",
-      (submittedMessage) => {
-        if (!submittedMessage) {
-          return "Specify the message to be displayed after successful form submission.";
-        }
-      }
-    ],
-
-    [
-      "failedMessage",
-      (failedMessage) => {
-        if (!failedMessage) {
-          return "Specify the message to be displayed after form submission failed.";
-        }
-      }
-    ],
-
     [
       "formId",
       (formId: string) => {

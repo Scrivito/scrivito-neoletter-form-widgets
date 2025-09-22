@@ -3,12 +3,7 @@ import * as Scrivito from "scrivito";
 import { useFormAttributesContext } from "../FormAttributesContext";
 
 interface FormSubmissionFailedProps {
-  submissionFailureText: string;
-  type: string;
   widget: Scrivito.Widget;
-  retryButtonText: string;
-  showRetryButton: boolean;
-  buttonAlignment: string;
   fixedFormHeight: boolean;
   formHeight: number;
   getClassNames: () => string;
@@ -16,26 +11,21 @@ interface FormSubmissionFailedProps {
 }
 //TODO: Use OWN text-center styles
 export const FormSubmissionFailed: React.FC<FormSubmissionFailedProps> = ({
-  submissionFailureText,
-  type,
   widget,
-  retryButtonText,
-  showRetryButton,
-  buttonAlignment,
   fixedFormHeight,
   formHeight,
   getClassNames,
   onReSubmit
 }) => {
-  const { retryButtonSize } = useFormAttributesContext();
+  const { retryButtonSize, retryButtonText, showRetryButton, failedMessage, failedMessageType, retryButtonAlignment } = useFormAttributesContext();
   return (
     <div className={`form-submission-failed ${getClassNames()}`} style={fixedFormHeight ? { height: `${formHeight}px` } : {}}>
-      {type == "default" ?
+      {failedMessageType == "default" ?
         <div className="text-center">
           <i
             className="bi bi-exclamation-triangle-fill bi-2x"
             aria-hidden="true"></i>{" "}
-          <span >{submissionFailureText}</span>
+          <span >{failedMessage}</span>
         </div>
         :
         <Scrivito.ContentTag
@@ -45,12 +35,12 @@ export const FormSubmissionFailed: React.FC<FormSubmissionFailedProps> = ({
       }
       {showRetryButton &&
         <div
-          className={`${buttonAlignment === "block"
+          className={`${retryButtonAlignment === "block"
             ? ""
-            : buttonAlignment
+            : retryButtonAlignment
             }`}>
           <button
-            className={`btn btn-primary retry-button ${retryButtonSize} ${buttonAlignment === "block"
+            className={`btn btn-primary retry-button ${retryButtonSize} ${retryButtonAlignment === "block"
               ? " btn-block"
               : ""
               }`}
