@@ -244,6 +244,11 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     const { siteKey, captchaType } = getCaptchaOptions();
     const groups = [
       {
+        title: "Steps",
+        key: "FormSteps",
+        properties: ["steps"]
+      },
+      {
         title: "Hidden fields",
         key: "FormStepContainerWidgetHiddenFields",
         properties: ["hiddenFields"]
@@ -284,11 +289,6 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       groups.splice(
         1,
         0,
-        {
-          title: "Steps",
-          key: "FormSteps",
-          properties: ["steps"]
-        },
         {
           title: "Review",
           key: "FormReview",
