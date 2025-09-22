@@ -11,7 +11,6 @@ interface FormFooterMultiStepsProps {
   currentStep: number;
   isLastPage: boolean;
   stepsLength: number;
-  showReview: boolean;
   submitDisabled: boolean;
 }
 
@@ -24,24 +23,23 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
       currentStep,
       isLastPage,
       stepsLength,
-      showReview,
       submitDisabled
     }) => {
+      const editMode = Scrivito.isInPlaceEditingActive();
       const [show, setShow] = React.useState(false);
       const [reviewContent, setReviewContent] = React.useState<ReviewContent>(
         []
       );
-      const { footerButtonsSize } = useFormAttributesContext();
-      const doShowReview = (isLastPage || Scrivito.isInPlaceEditingActive()) && showReview;
-
+      const { showReview, footerButtonsSize, backwardButtonText, forwardButtonText, submitButtonText, reviewButtonText } = useFormAttributesContext();
+      const doShowReview = (isLastPage || editMode) && showReview;
       return (
         <>
           <div className="form-buttons">
             <button
               className={`btn btn-primary backward-button ${footerButtonsSize}`}
               onClick={() => onPageChange(false)}
-              hidden={currentStep == 1 && !Scrivito.isInPlaceEditingActive()}>
-              {widget.get("backwardButtonText") as string}
+              hidden={currentStep == 1 && !editMode}>
+              {backwardButtonText}
             </button>
             <div className="step-counter">
               {currentStep + " / " + stepsLength}
@@ -50,25 +48,25 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
               <button
                 className={`btn btn-primary review-button ${footerButtonsSize}`}
                 onClick={() => onShowReview(widget, setReviewContent, setShow)}>
-                {widget.get("reviewButtonText") as string}
+                {reviewButtonText}
               </button>
             )}
 
             <button
-              className={`btn btn-primary ${footerButtonsSize} forward-button ${Scrivito.isInPlaceEditingActive() ? "edit-mode-margin" : ""}`}
+              className={`btn btn-primary ${footerButtonsSize} forward-button ${editMode ? "edit-mode-margin" : ""}`}
               onClick={() => onPageChange(true)}
               hidden={isLastPage}
             >
-              {(widget.get("forwardButtonText") as string)}
+              {forwardButtonText}
             </button>
 
             <button
               className={`btn btn-primary submit-button ${footerButtonsSize}`}
               onClick={onSubmit}
               disabled={isLastPage && submitDisabled}
-              hidden={!(isLastPage || Scrivito.isInPlaceEditingActive())}
+              hidden={!(isLastPage || editMode)}
             >
-              {(widget.get("submitButtonText") as string)}
+              {submitButtonText}
             </button>
 
           </div>
