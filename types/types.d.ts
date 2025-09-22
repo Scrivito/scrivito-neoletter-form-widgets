@@ -55,6 +55,10 @@ export interface FormWidgetAttributes {
   formScrollbarWidth: string,
   formOverscrollBehavior: string,
   formType: string,
-  steps: Widget[]
-
+  steps: Widget[],
+  backwardButtonText: string,
+  forwardButtonText: string,
+  submitButtonText: string,
+  reviewButtonText: string,
+  singleSubmitButtonAlignment: string,
 }

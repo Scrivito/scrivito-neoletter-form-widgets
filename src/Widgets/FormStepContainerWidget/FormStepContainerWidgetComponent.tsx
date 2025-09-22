@@ -43,7 +43,7 @@ interface FormStepContainerWidgetContentProps {
 }
 const FormStepContainerWidgetContent: React.FC<FormStepContainerWidgetContentProps> = ({ widget, tenant }) => {
 
-  const { formId, showBorder, failedMessage, failedMessageType, retryButtonAlignment, retryButtonText, showRetryButton, submittedMessage, submittedMessageType, submittingMessage, submittingMessageType, fixedFormHeight, showCaptcha, showReview, containerClassNames, formHeight } = useFormAttributesContext()
+  const { formId, showBorder, fixedFormHeight, showCaptcha, showReview, containerClassNames, formHeight } = useFormAttributesContext()
   const {
     currentStep,
     isSingleStep,
@@ -72,8 +72,6 @@ const FormStepContainerWidgetContent: React.FC<FormStepContainerWidgetContentPro
     return (
       <>
         <FormSubmitting
-          submittingText={submittingMessage}
-          type={submittingMessageType}
           fixedFormHeight={fixedFormHeight}
           formHeight={totalFormHeight || formHeight}
           getClassNames={getFormClassNames}
@@ -87,8 +85,6 @@ const FormStepContainerWidgetContent: React.FC<FormStepContainerWidgetContentPro
     return (
       <>
         <FormSubmissionSucceeded
-          submissionSuccessText={submittedMessage}
-          type={submittedMessageType}
           fixedFormHeight={fixedFormHeight}
           formHeight={totalFormHeight || formHeight}
           getClassNames={getFormClassNames}
@@ -103,13 +99,8 @@ const FormStepContainerWidgetContent: React.FC<FormStepContainerWidgetContentPro
     return (
       <>
         <FormSubmissionFailed
-          submissionFailureText={failedMessage}
-          type={failedMessageType}
           widget={widget}
           onReSubmit={onSubmit}
-          showRetryButton={showRetryButton}
-          retryButtonText={retryButtonText}
-          buttonAlignment={retryButtonAlignment}
           fixedFormHeight={fixedFormHeight}
           formHeight={totalFormHeight || formHeight}
           getClassNames={getFormClassNames}
@@ -149,7 +140,6 @@ const FormStepContainerWidgetContent: React.FC<FormStepContainerWidgetContentPro
       {
         isSingleStep ? (
           <FormFooterSingleStep
-            widget={widget}
             onSubmit={onSubmit}
             submitDisabled={isSubmitDisabled}
           />
@@ -161,7 +151,6 @@ const FormStepContainerWidgetContent: React.FC<FormStepContainerWidgetContentPro
             currentStep={currentStep}
             stepsLength={stepsLength}
             isLastPage={isLastPage}
-            showReview={showReview}
             submitDisabled={isSubmitDisabled}
           />
         )

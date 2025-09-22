@@ -30,5 +30,11 @@ export function useFormWidgetAttributes(widget: Widget): FormWidgetAttributes {
 		formOverscrollBehavior: widget.get("overscrollBehavior") as string || "default",
 		steps: widget.get("steps") as Widget[] || [],
 		formType: widget.get("formType") as string || "single-step",
+		backwardButtonText: widget.get("backwardButtonText") as string || "Backward",
+		forwardButtonText: widget.get("forwardButtonText") as string || "Forward",
+		submitButtonText: widget.get("submitButtonText") as string || "Submit",
+		reviewButtonText: widget.get("reviewButtonText") as string || "Review",
+		singleSubmitButtonAlignment: widget.get("singleSubmitButtonAlignment") as string || "center",
+
 	};
 }
