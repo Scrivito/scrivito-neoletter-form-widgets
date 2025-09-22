@@ -54,6 +54,9 @@ const FormStepContainerWidgetContent: React.FC<FormStepContainerWidgetContentPro
     totalFormHeight,
     containerRef,
     isSubmitDisabled,
+    showFailedPreview,
+    showSubmittedPreview,
+    showSubmittingPreview,
     handleInputChange,
     getStepInfo,
     onSubmit,
@@ -63,45 +66,56 @@ const FormStepContainerWidgetContent: React.FC<FormStepContainerWidgetContentPro
   const { captchaType } = getCaptchaOptions();
   const isLastPage = currentStep == stepsLength;
   const doShowCaptcha = captchaType == "google-recaptcha-v3" || showCaptcha
+  const editMode = Scrivito.isInPlaceEditingActive();
 
   if (isSubmitting) {
-    return <FormSubmitting
-      submittingText={submittingMessage}
-      type={submittingMessageType}
-      fixedFormHeight={fixedFormHeight}
-      formHeight={totalFormHeight || formHeight}
-      getClassNames={getFormClassNames}
-      widget={widget}
-    />;
+    return (
+      <>
+        <FormSubmitting
+          submittingText={submittingMessage}
+          type={submittingMessageType}
+          fixedFormHeight={fixedFormHeight}
+          formHeight={totalFormHeight || formHeight}
+          getClassNames={getFormClassNames}
+          widget={widget}
+        />;
+        {(showSubmittingPreview && editMode) && <MessageBlock type="submittingPreview" />}
+      </>)
   }
 
   if (successfullySent) {
     return (
-      <FormSubmissionSucceeded
-        submissionSuccessText={submittedMessage}
-        type={submittedMessageType}
-        fixedFormHeight={fixedFormHeight}
-        formHeight={totalFormHeight || formHeight}
-        getClassNames={getFormClassNames}
-        widget={widget}
-      />
+      <>
+        <FormSubmissionSucceeded
+          submissionSuccessText={submittedMessage}
+          type={submittedMessageType}
+          fixedFormHeight={fixedFormHeight}
+          formHeight={totalFormHeight || formHeight}
+          getClassNames={getFormClassNames}
+          widget={widget}
+        />
+        {(showSubmittedPreview && editMode) && <MessageBlock type="submittedPreview" />}
+      </>
     );
   }
 
   if (submissionFailed) {
     return (
-      <FormSubmissionFailed
-        submissionFailureText={failedMessage}
-        type={failedMessageType}
-        widget={widget}
-        onReSubmit={onSubmit}
-        showRetryButton={showRetryButton}
-        retryButtonText={retryButtonText}
-        buttonAlignment={retryButtonAlignment}
-        fixedFormHeight={fixedFormHeight}
-        formHeight={totalFormHeight || formHeight}
-        getClassNames={getFormClassNames}
-      />
+      <>
+        <FormSubmissionFailed
+          submissionFailureText={failedMessage}
+          type={failedMessageType}
+          widget={widget}
+          onReSubmit={onSubmit}
+          showRetryButton={showRetryButton}
+          retryButtonText={retryButtonText}
+          buttonAlignment={retryButtonAlignment}
+          fixedFormHeight={fixedFormHeight}
+          formHeight={totalFormHeight || formHeight}
+          getClassNames={getFormClassNames}
+        />
+        {(showFailedPreview && editMode) && <MessageBlock type="failedPreview" />}
+      </>
     );
   }
 

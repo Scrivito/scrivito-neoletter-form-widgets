@@ -410,34 +410,6 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
         return "No instanceId specified for form widgets.";
       }
     },
-
-    [
-      "submittingMessage",
-      (submittingMessage) => {
-        if (!submittingMessage) {
-          return "Specify the message to be displayed during form submission.";
-        }
-      }
-    ],
-
-    [
-      "submittedMessage",
-      (submittedMessage) => {
-        if (!submittedMessage) {
-          return "Specify the message to be displayed after successful form submission.";
-        }
-      }
-    ],
-
-    [
-      "failedMessage",
-      (failedMessage) => {
-        if (!failedMessage) {
-          return "Specify the message to be displayed after form submission failed.";
-        }
-      }
-    ],
-
     [
       "formId",
       (formId: string) => {
