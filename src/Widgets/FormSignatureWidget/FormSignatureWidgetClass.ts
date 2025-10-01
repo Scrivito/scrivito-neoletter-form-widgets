@@ -20,11 +20,5 @@ export const FormSignatureWidget = Scrivito.provideWidgetClass("FormSignatureWid
         values: ["left", "text-center", "text-end", "block"]
       }
     ],
-    buttonSize: [
-      "enum",
-      {
-        values: ["btn-sm", "btn-md", "btn-lg"]
-      }
-    ],
   }
 });

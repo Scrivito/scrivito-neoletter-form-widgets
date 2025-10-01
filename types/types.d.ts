@@ -46,8 +46,7 @@ export interface FormWidgetAttributes {
   showRetryButton: boolean;
   retryButtonText: string;
   retryButtonAlignment: string;
-  retryButtonSize: string;
-  footerButtonsSize: string;
+  buttonsSize: string;
   formId: string,
   showSubmittingPreview: boolean,
   showSubmittedPreview: boolean,

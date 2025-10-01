@@ -74,12 +74,6 @@ export const FormStepContainerWidget = Scrivito.provideWidgetClass(
           values: ["left", "text-center", "text-end"]
         }
       ],
-      retryButtonSize: [
-        "enum",
-        {
-          values: ["btn-sm", "btn-md", "btn-lg"]
-        }
-      ],
       hiddenFields: ["widgetlist", { only: "FormHiddenFieldWidget" }],
       formType: [
         "enum",
@@ -91,7 +85,7 @@ export const FormStepContainerWidget = Scrivito.provideWidgetClass(
       forwardButtonText: "string",
       backwardButtonText: "string",
       submitButtonText: "string",
-      footerButtonsSize: [
+      buttonsSize: [
         "enum",
         {
           values: ["btn-sm", "btn-md", "btn-lg"]

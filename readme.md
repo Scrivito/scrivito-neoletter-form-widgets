@@ -139,6 +139,7 @@ The `Form` widget has the following properties divided into several tabs:
 - "General" tab
   - Show frame: Adds a frame around the form.
   - Additional CSS Classes: Specify additional CSS class names to be added to the main container of the form. Separate multiple class names with spaces.
+  - Buttons size: Select the size of all buttons (footer, retry, delete signature).
   - Enable fixed height: Manually set the form height if enabled.
   - Form height: Enter the height of the form content measured in em units.
   - Scrollbar width: Select the width of the scrollbar. "None" will hide the scrolbar.
@@ -184,14 +185,12 @@ The `Form` widget has the following properties divided into several tabs:
   - Show retry button: Show a retry button at the end of the message/widgets.
   - Retry button text: The text for the retry button.
   - Retry button alignment: Alignment for the retry button.
-  - Retry button size: Select the size of the retry button.
   - Preview failed message/widgets: Preview the message or content displayed if the form submission failed. Works only in edit mode.
 - "Navigation area" tab (Content depends on form type i.e. single-step or multiple-steps)
   - Forward button text: Text for the forward button.
   - Backward button text: Text for the backward button.
   - Submit button text: Text for the submit button.
   - Alignment: Alignment for the single-step form submit button.
-  - Button size: Select the size of all footer buttons.
 
 ### Validation
 
@@ -332,7 +331,6 @@ The `Form Signature` widget allows users to draw a signature on the form. This w
 - Background color: Set the background color of the signature area.
 - Delete button text: Specify the text for the delete button that allows users to clear their signature.
 - Delete button alignment: Alignment of the delete button.
-- Delete Button size: Select the size of all footer buttons.
 
 ### Validation
 
