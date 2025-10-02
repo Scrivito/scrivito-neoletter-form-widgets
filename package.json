@@ -1,6 +1,6 @@
 {
   "name": "scrivito-neoletter-form-widgets",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "A set of Scrivito Neoletter Form Widgets",
   "main": "index.js",
   "scripts": {
