@@ -8,7 +8,7 @@
     "start": "webpack --watch --mode development",
     "link": "cd build && npm link",
     "link:vite-project": "npm link",
-    "publish:build": "npm run build && cd build && npm publish",
+    "publish:build": "npm test && npm run build && cd build && npm publish",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "jest"
