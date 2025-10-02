@@ -16,7 +16,7 @@ describe("FormFooterSingleStep", () => {
 
   it("renders correctly with block alignment", () => {
     const { getByText } = renderWithFormContext(
-      <FormFooterSingleStep widget={widget} onSubmit={() => { }} submitDisabled={false} />
+      <FormFooterSingleStep onSubmit={() => { }} submitDisabled={false} />
     );
 
     const button = getByText("Submit");
@@ -28,7 +28,7 @@ describe("FormFooterSingleStep", () => {
     widget.update({ singleSubmitButtonAlignment: "left" });
 
     const { getByText, container } = renderWithFormContext(
-      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />
+      <FormFooterSingleStep onSubmit={onSubmitMock} submitDisabled={false} />, { singleSubmitButtonAlignment: "left" }
     );
 
     const button = getByText("Submit");
@@ -38,29 +38,25 @@ describe("FormFooterSingleStep", () => {
   });
 
   it("renders correctly with right alignment", () => {
-    widget.update({
-      singleSubmitButtonAlignment: "text-end",
-      submitButtonText: "Send"
-    });
 
     const { getByText, container } = renderWithFormContext(
-      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />
+      <FormFooterSingleStep onSubmit={onSubmitMock} submitDisabled={false} />, { singleSubmitButtonAlignment: "text-end" }
     );
 
-    const button = getByText("Send");
+    const button = getByText("Submit");
     expect(button).toHaveClass("btn-primary");
     expect(button).not.toHaveClass("btn-block");
     expect(container.firstChild).toHaveClass("text-end");
   });
 
   it("renders correctly with centered alignment", () => {
-    widget.update({ singleSubmitButtonAlignment: "text-center" });
 
     const { getByText, container } = renderWithFormContext(
-      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />
+      <FormFooterSingleStep onSubmit={onSubmitMock} submitDisabled={false} />,
+      { singleSubmitButtonAlignment: "text-center" }
     );
 
-    const button = getByText("Send");
+    const button = getByText("Submit");
     expect(button).toHaveClass("btn-primary");
     expect(button).not.toHaveClass("btn-block");
     expect(container.firstChild).toHaveClass("text-center");
@@ -68,16 +64,45 @@ describe("FormFooterSingleStep", () => {
 
   it("renders correctly with disabled submit button", () => {
     const { getByText } = renderWithFormContext(
-      <FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={true} />
+      <FormFooterSingleStep onSubmit={onSubmitMock} submitDisabled={true} />
     );
 
-    const button = getByText("Send");
+    const button = getByText("Submit");
     expect(button).toHaveAttribute("disabled");
     expect(button.getAttribute("onclick")).toBe(null);
   });
 
+  it("renders correctly with small submit button", () => {
+    const { getByText } = renderWithFormContext(
+      <FormFooterSingleStep onSubmit={onSubmitMock} submitDisabled={false} />,
+      { buttonsSize: "btn-sm" }
+    );
+
+    const button = getByText("Submit");
+    expect(button).toHaveClass("btn-sm");
+  });
+
+  it("renders correctly with medium submit button", () => {
+    const { getByText } = renderWithFormContext(
+      <FormFooterSingleStep onSubmit={onSubmitMock} submitDisabled={false} />
+    );
+
+    const button = getByText("Submit");
+    expect(button).toHaveClass("btn-md");
+  });
+
+  it("renders correctly with large submit button", () => {
+    const { getByText } = renderWithFormContext(
+      <FormFooterSingleStep onSubmit={onSubmitMock} submitDisabled={false} />,
+      { buttonsSize: "btn-lg" }
+    );
+
+    const button = getByText("Submit");
+    expect(button).toHaveClass("btn-lg");
+  });
+
   it("renders correctly", () => {
-    const { container } = renderWithFormContext(<FormFooterSingleStep widget={widget} onSubmit={onSubmitMock} submitDisabled={false} />)
+    const { container } = renderWithFormContext(<FormFooterSingleStep onSubmit={onSubmitMock} submitDisabled={false} />)
     expect(container).toMatchSnapshot();
   });
 

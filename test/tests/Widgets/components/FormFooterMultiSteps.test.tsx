@@ -16,12 +16,7 @@ describe("FormFooterMultiSteps", () => {
     [{ title: "Field 2", value: "Value 2" }]
   ]);
 
-  const widget = new DummyWidget({
-    backwardButtonText: "Back",
-    reviewButtonText: "Review",
-    submitButtonText: "Submit",
-    forwardButtonText: "Forward"
-  }) as unknown as Scrivito.Widget;
+  const widget = new DummyWidget({}) as unknown as Scrivito.Widget;
 
   afterEach(() => {
     (prepareReviewContent as jest.Mock).mockImplementation(
@@ -40,15 +35,80 @@ describe("FormFooterMultiSteps", () => {
         currentStep={1}
         isLastPage={false}
         stepsLength={3}
-        showReview={true}
         submitDisabled={false}
       />
 
     );
 
-    expect(getByText("Back")).toBeInTheDocument();
+    expect(getByText("Backward")).toBeInTheDocument();
     expect(getByText("1 / 3")).toBeInTheDocument();
     expect(getByText("Forward")).toBeInTheDocument();
+  });
+
+  it("applies btn-sm to all buttons when configured small", () => {
+    const editSpy = jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
+    const { getByText } = renderWithFormContext(
+      <FormFooterMultiSteps
+        widget={widget}
+        onPageChange={() => { }}
+        onSubmit={() => { }}
+        currentStep={1}
+        isLastPage={false}
+        stepsLength={3}
+        submitDisabled={false}
+      />,
+      { buttonsSize: "btn-sm", showReview: true }
+
+    );
+    expect(getByText("Backward")).toHaveClass("btn-sm");
+    expect(getByText("Forward")).toHaveClass("btn-sm");
+    expect(getByText("Submit")).toHaveClass("btn-sm");
+    expect(getByText("Review")).toHaveClass("btn-sm");
+    editSpy.mockRestore();
+  });
+
+  it("applies default btn-md to all buttons", () => {
+    const editSpy = jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
+    const { getByText } = renderWithFormContext(
+      <FormFooterMultiSteps
+        widget={widget}
+        onPageChange={() => { }}
+        onSubmit={() => { }}
+        currentStep={1}
+        isLastPage={false}
+        stepsLength={3}
+        submitDisabled={false}
+      />,
+      { showReview: true }
+    );
+
+    expect(getByText("Backward")).toHaveClass("btn-md");
+    expect(getByText("Forward")).toHaveClass("btn-md");
+    expect(getByText("Submit")).toHaveClass("btn-md");
+    expect(getByText("Review")).toHaveClass("btn-md");
+    editSpy.mockRestore();
+  });
+
+  it("applies btn-lg to all buttons when configured large", () => {
+    const editSpy = jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
+    const { getByText } = renderWithFormContext(
+      <FormFooterMultiSteps
+        widget={widget}
+        onPageChange={() => { }}
+        onSubmit={() => { }}
+        currentStep={1}
+        isLastPage={false}
+        stepsLength={3}
+        submitDisabled={false}
+      />,
+      { buttonsSize: "btn-lg", showReview: true }
+    );
+
+    expect(getByText("Backward")).toHaveClass("btn-lg");
+    expect(getByText("Forward")).toHaveClass("btn-lg");
+    expect(getByText("Submit")).toHaveClass("btn-lg");
+    expect(getByText("Review")).toHaveClass("btn-lg");
+    editSpy.mockRestore();
   });
 
   it("renders correctly with disabled submit button", () => {
@@ -60,7 +120,6 @@ describe("FormFooterMultiSteps", () => {
         currentStep={3}
         isLastPage={true}
         stepsLength={3}
-        showReview={true}
         submitDisabled={true}
       />
     );
@@ -79,9 +138,9 @@ describe("FormFooterMultiSteps", () => {
         currentStep={1}
         isLastPage={true}
         stepsLength={3}
-        showReview={true}
         submitDisabled={false}
-      />
+      />,
+      { showReview: true }
     );
 
     const reviewButton = getByText("Review");
@@ -99,7 +158,6 @@ describe("FormFooterMultiSteps", () => {
         currentStep={3}
         isLastPage={true}
         stepsLength={3}
-        showReview={true}
         submitDisabled={false}
       />
     );
@@ -116,12 +174,11 @@ describe("FormFooterMultiSteps", () => {
         currentStep={1}
         isLastPage={false}
         stepsLength={3}
-        showReview={true}
         submitDisabled={false}
       />
     );
 
-    const backButton = getByText("Back");
+    const backButton = getByText("Backward");
     expect(backButton).toHaveAttribute("hidden");
   });
 
@@ -134,12 +191,11 @@ describe("FormFooterMultiSteps", () => {
         currentStep={2}
         isLastPage={false}
         stepsLength={3}
-        showReview={true}
         submitDisabled={false}
       />
     );
 
-    const backButton = getByText("Back");
+    const backButton = getByText("Backward");
     expect(backButton).not.toHaveAttribute("hidden");
   });
 
@@ -152,7 +208,6 @@ describe("FormFooterMultiSteps", () => {
         currentStep={3}
         isLastPage={true}
         stepsLength={3}
-        showReview={false}
         submitDisabled={false}
       />
     );
@@ -169,9 +224,9 @@ describe("FormFooterMultiSteps", () => {
         currentStep={1}
         isLastPage={true}
         stepsLength={3}
-        showReview={true}
         submitDisabled={false}
-      />
+      />,
+      { showReview: true }
     );
     expect(container).toMatchSnapshot();
   });

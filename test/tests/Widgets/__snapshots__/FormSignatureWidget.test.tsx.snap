@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`FormSignatureWidget renders correctly 1`] = `
 <div>
@@ -46,7 +46,7 @@ exports[`FormSignatureWidget renders correctly 1`] = `
           className=""
         >
           <button
-            className="delete btn btn-primary btn-block "
+            className="delete btn btn-primary btn-block btn-md"
             onClick={[Function]}
           >
             <span

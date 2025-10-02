@@ -1,14 +1,14 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`FormFooterSingleStep renders correctly 1`] = `
 <div>
   <div
-    class="text-center"
+    class=""
   >
     <button
-      class="btn btn-primary  btn-md"
+      class="btn btn-primary  btn-block btn-md"
     >
-      Send
+      Submit
     </button>
   </div>
 </div>

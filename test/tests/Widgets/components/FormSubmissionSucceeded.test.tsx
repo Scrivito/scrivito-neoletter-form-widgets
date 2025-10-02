@@ -10,9 +10,11 @@ import { FormStepContainerWidget } from "../../../../src/Widgets/FormStepContain
 import "../../../../src/Widgets/FormStepContainerWidget/FormStepContainerWidgetComponent";
 import "../../../../src/Widgets/FormDateWidget/FormDateWidgetComponent";
 import PageRenderer from "../../../helpers/pageRenderer";
+import { defaultFormContextAttrValues } from "../../../helpers/testData";
+import { renderWithFormContext } from "../../../helpers/renderWithFormContext";
 
 Scrivito.configure({ tenant: "inMemory" });
-const submissionSuccessText = "Submission successful!";
+const submissionSuccessText = defaultFormContextAttrValues.submittedMessage;
 const formProps = {
   formId: "test-id",
   failedMessage: "failed",
@@ -59,10 +61,8 @@ describe("FormSubmissionSucceeded", () => {
   const widget = new DummyWidget({}) as unknown as Widget;
 
   it("renders the check icon and outputs the text", () => {
-    const { container, getByText } = render(
+    const { container, getByText } = renderWithFormContext(
       <FormSubmissionSucceeded
-        submissionSuccessText={submissionSuccessText}
-        type="default"
         widget={widget}
         fixedFormHeight={false}
         formHeight={0}
@@ -155,10 +155,8 @@ describe("FormSubmissionSucceeded", () => {
   });
 
   it("has fixed height if set", () => {
-    const { container, getByText } = render(
+    const { container, getByText } = renderWithFormContext(
       <FormSubmissionSucceeded
-        submissionSuccessText={submissionSuccessText}
-        type="default"
         widget={widget}
         fixedFormHeight={true}
         formHeight={150}
@@ -174,18 +172,14 @@ describe("FormSubmissionSucceeded", () => {
   });
 
   it("renders correctly", () => {
-    const tree = renderer
-      .create(
-        <FormSubmissionSucceeded
-          submissionSuccessText={submissionSuccessText}
-          type="default"
-          widget={widget}
-          fixedFormHeight={false}
-          formHeight={0}
-          getClassNames={() => ""}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { container } = renderWithFormContext(
+      <FormSubmissionSucceeded
+        widget={widget}
+        fixedFormHeight={false}
+        formHeight={0}
+        getClassNames={() => ""}
+      />
+    );
+    expect(container).toMatchSnapshot();
   });
 });

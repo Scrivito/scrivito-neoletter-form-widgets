@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`FormFooterMultiSteps renders correctly 1`] = `
 <div>
@@ -9,7 +9,7 @@ exports[`FormFooterMultiSteps renders correctly 1`] = `
       class="btn btn-primary backward-button btn-md"
       hidden=""
     >
-      Back
+      Backward
     </button>
     <div
       class="step-counter"
