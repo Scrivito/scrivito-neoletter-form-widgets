@@ -1,21 +1,22 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`FormSubmitting renders correctly 1`] = `
-<div
-  className="form-submission-submitting "
-  style={{}}
->
+<div>
   <div
-    className="text-center"
+    class="form-submission-submitting "
   >
-    <i
-      aria-hidden="true"
-      className="bi bi-arrow-repeat bi-2x rotate-form-submitting-icon"
-    />
-     
-    <span>
-      Submitting...
-    </span>
+    <div
+      class="text-center"
+    >
+      <i
+        aria-hidden="true"
+        class="bi bi-arrow-repeat bi-2x rotate-form-submitting-icon"
+      />
+       
+      <span>
+        Submitting...
+      </span>
+    </div>
   </div>
 </div>
 `;

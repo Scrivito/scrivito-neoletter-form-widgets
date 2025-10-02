@@ -1,11 +1,11 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`RatingIcon renders correctly 1`] = `
 <i
   className="bs-icon star-fill 2x rating-icon"
   style={
     {
-      "color": "gold",
+      "color": "rgb(255, 215, 0)",
       "paddingRight": "0.08em",
     }
   }

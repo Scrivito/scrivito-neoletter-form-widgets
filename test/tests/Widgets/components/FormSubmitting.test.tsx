@@ -10,10 +10,12 @@ import { FormStepContainerWidget } from "../../../../src/Widgets/FormStepContain
 import "../../../../src/Widgets/FormStepContainerWidget/FormStepContainerWidgetComponent";
 import "../../../../src/Widgets/FormDateWidget/FormDateWidgetComponent";
 import PageRenderer from "../../../helpers/pageRenderer";
+import { defaultFormContextAttrValues } from "../../../helpers/testData";
+import { renderWithFormContext } from "../../../helpers/renderWithFormContext";
 
 Scrivito.configure({ tenant: "inMemory" });
 
-const submittingText = "Submitting...";
+const submittingText = defaultFormContextAttrValues.submittingMessage;
 const widgetProperties = {
   submittingText: submittingText,
   type: "default",
@@ -58,10 +60,8 @@ const pageRenderer = new PageRenderer();
 describe("FormSubmitting", () => {
 
   it("renders the spinner icon and outputs the submitting text", () => {
-    const { container, getByText } = render(
+    const { container, getByText } = renderWithFormContext(
       <FormSubmitting
-        submittingText={submittingText}
-        type="default"
         widget={widget}
         fixedFormHeight={false}
         formHeight={0}
@@ -153,16 +153,12 @@ describe("FormSubmitting", () => {
   });
 
   it("renders correctly", () => {
-    const tree = renderer
-      .create(<FormSubmitting
-        submittingText={submittingText}
-        type="default"
-        widget={widget}
-        fixedFormHeight={false}
-        formHeight={0}
-        getClassNames={() => ""}
-      />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { container } = renderWithFormContext(<FormSubmitting
+      widget={widget}
+      fixedFormHeight={false}
+      formHeight={0}
+      getClassNames={() => ""}
+    />);
+    expect(container).toMatchSnapshot();
   });
 });

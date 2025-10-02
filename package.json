@@ -1,6 +1,6 @@
 {
   "name": "scrivito-neoletter-form-widgets",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "A set of Scrivito Neoletter Form Widgets",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "webpack --watch --mode development",
     "link": "cd build && npm link",
     "link:vite-project": "npm link",
-    "publish:build": "npm run build && cd build && npm publish",
+    "publish:build": "npm test && npm run build && cd build && npm publish",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "jest"

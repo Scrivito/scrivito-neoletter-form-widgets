@@ -3,7 +3,7 @@ import { render, fireEvent } from "@testing-library/react";
 import { RatingIcon } from "../../../../src/Widgets/FormStepContainerWidget/components/RatingIconComponent";
 import renderer from "react-test-renderer";
 
-const color = "gold";
+const color = "rgb(255, 215, 0)";
 const size = "2x";
 const icon = "star-fill";
 

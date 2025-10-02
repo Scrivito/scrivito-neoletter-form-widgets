@@ -25,14 +25,9 @@ Scrivito.provideEditingConfig("FormSignatureWidget", {
         { value: "block", title: "Full width" }
       ]
     },
-    buttonSize: {
-      title: "Delete Button size",
-      description: "Default: Medium",
-      values: [{ value: "btn-sm", title: "Small" }, { value: "btn-md", title: "Medium" }, { value: "btn-lg", title: "Large" }]
-    },
     helpText: { title: "Help text" }
   },
-  properties: ["title", "alignment", "customFieldName", "strokeThickness", "strokeColor", "backgroundColor", "deleteButtonText", "deleteButtonAlignment", "buttonSize", "helpText"],
+  properties: ["title", "alignment", "customFieldName", "strokeThickness", "strokeColor", "backgroundColor", "deleteButtonText", "deleteButtonAlignment", "helpText"],
   initialContent: {
     title: "Sign here",
     alignment: "left",
@@ -42,7 +37,6 @@ Scrivito.provideEditingConfig("FormSignatureWidget", {
     strokeColor: "black",
     backgroundColor: "#ffffff",
     deleteButtonAlignment: "left",
-    buttonSize: "btn-md"
 
   },
   validations: [insideFormContainerValidation, customFieldNameValidation]

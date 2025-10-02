@@ -11,9 +11,10 @@ import "../../../../src/Widgets/FormStepContainerWidget/FormStepContainerWidgetC
 import "../../../../src/Widgets/FormDateWidget/FormDateWidgetComponent";
 import PageRenderer from "../../../helpers/pageRenderer";
 import { renderWithFormContext } from "../../../helpers/renderWithFormContext";
+import { defaultFormContextAttrValues } from "../../../helpers/testData";
 
 Scrivito.configure({ tenant: "inMemory" });
-const submissionFailureText = "Submission failed!";
+const submissionFailureText = defaultFormContextAttrValues.failedMessage;
 
 const formProps = {
   formId: "test-id",
@@ -24,7 +25,7 @@ const formProps = {
   formType: "single-step",
   steps: [],
   forwardButtonText: "forward",
-  backwardButtonText: "back",
+  backwardButtonText: "Backward",
   submitButtonText: "submit",
   showBorder: false,
   showCaptcha: false,

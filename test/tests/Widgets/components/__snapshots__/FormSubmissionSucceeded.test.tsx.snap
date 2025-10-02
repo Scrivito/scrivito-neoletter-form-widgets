@@ -1,21 +1,22 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`FormSubmissionSucceeded renders correctly 1`] = `
-<div
-  className="form-submission-succeeded "
-  style={{}}
->
+<div>
   <div
-    className="text-center"
+    class="form-submission-succeeded "
   >
-    <i
-      aria-hidden="true"
-      className="bi bi-check-lg bi-2x"
-    />
-     
-    <span>
-      Submission successful!
-    </span>
+    <div
+      class="text-center"
+    >
+      <i
+        aria-hidden="true"
+        class="bi bi-check-lg bi-2x"
+      />
+       
+      <span>
+        Submission successful!
+      </span>
+    </div>
   </div>
 </div>
 `;
