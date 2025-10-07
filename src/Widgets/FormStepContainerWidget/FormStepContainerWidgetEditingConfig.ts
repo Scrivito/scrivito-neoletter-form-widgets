@@ -218,7 +218,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       values: [{ value: "btn-sm", title: "Small" }, { value: "btn-md", title: "Medium" }, { value: "btn-lg", title: "Large" }]
     },
     buttonsStyle: {
-      title: "Buttons Style",
+      title: "Buttons style",
 
       values: [{ value: "btn-primary", title: "Primary" }, { value: "btn-secondary", title: "Secondary" }]
     },
