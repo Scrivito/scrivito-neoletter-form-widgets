@@ -3,6 +3,7 @@ import { render, fireEvent } from "@testing-library/react";
 import { Review } from "../../../../src/Widgets/FormStepContainerWidget/components/ReviewComponent";
 import { Widget } from "scrivito";
 import { DummyWidget } from "../../../helpers/dummyWidget";
+import { renderWithFormContext } from "../../../helpers/renderWithFormContext";
 
 const onHideMock = jest.fn();
 const reviewContent = [
@@ -26,7 +27,7 @@ const widget = new DummyWidget({
 
 describe("Review", () => {
   it("renders the Review component with provided props, header and footer shown", () => {
-    const { getByText } = render(
+    const { getByText } = renderWithFormContext(
       <Review
         widget={widget}
         reviewContent={reviewContent}
@@ -47,7 +48,7 @@ describe("Review", () => {
   it("renders the Review component without header", () => {
     widget.update({ showReviewHeader: false });
 
-    const { queryByText } = render(
+    const { queryByText } = renderWithFormContext(
       <Review
         widget={widget}
         reviewContent={reviewContent}
@@ -61,7 +62,7 @@ describe("Review", () => {
   it("renders the Review component without steps", () => {
     widget.update({ showStepsInReview: false });
 
-    const { queryByText } = render(
+    const { queryByText } = renderWithFormContext(
       <Review
         widget={widget}
         reviewContent={reviewContent}
@@ -75,7 +76,7 @@ describe("Review", () => {
 
   it("renders the Review component without footer", () => {
     widget.update({ showReviewFooter: false });
-    const { queryByText } = render(
+    const { queryByText } = renderWithFormContext(
       <Review
         widget={widget}
         reviewContent={reviewContent}
@@ -88,7 +89,7 @@ describe("Review", () => {
 
   it("renders correctly", () => {
     widget.update({ showReviewFooter: true, showStepsInReview: true });
-    render(
+    renderWithFormContext(
       <Review
         widget={widget}
         reviewContent={reviewContent}

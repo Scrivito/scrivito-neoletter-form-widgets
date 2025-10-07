@@ -140,6 +140,7 @@ The `Form` widget has the following properties divided into several tabs:
   - Show frame: Adds a frame around the form.
   - Additional CSS Classes: Specify additional CSS class names to be added to the main container of the form. Separate multiple class names with spaces.
   - Buttons size: Select the size of all buttons (footer, retry, delete signature).
+  - Button style: Choose primary or secondary for all buttons (footer, retry, delete signature).
   - Enable fixed height: Manually set the form height if enabled.
   - Form height: Enter the height of the form content measured in em units.
   - Scrollbar width: Select the width of the scrollbar. "None" will hide the scrolbar.

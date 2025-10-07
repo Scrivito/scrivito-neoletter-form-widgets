@@ -17,7 +17,7 @@ export const FormSubmissionFailed: React.FC<FormSubmissionFailedProps> = ({
   getClassNames,
   onReSubmit
 }) => {
-  const { buttonsSize, retryButtonText, showRetryButton, failedMessage, failedMessageType, retryButtonAlignment } = useFormAttributesContext();
+  const { buttonsSize, buttonsStyle, retryButtonText, showRetryButton, failedMessage, failedMessageType, retryButtonAlignment } = useFormAttributesContext();
   return (
     <div className={`form-submission-failed ${getClassNames()}`} style={fixedFormHeight ? { height: `${formHeight}px` } : {}}>
       {failedMessageType == "default" ?
@@ -40,8 +40,8 @@ export const FormSubmissionFailed: React.FC<FormSubmissionFailedProps> = ({
             : retryButtonAlignment
             }`}>
           <button
-            className={`btn btn-primary retry-button ${buttonsSize} ${retryButtonAlignment === "block"
-              ? " btn-block"
+            className={`btn ${buttonsStyle} retry-button ${buttonsSize} ${retryButtonAlignment === "block"
+              ? "btn-block"
               : ""
               }`}
             onClick={onReSubmit}

@@ -25,6 +25,7 @@ export const defaultFormContextAttrValues = {
   retryButtonText: "",
   retryButtonAlignment: "text-center",
   buttonsSize: "btn-md",
+  buttonsStyle: "btn-primary",
   formId: "",
   showSubmittingPreview: false,
   showSubmittedPreview: false,

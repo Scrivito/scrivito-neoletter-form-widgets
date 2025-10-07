@@ -175,7 +175,25 @@
     }
   }
 
+  .invalid-feedback {
+    background: white;
+    width: fit-content;
+    padding: 0.1em 0.3em;
+    border-radius: var(--bs-border-radius, .375rem);
   
+    &.left {
+      text-align: start;
+    }
+  
+    &.center {
+      text-align: center;
+    }
+  
+    &.right {
+      text-align: end;
+    }
+  }
+
 }
 @keyframes rotate-form-submitting-icon {
   0% {
@@ -325,19 +343,6 @@ body .scrivito-neoletter-review-form-modal {
         border-bottom-right-radius: calc(.3rem - 1px);
         border-bottom-left-radius: calc(.3rem - 1px);
 
-        button {
-          color: #fff;
-          background-color: var(--bs-primary, #5c9dcd);
-          border-color: var(--bs-primary, #5c9dcd);
-          margin: .25rem;
-          padding: .375rem .75rem;
-          font-size: 1rem;
-          border-radius: .25rem;
-
-          &:hover {
-            background-color: var(--bs-btn-hover-bg, #395aa5);
-          }
-        }
       }
     }
   }
@@ -614,17 +619,3 @@ body .scrivito-neoletter-review-form-modal {
   z-index: 999999;
 }
 
-.invalid-feedback {
-  	&.left {
-			text-align: start;
-		}
-
-		&.center {
-			text-align: center;
-		}
-
-		&.right {
-			text-align: end;
-
-		}
-}

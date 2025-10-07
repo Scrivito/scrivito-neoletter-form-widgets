@@ -101,6 +101,16 @@ describe("FormFooterSingleStep", () => {
     expect(button).toHaveClass("btn-lg");
   });
 
+  it("renders correctly with secondary color", () => {
+    const { getByText } = renderWithFormContext(
+      <FormFooterSingleStep onSubmit={() => { }} submitDisabled={false} />,
+      { buttonsStyle: "btn-secondary" }
+    );
+
+    const button = getByText("Submit");
+    expect(button).toHaveClass("btn-secondary");
+  });
+
   it("renders correctly", () => {
     const { container } = renderWithFormContext(<FormFooterSingleStep onSubmit={onSubmitMock} submitDisabled={false} />)
     expect(container).toMatchSnapshot();

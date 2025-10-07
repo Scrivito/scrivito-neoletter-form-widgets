@@ -217,6 +217,11 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       description: "Default: Medium",
       values: [{ value: "btn-sm", title: "Small" }, { value: "btn-md", title: "Medium" }, { value: "btn-lg", title: "Large" }]
     },
+    buttonsStyle: {
+      title: "Buttons Style",
+
+      values: [{ value: "btn-primary", title: "Primary" }, { value: "btn-secondary", title: "Secondary" }]
+    },
   },
   properties: (widget) => {
     const useFixedHeight = widget.get("fixedFormHeight");
@@ -225,6 +230,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       "showBorder",
       "customClassNames",
       "buttonsSize",
+      "buttonsStyle",
       "fixedFormHeight",
       ["formHeight", { enabled: useFixedHeight }],
       ["scrollbarWidth", { enabled: useFixedHeight }],
@@ -385,7 +391,8 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     showRetryButton: false,
     retryButtonText: "Retry",
     retryButtonAlignment: "text-center",
-    buttonsSize: "btn-md"
+    buttonsSize: "btn-md",
+    buttonsStyle: "btn-primary"
   },
   validations: [
     (widget: Scrivito.Widget) => {

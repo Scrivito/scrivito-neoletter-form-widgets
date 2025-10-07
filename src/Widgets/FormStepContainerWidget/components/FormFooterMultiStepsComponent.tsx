@@ -30,13 +30,13 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
       const [reviewContent, setReviewContent] = React.useState<ReviewContent>(
         []
       );
-      const { showReview, buttonsSize, backwardButtonText, forwardButtonText, submitButtonText, reviewButtonText } = useFormAttributesContext();
+      const { showReview, buttonsSize, buttonsStyle, backwardButtonText, forwardButtonText, submitButtonText, reviewButtonText } = useFormAttributesContext();
       const doShowReview = (isLastPage || editMode) && showReview;
       return (
         <>
           <div className="form-buttons">
             <button
-              className={`btn btn-primary backward-button ${buttonsSize}`}
+              className={`btn ${buttonsStyle} backward-button ${buttonsSize}`}
               onClick={() => onPageChange(false)}
               hidden={currentStep == 1 && !editMode}>
               {backwardButtonText}
@@ -46,14 +46,14 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
             </div>
             {doShowReview && (
               <button
-                className={`btn btn-primary review-button ${buttonsSize}`}
+                className={`btn ${buttonsStyle} review-button ${buttonsSize}`}
                 onClick={() => onShowReview(widget, setReviewContent, setShow)}>
                 {reviewButtonText}
               </button>
             )}
 
             <button
-              className={`btn btn-primary ${buttonsSize} forward-button ${editMode ? "edit-mode-margin" : ""}`}
+              className={`btn ${buttonsStyle} ${buttonsSize} forward-button ${editMode ? "edit-mode-margin" : ""}`}
               onClick={() => onPageChange(true)}
               hidden={isLastPage}
             >
@@ -61,7 +61,7 @@ export const FormFooterMultiSteps: React.FC<FormFooterMultiStepsProps> =
             </button>
 
             <button
-              className={`btn btn-primary submit-button ${buttonsSize}`}
+              className={`btn ${buttonsStyle} submit-button ${buttonsSize}`}
               onClick={onSubmit}
               disabled={isLastPage && submitDisabled}
               hidden={!(isLastPage || editMode)}

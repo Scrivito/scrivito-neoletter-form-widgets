@@ -1,6 +1,8 @@
 import * as React from "react";
-import { Widget } from "scrivito";
+import { useAttributeDefinition, Widget } from "scrivito";
 import { ReviewContent, ReviewItemContent } from "../../../../types/types";
+import { useFormWidgetAttributes } from "../UseFormAttributes";
+import { useFormAttributesContext } from "../FormAttributesContext";
 
 interface ReviewProps {
   widget: Widget;
@@ -18,6 +20,7 @@ export const Review: React.FC<ReviewProps> = ({
 }) => {
   const [show, setShow] = React.useState(false);
   const previousOverflowRef = React.useRef<string | null>(null);
+  const { buttonsSize, buttonsStyle } = useFormAttributesContext();
 
   React.useEffect(() => {
     setShow(true);
@@ -71,7 +74,7 @@ export const Review: React.FC<ReviewProps> = ({
           </div>
           {widget.get("showReviewFooter") && (
             <div className="review-modal-footer">
-              <button className="" onClick={handleClose}>
+              <button className={`btn ${buttonsSize} ${buttonsStyle}`} onClick={handleClose}>
                 {widget.get("reviewCloseButtonText") as string}
               </button>
             </div>
