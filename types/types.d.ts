@@ -47,6 +47,7 @@ export interface FormWidgetAttributes {
   retryButtonText: string;
   retryButtonAlignment: string;
   buttonsSize: string;
+  buttonsStyle: string;
   formId: string,
   showSubmittingPreview: boolean,
   showSubmittedPreview: boolean,

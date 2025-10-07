@@ -21,6 +21,7 @@ export function useFormWidgetAttributes(widget: Widget): FormWidgetAttributes {
 		retryButtonText: widget.get("retryButtonText") as string || "Retry",
 		retryButtonAlignment: widget.get("retryButtonAlignment") as string || "text-center",
 		buttonsSize: widget.get("buttonsSize") as string || "btn-md",
+		buttonsStyle: widget.get("buttonsStyle") as string || "btn-primary",
 		formId: widget.get("formId") as string,
 		showSubmittingPreview: widget.get("previewSubmittingMessage") as boolean || false,
 		showSubmittedPreview: widget.get("previewSubmittedMessage") as boolean || false,

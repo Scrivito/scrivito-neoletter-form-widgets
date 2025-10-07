@@ -10,7 +10,7 @@ interface FormFooterSingleStepProps {
 export const FormFooterSingleStep: React.FC<FormFooterSingleStepProps> =
   Scrivito.connect(({ onSubmit, submitDisabled }) => {
 
-    const { buttonsSize, submitButtonText, singleSubmitButtonAlignment } = useFormAttributesContext();
+    const { buttonsSize, buttonsStyle, submitButtonText, singleSubmitButtonAlignment } = useFormAttributesContext();
 
     return (
       <div
@@ -19,7 +19,7 @@ export const FormFooterSingleStep: React.FC<FormFooterSingleStepProps> =
           : singleSubmitButtonAlignment
           }`}>
         <button
-          className={`btn btn-primary ${singleSubmitButtonAlignment === "block"
+          className={`btn ${buttonsStyle} ${singleSubmitButtonAlignment === "block"
             ? " btn-block "
             : " "
             }${buttonsSize}`}

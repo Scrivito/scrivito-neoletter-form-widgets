@@ -91,6 +91,12 @@ export const FormStepContainerWidget = Scrivito.provideWidgetClass(
           values: ["btn-sm", "btn-md", "btn-lg"]
         }
       ],
+      buttonsStyle: [
+        "enum",
+        {
+          values: ["btn-primary", "btn-secondary"]
+        }
+      ],
       showBorder: "boolean",
       showReview: "boolean",
       includeEmptyAnswers: "boolean",

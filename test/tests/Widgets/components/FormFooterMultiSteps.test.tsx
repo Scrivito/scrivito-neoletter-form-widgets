@@ -111,6 +111,28 @@ describe("FormFooterMultiSteps", () => {
     editSpy.mockRestore();
   });
 
+  it("renders all buttons correctly with secondary color", () => {
+    const editSpy = jest.spyOn(Scrivito, "isInPlaceEditingActive").mockReturnValue(true);
+    const { getByText } = renderWithFormContext(
+      <FormFooterMultiSteps
+        widget={widget}
+        onPageChange={() => { }}
+        onSubmit={() => { }}
+        currentStep={1}
+        isLastPage={false}
+        stepsLength={3}
+        submitDisabled={false}
+      />,
+      { buttonsStyle: "btn-secondary", showReview: true }
+    );
+
+    expect(getByText("Backward")).toHaveClass("btn-secondary");
+    expect(getByText("Forward")).toHaveClass("btn-secondary");
+    expect(getByText("Submit")).toHaveClass("btn-secondary");
+    expect(getByText("Review")).toHaveClass("btn-secondary");
+    editSpy.mockRestore();
+  });
+
   it("renders correctly with disabled submit button", () => {
     const { getByText } = renderWithFormContext(
       <FormFooterMultiSteps
