@@ -3,7 +3,18 @@ import * as Scrivito from "scrivito";
 import { CaptchaOptions, Options } from "../../types/types";
 import { isEmpty } from "../Widgets/FormStepContainerWidget/utils/lodashPolyfills";
 
-const GLOBAL_OBJ = typeof window !== 'undefined' ? window : global;
+declare const require: {
+	context: (
+		directory: string,
+		useSubdirectories: boolean,
+		regExp: RegExp
+	) => {
+		(key: string): unknown;
+		keys: () => string[];
+	};
+};
+
+const GLOBAL_OBJ = (typeof window !== "undefined" ? window : globalThis) as typeof globalThis & Record<string, unknown>;
 
 export const initNeoletterFormWidgets = (
 	options?: Options
@@ -39,15 +50,19 @@ export const isTrackingEnabled = () => {
 }
 
 function loadWidgets(): void {
-	if (isEmpty(import.meta)) {
+	try {
 		const widgetImportsContext = require.context(
 			"../Widgets",
 			true,
 			/Widget(Class|Component)\.tsx?$/
 		);
 		widgetImportsContext.keys().forEach(widgetImportsContext);
-	} else {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		return;
+	} catch (_error) {
+		// Continue with the Vite loader below.
+	}
+
+	if (typeof (import.meta as any).glob === "function") {
 		(import.meta as any).glob(
 			["../Widgets/**/*WidgetClass.ts", "../Widgets/**/*WidgetComponent.tsx"],
 			{
