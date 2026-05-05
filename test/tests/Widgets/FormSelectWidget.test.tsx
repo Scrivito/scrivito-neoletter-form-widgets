@@ -100,6 +100,31 @@ describe("FormSelectWidget", () => {
     expect(selectContainer.classList).toContain("inline");
   });
 
+  it("limits the number of selected checkboxes", () => {
+    const selectProps = {
+      ...widgetProps,
+      selectionType: "multi",
+      required: false,
+      maxSelections: 2
+    };
+
+    pageRenderer.render({
+      body: [new FormSelectWidget(selectProps)]
+    });
+
+    const firstCheckbox = screen.getByLabelText("Item 1");
+    const secondCheckbox = screen.getByLabelText("Item 2");
+    const thirdCheckbox = screen.getByLabelText("Item 3");
+
+    fireEvent.click(firstCheckbox);
+    fireEvent.click(secondCheckbox);
+    fireEvent.click(thirdCheckbox);
+
+    expect(firstCheckbox).toBeChecked();
+    expect(secondCheckbox).toBeChecked();
+    expect(thirdCheckbox).not.toBeChecked();
+  });
+
   it("renders FormSelectWidget with linear-scale selection", () => {
     const selectProps = {
       ...widgetProps,

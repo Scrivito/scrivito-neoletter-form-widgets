@@ -20,9 +20,13 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     items: {
       title: "Items"
     },
+    maxSelections: {
+      title: "Maximum selections",
+      description: "Limits how many checkboxes can be selected. Leave empty or set to 0 for no limit. Inform users about this limit in the label or help text."
+    },
     title: { title: "Label" },
     alignment: {
-      title: "Alignment",
+      title: "Alignment"
     },
     customFieldName: { title: "Field name" },
     required: { title: "Mandatory" },
@@ -58,6 +62,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     selectionType: "radio",
     title: "Please choose",
     items: ["Yes", "No"],
+    maxSelections: 0,
     customFieldName: "custom_",
     linearScaleLowerLimit: "1",
     linearScaleUpperLimit: "5",
@@ -99,12 +104,14 @@ function getProperties(widget: Scrivito.Widget): any[] {
     "helpText",
     "customFieldName",
     ["required", { enabled: type !== "multi" }],
-    ["validationText", { enabled: widget.get("required") }],
-
+    ["validationText", { enabled: widget.get("required") }]
   ];
   // show/hide inlineView for items
   if (type == "radio" || type == "multi") {
     props.splice(3, 0, "inlineView");
+  }
+  if (type == "multi") {
+    props.splice(4, 0, "maxSelections");
   }
   // show/hide items
   if (type != "linear-scale") {

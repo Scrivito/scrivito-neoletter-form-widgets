@@ -23,6 +23,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
   const mandatory = widget.get("required");
   const isMultiSelect = widget.get("selectionType") == "multi";
   const isDropdown = widget.get("selectionType") == "dropdown";
+  const maxSelections = widget.get("maxSelections") || 0;
   const validationText = widget.get("validationText") || "Please select an item ";
   const alignment = isAlignmentEnabled(widget) ? widget.get("alignment") || "left" : "left";
   const ctx = useFormContext();
@@ -34,7 +35,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
 
   const isInvalid = !isLocallyValid;
 
-  const onChangeSelect = () => {
+  const onChangeSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelected(true);
     if (ref && ref.current) {
       const inputs = ref.current.getElementsByTagName("input");
@@ -45,19 +46,30 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
           selectedValues.push(input.value)
         }
       });
-      mandatory && setIsLocallyValid(!isEmpty(selectedValues));
+      if (isMultiSelect && maxSelections > 0 && selectedValues.length > maxSelections) {
+        event.currentTarget.checked = false;
+        event.currentTarget.blur();
+        return;
+      }
+      if (mandatory) {
+        setIsLocallyValid(!isEmpty(selectedValues));
+      }
       ctx.onInputChange(getFieldName(widget), selectedValues.join(", "));
     }
   }
   const onChangeDropdown = (fieldName: string, value: string) => {
-    mandatory && setIsLocallyValid(!isEmpty(value));
+    if (mandatory) {
+      setIsLocallyValid(!isEmpty(value));
+    }
     ctx.onInputChange(fieldName, value);
   }
 
   const onReset = () => {
     setSelected(false);
     ctx.onInputChange(getFieldName(widget), "");
-    mandatory && setIsLocallyValid(false);
+    if (mandatory) {
+      setIsLocallyValid(false);
+    }
   }
 
   if (!items.length && widget.get("selectionType") != "linear-scale") {

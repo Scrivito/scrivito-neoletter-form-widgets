@@ -17,6 +17,7 @@ export const FormSelectWidget = Scrivito.provideWidgetClass(
         }
       ],
       items: "stringlist",
+      maxSelections: "integer",
       customFieldName: "string",
       required: "boolean",
       helpText: "html",
