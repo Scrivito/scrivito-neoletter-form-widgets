@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import { LinearScale } from "./LinearScaleComponent";
+import { RankingSelect } from "./RankingSelectComponent";
 interface SelectProps {
   isMultiSelect: boolean;
   required: boolean;
@@ -8,6 +9,7 @@ interface SelectProps {
   widget: Scrivito.Widget;
   name: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onRankingChange?: (value: string) => void;
   onClickNavigate: React.MouseEventHandler<HTMLInputElement>;
 }
 interface SelectItemProps {
@@ -22,12 +24,12 @@ interface SelectItemProps {
 }
 
 export const Select: React.FC<SelectProps> = Scrivito.connect(
-  ({ isMultiSelect, required, isInvalid, widget, name, onChange, onClickNavigate }) => {
+  ({ isMultiSelect, required, isInvalid, widget, name, onChange, onRankingChange, onClickNavigate }) => {
     const type = widget.get("selectionType") as string;
+    const items = widget.get("items") as string[];
     // works only for inline view for now
     const itemsAlignment = widget.get("alignment") as string || "left";
     if (type == "radio" || type == "multi") {
-      const items = widget.get("items") as string[];
       return (
         <div className={`${widget.get("inlineView") ? "inline" : "row"} ${itemsAlignment}`}>
           {items.map((itemValue, index) => (
@@ -43,6 +45,16 @@ export const Select: React.FC<SelectProps> = Scrivito.connect(
             />
           ))}
         </div>
+      );
+    }
+    if (type == "ranking") {
+      return (
+        <RankingSelect
+          items={items}
+          name={name}
+          isInvalid={isInvalid}
+          onRankingChange={onRankingChange}
+        />
       );
     }
     return (

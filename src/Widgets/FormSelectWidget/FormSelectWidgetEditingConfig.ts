@@ -14,7 +14,8 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
         { value: "radio", title: "Radio buttons" },
         { value: "dropdown", title: "Dropdown" },
         { value: "multi", title: "Checkboxes" },
-        { value: "linear-scale", title: "Linear scale" }
+        { value: "linear-scale", title: "Linear scale" },
+        { value: "ranking", title: "Ranking" }
       ]
     },
     items: {
@@ -103,7 +104,7 @@ function getProperties(widget: Scrivito.Widget): any[] {
     ["alignment", { enabled: isAlignmentEnabled(widget) }],
     "helpText",
     "customFieldName",
-    ["required", { enabled: type !== "multi" }],
+    ["required", { enabled: type !== "multi" && type !== "ranking" }],
     ["validationText", { enabled: widget.get("required") }]
   ];
   // show/hide inlineView for items

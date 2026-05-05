@@ -23,6 +23,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
   const mandatory = widget.get("required");
   const isMultiSelect = widget.get("selectionType") == "multi";
   const isDropdown = widget.get("selectionType") == "dropdown";
+  const isRanking = widget.get("selectionType") == "ranking";
   const maxSelections = widget.get("maxSelections") || 0;
   const validationText = widget.get("validationText") || "Please select an item ";
   const alignment = isAlignmentEnabled(widget) ? widget.get("alignment") || "left" : "left";
@@ -62,6 +63,14 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
       setIsLocallyValid(!isEmpty(value));
     }
     ctx.onInputChange(fieldName, value);
+  }
+
+  const onChangeRanking = (value: string) => {
+    setSelected(true);
+    if (mandatory) {
+      setIsLocallyValid(!isEmpty(value));
+    }
+    ctx.onInputChange(getFieldName(widget), value);
   }
 
   const onReset = () => {
@@ -114,6 +123,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
             widget={widget}
             name={getFieldName(widget)}
             onChange={onChangeSelect}
+            onRankingChange={onChangeRanking}
             onClickNavigate={() => (isMultiSelect || !widget.get("navigateOnClick")) ? null : ctx.navigateOnClick()}
           />
         </>
@@ -136,6 +146,7 @@ Scrivito.provideComponent(FormSelectWidget, ({ widget }) => {
       widget.get("showClearSelectionButton") &&
       selected &&
       !widget.get("required") &&
+      !isRanking &&
       (widget.get("selectionType") == "radio" ||
         widget.get("selectionType") == "linear-scale")
     );

@@ -342,14 +342,14 @@ The `Form Signature` widget allows users to draw a signature on the form. This w
 
 <img src="images/form_select_preview.png"  width="350" alt="Screenshot">
 
-The `Form Select` widget enables you to create single or multiple selection elements, including radio buttons, dropdowns, or checkboxes in your form.
+The `Form Select` widget enables you to create single or multiple selection elements, including radio buttons, dropdowns, checkboxes, linear scales, or ranked lists in your form.
 
 ### Properties
 
-- Input type: Choose the type of input, which can be single select (radio buttons, linear-scale or dropdown) or multi-select (checkboxes).
+- Input type: Choose the type of input, which can be single select (radio buttons, linear-scale or dropdown), multi-select (checkboxes), or ranking.
 - Label: Specify the label for the select input.
 - Alignment: Aligns the widget. Enabled if “Arrange items horizontally” is enabled for radio buttons or “Enable floating label” is disabled for dropdowns.
-- Items: Configure the items or options available for selection. (Not visible for input type linear-scale.)
+- Items: Configure the items or options available for selection or ranking. (Not visible for input type linear-scale.)
 - Maximum selections: Limits how many checkboxes can be selected. Set to 0 or leave empty for no limit. Inform users about this limit in the label or help text. (Visible for checkboxes only.)
 - Field name: Define the field name for the select input.
 - Enable floating label: Places the label inside the dropdown. (Visible for dropdown only.)

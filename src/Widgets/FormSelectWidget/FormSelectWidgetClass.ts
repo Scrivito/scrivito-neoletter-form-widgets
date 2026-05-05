@@ -7,7 +7,7 @@ export const FormSelectWidget = Scrivito.provideWidgetClass(
       selectionType: [
         "enum",
         {
-          values: ["radio", "dropdown", "multi", "linear-scale"]
+          values: ["radio", "dropdown", "multi", "linear-scale", "ranking"]
         }
       ],
       title: "html",

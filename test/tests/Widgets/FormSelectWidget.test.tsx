@@ -152,6 +152,26 @@ describe("FormSelectWidget", () => {
     });
   });
 
+  it("renders FormSelectWidget with ranking selection", () => {
+    const selectProps = {
+      ...widgetProps,
+      selectionType: "ranking",
+      required: false
+    };
+
+    pageRenderer.render({
+      body: [new FormSelectWidget(selectProps)]
+    });
+
+    const rankingItems = document.querySelectorAll(".ranking-item");
+    const rankingInput = document.querySelector(".ranking-select input");
+
+    expect(screen.getByText(selectProps.title)).toBeInTheDocument();
+    expect(rankingItems).toHaveLength(selectProps.items.length);
+    expect(rankingInput).toHaveAttribute("type", "hidden");
+    expect(rankingInput).toHaveValue("Item 1, Item 2, Item 3");
+  });
+
   it("renders correctly", () => {
     const tree = pageRenderer.getAsJSON({
       body: [new FormSelectWidget(widgetProps)]
