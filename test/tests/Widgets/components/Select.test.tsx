@@ -21,7 +21,8 @@ const widgetProps = {
   linearScaleUpperLabel: "highest",
   clearSelectionText: "Clear",
   inlineView: false,
-  navigateOnClick: false
+  navigateOnClick: false,
+  updateRankingNumbers: false
 };
 
 const widget = new DummyWidget(widgetProps) as unknown as Widget;
@@ -175,7 +176,7 @@ describe("Select", () => {
   });
 
   it("updates the ranking order with keyboard controls", () => {
-    widget.update({ selectionType: "ranking" });
+    widget.update({ selectionType: "ranking", updateRankingNumbers: false });
     const onRankingChange = jest.fn();
 
     const { container } = render(
@@ -196,10 +197,34 @@ describe("Select", () => {
 
     expect(container.querySelector("input")).toHaveValue("Item 2, Item 1, Item 3");
     expect(onRankingChange).toHaveBeenCalledWith("Item 2, Item 1, Item 3");
+    expect(Array.from(container.querySelectorAll(".ranking-position")).map((position) => position.textContent)).toEqual(["2", "1", "3"]);
+  });
+
+  it("updates ranking numbers when configured", () => {
+    widget.update({ selectionType: "ranking", updateRankingNumbers: true });
+
+    const { container } = render(
+      <Select
+        isMultiSelect={false}
+        required={false}
+        isInvalid={false}
+        widget={widget}
+        name="testName"
+        onChange={jest.fn()}
+        onRankingChange={jest.fn()}
+        onClickNavigate={jest.fn()}
+      />
+    );
+
+    const secondItem = container.querySelectorAll(".ranking-item")[1];
+    fireEvent.keyDown(secondItem, { key: "ArrowUp" });
+
+    expect(container.querySelector("input")).toHaveValue("Item 2, Item 1, Item 3");
+    expect(Array.from(container.querySelectorAll(".ranking-position")).map((position) => position.textContent)).toEqual(["1", "2", "3"]);
   });
 
   it("updates the ranking order with pointer drag controls", () => {
-    widget.update({ selectionType: "ranking" });
+    widget.update({ selectionType: "ranking", updateRankingNumbers: false });
     const onRankingChange = jest.fn();
 
     const { container } = render(

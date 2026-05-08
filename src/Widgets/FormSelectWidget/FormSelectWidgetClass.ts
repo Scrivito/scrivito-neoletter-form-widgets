@@ -30,6 +30,7 @@ export const FormSelectWidget = Scrivito.provideWidgetClass(
       linearScaleUpperLabel: "string",
       clearSelectionButtonText: "string",
       inlineView: "boolean",
+      updateRankingNumbers: "boolean",
       useFloatingLabel: "boolean",
       navigateOnClick: "boolean",
       showClearSelectionButton: "boolean",

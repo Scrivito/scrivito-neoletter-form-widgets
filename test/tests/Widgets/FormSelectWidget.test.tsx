@@ -20,6 +20,7 @@ const widgetProps = {
   linearScaleLowerLabel: "low",
   linearScaleUpperLabel: "high",
   inlineView: false,
+  updateRankingNumbers: false,
   useFloatingLabel: false,
   showClearSelectionButton: true
 };

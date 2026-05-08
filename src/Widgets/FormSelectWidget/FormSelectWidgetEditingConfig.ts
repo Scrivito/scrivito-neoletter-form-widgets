@@ -45,6 +45,10 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
       title: "Arrange items horizontally",
       description: "When enabled, all items will be displayed in a single row."
     },
+    updateRankingNumbers: {
+      title: "Update ranking numbers",
+      description: "When enabled, ranking numbers update after items are reordered."
+    },
     useFloatingLabel: {
       title: "Enable floating label",
       description: "Places the label inside the dropdown."
@@ -69,6 +73,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     linearScaleUpperLimit: "5",
     clearSelectionButtonText: "Clear selection",
     inlineView: false,
+    updateRankingNumbers: false,
     useFloatingLabel: false,
     navigateOnClick: false,
     showClearSelectionButton: true,
@@ -113,6 +118,9 @@ function getProperties(widget: Scrivito.Widget): any[] {
   }
   if (type == "multi") {
     props.splice(4, 0, "maxSelections");
+  }
+  if (type == "ranking") {
+    props.splice(4, 0, "updateRankingNumbers");
   }
   // show/hide items
   if (type != "linear-scale") {

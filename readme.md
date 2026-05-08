@@ -351,6 +351,7 @@ The `Form Select` widget enables you to create single or multiple selection elem
 - Alignment: Aligns the widget. Enabled if “Arrange items horizontally” is enabled for radio buttons or “Enable floating label” is disabled for dropdowns.
 - Items: Configure the items or options available for selection or ranking. (Not visible for input type linear-scale.)
 - Maximum selections: Limits how many checkboxes can be selected. Set to 0 or leave empty for no limit. Inform users about this limit in the label or help text. (Visible for checkboxes only.)
+- Update ranking numbers: When enabled, ranking numbers update after items are reordered. (Visible for ranking only.)
 - Field name: Define the field name for the select input.
 - Enable floating label: Places the label inside the dropdown. (Visible for dropdown only.)
 - Navigate on click: Automatically navigate to the next step when an item is clicked. (Visible for radios only.)

@@ -53,6 +53,7 @@ export const Select: React.FC<SelectProps> = Scrivito.connect(
           items={items}
           name={name}
           isInvalid={isInvalid}
+          updateRankingNumbers={widget.get("updateRankingNumbers") as boolean || false}
           onRankingChange={onRankingChange}
         />
       );

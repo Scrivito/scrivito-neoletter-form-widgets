@@ -2,6 +2,7 @@ import * as React from "react";
 
 interface RankingItem {
   id: string;
+  position: number;
   value: string;
 }
 
@@ -20,17 +21,22 @@ interface RankingSelectProps {
   items: string[];
   name: string;
   isInvalid: boolean;
+  updateRankingNumbers: boolean;
   onRankingChange?: (value: string) => void;
 }
+
+const createRankingItems = (items: string[]): RankingItem[] =>
+  items.map((value, index) => ({ id: `${index}-${value}`, position: index + 1, value }));
 
 export const RankingSelect: React.FC<RankingSelectProps> = ({
   items,
   name,
   isInvalid,
+  updateRankingNumbers,
   onRankingChange
 }) => {
   const [orderedItems, setOrderedItems] = React.useState<RankingItem[]>(() =>
-    items.map((value, index) => ({ id: `${index}-${value}`, value }))
+    createRankingItems(items)
   );
   const [dragState, setDragState] = React.useState<DragState | null>(null);
   const [dropIndex, setDropIndex] = React.useState<number | null>(null);
@@ -40,7 +46,7 @@ export const RankingSelect: React.FC<RankingSelectProps> = ({
 
   React.useEffect(() => {
     const nextItems = JSON.parse(itemsSignature) as string[];
-    setOrderedItems(nextItems.map((value, index) => ({ id: `${index}-${value}`, value })));
+    setOrderedItems(createRankingItems(nextItems));
   }, [itemsSignature]);
 
   React.useEffect(() => {
@@ -156,6 +162,8 @@ export const RankingSelect: React.FC<RankingSelectProps> = ({
     resetDragState();
   };
 
+  const getRankingPosition = (item: RankingItem, index: number) => updateRankingNumbers ? index + 1 : item.position;
+
   return (
     <div className={`ranking-select ${isInvalid ? "is-invalid" : ""} ${dragState ? "is-pointer-dragging" : ""}`}>
       <input
@@ -194,7 +202,7 @@ export const RankingSelect: React.FC<RankingSelectProps> = ({
             }}
             tabIndex={0}
           >
-            <span className="ranking-position">{index + 1}</span>
+            <span className="ranking-position">{getRankingPosition(item, index)}</span>
             <span className="ranking-value">{item.value}</span>
             <span className="ranking-handle" aria-hidden="true">::</span>
           </li>
@@ -209,7 +217,7 @@ export const RankingSelect: React.FC<RankingSelectProps> = ({
             width: dragState.width * 0.76
           }}
         >
-          <span className="ranking-position">{dragState.index + 1}</span>
+          <span className="ranking-position">{getRankingPosition(dragState.item, dragState.index)}</span>
           <span className="ranking-value">{dragState.item.value}</span>
           <span className="ranking-handle" aria-hidden="true">::</span>
         </div>
