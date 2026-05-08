@@ -101,6 +101,27 @@ describe("FormSelectWidget", () => {
     expect(selectContainer.classList).toContain("inline");
   });
 
+  it("renders required FormSelectWidget checkboxes with a mandatory marker", () => {
+    const selectProps = {
+      ...widgetProps,
+      selectionType: "multi",
+      required: true
+    };
+
+    pageRenderer.render({
+      body: [new FormSelectWidget(selectProps)]
+    });
+
+    const mandatoryMarker = document.querySelector(".mandatory-container");
+    const checkboxes = document.querySelectorAll(".form-check-input");
+
+    expect(mandatoryMarker).toBeInTheDocument();
+    checkboxes.forEach((checkbox) => {
+      expect(checkbox).toHaveAttribute("type", "checkbox");
+      expect(checkbox).not.toHaveAttribute("required");
+    });
+  });
+
   it("limits the number of selected checkboxes", () => {
     const selectProps = {
       ...widgetProps,
@@ -171,6 +192,22 @@ describe("FormSelectWidget", () => {
     expect(rankingItems).toHaveLength(selectProps.items.length);
     expect(rankingInput).toHaveAttribute("type", "hidden");
     expect(rankingInput).toHaveValue("Item 1, Item 2, Item 3");
+  });
+
+  it("does not render ranking selection as mandatory when required is still true", () => {
+    const selectProps = {
+      ...widgetProps,
+      selectionType: "ranking",
+      required: true
+    };
+
+    pageRenderer.render({
+      body: [new FormSelectWidget(selectProps)]
+    });
+
+    expect(document.querySelector(".mandatory-container")).not.toBeInTheDocument();
+    expect(document.querySelector(".invalid-feedback")).not.toBeInTheDocument();
+    expect(document.querySelector(".ranking-select")).not.toHaveClass("is-invalid");
   });
 
   it("renders correctly", () => {

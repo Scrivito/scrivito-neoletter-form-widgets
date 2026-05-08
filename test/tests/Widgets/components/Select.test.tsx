@@ -120,6 +120,51 @@ describe("Select", () => {
     expect(container.firstChild).toHaveClass("inline");
   });
 
+  it("shows is-invalid class for required checkbox groups when invalid", () => {
+    widget.update({ inlineView: false, selectionType: "multi" });
+
+    const { container } = render(
+      <Select
+        isMultiSelect={true}
+        required={true}
+        isInvalid={true}
+        widget={widget}
+        name="testName"
+        onChange={jest.fn()}
+        onClickNavigate={jest.fn()}
+      />
+    );
+
+    const inputs = container.querySelectorAll("input");
+    inputs.forEach((input) => {
+      expect(input).toHaveAttribute("type", "checkbox");
+      expect(input).toHaveClass("is-invalid");
+      expect(input).not.toHaveAttribute("required");
+    });
+  });
+
+  it("does not show is-invalid class for required checkbox groups when valid", () => {
+    widget.update({ inlineView: false, selectionType: "multi" });
+
+    const { container } = render(
+      <Select
+        isMultiSelect={true}
+        required={true}
+        isInvalid={false}
+        widget={widget}
+        name="testName"
+        onChange={jest.fn()}
+        onClickNavigate={jest.fn()}
+      />
+    );
+
+    const inputs = container.querySelectorAll("input");
+    inputs.forEach((input) => {
+      expect(input).not.toHaveClass("is-invalid");
+      expect(input).not.toHaveAttribute("required");
+    });
+  });
+
   it("renders the Select component with linear scale type", () => {
     widget.update({ selectionType: "linear-scale" });
 

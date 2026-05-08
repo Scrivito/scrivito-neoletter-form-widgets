@@ -100,7 +100,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getProperties(widget: Scrivito.Widget): any[] {
   const type = widget.get("selectionType") as string;
-  const required = widget.get("required") as boolean;
+  const required = (widget.get("required") as boolean) && type !== "ranking";
   const showClearSelectionButton = widget.get("showClearSelectionButton") as boolean;
 
   const props = [
@@ -109,8 +109,8 @@ function getProperties(widget: Scrivito.Widget): any[] {
     ["alignment", { enabled: isAlignmentEnabled(widget) }],
     "helpText",
     "customFieldName",
-    ["required", { enabled: type !== "multi" && type !== "ranking" }],
-    ["validationText", { enabled: widget.get("required") }]
+    ["required", { enabled: type !== "ranking" }],
+    ["validationText", { enabled: required }]
   ];
   // show/hide inlineView for items
   if (type == "radio" || type == "multi") {

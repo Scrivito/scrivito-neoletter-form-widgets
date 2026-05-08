@@ -78,7 +78,12 @@ export const SelectItem: React.FC<SelectItemProps> = ({
   onChange,
   onClickNavigate
 }: SelectItemProps) => {
-  const isRequired = required && (selectionType == "radio" || selectionType == "linear-scale");
+  const isRequired = required && (
+    selectionType == "radio" ||
+    selectionType == "linear-scale" ||
+    selectionType == "multi" ||
+    selectionType == "checkbox"
+  );
   const type = selectionType == "radio" || selectionType == "linear-scale" ? "radio" : "checkbox";
   return (
     <label className={`select-label ${selectionType}`}>
