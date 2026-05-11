@@ -7,7 +7,7 @@ describe("MessageBlock", () => {
   it("renders the correct warning message for noContext", () => {
     const { getByText } = render(<MessageBlock type="noContext" />);
     const warningMessage = getByText(
-      "This widget must be placed within a Neoletter Form."
+      "This widget must be placed within an Automations Form."
     );
 
     expect(warningMessage).toBeInTheDocument();
