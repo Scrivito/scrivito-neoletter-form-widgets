@@ -8,7 +8,7 @@ import { insideFormContainerValidation } from "../FormStepContainerWidget/utils/
 import { FormRatingWidget } from "../FormRatingWidget/FormRatingWidgetClass";
 import formConditionContainerWidgetIcon from "../../assets/images/form_widget_condition_container.svg";
 Scrivito.provideEditingConfig("FormConditionalContainerWidget", {
-  title: "Neoletter Form Conditional Group",
+  title: "Automations Form Conditional Group",
   titleForContent(widget) {
     return "Conditional group for: " + widget.get("title");
   },

@@ -5,7 +5,7 @@ import { isAlignmentEnabled } from "./selectUtils";
 import formSelectWidgetIcon from "../../assets/images/form_widget_select.svg";
 
 Scrivito.provideEditingConfig("FormSelectWidget", {
-  title: "Neoletter Form Select",
+  title: "Automations Form Select",
   thumbnail: formSelectWidgetIcon,
   attributes: {
     selectionType: {

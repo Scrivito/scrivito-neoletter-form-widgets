@@ -12,7 +12,7 @@ import { defaultInputTypes } from "../FormStepContainerWidget/utils/formConstant
 
 
 Scrivito.provideEditingConfig("FormHiddenFieldWidget", {
-  title: "Neoletter Hidden Form Field",
+  title: "Automations Hidden Form Field",
   thumbnail: formHiddenFieldWidgetIcon,
   attributes: {
     customFieldName: { title: "Field name" },

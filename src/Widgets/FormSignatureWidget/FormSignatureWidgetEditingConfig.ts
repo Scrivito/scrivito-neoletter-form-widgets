@@ -4,7 +4,7 @@ import { insideFormContainerValidation } from "../FormStepContainerWidget/utils/
 import formSignatureWidgetIcon from "../../assets/images/form-signature-widget.svg";
 
 Scrivito.provideEditingConfig("FormSignatureWidget", {
-  title: "Neoletter Form Signature",
+  title: "Automations Form Signature",
   thumbnail: formSignatureWidgetIcon,
   attributes: {
     title: { title: "Label" },

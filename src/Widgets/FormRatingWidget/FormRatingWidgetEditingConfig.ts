@@ -6,7 +6,7 @@ import { ScrivitoBootstrapIconEditor } from 'scrivito-icon-editor';
 import formContainerWidgetIcon from "../../assets/images/form_widget_rating.svg";
 
 Scrivito.provideEditingConfig("FormRatingWidget", {
-  title: "Neoletter Form Rating",
+  title: "Automations Form Rating",
   thumbnail: formContainerWidgetIcon,
   attributes: {
     title: { title: "Label" },

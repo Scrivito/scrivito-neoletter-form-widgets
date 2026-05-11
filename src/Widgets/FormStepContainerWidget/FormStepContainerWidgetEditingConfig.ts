@@ -9,7 +9,7 @@ import { FormIdComponent } from "./components/FormIdComponent";
 import { isEmpty } from "./utils/lodashPolyfills";
 
 Scrivito.provideEditingConfig("FormStepContainerWidget", {
-  title: "Neoletter Form",
+  title: "Automations Form",
   thumbnail: formContainerWidgetIcon,
   attributes: {
     formId: {

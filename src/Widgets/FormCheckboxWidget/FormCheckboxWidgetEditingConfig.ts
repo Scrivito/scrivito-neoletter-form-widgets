@@ -6,7 +6,7 @@ import { typeValidation } from "../FormStepContainerWidget/utils/validations/typ
 import { insideFormContainerValidation } from "../FormStepContainerWidget/utils/validations/insideFormContainerValidation";
 
 Scrivito.provideEditingConfig("FormCheckboxWidget", {
-  title: "Neoletter Form Checkbox",
+  title: "Automations Form Checkbox",
   thumbnail: formCheckboxWidgetIcon,
   attributes: {
     required: { title: "Mandatory" },
