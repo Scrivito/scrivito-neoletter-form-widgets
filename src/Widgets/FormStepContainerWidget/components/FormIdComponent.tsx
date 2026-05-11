@@ -54,7 +54,7 @@ export const FormIdComponent: React.FC<FormIdComponentProps> = ({ widget }) => {
           <FormIdInput
             widget={widget}
             title="Form ID"
-            description="This ID identifies the form in Neoletter."
+            description="This ID identifies the form in Automations."
             initialId={initialId.current}
             currentId={currentId}
             onGenerateNewId={onGenerateNewId}
