@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`MessageBlock renders correctly 1`] = `
 <div
@@ -14,7 +14,7 @@ exports[`MessageBlock renders correctly 1`] = `
         Editor's info:
       </strong>
        
-      This widget must be placed within a Neoletter Form.
+      This widget must be placed within an Automations Form.
     </p>
   </div>
 </div>
