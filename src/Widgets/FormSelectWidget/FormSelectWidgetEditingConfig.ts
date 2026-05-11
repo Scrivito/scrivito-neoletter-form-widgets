@@ -5,7 +5,7 @@ import { isAlignmentEnabled } from "./selectUtils";
 import formSelectWidgetIcon from "../../assets/images/form_widget_select.svg";
 
 Scrivito.provideEditingConfig("FormSelectWidget", {
-  title: "Neoletter Form Select",
+  title: "Automations Form Select",
   thumbnail: formSelectWidgetIcon,
   attributes: {
     selectionType: {
@@ -14,15 +14,20 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
         { value: "radio", title: "Radio buttons" },
         { value: "dropdown", title: "Dropdown" },
         { value: "multi", title: "Checkboxes" },
-        { value: "linear-scale", title: "Linear scale" }
+        { value: "linear-scale", title: "Linear scale" },
+        { value: "ranking", title: "Ranking" }
       ]
     },
     items: {
       title: "Items"
     },
+    maxSelections: {
+      title: "Maximum selections",
+      description: "Limits how many checkboxes can be selected. Leave empty or set to 0 for no limit. Inform users about this limit in the label or help text."
+    },
     title: { title: "Label" },
     alignment: {
-      title: "Alignment",
+      title: "Alignment"
     },
     customFieldName: { title: "Field name" },
     required: { title: "Mandatory" },
@@ -39,6 +44,10 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     inlineView: {
       title: "Arrange items horizontally",
       description: "When enabled, all items will be displayed in a single row."
+    },
+    updateRankingNumbers: {
+      title: "Update ranking numbers",
+      description: "When enabled, ranking numbers update after items are reordered."
     },
     useFloatingLabel: {
       title: "Enable floating label",
@@ -58,11 +67,13 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
     selectionType: "radio",
     title: "Please choose",
     items: ["Yes", "No"],
+    maxSelections: 0,
     customFieldName: "custom_",
     linearScaleLowerLimit: "1",
     linearScaleUpperLimit: "5",
     clearSelectionButtonText: "Clear selection",
     inlineView: false,
+    updateRankingNumbers: false,
     useFloatingLabel: false,
     navigateOnClick: false,
     showClearSelectionButton: true,
@@ -89,7 +100,7 @@ Scrivito.provideEditingConfig("FormSelectWidget", {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getProperties(widget: Scrivito.Widget): any[] {
   const type = widget.get("selectionType") as string;
-  const required = widget.get("required") as boolean;
+  const required = (widget.get("required") as boolean) && type !== "ranking";
   const showClearSelectionButton = widget.get("showClearSelectionButton") as boolean;
 
   const props = [
@@ -98,13 +109,18 @@ function getProperties(widget: Scrivito.Widget): any[] {
     ["alignment", { enabled: isAlignmentEnabled(widget) }],
     "helpText",
     "customFieldName",
-    ["required", { enabled: type !== "multi" }],
-    ["validationText", { enabled: widget.get("required") }],
-
+    ["required", { enabled: type !== "ranking" }],
+    ["validationText", { enabled: required }]
   ];
   // show/hide inlineView for items
   if (type == "radio" || type == "multi") {
     props.splice(3, 0, "inlineView");
+  }
+  if (type == "multi") {
+    props.splice(4, 0, "maxSelections");
+  }
+  if (type == "ranking") {
+    props.splice(4, 0, "updateRankingNumbers");
   }
   // show/hide items
   if (type != "linear-scale") {

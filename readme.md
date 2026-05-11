@@ -1,8 +1,8 @@
-# Scrivito Neoletter Form Widgets
+# Scrivito Automations Form Widgets
 
 A set of Scrivito Widgets for building awesome forms
 
-**[Neoletter](https://www.neoletter.com)** | **[Scrivito](https://www.scrivito.com)**
+**[Automations](https://www.neoletter.com)** | **[Scrivito](https://www.scrivito.com)**
 
 ## Minimum Required Scrivito Version
 
@@ -103,7 +103,7 @@ When using prerender in a Vite environment, you need to add `--options.deps.exte
 
 **Note:** Prerender with active captchas will not render the captchas. This is because both captchas make use of the `window` object in their scripts, and the `window` object is not available when running `vite-node`.
 
-# Neoletter Form Widgets Overview
+# Automations Form Widgets Overview
 
 <img src="images/form_widgets_all.png" width="200" alt="Screenshot">
 
@@ -170,7 +170,7 @@ The `Form` widget has the following properties divided into several tabs:
 - "Hidden fields" tab
   - Hidden Fields: Customize hidden fields.
 - "Form submission" tab
-  - Form ID: This ID identifies the form in Neoletter. The input field includes icons to generate a new ID and to restore the initial ID that was stored before opening the properties.
+  - Form ID: This ID identifies the form in Automations. The input field includes icons to generate a new ID and to restore the initial ID that was stored before opening the properties.
 - "Submission messages" tab
   - Submitting message type: Select the type of message displayed while the form is being submitted.
   - Submitting message: Message shown while the form is being submitted. (Visible if submitting message type is set to `Default text`).
@@ -342,14 +342,16 @@ The `Form Signature` widget allows users to draw a signature on the form. This w
 
 <img src="images/form_select_preview.png"  width="350" alt="Screenshot">
 
-The `Form Select` widget enables you to create single or multiple selection elements, including radio buttons, dropdowns, or checkboxes in your form.
+The `Form Select` widget enables you to create single or multiple selection elements, including radio buttons, dropdowns, checkboxes, linear scales, or ranked lists in your form.
 
 ### Properties
 
-- Input type: Choose the type of input, which can be single select (radio buttons, linear-scale or dropdown) or multi-select (checkboxes).
+- Input type: Choose the type of input, which can be single select (radio buttons, linear-scale or dropdown), multi-select (checkboxes), or ranking.
 - Label: Specify the label for the select input.
 - Alignment: Aligns the widget. Enabled if “Arrange items horizontally” is enabled for radio buttons or “Enable floating label” is disabled for dropdowns.
-- Items: Configure the items or options available for selection. (Not visible for input type linear-scale.)
+- Items: Configure the items or options available for selection or ranking. (Not visible for input type linear-scale.)
+- Maximum selections: Limits how many checkboxes can be selected. Set to 0 or leave empty for no limit. Inform users about this limit in the label or help text. (Visible for checkboxes only.)
+- Update ranking numbers: When enabled, ranking numbers update after items are reordered. (Visible for ranking only.)
 - Field name: Define the field name for the select input.
 - Enable floating label: Places the label inside the dropdown. (Visible for dropdown only.)
 - Navigate on click: Automatically navigate to the next step when an item is clicked. (Visible for radios only.)
@@ -651,13 +653,13 @@ initNeoletterFormWidgets({
 9. **Adjust Security Preferences:** Optionally, open the settings page in the admin panel and adjust the owners or the Security Preference.
 10. **Configure the Content Security Policy (CSP):** Follow [these](#csp-configuration-for-captcha) instructions to configure the CSP.
 
-Finally you need to setup the secret key in Neoletter to be able to use Google reCAPTCHA within your forms.
+Finally you need to setup the secret key in Automations to be able to use Google reCAPTCHA within your forms.
 
 ## Friendly Captcha Setup
 
 1. **Login to Friendly Captcha:** Login in or create a new account on the [Friendly Captcha](https://friendlycaptcha.com/) site and follow the instructions from the site.
 2. **Create a new Application:** After setup, go to the `Applications` tab and click on `Create new application` and enter the necessary details. Once you have completed this, take note of the sitekey value under the application name, we will need it later.
-3. **Create a new API Key:** Go the the `API Keys` tab and create a new API key. Copy the key somewhere, it will be needed later for the Neoletter configuration.
+3. **Create a new API Key:** Go the the `API Keys` tab and create a new API key. Copy the key somewhere, it will be needed later for the Automations configuration.
 4. **Use the siteKey:** Copy the site key and pass it in the initNeoletterFormWidgets function together with the `captchaType`, you will need to set the `captchaType` to `friendly-captcha` like below:
 
 - Using Scrivito version prior to 1.39.0:
@@ -687,7 +689,7 @@ initNeoletterFormWidgets({
 
 5. **Configure the Content Security Policy (CSP):** Follow [these](#csp-configuration-for-captcha) instructions to configure the CSP.
 
-Finally you need to setup the API key in Neoletter to be able to use Friendly Captcha within your forms.
+Finally you need to setup the API key in Automations to be able to use Friendly Captcha within your forms.
 
 ### CSP Configuration for captcha
 
@@ -716,7 +718,7 @@ For more information regarding CSP, please refer to the CSP section in the Frien
 
 # Tracking
 
-Enable the Beta Neoletter Tracking capabilities with:
+Enable the Beta Automations Tracking capabilities with:
 
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";

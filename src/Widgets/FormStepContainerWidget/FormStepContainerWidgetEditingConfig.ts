@@ -9,12 +9,12 @@ import { FormIdComponent } from "./components/FormIdComponent";
 import { isEmpty } from "./utils/lodashPolyfills";
 
 Scrivito.provideEditingConfig("FormStepContainerWidget", {
-  title: "Neoletter Form",
+  title: "Automations Form",
   thumbnail: formContainerWidgetIcon,
   attributes: {
     formId: {
       title: "Form ID",
-      description: "This ID identifies the form in Neoletter."
+      description: "This ID identifies the form in Automations."
     },
     customClassNames: {
       title: "Additional CSS Classes",
@@ -397,7 +397,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
   validations: [
     (widget: Scrivito.Widget) => {
       if (getFormContainer(widget)) {
-        return "Needs to be outside of a Neoletter form.";
+        return "Needs to be outside of a Automations form.";
       }
     },
     (widget: Scrivito.Widget) => {

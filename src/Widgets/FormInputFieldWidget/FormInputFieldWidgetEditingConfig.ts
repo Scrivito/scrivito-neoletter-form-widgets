@@ -6,7 +6,7 @@ import { typeValidation } from "../FormStepContainerWidget/utils/validations/typ
 import { insideFormContainerValidation } from "../FormStepContainerWidget/utils/validations/insideFormContainerValidation";
 
 Scrivito.provideEditingConfig("FormInputFieldWidget", {
-  title: "Neoletter Form Input Field",
+  title: "Automations Form Input Field",
   thumbnail: formInputFieldWidgetIcon,
   attributes: {
     required: { title: "Mandatory" },

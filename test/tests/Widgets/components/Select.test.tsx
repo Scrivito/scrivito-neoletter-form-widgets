@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Widget } from "scrivito";
 import { DummyWidget } from "../../../helpers/dummyWidget";
 import {
@@ -21,7 +21,8 @@ const widgetProps = {
   linearScaleUpperLabel: "highest",
   clearSelectionText: "Clear",
   inlineView: false,
-  navigateOnClick: false
+  navigateOnClick: false,
+  updateRankingNumbers: false
 };
 
 const widget = new DummyWidget(widgetProps) as unknown as Widget;
@@ -119,6 +120,51 @@ describe("Select", () => {
     expect(container.firstChild).toHaveClass("inline");
   });
 
+  it("shows is-invalid class for required checkbox groups when invalid", () => {
+    widget.update({ inlineView: false, selectionType: "multi" });
+
+    const { container } = render(
+      <Select
+        isMultiSelect={true}
+        required={true}
+        isInvalid={true}
+        widget={widget}
+        name="testName"
+        onChange={jest.fn()}
+        onClickNavigate={jest.fn()}
+      />
+    );
+
+    const inputs = container.querySelectorAll("input");
+    inputs.forEach((input) => {
+      expect(input).toHaveAttribute("type", "checkbox");
+      expect(input).toHaveClass("is-invalid");
+      expect(input).not.toHaveAttribute("required");
+    });
+  });
+
+  it("does not show is-invalid class for required checkbox groups when valid", () => {
+    widget.update({ inlineView: false, selectionType: "multi" });
+
+    const { container } = render(
+      <Select
+        isMultiSelect={true}
+        required={true}
+        isInvalid={false}
+        widget={widget}
+        name="testName"
+        onChange={jest.fn()}
+        onClickNavigate={jest.fn()}
+      />
+    );
+
+    const inputs = container.querySelectorAll("input");
+    inputs.forEach((input) => {
+      expect(input).not.toHaveClass("is-invalid");
+      expect(input).not.toHaveAttribute("required");
+    });
+  });
+
   it("renders the Select component with linear scale type", () => {
     widget.update({ selectionType: "linear-scale" });
 
@@ -144,6 +190,129 @@ describe("Select", () => {
     labels.forEach((label) => {
       expect(label).toHaveClass("linear-scale");
     });
+  });
+
+  it("renders the Select component with ranking type", () => {
+    widget.update({ selectionType: "ranking" });
+
+    const { getByText, container } = render(
+      <Select
+        isMultiSelect={false}
+        required={false}
+        isInvalid={false}
+        widget={widget}
+        name="testName"
+        onChange={jest.fn()}
+        onRankingChange={jest.fn()}
+        onClickNavigate={jest.fn()}
+      />
+    );
+
+    expect(container.querySelector(".ranking-select")).toBeInTheDocument();
+    expect(container.querySelectorAll(".ranking-item")).toHaveLength(3);
+    expect(getByText("Item 1")).toBeInTheDocument();
+    expect(getByText("Item 2")).toBeInTheDocument();
+    expect(getByText("Item 3")).toBeInTheDocument();
+
+    const hiddenInput = container.querySelector("input");
+    expect(hiddenInput).toHaveAttribute("type", "hidden");
+    expect(hiddenInput).toHaveAttribute("name", "testName");
+    expect(hiddenInput).toHaveValue("Item 1, Item 2, Item 3");
+  });
+
+  it("updates the ranking order with keyboard controls", () => {
+    widget.update({ selectionType: "ranking", updateRankingNumbers: false });
+    const onRankingChange = jest.fn();
+
+    const { container } = render(
+      <Select
+        isMultiSelect={false}
+        required={false}
+        isInvalid={false}
+        widget={widget}
+        name="testName"
+        onChange={jest.fn()}
+        onRankingChange={onRankingChange}
+        onClickNavigate={jest.fn()}
+      />
+    );
+
+    const secondItem = container.querySelectorAll(".ranking-item")[1];
+    fireEvent.keyDown(secondItem, { key: "ArrowUp" });
+
+    expect(container.querySelector("input")).toHaveValue("Item 2, Item 1, Item 3");
+    expect(onRankingChange).toHaveBeenCalledWith("Item 2, Item 1, Item 3");
+    expect(Array.from(container.querySelectorAll(".ranking-position")).map((position) => position.textContent)).toEqual(["2", "1", "3"]);
+  });
+
+  it("updates ranking numbers when configured", () => {
+    widget.update({ selectionType: "ranking", updateRankingNumbers: true });
+
+    const { container } = render(
+      <Select
+        isMultiSelect={false}
+        required={false}
+        isInvalid={false}
+        widget={widget}
+        name="testName"
+        onChange={jest.fn()}
+        onRankingChange={jest.fn()}
+        onClickNavigate={jest.fn()}
+      />
+    );
+
+    const secondItem = container.querySelectorAll(".ranking-item")[1];
+    fireEvent.keyDown(secondItem, { key: "ArrowUp" });
+
+    expect(container.querySelector("input")).toHaveValue("Item 2, Item 1, Item 3");
+    expect(Array.from(container.querySelectorAll(".ranking-position")).map((position) => position.textContent)).toEqual(["1", "2", "3"]);
+  });
+
+  it("updates the ranking order with pointer drag controls", () => {
+    widget.update({ selectionType: "ranking", updateRankingNumbers: false });
+    const onRankingChange = jest.fn();
+
+    const { container } = render(
+      <Select
+        isMultiSelect={false}
+        required={false}
+        isInvalid={false}
+        widget={widget}
+        name="testName"
+        onChange={jest.fn()}
+        onRankingChange={onRankingChange}
+        onClickNavigate={jest.fn()}
+      />
+    );
+
+    const rankingItems = Array.from(container.querySelectorAll(".ranking-item")) as HTMLElement[];
+    rankingItems.forEach((item, index) => {
+      item.setPointerCapture = jest.fn();
+      item.releasePointerCapture = jest.fn();
+      item.hasPointerCapture = jest.fn(() => true);
+      item.getBoundingClientRect = jest.fn(() => ({
+        bottom: index * 50 + 40,
+        height: 40,
+        left: 0,
+        right: 300,
+        top: index * 50,
+        width: 300,
+        x: 0,
+        y: index * 50,
+        toJSON: jest.fn()
+      }));
+    });
+
+    fireEvent.pointerDown(rankingItems[1], { button: 0, clientX: 10, clientY: 60, pointerId: 1 });
+
+    const activeItem = container.querySelectorAll(".ranking-item")[1] as HTMLElement;
+    activeItem.releasePointerCapture = jest.fn();
+    activeItem.hasPointerCapture = jest.fn(() => true);
+    fireEvent.pointerMove(activeItem, { clientX: 10, clientY: 150, pointerId: 1 });
+    fireEvent.pointerUp(activeItem, { clientX: 10, clientY: 150, pointerId: 1 });
+
+    expect(container.querySelector("input")).toHaveValue("Item 1, Item 3, Item 2");
+    expect(onRankingChange).toHaveBeenCalledWith("Item 1, Item 3, Item 2");
   });
 
   it("does not show is-invalid class when linear scale input is valid", () => {

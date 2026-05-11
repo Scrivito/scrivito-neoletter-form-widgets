@@ -20,6 +20,7 @@ const widgetProps = {
   linearScaleLowerLabel: "low",
   linearScaleUpperLabel: "high",
   inlineView: false,
+  updateRankingNumbers: false,
   useFloatingLabel: false,
   showClearSelectionButton: true
 };
@@ -100,6 +101,52 @@ describe("FormSelectWidget", () => {
     expect(selectContainer.classList).toContain("inline");
   });
 
+  it("renders required FormSelectWidget checkboxes with a mandatory marker", () => {
+    const selectProps = {
+      ...widgetProps,
+      selectionType: "multi",
+      required: true
+    };
+
+    pageRenderer.render({
+      body: [new FormSelectWidget(selectProps)]
+    });
+
+    const mandatoryMarker = document.querySelector(".mandatory-container");
+    const checkboxes = document.querySelectorAll(".form-check-input");
+
+    expect(mandatoryMarker).toBeInTheDocument();
+    checkboxes.forEach((checkbox) => {
+      expect(checkbox).toHaveAttribute("type", "checkbox");
+      expect(checkbox).not.toHaveAttribute("required");
+    });
+  });
+
+  it("limits the number of selected checkboxes", () => {
+    const selectProps = {
+      ...widgetProps,
+      selectionType: "multi",
+      required: false,
+      maxSelections: 2
+    };
+
+    pageRenderer.render({
+      body: [new FormSelectWidget(selectProps)]
+    });
+
+    const firstCheckbox = screen.getByLabelText("Item 1");
+    const secondCheckbox = screen.getByLabelText("Item 2");
+    const thirdCheckbox = screen.getByLabelText("Item 3");
+
+    fireEvent.click(firstCheckbox);
+    fireEvent.click(secondCheckbox);
+    fireEvent.click(thirdCheckbox);
+
+    expect(firstCheckbox).toBeChecked();
+    expect(secondCheckbox).toBeChecked();
+    expect(thirdCheckbox).not.toBeChecked();
+  });
+
   it("renders FormSelectWidget with linear-scale selection", () => {
     const selectProps = {
       ...widgetProps,
@@ -125,6 +172,42 @@ describe("FormSelectWidget", () => {
     inputRange.forEach((input) => {
       expect(input).toHaveAttribute("type", "radio");
     });
+  });
+
+  it("renders FormSelectWidget with ranking selection", () => {
+    const selectProps = {
+      ...widgetProps,
+      selectionType: "ranking",
+      required: false
+    };
+
+    pageRenderer.render({
+      body: [new FormSelectWidget(selectProps)]
+    });
+
+    const rankingItems = document.querySelectorAll(".ranking-item");
+    const rankingInput = document.querySelector(".ranking-select input");
+
+    expect(screen.getByText(selectProps.title)).toBeInTheDocument();
+    expect(rankingItems).toHaveLength(selectProps.items.length);
+    expect(rankingInput).toHaveAttribute("type", "hidden");
+    expect(rankingInput).toHaveValue("Item 1, Item 2, Item 3");
+  });
+
+  it("does not render ranking selection as mandatory when required is still true", () => {
+    const selectProps = {
+      ...widgetProps,
+      selectionType: "ranking",
+      required: true
+    };
+
+    pageRenderer.render({
+      body: [new FormSelectWidget(selectProps)]
+    });
+
+    expect(document.querySelector(".mandatory-container")).not.toBeInTheDocument();
+    expect(document.querySelector(".invalid-feedback")).not.toBeInTheDocument();
+    expect(document.querySelector(".ranking-select")).not.toHaveClass("is-invalid");
   });
 
   it("renders correctly", () => {

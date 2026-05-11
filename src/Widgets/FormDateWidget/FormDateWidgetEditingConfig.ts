@@ -4,7 +4,7 @@ import { insideFormContainerValidation } from "../FormStepContainerWidget/utils/
 import formDateWidgetIcon from "../../assets/images/form_widget_date.svg";
 
 Scrivito.provideEditingConfig("FormDateWidget", {
-  title: "Neoletter Form Date",
+  title: "Automations Form Date",
   thumbnail: formDateWidgetIcon,
   attributes: {
     title: { title: "Label" },
