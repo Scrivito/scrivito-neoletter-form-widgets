@@ -1,12 +1,12 @@
-# Scrivito Automations Form Widgets
+# Web Builder Automations Form Widgets
 
-A set of Scrivito Widgets for building awesome forms
+A set of Web Builder Widgets for building awesome forms
 
-**[Automations](https://www.neoletter.com)** | **[Scrivito](https://www.scrivito.com)**
+**[Automations](https://www.neoletter.com)** | **[Web Builder](https://www.scrivito.com)**
 
-## Minimum Required Scrivito Version
+## Minimum Required Web Builder Version
 
-To use this package, you must have Scrivito version 1.30.0 or later installed in your project.
+To use this package, you must have Web Builder version 1.30.0 or later installed in your project.
 
 # Features
 
@@ -29,7 +29,7 @@ To use this package, you must have Scrivito version 1.30.0 or later installed in
 > If your project still uses legacy forms, **do not update** to this version.  
 > We recommend migrating to the new form system before upgrading.
 
-Install the package into your scrivito app:
+Install the package into your Web Builder app:
 
 ```shell
 npm install scrivito-neoletter-form-widgets
@@ -37,15 +37,15 @@ npm install scrivito-neoletter-form-widgets
 
 ## Importing and Initializing
 
-Import the `initNeoletterFormWidgets` function from the package and call it in your index.js file found in the Widgets folder (e.g., in `src/Widgets/index.js`). If you are using Scrivito version 1.39.0 or later, you do not need to pass your Scrivito tenant ID to the function. However, if you are using a Scrivito version prior to 1.39.0, you must provide your tenant ID as an argument.
+Import the `initNeoletterFormWidgets` function from the package and call it in your index.js file found in the Widgets folder (e.g., in `src/Widgets/index.js`). If you are using Web Builder version 1.39.0 or later, you do not need to pass your Web Builder tenant ID to the function. However, if you are using a Web Builder version prior to 1.39.0, you must provide your tenant ID as an argument.
 
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
 
-// If using Scrivito version 1.39.0 or later
+// If using Web Builder version 1.39.0 or later
 initNeoletterFormWidgets();
 
-// If using Scrivito version prior to 1.39.0
+// If using Web Builder version prior to 1.39.0
 // initNeoletterFormWidgets({ instanceId: process.env.SCRIVITO_TENANT });
 ```
 
@@ -465,7 +465,7 @@ In addition to the built-in form widgets, you have the flexibility to use custom
 
 ## Custom Form Widget Validation
 
-When working with custom form widgets, it's important to ensure proper validation to maintain the integrity of your forms. The Scrivito Form Widgets package provides several useful functions for this purpose:
+When working with custom form widgets, it's important to ensure proper validation to maintain the integrity of your forms. The Web Builder Automations Form Widgets package provides several useful functions for this purpose:
 
 #### `insideFormContainerValidation`
 
@@ -493,7 +493,7 @@ To gain a better understanding of how custom form widgets can be used, let's exp
 
 ### Creating a Custom Slider Widget
 
-1. Start by creating a new folder named "FormSliderWidget" inside the "Widgets" folder of your Scrivito App.
+1. Start by creating a new folder named "FormSliderWidget" inside the "Widgets" folder of your Web Builder App.
 
 2. Inside the "FormSliderWidget" folder, create three files:
 
@@ -625,7 +625,7 @@ We currently support Google reCAPTCHA v3 (score based), v2 Checkbox challenge, a
 7.  **Submit the Request:** Click on the "Submit" button. A site key and secret will be generated.
 8.  **Use the siteKey:** Copy the site key and pass it in the initNeoletterFormWidgets function together with the `captchaType`, you will need to set the `captchaType` to `google-recaptcha` like below:
 
-- Using Scrivito version prior to 1.39.0:
+- Using Web Builder version prior to 1.39.0:
 
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
@@ -638,7 +638,7 @@ initNeoletterFormWidgets({
 });
 ```
 
-- Using Scrivito version 1.39.0 or later:
+- Using Web Builder version 1.39.0 or later:
 
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
@@ -662,7 +662,7 @@ Finally you need to setup the secret key in Automations to be able to use Google
 3. **Create a new API Key:** Go the the `API Keys` tab and create a new API key. Copy the key somewhere, it will be needed later for the Automations configuration.
 4. **Use the siteKey:** Copy the site key and pass it in the initNeoletterFormWidgets function together with the `captchaType`, you will need to set the `captchaType` to `friendly-captcha` like below:
 
-- Using Scrivito version prior to 1.39.0:
+- Using Web Builder version prior to 1.39.0:
 
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
@@ -675,7 +675,7 @@ initNeoletterFormWidgets({
 });
 ```
 
-- Using Scrivito version 1.39.0 or later:
+- Using Web Builder version 1.39.0 or later:
 
 ```js
 import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
@@ -739,9 +739,9 @@ To develop and test the package locally, follow these steps:
 npm install
 ```
 
-## Scrivito Portal App Development
+## Web Builder Portal App Development
 
-For the Scrivito Portal App:
+For the Web Builder Portal App:
 
 Link the package to your global `node_modules` folder:
 
@@ -763,13 +763,13 @@ import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets/src";
 
 Below this import, call the `initNeoletterFormWidgets` function:
 
-- Using Scrivito version prior to 1.39.0:
+- Using Web Builder version prior to 1.39.0:
 
 ```js
 initNeoletterFormWidgets({ instanceId: process.env.SCRIVITO_TENANT });
 ```
 
-- Using Scrivito version 1.39.0 or later:
+- Using Web Builder version 1.39.0 or later:
 
 ```js
 initNeoletterFormWidgets();
@@ -785,11 +785,11 @@ loadEditingConfigs();
 
 **Note:**
 
-The Scrivito Portal App is built using Vite and will automatically compile the package, so there's no need to run `npm run build` or `npm run start` for local development.
+The Web Builder Portal App is built using Vite and will automatically compile the package, so there's no need to run `npm run build` or `npm run start` for local development.
 
-## Scrivito Example App Development
+## Web Builder Example App Development
 
-For the Scrivito Example App:
+For the Web Builder Example App:
 
 Build the package or run it in development mode:
 
@@ -823,13 +823,13 @@ import { initNeoletterFormWidgets } from "scrivito-neoletter-form-widgets";
 
 Below this import, call the `initNeoletterFormWidgets` function:
 
-- Using Scrivito version prior to 1.39.0:
+- Using Web Builder version prior to 1.39.0:
 
 ```js
 initNeoletterFormWidgets({ instanceId: process.env.SCRIVITO_TENANT });
 ```
 
-- Using Scrivito version 1.39.0 or later:
+- Using Web Builder version 1.39.0 or later:
 
 ```js
 initNeoletterFormWidgets();
