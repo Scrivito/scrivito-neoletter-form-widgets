@@ -271,7 +271,7 @@ The `Form Input Field` widget adds customizable input fields to your form. You c
 - Field name: Define the field name for the input.
 - Label: Provide a descriptive label for the input field to convey its purpose.
 - Placeholder: Define a placeholder text for the input field, providing guidance to users.
-- Enable floating label: Places the label inside the input. Remove the placeholder when enabled.
+- Enable floating label: Places the label inside the input. The placeholder is ignored when enabled.
 - Mandatory: Indicates whether the input field is required.
 - Validation Message: The text displayed when the input is invalid.
 - Help text: Provide optional help text for the input field.

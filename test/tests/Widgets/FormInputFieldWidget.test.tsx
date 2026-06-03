@@ -88,6 +88,20 @@ describe("FormInputFieldWidget Component", () => {
     expect(inputElement).toHaveAttribute("maxLength", "50");
   });
 
+  it("ignores placeholder when useFloatingLabel is true", () => {
+    pageRenderer.render({
+      body: [
+        new FormInputFieldWidget({
+          ...widgetProps,
+          useFloatingLabel: true
+        })
+      ]
+    });
+
+    const inputElement = document.querySelector("input");
+    expect(inputElement).not.toHaveAttribute("placeholder");
+  });
+
   it("renders correctly", () => {
     const tree = pageRenderer.getAsJSON({
       body: [new FormInputFieldWidget(widgetProps)]

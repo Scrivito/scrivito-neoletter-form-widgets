@@ -43,7 +43,7 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
     helpText: { title: "Help text" },
     useFloatingLabel: {
       title: "Enable floating label",
-      description: "Places the label inside the input. Remove the placeholder when enabled."
+      description: "Places the label inside the input. The placeholder is ignored when enabled."
     },
     useUserCredentials: {
       title: "Auto-fill with logged-in user details",
@@ -68,7 +68,7 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
       "customFieldName",
       "label",
       ["alignment", { enabled: !widget.get("useFloatingLabel") }],
-      "placeholder",
+      ["placeholder", { enabled: !widget.get("useFloatingLabel") }],
       "useFloatingLabel",
       "required",
       ["validationText", { enabled: widget.get("required") }],
@@ -78,10 +78,10 @@ Scrivito.provideEditingConfig("FormInputFieldWidget", {
       return customProps as any
     }
     if (widget.get("type") === "email" || widget.get("type") === "name") {
-      return ["type", "useUserCredentials", "label", ["alignment", { enabled: !widget.get("useFloatingLabel") }], "placeholder", "required", ["validationText", { enabled: widget.get("required") }], "placeholder", "required", ["validationText", { enabled: widget.get("required") }], "useFloatingLabel", "helpText"];
+      return ["type", "useUserCredentials", "label", ["alignment", { enabled: !widget.get("useFloatingLabel") }], ["placeholder", { enabled: !widget.get("useFloatingLabel") }], "required", ["validationText", { enabled: widget.get("required") }], "useFloatingLabel", "helpText"];
     }
 
-    return ["type", "label", ["alignment", { enabled: !widget.get("useFloatingLabel") }], "placeholder", "required", ["validationText", { enabled: widget.get("required") }], "useFloatingLabel", "helpText"];
+    return ["type", "label", ["alignment", { enabled: !widget.get("useFloatingLabel") }], ["placeholder", { enabled: !widget.get("useFloatingLabel") }], "required", ["validationText", { enabled: widget.get("required") }], "useFloatingLabel", "helpText"];
   },
   validations: [
     insideFormContainerValidation,

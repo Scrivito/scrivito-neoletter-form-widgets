@@ -79,7 +79,7 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
           id={id}
           rows={3}
           name={fieldName}
-          placeholder={widget.get("placeholder")}
+          placeholder={useFloatingLabel ? undefined : widget.get("placeholder")}
           onChange={handleChange}
         />
       ) : (
@@ -88,7 +88,7 @@ Scrivito.provideComponent(FormInputFieldWidget, ({ widget }) => {
           id={id}
           name={fieldName}
           maxLength={calculateMaxLength(fieldName)}
-          placeholder={widget.get("placeholder")}
+          placeholder={useFloatingLabel ? undefined : widget.get("placeholder")}
           type={calculateType(fieldName)}
           defaultValue={getDefaultInputValue()}
           onChange={handleChange}
