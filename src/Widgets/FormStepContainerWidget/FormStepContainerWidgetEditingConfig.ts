@@ -39,7 +39,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     friendlyCaptchaLanguage: {
       title: "Language",
       description:
-        "Defaults to English. Changes are applied after refreshing the page."
+        "Leave empty to use the default language: English for v1, automatic website language detection for v2."
     },
     captchaAlignment: {
       title: "Alignment",
@@ -50,13 +50,13 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       ]
     },
     friendlyCaptchaStartMode: {
-      title: "Start verification",
+      title: "Start solving",
       description:
-        "Specify when the captcha should start the verification process.",
+        "Controls when challenge solving starts. For v2, whether completion requires a click is configured separately under Widget Mode in the Friendly Captcha dashboard.",
       values: [
         { value: "none", title: "After clicking the captcha" },
         { value: "auto", title: "When the form is ready" },
-        { value: "focus", title: "After clicking a form field" }
+        { value: "focus", title: "When a form field receives focus" }
       ]
     },
     submittingMessage: {
@@ -123,7 +123,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       values: [
         { value: "left", title: "Left" },
         { value: "text-center", title: "Center" },
-        { value: "text-end", title: "Right" },
+        { value: "text-end", title: "Right" }
       ]
     },
 
@@ -221,7 +221,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
       title: "Buttons style",
 
       values: [{ value: "btn-primary", title: "Primary" }, { value: "btn-secondary", title: "Secondary" }]
-    },
+    }
   },
   properties: (widget) => {
     const useFixedHeight = widget.get("fixedFormHeight");
@@ -303,7 +303,7 @@ Scrivito.provideEditingConfig("FormStepContainerWidget", {
     ) {
       groups.splice(0, 0, {
         title:
-          captchaType == "friendly-captcha"
+          (captchaType == "friendly-captcha" || captchaType == "friendly-captcha-v2")
             ? "Friendly Captcha"
             : "Google reCAPTCHA V2",
         key: "FormStepContainerWidgetCaptcha",
@@ -469,16 +469,18 @@ function getReviewProperties(widget: Scrivito.Widget): string[] | any[] {
   return widget.get("showReview") ? reviewPropsEnabled : reviewPropsDisabled;
 }
 function getCaptchaProperties(widget: Scrivito.Widget): string[] {
+  const { captchaType } = getCaptchaOptions();
+  const isFriendlyCaptcha = captchaType === "friendly-captcha" || captchaType === "friendly-captcha-v2";
   const captchaPropsDisabled = ["showCaptcha"];
   const captchaPropsEnabled = [
     "showCaptcha",
-    getCaptchaOptions().captchaType == "friendly-captcha"
+    isFriendlyCaptcha
       ? "friendlyCaptchaLanguage"
       : "googleRecaptchaLanguage",
     "captchaTheme",
     "captchaAlignment"
   ];
-  if (getCaptchaOptions().captchaType == "friendly-captcha") {
+  if (isFriendlyCaptcha) {
     captchaPropsEnabled.splice(2, 0, "friendlyCaptchaStartMode");
   }
   return widget.get("showCaptcha") ? captchaPropsEnabled : captchaPropsDisabled;

@@ -13,7 +13,7 @@ export type ReviewItemContent = {
 export type ReviewContent = Array<Array<ReviewItemContent>>;
 export type StringMap<T> = { [key: string]: T };
 
-export type CaptchaType = "google-recaptcha" | "google-recaptcha-v2" | "google-recaptcha-v3" | "friendly-captcha" | null;
+export type CaptchaType = "google-recaptcha" | "google-recaptcha-v2" | "google-recaptcha-v3" | "friendly-captcha" | "friendly-captcha-v2" | null;
 export interface CaptchaOptions {
   siteKey: string;
   captchaType: CaptchaType;

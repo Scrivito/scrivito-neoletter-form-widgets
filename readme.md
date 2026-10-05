@@ -150,10 +150,10 @@ The `Form` widget has the following properties divided into several tabs:
   - Language: Select the language for the reCAPTCHA. Google reCAPTCHA automatically adapts to the browser`s language setting, this property is optional and must not be filled. Refer to the language section [here](https://developers.google.com/recaptcha/docs/language) for setting the language manually.
   - Theme: Choose between light and dark theme. You will need to refresh the page in order to reflect the changes or you can simply re-enable the captcha again.
   - Alignment: Alignment for the reCAPTCHA.
-- "Friendly Captcha" Tab (Tab visible if captchaType is set to `friendly-captcha`)
+- "Friendly Captcha" Tab (Tab visible if captchaType is set to `friendly-captcha` or `friendly-captcha-v2`)
   - Enable captcha: Enables Friendly Captcha for the current form. You need to [Setup Friendly Captcha](#friendly-captcha-setup) first.
-  - Language: Select the language for the Friendly Captcha. Refer to the language section [here](https://docs.friendlycaptcha.com/#/widget_api?id=data-lang-attribute) to see the available language codes.
-  - Start verification: Choose when the verification should start.
+  - Language: Select the language for Friendly Captcha. Leave empty for the version's default: English for v1, automatic website language detection for v2.
+  - Start solving: Choose when challenge solving starts. For v2, the dashboard's Widget Mode separately controls whether completion requires a click.
   - Theme: Choose between light and dark theme.
   - Alignment: Alignment for the Friendly Captcha.
 - "Steps" tab (Tab visible if form has "Multiple Steps")
@@ -604,7 +604,7 @@ Please note that this example is intended to provide a basic demonstration of cr
 
 # Captcha Support
 
-We currently support Google reCAPTCHA v3 (score based), v2 Checkbox challenge, and the GDPR-compliant Friendly Captcha with global endpoint (paid service). Follow [these](#google-recaptcha-developer-setup) steps to set up Google reCAPTCHA and [these](#friendly-captcha-setup) steps to setup Friendly Captcha for your site.
+We currently support Google reCAPTCHA v3 (score based), v2 Checkbox challenge, and Friendly Captcha v1 and v2 with global endpoint (paid service). Follow [these](#google-recaptcha-developer-setup) steps to set up Google reCAPTCHA and [these](#friendly-captcha-setup) steps to setup Friendly Captcha for your site.
 
 
 
@@ -691,6 +691,29 @@ initNeoletterFormWidgets({
 
 Finally you need to setup the API key in Automations to be able to use Friendly Captcha within your forms.
 
+### Friendly Captcha v2
+
+Use a [Friendly Captcha v2 sitekey](https://developer.friendlycaptcha.com/docs/v2/getting-started/setup) and select `friendly-captcha-v2`:
+
+```js
+initNeoletterFormWidgets({
+  captchaOptions: {
+    siteKey: "your_v2_site_key",
+    captchaType: "friendly-captcha-v2"
+  }
+});
+```
+
+Enable captcha in the form's Friendly Captcha tab. The existing language, theme, alignment, and start-mode settings also apply to v2; an empty language uses automatic detection. The package loads the official SDK from jsDelivr when a v2 captcha mounts. The response is submitted as `frc-captcha-response`.
+
+Start mode and Widget Mode control different stages. Scrivito's `auto`, `focus`, and `none` settings control when solving starts. The Friendly Captcha dashboard's Smart, One-click, and Zero-click modes control whether completion requires a click. For example, `auto` with One-click starts solving in the background but still requires a click to complete. See the [v2 configuration documentation](https://developer.friendlycaptcha.com/docs/v2/sdk/configuration).
+
+The light and dark themes in Scrivito are standard SDK settings. Custom Widget Theme is a separate dashboard feature that requires an Advanced or Enterprise plan. Difficulty, Smart Difficulty Scaling, and its allowlists are also managed in the Friendly Captcha dashboard.
+
+Configure the receiving backend or Automations integration to [verify v2 responses](https://developer.friendlycaptcha.com/docs/v2/getting-started/verify); v1 verification cannot validate them. The `friendly-captcha` option continues to use v1.
+
+If the dashboard shows an integration status of Pending, inspect its details: it may be waiting for widget requests or backend `siteverify` requests. Rendering and completing the widget alone does not confirm backend verification. See the [integration check documentation](https://support.friendlycaptcha.com/en/article/how-can-i-use-the-integration-check-of-friendly-captcha-1xxblib/).
+
 ### CSP Configuration for captcha
 
 The configuration of the CSP is identical regardless of whether you're using the Example App or the Portal App.
@@ -706,7 +729,9 @@ For the Google reCAPTCHA, add the following URLs to the "script-src" section:
 "https://www.gstatic.com/recaptcha/"
 ```
 
-For the Friendly Captcha, you need to add the following URLs to the "script-src" section:
+For Friendly Captcha v2, allow `https://cdn.jsdelivr.net/npm/` in `script-src` and `https://*.frcapi.com` in `frame-src`. See the [v2 CSP documentation](https://developer.friendlycaptcha.com/docs/v2/guides/csp).
+
+For Friendly Captcha v1, you need to add the following URLs to the "script-src" section:
 
 ```json
 "blob:",
