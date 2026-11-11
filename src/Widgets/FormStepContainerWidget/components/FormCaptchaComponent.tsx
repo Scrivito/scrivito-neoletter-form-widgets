@@ -3,8 +3,8 @@ import * as Scrivito from "scrivito";
 import { isEmpty } from "../utils/lodashPolyfills";
 import { getCaptchaOptions } from "../../../config/scrivitoConfig";
 import { FriendlyCaptcha } from "./FriendlyCaptchaComponent";
+import { FriendlyCaptchaV2 } from "./FriendlyCaptchaV2Component";
 import { GoogleReCaptcha } from "./GoogleReCaptchaComponent";
-import { CaptchaTheme } from "../../../../types/types";
 import { useFormAttributesContext } from "../FormAttributesContext";
 import { MessageBlock } from "./MessageBlock";
 
@@ -33,6 +33,12 @@ export const FormCaptcha: React.FC<FormCaptchaProps> = ({
           siteKey={options.siteKey}
           widget={widget}
           endpoint={"global"}
+          theme={captchaTheme}
+        />
+      ) : options.captchaType === "friendly-captcha-v2" ? (
+        <FriendlyCaptchaV2
+          siteKey={options.siteKey}
+          widget={widget}
           theme={captchaTheme}
         />
       ) : (
