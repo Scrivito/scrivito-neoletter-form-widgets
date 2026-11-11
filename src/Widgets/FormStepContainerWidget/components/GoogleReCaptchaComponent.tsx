@@ -20,7 +20,7 @@ export const GoogleReCaptchaV2: React.FC<GoogleReCaptchaV2Props> = ({
   const captchaIdRef = React.useRef<number | null>(null);
   const { setCaptchaToken } = useCaptcha();
   const renderCaptcha = React.useCallback(() => {
-    if (captchaRef.current && captchaIdRef.current === null && window.grecaptcha.render) {
+    if (captchaRef.current && captchaIdRef.current === null && window.grecaptcha?.render) {
       captchaIdRef.current = window.grecaptcha.render(captchaRef.current, {
         sitekey: siteKey,
         theme,
@@ -32,33 +32,24 @@ export const GoogleReCaptchaV2: React.FC<GoogleReCaptchaV2Props> = ({
   }, [siteKey, theme, setCaptchaToken, language]);
 
   React.useEffect(() => {
+    let cancelled = false;
     const onloadCallback = () => {
       if (window.grecaptcha?.ready) {
         window.grecaptcha.ready(() => {
-          renderCaptcha();
+          if (!cancelled) renderCaptcha();
         });
       }
     };
 
-    if (window.grecaptcha?.ready) {
-      window.grecaptcha.ready(() => {
-        renderCaptcha();
-      });
-    } else {
-      window.onloadCallback = onloadCallback;
-      onloadCallback();
-    }
+    window.addEventListener("neoletter-recaptcha-ready", onloadCallback);
+    onloadCallback();
     return () => {
+      cancelled = true;
+      window.removeEventListener("neoletter-recaptcha-ready", onloadCallback);
       if (captchaIdRef.current !== null) {
         window.grecaptcha.reset(captchaIdRef.current);
       }
     };
-  }, [renderCaptcha]);
-
-  React.useLayoutEffect(() => {
-    if (captchaRef.current && window.grecaptcha?.render) {
-      renderCaptcha();
-    }
   }, [renderCaptcha]);
 
   return <div ref={captchaRef} className="g-recaptcha"></div>;
