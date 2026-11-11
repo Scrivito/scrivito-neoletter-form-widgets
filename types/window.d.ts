@@ -18,7 +18,7 @@ declare global {
 			ready?: (callback: () => void) => void;
 			reset: (widgetId?: number) => void;
 		};
-		onloadCallback?: () => void;
+		neoletterRecaptchaOnload?: () => void;
 		friendlyChallenge: {
 			WidgetInstance: typeof WidgetInstance;
 		}

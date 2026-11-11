@@ -35,18 +35,24 @@ export const FriendlyCaptcha: React.FC<FriendlyCaptchaProps> = ({
   const widgetInstance = React.useRef<WidgetInstance>();
   const container = React.useRef<HTMLDivElement>(null);
 
-  React.useLayoutEffect(() => {
-    if (!widgetInstance.current && container.current && window.friendlyChallenge) {
-      widgetInstance.current = new window.friendlyChallenge.WidgetInstance(container.current, {
-        startMode: startMode,
-        doneCallback: setCaptchaToken,
-        sitekey: siteKey,
-        language: language as keyof typeof localizations,
+  React.useEffect(() => {
+    const renderCaptcha = () => {
+      if (!widgetInstance.current && container.current && window.friendlyChallenge) {
+        widgetInstance.current = new window.friendlyChallenge.WidgetInstance(container.current, {
+          startMode: startMode,
+          doneCallback: setCaptchaToken,
+          sitekey: siteKey,
+          language: language as keyof typeof localizations,
 
-        puzzleEndpoint: endpoint == "eu" ? EU_ENDPOINT : GLOBAL_ENDPOINT
-      });
-    }
+          puzzleEndpoint: endpoint == "eu" ? EU_ENDPOINT : GLOBAL_ENDPOINT
+        });
+      }
+    };
+    const script = document.querySelector('script[src^="https://cdn.jsdelivr.net/npm/friendly-challenge"]');
+    script?.addEventListener("load", renderCaptcha);
+    renderCaptcha();
     return () => {
+      script?.removeEventListener("load", renderCaptcha);
       if (widgetInstance.current) {
         widgetInstance.current.reset();
       }
@@ -54,5 +60,6 @@ export const FriendlyCaptcha: React.FC<FriendlyCaptchaProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [container]);
 
-  return <div ref={container} className={`frc-captcha ${theme}`} />;
+  // Prevent the SDK's automatic rendering; we create the widget with our callbacks.
+  return <div ref={container} className={`frc-captcha ${theme}`} data-attached="1" />;
 };

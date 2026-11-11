@@ -116,7 +116,11 @@ const attachGoogleRecaptchaV2Script = () => {
 		return;
 	}
 	const script = document.createElement("script");
-	script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
+	// Google invokes this once its API and dependencies are ready.
+	window.neoletterRecaptchaOnload = () => {
+		window.dispatchEvent(new Event("neoletter-recaptcha-ready"));
+	};
+	script.src = "https://www.google.com/recaptcha/api.js?onload=neoletterRecaptchaOnload&render=explicit";
 	script.async = true;
 	script.defer = true;
 	document.body.appendChild(script);

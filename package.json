@@ -1,6 +1,6 @@
 {
   "name": "scrivito-neoletter-form-widgets",
-  "version": "0.0.50",
+  "version": "0.0.52",
   "description": "A set of Scrivito Neoletter Form Widgets",
   "main": "index.js",
   "scripts": {
@@ -77,6 +77,10 @@
     "url-loader": "^3.0.0",
     "webpack": "^5.106.1",
     "webpack-cli": "^6.0.1"
+  },
+  "overrides": {
+    "glob@>=9.0.0 <14.0.2": "^14.0.4",
+    "minimatch@>=7.0.0 <11.0.1": "^11.0.8"
   },
   "repository": {
     "type": "git",
